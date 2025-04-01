@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     [Header("Debugger")]
     [Tooltip("Turns on Jump Debugging"), SerializeField]
     private bool jumpDebugging;
+    
 
     // Start is called before the first frame update
     void Start()

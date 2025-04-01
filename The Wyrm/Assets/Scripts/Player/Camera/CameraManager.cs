@@ -8,6 +8,10 @@ public class CameraManager : MonoBehaviour
     private Vector3 returnPosition;
     private Quaternion returnDirection;
 
+    [Header("Debugger")]
+    [Tooltip("Turns on Camera Debugging"), SerializeField]
+    private bool cameraDebugging;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +22,7 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (cameraDebugging && Input.GetKeyDown(KeyCode.E))
         {
             SetCameraPerspective(!GetCameraPerspective());
         }

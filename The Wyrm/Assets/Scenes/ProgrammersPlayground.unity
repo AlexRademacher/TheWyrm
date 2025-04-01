@@ -768,6 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6372f444529e35b4993fa9d1f03dc421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraDebugging: 0
 --- !u!114 &402223747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,8 +1360,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 578001705}
-  - {fileID: 1800985070}
   - {fileID: 1006745425}
+  - {fileID: 1800985070}
   m_Father: {fileID: 702608763}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1871,6 +1872,7 @@ MonoBehaviour:
   MainMenu: {fileID: 932326923}
   PauseMenu: {fileID: 898995539}
   RespawnMenu: {fileID: 0}
+  NPCTextBox: {fileID: 702608762}
 --- !u!1 &1428630403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,7 +2699,7 @@ GameObject:
   - component: {fileID: 1800985072}
   - component: {fileID: 1800985071}
   m_Layer: 5
-  m_Name: Name Box (1)
+  m_Name: Instructions Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
