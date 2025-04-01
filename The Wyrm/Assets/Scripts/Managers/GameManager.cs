@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private bool paused;
+
     // Start is called before the first frame update
     void Start()
     {
-        // lock cursor
-        CursorVisiblity(false);
+
     }
 
     // Update is called once per frame
@@ -19,9 +20,35 @@ public class GameManager : MonoBehaviour
         // allows player to free cursor by pressing escape
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            CursorVisiblity(!Cursor.visible);
+            if (!paused)
+            {
+                PauseGame();
+            }
         }
     }
+
+    //--------------------------------------------------------------------------------------------------------
+    // Get and set
+
+    public bool GetPauseState()
+    {
+        return paused;
+    }
+
+    public void SetPauseState(bool NewState)
+    {
+        paused = NewState;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------
+    // Game States
+
+    private void PauseGame()
+    {
+        paused = !GetPauseState();
+        CursorVisiblity(GetPauseState());
+    }
+
 
     //----------------------------------------------------------------------------------------------------------------------
     // Cursor
@@ -60,5 +87,21 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // Close Game
+
+    public void CloseGame()
+    {
+        QuitGame();
+    }
+
+    private void QuitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+            Application.Quit();
     }
 }
