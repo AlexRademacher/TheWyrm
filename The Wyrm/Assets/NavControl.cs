@@ -10,18 +10,50 @@ public class NavControl : MonoBehaviour
     Vector3 end;
     NavMeshAgent agent;
 
+    NavMeshPath path;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         end = agent.destination;
+        agent.speed = 7.0f;
+        path = new NavMeshPath();
     }
 
     // Update is called once per frame
     void Update()
     {
         end = goal.position;
-        agent.destination = end;
-        Debug.Log(agent.remainingDistance);
+        //agent.destination = end;
+        if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete)
+        {
+            agent.SetPath(path);
+        }
+        else 
+        {
+            agent.destination = agent.transform.position;
+        }
+        //Debug.Log(agent.remainingDistance);
+
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("trigger");
+        if (other.tag == "Slow") 
+        {
+            agent.speed = 7f * 0.5f;
+            Debug.Log("slow zone");
+        }
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        if (other.tag == "Slow")
+        {
+            agent.speed = 7f;
+        }
     }
 }
