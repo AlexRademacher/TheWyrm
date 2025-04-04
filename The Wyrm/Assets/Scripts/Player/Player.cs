@@ -149,5 +149,23 @@ public class Player : MonoBehaviour
         controller.enabled = true;
     }
 
+
+
+    private void OnTriggerStay(Collider other) //Feel free to change this for more efficiency most important part if the dropper object and the comparisions and calls involving it
+    {
+        Drop dropper = other.GetComponent<Drop>();
+        //Debug.Log("in trigger");
+        if (other.tag == "drop" && Input.GetKeyDown(KeyCode.F) && !dropper.down)
+        {
+            dropper.dropThis();
+        }
+        else if (other.tag == "drop" && Input.GetKeyDown(KeyCode.F) && dropper.down) 
+        {
+            dropper.upThis();
+        }
+    }
+
+    
+
 }
 

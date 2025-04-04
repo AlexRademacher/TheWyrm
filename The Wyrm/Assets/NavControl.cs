@@ -41,7 +41,7 @@ public class NavControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger");
+        //Debug.Log("trigger");
         if (other.tag == "Slow") 
         {
             agent.speed = 7f * 0.5f;
