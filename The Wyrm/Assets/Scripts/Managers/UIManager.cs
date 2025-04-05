@@ -23,6 +23,11 @@ public class UIManager : MonoBehaviour
     private GameObject TextBoxText;
     private GameObject TextBoxName;
 
+    [Tooltip("The amount of relics you have"), SerializeField]
+    private GameObject ItemCount;
+    private GameObject ItemCounter;
+    private int ItemAmount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +87,30 @@ public class UIManager : MonoBehaviour
 
     //--------------------------------------------------------------------------------------------------------
     // Player UI
+
+    public void UpdateItemCount(int ItemNum)
+    {
+        UpdateItemAmount(ItemNum);
+    }
+
+    private void UpdateItemAmount(int ItemNum)
+    {
+        if (ItemCount != null)
+        {
+            if (ItemCounter == null)
+            {
+                ItemCounter = ItemCount.transform.GetChild(0).gameObject;
+            }
+
+            ItemAmount += ItemNum;
+
+            string count = ItemAmount + "x";
+
+            ItemCounter.GetComponent<TextMeshProUGUI>().text = count;
+        }
+        else
+            Debug.LogWarning("ItemCount not set up correctly");
+    }
 
     private void SetTextBox(string name, string text)
     {

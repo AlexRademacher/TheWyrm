@@ -5,8 +5,9 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     private bool firstPerson = false;
-    private Vector3 returnPosition;
-    private Quaternion returnDirection;
+
+    private Camera Camera3rdPerson;
+    private Camera Camera1stPerson;
 
     [Header("Debugger")]
     [Tooltip("Turns on Camera Debugging"), SerializeField]
@@ -15,40 +16,50 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        returnPosition = transform.position;
-        returnDirection = transform.rotation;
+        Camera1stPerson = transform.GetChild(0).GetComponent<Camera>();
+        Camera3rdPerson = transform.GetChild(1).GetComponent<Camera>();
+
+        Camera3rdPerson.enabled = true;
+        Camera1stPerson.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (cameraDebugging && Input.GetKeyDown(KeyCode.E))
+        if (cameraDebugging && Input.GetKeyDown(KeyCode.P))
         {
             SetCameraPerspective(!GetCameraPerspective());
-        }
 
-        if (GetCameraPerspective() && transform.position != transform.parent.position)
-        {
-            returnPosition = transform.position;
-            transform.position = transform.parent.position;
-
+            if (GetCameraPerspective() && Camera3rdPerson.enabled)
+            {
+                Camera3rdPerson.enabled = false;
+                Camera1stPerson.enabled = true;
+            }
+            else if (!GetCameraPerspective() && Camera1stPerson.enabled)
+            {
+                Camera3rdPerson.enabled = true;
+                Camera1stPerson.enabled = false;
+            }
         }
-        else if (!GetCameraPerspective() && transform.position == transform.parent.position)
-        {
-            transform.position = returnPosition;
-            transform.rotation = returnDirection;
-        }
-
+        
     }
 
     //----------------------------------------------------------------------------------------------------------------------
     // Get and Set
 
+    /// <summary>
+    /// Get the perspective of the camera
+    /// </summary>
+    /// <returns> true = first person, false = third person </returns>
     public bool GetCameraPerspective()
     {
         return firstPerson;
     }
 
+    /// <summary>
+    /// Set the perspective of the camera
+    /// </summary>
+    /// <param name="newPerspective"> true = first person, false = third person </param>
     public void SetCameraPerspective(bool newPerspective)
     {
         firstPerson = newPerspective;
