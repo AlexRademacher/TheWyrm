@@ -34,6 +34,11 @@ public class Player : MonoBehaviour
     [Tooltip("Turns on Jump Debugging"), SerializeField]
     private bool jumpDebugging;
 
+    [SerializeField] private bool hiding = false;
+    [SerializeField] private bool canHide = false;
+    Vector3 prevPosition;
+    Vector3 hidingPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +53,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // allows movement if cursor is hidden and controller is working
-        if (!Cursor.visible && controller != null)
+        if (!Cursor.visible && controller != null && !hiding)
         {
             Movement(); // control of the x and z axis
 
@@ -64,6 +69,21 @@ public class Player : MonoBehaviour
         if (transform.position.y < -100)
         {
             Respawn();
+        }
+        if (Input.GetKeyDown(KeyCode.F) && canHide && !hiding)
+        {
+            
+                Debug.Log("hidingCode");
+                prevPosition = this.transform.position;
+                this.transform.position = hidingPos;
+                hiding = true;
+            
+
+        }
+        else if (Input.GetKeyDown(KeyCode.F) && hiding)
+        {
+            this.transform.position = prevPosition;
+            hiding = false;
         }
 
     }
@@ -154,18 +174,39 @@ public class Player : MonoBehaviour
     private void OnTriggerStay(Collider other) //Feel free to change this for more efficiency most important part if the dropper object and the comparisions and calls involving it
     {
         Drop dropper = other.GetComponent<Drop>();
-        //Debug.Log("in trigger");
-        if (other.tag == "drop" && Input.GetKeyDown(KeyCode.F) && !dropper.down)
+        //Debug.Log("in trigger" + other.tag);
+        if (other.tag == "drop" && Input.GetKeyDown(KeyCode.F) && !dropper.down)//May be best to change these to a boolean true false change then check input elsewhere
         {
             dropper.dropThis();
         }
-        else if (other.tag == "drop" && Input.GetKeyDown(KeyCode.F) && dropper.down) 
+        else if (other.tag == "drop" && Input.GetKeyDown(KeyCode.F) && dropper.down)
         {
             dropper.upThis();
         }
+        
+
+        
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Hide" && !canHide)
+        {
+            Debug.Log("canHide");
+            hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
+            canHide = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Hide" && canHide)
+        {
+            Debug.Log("cantHide");
+            //hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
+            canHide = false;
+        }
+    }
 
 }
 

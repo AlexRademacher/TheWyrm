@@ -25,10 +25,11 @@ public class NavControl : MonoBehaviour
     void Update()
     {
         end = goal.position;
-        //agent.destination = end;
+        //
         if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete) //Look into why it cant traverse links anymore
         {
-            agent.SetPath(path);
+            agent.destination = end;
+            //agent.SetPath(path);
         }
         else 
         {
