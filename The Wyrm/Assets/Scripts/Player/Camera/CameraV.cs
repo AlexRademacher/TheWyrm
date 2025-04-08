@@ -18,7 +18,7 @@ public class LookVertical : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CM = GetComponent<CameraManager>();
+        CM = transform.parent.GetComponent<CameraManager>();
     }
 
     // Update is called once per frame
