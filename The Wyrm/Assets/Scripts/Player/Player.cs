@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEditor.U2D;
 using UnityEngine;
@@ -38,6 +39,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private bool hiding = false;
     [SerializeField] private bool canHide = false;
+    [SerializeField] private bool canDrop = false;
+    Drop nearbyDropper;
     Vector3 prevPosition;
     Vector3 hidingPos;
 
@@ -91,6 +94,14 @@ public class Player : MonoBehaviour
             this.transform.position = prevPosition;
             hiding = false;
             
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && canDrop && nearbyDropper != null) 
+        {
+            if(!nearbyDropper.down)
+                nearbyDropper.dropThis();
+            else if(nearbyDropper.down)
+                nearbyDropper.upThis();
         }
 
         if (CM != null)
@@ -176,7 +187,7 @@ public class Player : MonoBehaviour
 
 
 
-    private void OnTriggerStay(Collider other) //Feel free to change this for more efficiency most important part if the dropper object and the comparisions and calls involving it
+    /*private void OnTriggerStay(Collider other) //Feel free to change this for more efficiency most important part if the dropper object and the comparisions and calls involving it
     {
         Drop dropper = other.GetComponent<Drop>();
         //Debug.Log("in trigger" + other.tag);
@@ -188,10 +199,8 @@ public class Player : MonoBehaviour
         {
             dropper.upThis();
         }
-        
-
-        
-    }
+            
+    }*/
 
     private void OnTriggerEnter(Collider other)
     {
@@ -200,6 +209,12 @@ public class Player : MonoBehaviour
             Debug.Log("canHide");
             hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z);
             canHide = true;
+        }
+        if (other.tag == "drop" && !canDrop) 
+        {
+            nearbyDropper = other.GetComponent<Drop>();
+            Debug.Log("canDrop");
+            canDrop = true;
         }
     }
 
@@ -210,6 +225,12 @@ public class Player : MonoBehaviour
             Debug.Log("cantHide");
             //hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
             canHide = false;
+        }
+        if (other.tag == "drop" && canDrop)
+        {
+            nearbyDropper = null;
+            Debug.Log("canDrop");
+            canDrop = false;
         }
     }
 
