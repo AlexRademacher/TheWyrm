@@ -44,16 +44,16 @@ public class UIManager : MonoBehaviour
                 PauseMenu.SetActive(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.R) && !PauseMenu.activeSelf)
+            /*if (Input.GetKeyDown(KeyCode.R) && !PauseMenu.activeSelf)
             {
                 NPCTextBox.SetActive(!NPCTextBox.activeSelf);
-            }
+            }*/
 
-            if (Input.GetKeyDown(KeyCode.E) && NPCTextBox.activeSelf)
+            /*if (Input.GetKeyDown(KeyCode.E) && NPCTextBox.activeSelf)
             {
                 SetTextBox("Blorg", "blah blah blah blah");
                 SetTextBox("blah blah blah blah blah blahb lbahb bhalb hahblahb lhba");
-            }
+            }*/
         }
     }
 
@@ -112,13 +112,16 @@ public class UIManager : MonoBehaviour
             Debug.LogWarning("ItemCount not set up correctly");
     }
 
-    private void SetTextBox(string name, string text)
+    public void SetTextBox(string name, string text)
     {
         if (NPCTextBox != null)
         {
             if (TextBoxText == null)
                 TextBoxText = NPCTextBox.transform.GetChild(0).GetChild(1).gameObject;
             TextBoxName = NPCTextBox.transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
+
+            if (!TextBoxText.activeSelf)
+                TextBoxName.SetActive(true);
         }
         else
             Debug.LogWarning("Text Box not set up correctly");
@@ -134,11 +137,15 @@ public class UIManager : MonoBehaviour
             Debug.LogWarning("Text Box Name not set up correctly");
     }
 
-    private void SetTextBox(string text)
+    public void SetTextBox(string text)
     {
         if (NPCTextBox != null && TextBoxText == null)
         {
             TextBoxText = NPCTextBox.transform.GetChild(0).GetChild(1).gameObject;
+            TextBoxName = NPCTextBox.transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
+
+            if (TextBoxText.activeSelf)
+                TextBoxName.SetActive(false);
         }
         else if (NPCTextBox == null)
             Debug.LogWarning("Text Box not set up correctly");
@@ -147,5 +154,15 @@ public class UIManager : MonoBehaviour
             TextBoxText.GetComponent<TextMeshProUGUI>().text = text;
         else
             Debug.LogWarning("Text Box Text not set up correctly");
+    }
+
+    public bool GetTextBoxActiveState()
+    {
+        return NPCTextBox.activeSelf;
+    }
+
+    public void SetTextBoxActiveState(bool newState)
+    {
+        NPCTextBox.SetActive(newState);
     }
 }

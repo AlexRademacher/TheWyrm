@@ -115,6 +115,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             DoorInteraction(other.gameObject, true);
         }
+
+        if (other.gameObject.CompareTag("NPC"))
+        {
+            Debug.Log("We are reading I hope");
+            other.transform.GetComponent<NPCManager>().SetInTalkingState(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
