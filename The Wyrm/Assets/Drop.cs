@@ -19,12 +19,19 @@ public class Drop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Alpha0) && !down) 
+        {
+            dropThis();
+            Debug.Log("DebugDrop");
+        } else if(Input.GetKeyDown(KeyCode.Alpha0) && down) 
+        {
+            upThis();
+        }
     }
 
     public void dropThis() 
     {
-        Debug.Log("Drop" + this.name);
+        //Debug.Log("Drop" + this.name);
         this.transform.RotateAround(rotatepoint, transform.localRotation * Vector3.right, 90);
         down = true;
     }

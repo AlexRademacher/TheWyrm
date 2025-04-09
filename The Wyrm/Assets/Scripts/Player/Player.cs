@@ -77,17 +77,20 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && canHide && !hiding)
         {
             
-                Debug.Log("hidingCode");
+                //Debug.Log("hidingCode");
                 prevPosition = this.transform.position;
-                this.transform.position = hidingPos;
+                this.transform.position = new Vector3(hidingPos.x, hidingPos.y, hidingPos.z);
                 hiding = true;
+                Debug.Log(prevPosition + " before hiding");
             
 
         }
         else if (Input.GetKeyDown(KeyCode.F) && hiding)
         {
+            Debug.Log(prevPosition + " after hiding");
             this.transform.position = prevPosition;
             hiding = false;
+            
         }
 
         if (CM != null)
@@ -195,7 +198,7 @@ public class Player : MonoBehaviour
         if (other.tag == "Hide" && !canHide)
         {
             Debug.Log("canHide");
-            hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
+            hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z);
             canHide = true;
         }
     }

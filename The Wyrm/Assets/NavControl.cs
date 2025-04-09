@@ -15,9 +15,10 @@ public class NavControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        goal = GameObject.Find("Player").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
         end = agent.destination;
-        agent.speed = 7.0f;
+        agent.speed = 3.5f;
         path = new NavMeshPath();
     }
 
@@ -36,7 +37,14 @@ public class NavControl : MonoBehaviour
             agent.destination = agent.transform.position;
         }
         //Debug.Log(agent.remainingDistance);
-
+        if(agent.isOnOffMeshLink) 
+        {
+            agent.speed = 6.5f / 2f;
+        } else 
+        {
+            agent.speed = 6.5f;
+        }
+        
         
     }
 
