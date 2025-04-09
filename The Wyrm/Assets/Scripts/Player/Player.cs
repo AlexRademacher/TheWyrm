@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // allows movement if cursor is hidden and controller is working
-        if (/*!Cursor.visible &&*/ controller != null && !hiding)
+        if (!Cursor.visible && controller != null && !hiding)
         {
             Movement(); // control of the x and z axis
 
