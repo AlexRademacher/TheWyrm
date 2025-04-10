@@ -31,6 +31,12 @@ public class Player : MonoBehaviour
     [Tooltip("What the gravity on the player is"), SerializeField]
     private float gravity = -9.81f;
 
+    [Header("Inventory")]
+    [SerializeField]
+    private GameObject relic;
+    private GameObject[] inventory = new GameObject[3];
+    private int inventoryIndex = 0;
+
     [Header("Debugger")]
     [Tooltip("Turns on Jump Debugging"), SerializeField]
     private bool jumpDebugging;
@@ -77,6 +83,11 @@ public class Player : MonoBehaviour
         }
         else
             Debug.LogWarning("CM not set up correctly for player");
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RemoveInventory();
+        }
 
     }
 
@@ -134,6 +145,32 @@ public class Player : MonoBehaviour
             Debug.Log("Vertical velocity is:" + playerVelocity.y);
 
         controller.Move(playerVelocity * Time.deltaTime); // sets movement of the y axis
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------
+    // Inventory
+    
+    public void AddToInventory(GameObject Item)
+    {
+        if (Item == null && inventoryIndex <= 2)
+        {
+            inventory[inventoryIndex] = Item;
+            inventoryIndex++;
+        }
+    }
+
+    public void RemoveInventory()
+    {
+        if (inventoryIndex > 0)
+        {
+            inventoryIndex--;
+            inventory[inventoryIndex] = null;
+            
+            if (!CM.GetCameraPerspective())
+            {
+
+            }
+        }
     }
 
     //----------------------------------------------------------------------------------------------------------------------

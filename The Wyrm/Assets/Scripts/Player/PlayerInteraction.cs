@@ -47,6 +47,10 @@ public class PlayerInteraction : MonoBehaviour
             {
                 PickUpItemState1st(hitInfo.transform.gameObject); // specific interactions with item
             }
+
+            if (Input.GetKeyDown(KeyCode.R)) {
+                transform.GetComponent<Player>().RemoveInventory();
+            }
         }
     }
 

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private int timer;
+
     private bool paused;
 
     // Start is called before the first frame update
@@ -29,6 +31,22 @@ public class GameManager : MonoBehaviour
 
     //--------------------------------------------------------------------------------------------------------
     // Get and set
+
+    public int GetTime()
+    {
+        return timer;
+    }
+
+    public void AddToTimer(int addedTime)
+    {
+        timer += addedTime;
+
+        if (timer >= 120)
+        {
+
+        }
+
+    }
 
     public bool GetPauseState()
     {

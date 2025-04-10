@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCManager : MonoBehaviour
 {
-
+    private GameManager GM;
     private UIManager UI;
 
     private bool canNeverSpeak = false;
@@ -23,6 +23,7 @@ public class NPCManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
@@ -67,6 +68,7 @@ public class NPCManager : MonoBehaviour
             {
                 UI.SetTextBox(gameObject.name.Substring(3), dialogue[lineNum]);
                 lineNum++;
+                GM.AddToTimer(20);
             }
             else
             {

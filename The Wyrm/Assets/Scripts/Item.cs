@@ -42,8 +42,9 @@ public class Item : MonoBehaviour
     {
         if (gameObject.name.Contains("Relic"))
         {
+            GameObject.Find("Player").transform.GetComponent<Player>().AddToInventory(gameObject);
             UI.UpdateItemCount(1);
-            Destroy(gameObject);
+            transform.position = new Vector3(transform.position.x, transform.position.y - 30, transform.position.z);
         }
     }
 }
