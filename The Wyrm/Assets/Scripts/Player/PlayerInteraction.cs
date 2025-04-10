@@ -47,6 +47,10 @@ public class PlayerInteraction : MonoBehaviour
             {
                 PickUpItemState1st(hitInfo.transform.gameObject); // specific interactions with item
             }
+
+            if (Input.GetKeyDown(KeyCode.R)) {
+                transform.GetComponent<Player>().RemoveInventory();
+            }
         }
     }
 
@@ -114,6 +118,12 @@ public class PlayerInteraction : MonoBehaviour
         if (other.gameObject.CompareTag("Door"))
         {
             DoorInteraction(other.gameObject, true);
+        }
+
+        if (other.gameObject.CompareTag("NPC"))
+        {
+            Debug.Log("We are reading I hope");
+            other.transform.GetComponent<NPCManager>().SetInTalkingState(true);
         }
     }
 

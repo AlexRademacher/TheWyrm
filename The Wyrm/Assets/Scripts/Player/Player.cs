@@ -5,9 +5,11 @@ using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEditor.U2D;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    private GameManager GM;
     private CameraManager CM;
     private UIManager UI;
     private PlayerInteraction PI;
@@ -32,6 +34,12 @@ public class Player : MonoBehaviour
     [Tooltip("What the gravity on the player is"), SerializeField]
     private float gravity = -9.81f;
 
+    [Header("Inventory")]
+    [SerializeField]
+    private GameObject relic;
+    private GameObject[] inventory = new GameObject[3];
+    private int inventoryIndex = 0;
+
     [Header("Debugger")]
     [Tooltip("Turns on Jump Debugging"), SerializeField]
     private bool jumpDebugging;
@@ -47,6 +55,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
 
@@ -112,6 +121,11 @@ public class Player : MonoBehaviour
         else
             Debug.LogWarning("CM not set up correctly for player");
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RemoveInventory();
+        }
+
     }
 
     //----------------------------------------------------------------------------------------------------------------------
@@ -171,9 +185,49 @@ public class Player : MonoBehaviour
     }
 
     //----------------------------------------------------------------------------------------------------------------------
+    // Inventory
+    
+    public void AddToInventory(GameObject Item)
+    {
+        if (Item != null && inventoryIndex <= 2)
+        {
+            Debug.Log("heeeeeeeyyyyy I am workinnnnngggg");
+
+            UI.UpdateItemCount(1);
+            inventory[inventoryIndex] = Item;
+            inventoryIndex++;
+
+            if (inventoryIndex == 2)
+            {
+                LoadSceneManager lSM = GameObject.Find("Game Manager").GetComponent<LoadSceneManager>();
+                if (1 <= SceneManager.sceneCountInBuildSettings && lSM != null)
+                    lSM.LoadScene(1);
+            }
+        }
+    }
+
+    public void RemoveInventory()
+    {
+        if (inventoryIndex > 0)
+        {
+            Debug.Log("See told you were are here");
+
+            UI.UpdateItemCount(-1);
+            inventoryIndex--;
+            inventory[inventoryIndex] = null;
+
+            Debug.Log("For you");
+            Instantiate(relic, new Vector3(transform.position.x + 1, transform.position.y - (transform.position.y / 2) - .25f, transform.position.z), transform.rotation);
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------
     // Respawn and Health
 
-
+    public void PlayerKilled()
+    {
+        GM.PlayerKilledState(true);
+    }
 
     /// <summary>
     /// Respawns the player

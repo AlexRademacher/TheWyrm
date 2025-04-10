@@ -13,6 +13,8 @@ public class Item : MonoBehaviour
     void Start()
     {
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+
+        SetPickUpState(false);
     }
 
     // Update is called once per frame
@@ -42,8 +44,16 @@ public class Item : MonoBehaviour
     {
         if (gameObject.name.Contains("Relic"))
         {
-            UI.UpdateItemCount(1);
-            Destroy(gameObject);
+            Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHHHhhhhhhhhhhhhhhhhhhhhhhh");
+
+            Player p = GameObject.Find("Player").transform.GetComponent<Player>();
+
+            if (p != null)
+                p.AddToInventory(gameObject);
+            else
+                Debug.Log("Yeah we don't like you");
+
+            transform.position = new Vector3(transform.position.x, transform.position.y - 30, transform.position.z);
         }
     }
 }
