@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraManager : MonoBehaviour
 {
-    private bool firstPerson = false;
+    private bool firstPerson;
 
     private Camera Camera3rdPerson;
     private Camera Camera1stPerson;
@@ -19,8 +20,14 @@ public class CameraManager : MonoBehaviour
         Camera1stPerson = transform.GetChild(0).GetComponent<Camera>();
         Camera3rdPerson = transform.GetChild(1).GetComponent<Camera>();
 
-        Camera3rdPerson.enabled = true;
-        Camera1stPerson.enabled = false;
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            firstPerson = false;
+        }
+        else
+        {
+            firstPerson = true;
+        }
     }
 
     // Update is called once per frame

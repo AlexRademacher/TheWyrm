@@ -178,10 +178,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAreaNum: 1
-  speed: 3
+  speed: 6
   currentSpeed: 0
   jumpForce: 1
   gravity: -9.81
+  relic: {fileID: 7232870634904934473, guid: 9503ed9f7258dec4ea186251d7a158fb, type: 3}
   jumpDebugging: 0
 --- !u!114 &7648907098761367918
 MonoBehaviour:
@@ -224,7 +225,7 @@ MonoBehaviour:
   maxDistance: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   debug: 1
 --- !u!1 &2442599002234489710
 GameObject:
@@ -404,13 +405,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7814746422202638565}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 4.73, z: -7}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 2.4, z: -4.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 641492871535235075}
-  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!20 &4126481047845837027
 Camera:
   m_ObjectHideFlags: 0
