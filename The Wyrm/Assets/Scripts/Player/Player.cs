@@ -1,11 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEditor.U2D;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    private GameManager GM;
+    private CameraManager CM;
+    private UIManager UI;
+    private PlayerInteraction PI;
+
     private CharacterController controller;
     private GroundChecker gC;
 
@@ -25,19 +32,25 @@ public class Player : MonoBehaviour
     private float jumpForce = 1;
     [Tooltip("What the gravity on the player is"), SerializeField]
     private float gravity = -9.81f;
-    [Header("Pick Up")]
-    public float reachDistance = 3f; // How close you have to be
-    private GameObject currentItem;
-    public bool isHeld;
+
+    [Header("Inventory")]
+    [SerializeField]
+    private GameObject relic;
+    private GameObject[] inventory = new GameObject[3];
+    private int inventoryIndex = 0;
 
     [Header("Debugger")]
     [Tooltip("Turns on Jump Debugging"), SerializeField]
     private bool jumpDebugging;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        isHeld = false;
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        CM = transform.GetChild(0).GetComponent<CameraManager>();
+        UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+
         controller = GetComponent<CharacterController>();
         gC = GetComponent<GroundChecker>();
 
@@ -66,6 +79,19 @@ public class Player : MonoBehaviour
             Respawn();
         }
 
+        if (CM != null)
+        {
+            if (!CM.GetCameraPerspective() && transform.rotation != new Quaternion(0, 0, 0, 0))
+                transform.rotation = new Quaternion(0,0, 0, 0);
+        }
+        else
+            Debug.LogWarning("CM not set up correctly for player");
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RemoveInventory();
+        }
+
     }
 
     //----------------------------------------------------------------------------------------------------------------------
@@ -77,11 +103,7 @@ public class Player : MonoBehaviour
     private void Movement()
     {
         // Running
-        if (isHeld)
-        {
-            currentSpeed = speed / 2;
-        }
-        else if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeed = speed * 2; // running speed
         }
@@ -93,12 +115,6 @@ public class Player : MonoBehaviour
         Vector3 newPostion = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized; // sets new postion
         newPostion = transform.TransformDirection(newPostion); // changes it to move where the character is looking
         controller.Move(currentSpeed * Time.deltaTime * newPostion); // sends out the movement of the x and z axis
-
-        if (isHeld == true)
-        {
-            currentSpeed = speed / 2;
-        }
-
     }
 
     /// <summary>
@@ -135,9 +151,49 @@ public class Player : MonoBehaviour
     }
 
     //----------------------------------------------------------------------------------------------------------------------
+    // Inventory
+    
+    public void AddToInventory(GameObject Item)
+    {
+        if (Item != null && inventoryIndex <= 2)
+        {
+            Debug.Log("heeeeeeeyyyyy I am workinnnnngggg");
+
+            UI.UpdateItemCount(1);
+            inventory[inventoryIndex] = Item;
+            inventoryIndex++;
+
+            if (inventoryIndex == 2)
+            {
+                LoadSceneManager lSM = GameObject.Find("Game Manager").GetComponent<LoadSceneManager>();
+                if (1 <= SceneManager.sceneCountInBuildSettings && lSM != null)
+                    lSM.LoadScene(1);
+            }
+        }
+    }
+
+    public void RemoveInventory()
+    {
+        if (inventoryIndex > 0)
+        {
+            Debug.Log("See told you were are here");
+
+            UI.UpdateItemCount(-1);
+            inventoryIndex--;
+            inventory[inventoryIndex] = null;
+
+            Debug.Log("For you");
+            Instantiate(relic, new Vector3(transform.position.x + 1, transform.position.y - (transform.position.y / 2) - .25f, transform.position.z), transform.rotation);
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------
     // Respawn and Health
 
-
+    public void PlayerKilled()
+    {
+        GM.PlayerKilledState(true);
+    }
 
     /// <summary>
     /// Respawns the player
