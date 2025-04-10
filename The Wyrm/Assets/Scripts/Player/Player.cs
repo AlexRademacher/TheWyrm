@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
-
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
+using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -62,15 +63,6 @@ public class Player : MonoBehaviour
         gC = GetComponent<GroundChecker>();
 
         respawnPos = transform.position;
-
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            speed = 3;
-        }
-        else
-        {
-            speed = 6;
-        }
     }
 
     // Update is called once per frame
@@ -132,11 +124,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             RemoveInventory();
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            PlayerKilled();
         }
 
     }
@@ -206,7 +193,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log("heeeeeeeyyyyy I am workinnnnngggg");
 
-            GM.AddToTimer(60);
             UI.UpdateItemCount(1);
             inventory[inventoryIndex] = Item;
             inventoryIndex++;
