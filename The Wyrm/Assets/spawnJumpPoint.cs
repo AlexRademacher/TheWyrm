@@ -18,7 +18,7 @@ public class spawnJumpPoint : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(linkObject, new Vector3(-20, -1, 25), Quaternion.identity);
+            Instantiate(linkObject, new Vector3(-20, -1, 27), Quaternion.identity);
         }
     }
 }

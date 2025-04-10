@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEditor.U2D;
+=======
+>>>>>>> parent of 5d6a68a (Merge branch 'ai-tests' into main)
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -45,13 +48,6 @@ public class Player : MonoBehaviour
     private bool jumpDebugging;
     
 
-    [SerializeField] private bool hiding = false;
-    [SerializeField] private bool canHide = false;
-    [SerializeField] private bool canDrop = false;
-    Drop nearbyDropper;
-    Vector3 prevPosition;
-    Vector3 hidingPos;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +65,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // allows movement if cursor is hidden and controller is working
-        if (!Cursor.visible && controller != null && !hiding)
+        if (!Cursor.visible && controller != null)
         {
             Movement(); // control of the x and z axis
 
@@ -85,32 +81,6 @@ public class Player : MonoBehaviour
         if (transform.position.y < -100)
         {
             Respawn();
-        }
-        if (Input.GetKeyDown(KeyCode.F) && canHide && !hiding)
-        {
-            
-                //Debug.Log("hidingCode");
-                prevPosition = this.transform.position;
-                this.transform.position = new Vector3(hidingPos.x, hidingPos.y, hidingPos.z);
-                hiding = true;
-                Debug.Log(prevPosition + " before hiding");
-            
-
-        }
-        else if (Input.GetKeyDown(KeyCode.F) && hiding)
-        {
-            Debug.Log(prevPosition + " after hiding");
-            this.transform.position = prevPosition;
-            hiding = false;
-            
-        }
-
-        if (Input.GetKeyDown(KeyCode.F) && canDrop && nearbyDropper != null) 
-        {
-            if(!nearbyDropper.down)
-                nearbyDropper.dropThis();
-            else if(nearbyDropper.down)
-                nearbyDropper.upThis();
         }
 
         if (CM != null)
@@ -237,55 +207,6 @@ public class Player : MonoBehaviour
         controller.enabled = false;
         transform.position = respawnPos;
         controller.enabled = true;
-    }
-
-
-
-    /*private void OnTriggerStay(Collider other) //Feel free to change this for more efficiency most important part if the dropper object and the comparisions and calls involving it
-    {
-        Drop dropper = other.GetComponent<Drop>();
-        //Debug.Log("in trigger" + other.tag);
-        if (other.tag == "drop" && Input.GetKeyDown(KeyCode.F) && !dropper.down)//May be best to change these to a boolean true false change then check input elsewhere
-        {
-            dropper.dropThis();
-        }
-        else if (other.tag == "drop" && Input.GetKeyDown(KeyCode.F) && dropper.down)
-        {
-            dropper.upThis();
-        }
-            
-    }*/
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Hide" && !canHide)
-        {
-            Debug.Log("canHide");
-            hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z);
-            canHide = true;
-        }
-        if (other.tag == "drop" && !canDrop) 
-        {
-            nearbyDropper = other.GetComponent<Drop>();
-            Debug.Log("canDrop");
-            canDrop = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Hide" && canHide)
-        {
-            Debug.Log("cantHide");
-            //hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
-            canHide = false;
-        }
-        if (other.tag == "drop" && canDrop)
-        {
-            nearbyDropper = null;
-            Debug.Log("canDrop");
-            canDrop = false;
-        }
     }
 
 }
