@@ -6,14 +6,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int timer;
+    UIManager UI;
+
+    private int timer = 420;
+    private int oldTime = 0;
 
     private bool paused;
+    private bool dead;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        UI = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -27,6 +31,13 @@ public class GameManager : MonoBehaviour
                 PauseGame();
             }
         }
+
+        if (oldTime != timer)
+        {
+            UI.UpdateClockTimer(timer);
+            oldTime = timer;
+        }
+
     }
 
     //--------------------------------------------------------------------------------------------------------
@@ -41,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         timer += addedTime;
 
-        if (timer >= 120)
+        if (timer >= 1440)
         {
 
         }
@@ -58,6 +69,11 @@ public class GameManager : MonoBehaviour
         paused = NewState;
     }
 
+    public bool GetDeadState()
+    {
+        return dead;
+    }
+
     //----------------------------------------------------------------------------------------------------------------------
     // Game States
 
@@ -65,6 +81,12 @@ public class GameManager : MonoBehaviour
     {
         paused = !GetPauseState();
         CursorVisiblity(GetPauseState());
+    }
+
+    public void PlayerKilledState(bool newState)
+    {
+        dead = newState;
+        CursorVisiblity(dead);
     }
 
 

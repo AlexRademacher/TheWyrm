@@ -29,19 +29,18 @@ public class CameraManager : MonoBehaviour
         if (cameraDebugging && Input.GetKeyDown(KeyCode.P))
         {
             SetCameraPerspective(!GetCameraPerspective());
-
-            if (GetCameraPerspective() && Camera3rdPerson.enabled)
-            {
-                Camera3rdPerson.enabled = false;
-                Camera1stPerson.enabled = true;
-            }
-            else if (!GetCameraPerspective() && Camera1stPerson.enabled)
-            {
-                Camera3rdPerson.enabled = true;
-                Camera1stPerson.enabled = false;
-            }
         }
-        
+
+        if (GetCameraPerspective() && Camera3rdPerson.enabled)
+        {
+            Camera3rdPerson.enabled = false;
+            Camera1stPerson.enabled = true;
+        }
+        else if (!GetCameraPerspective() && Camera1stPerson.enabled)
+        {
+            Camera3rdPerson.enabled = true;
+            Camera1stPerson.enabled = false;
+        }
     }
 
     //----------------------------------------------------------------------------------------------------------------------
