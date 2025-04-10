@@ -1,12 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-<<<<<<< HEAD
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEditor.U2D;
-=======
->>>>>>> parent of 5d6a68a (Merge branch 'ai-tests' into main)
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
