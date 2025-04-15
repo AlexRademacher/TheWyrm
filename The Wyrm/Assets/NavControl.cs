@@ -6,21 +6,23 @@ using UnityEngine.AI;
 public class NavControl : MonoBehaviour
 {
 
-    [SerializeField] Transform goal;
+    //[SerializeField] Transform goal;
     Vector3 end;
     NavMeshAgent agent;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         agent = GetComponent<NavMeshAgent>();
-        end = agent.destination;
+        end = player.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        end = goal.position;
+        end = player.transform.position;
         agent.destination = end;
         Debug.Log(agent.remainingDistance);
     }
