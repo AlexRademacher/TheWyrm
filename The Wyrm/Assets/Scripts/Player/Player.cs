@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     Vector3 prevPosition;
     Vector3 hidingPos;
     [SerializeField] private bool canDrop;
-    GameObject nearbyDropper;
+    Drop nearbyDropper;
         
 
     
