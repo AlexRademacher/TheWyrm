@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,6 +41,16 @@ public class Player : MonoBehaviour
     [Header("Debugger")]
     [Tooltip("Turns on Jump Debugging"), SerializeField]
     private bool jumpDebugging;
+
+    [Header("Hiding and Drop")]
+    [SerializeField] private bool hiding;
+    [SerializeField] private bool canHide;
+    Vector3 prevPosition;
+    Vector3 hidingPos;
+    [SerializeField] private bool canDrop;
+    Drop nearbyDropper;
+        
+
     
 
     // Start is called before the first frame update
@@ -103,6 +114,33 @@ public class Player : MonoBehaviour
         {
             PlayerKilled();
         }
+
+        if (Input.GetKeyDown(KeyCode.F) && canHide && !hiding)
+        {
+
+            //Debug.Log("hidingCode");
+            prevPosition = this.transform.position;
+            this.transform.position = new Vector3(hidingPos.x, hidingPos.y, hidingPos.z);
+            hiding = true;
+            Debug.Log(prevPosition + " before hiding");
+
+
+        }
+        else if (Input.GetKeyDown(KeyCode.F) && hiding)
+        {
+            Debug.Log(prevPosition + " after hiding");
+            this.transform.position = prevPosition;
+            hiding = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && canDrop && nearbyDropper != null)
+        {
+            if (!nearbyDropper.down)
+                nearbyDropper.dropThis();
+            else if (nearbyDropper.down)
+                nearbyDropper.upThis();
+        }
+
 
     }
 
@@ -218,5 +256,39 @@ public class Player : MonoBehaviour
         controller.enabled = true;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Hide" && !canHide)
+        {
+            Debug.Log("canHide");
+            hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z);
+            canHide = true;
+        }
+        if (other.tag == "drop" && !canDrop)
+        {
+            nearbyDropper = other.GetComponent<Drop>();
+            Debug.Log("canDrop");
+            canDrop = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Hide" && canHide)
+        {
+            Debug.Log("cantHide");
+            //hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
+            canHide = false;
+        }
+        if (other.tag == "drop" && canDrop)
+        {
+            nearbyDropper = null;
+            Debug.Log("canDrop");
+            canDrop = false;
+        }
+    }
+
 }
+
+
 
