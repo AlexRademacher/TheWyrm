@@ -39,7 +39,7 @@ public class NavControl : MonoBehaviour
         //Debug.Log(agent.remainingDistance);
         if (agent.isOnOffMeshLink)
         {
-            agent.speed = 6.5f / 2f;
+            agent.speed = 6.5f / 6f;
         }
         else
         {

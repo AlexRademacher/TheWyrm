@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6899110829194017967}
   - component: {fileID: 4523689751271373734}
-  - component: {fileID: 5875692428698117176}
   - component: {fileID: 1350341683179945633}
   - component: {fileID: 4314727573663842238}
+  - component: {fileID: 3443581275452577350}
   m_Layer: 0
   m_Name: wyrm
   m_TagString: Untagged
@@ -57,19 +57,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5875692428698117176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1208603542345837192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1670a03a78ebdc4b97cef8bd26fc43b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goal: {fileID: 0}
 --- !u!65 &1350341683179945633
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -132,7 +119,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 238680f657f6f0f4b8aeb13e762b36e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 285218dd27224ca40a3960c7f239fe98, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,3 +130,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3443581275452577350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208603542345837192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1670a03a78ebdc4b97cef8bd26fc43b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal: {fileID: 0}
