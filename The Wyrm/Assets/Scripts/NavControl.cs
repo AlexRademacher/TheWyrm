@@ -38,8 +38,9 @@ public class NavControl : MonoBehaviour
         }
         //Debug.Log(agent.remainingDistance);
         if (agent.isOnOffMeshLink)
-        {
-            agent.speed = 6.5f / 6f;
+        { 
+            agent.speed = 6.5f / 6f; //Change the second number to slow down or speed up the wyrm
+            //Play an animation for jumping over something here
         }
         else
         {
