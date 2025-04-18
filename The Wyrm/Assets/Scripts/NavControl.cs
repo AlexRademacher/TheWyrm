@@ -12,6 +12,8 @@ public class NavControl : MonoBehaviour
 
     NavMeshPath path;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,34 +22,36 @@ public class NavControl : MonoBehaviour
         end = agent.destination;
         agent.speed = 3.5f;
         path = new NavMeshPath();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        end = goal.position;
-        //
-        if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete) //Look into why it cant traverse links anymore
-        {
-            agent.destination = end;
-            //agent.SetPath(path);
-        }
-        else
-        {
-            agent.destination = agent.transform.position;
-        }
-        //Debug.Log(agent.remainingDistance);
-        if (agent.isOnOffMeshLink)
-        { 
-            agent.speed = 6.5f / 6f; //Change the second number to slow down or speed up the wyrm
-            //Play an animation for jumping over something here
-        }
-        else
-        {
-            agent.speed = 6.5f;
-        }
+        if(!Cursor.visible) { 
+            end = goal.position;
+            //
+            if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete) //Look into why it cant traverse links anymore
+            {
+                agent.destination = end;
+                //agent.SetPath(path);
+            }
+            else
+            {
+                agent.destination = agent.transform.position;
+            }
+            //Debug.Log(agent.remainingDistance);
+            if (agent.isOnOffMeshLink)
+            { 
+                agent.speed = 6.5f / 6f; //Change the second number to slow down or speed up the wyrm
+                //Play an animation for jumping over something here
+            }
+            else
+            {
+                agent.speed = 6.5f;
+            }
 
-
+        }
     }
 
     private void OnTriggerEnter(Collider other)
