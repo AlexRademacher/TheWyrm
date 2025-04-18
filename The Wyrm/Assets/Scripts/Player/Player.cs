@@ -117,10 +117,11 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && canHide && !hiding)
         {
-
+            controller.enabled = false;
             //Debug.Log("hidingCode");
             prevPosition = this.transform.position;
-            this.transform.position = new Vector3(hidingPos.x, hidingPos.y, hidingPos.z);
+            //this.transform.SetPositionAndRotation(hidingPos, this.transform.rotation);
+            this.transform.position = hidingPos;
             hiding = true;
             Debug.Log(prevPosition + " before hiding");
 
@@ -128,9 +129,13 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F) && hiding)
         {
+            
             Debug.Log(prevPosition + " after hiding");
+            //this.transform.SetPositionAndRotation(prevPosition, this.transform.rotation);
             this.transform.position = prevPosition;
             hiding = false;
+            controller.enabled = true;
+
         }
 
         if (Input.GetKeyDown(KeyCode.F) && canDrop && nearbyDropper != null)
@@ -139,6 +144,7 @@ public class Player : MonoBehaviour
                 nearbyDropper.dropThis();
             else if (nearbyDropper.down)
                 nearbyDropper.upThis();
+
         }
 
 
