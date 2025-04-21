@@ -18,10 +18,7 @@ public class Player : MonoBehaviour
 
     private Vector3 playerVelocity;
     private Vector3 respawnPos;
-
-    [Header("Area")]
-    [Tooltip("What area the player is in"), Range(1, 4), SerializeField]
-    private int currentAreaNum;
+    private Quaternion ThirdPerPlayerRotation;
 
     [Header("Movement")]
     [Tooltip("How fast the player moves"), Min(0), SerializeField]
@@ -48,6 +45,8 @@ public class Player : MonoBehaviour
     Vector3 hidingPos;
     [SerializeField] private bool canDrop;
     Drop nearbyDropper;
+
+    private bool dontSwap = false;
         
 
     // Start is called before the first frame update
@@ -63,15 +62,9 @@ public class Player : MonoBehaviour
         gC = GetComponent<GroundChecker>();
 
         respawnPos = transform.position;
+        ThirdPerPlayerRotation = transform.rotation;
 
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            speed = 3;
-        }
-        else
-        {
-            speed = 6;
-        }
+        
     }
 
     // Update is called once per frame
@@ -98,8 +91,8 @@ public class Player : MonoBehaviour
 
         if (CM != null)
         {
-            if (!CM.GetCameraPerspective() && transform.rotation != new Quaternion(0, 0, 0, 0))
-                transform.rotation = new Quaternion(0,0, 0, 0);
+            if (!CM.GetCameraPerspective() && transform.rotation != ThirdPerPlayerRotation)
+                transform.rotation = ThirdPerPlayerRotation;
         }
         else
             Debug.LogWarning("CM not set up correctly for player");
@@ -158,6 +151,11 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Movement()
     {
+        if (CM.GetCameraPerspective() && speed != 3)
+            speed = 3;
+        else if (!CM.GetCameraPerspective() && speed != 6)
+            speed = 6;
+
         // Running
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -228,14 +226,16 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Hide" && !canHide)
         {
-            Debug.Log("canHide");
+            if (hidingDebugging)
+                Debug.Log("canHide");
             hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z);
             canHide = true;
         }
         if (other.tag == "drop" && !canDrop)
         {
             nearbyDropper = other.GetComponent<Drop>();
-            Debug.Log("canDrop");
+            if (dropDebugging)
+                Debug.Log("canDrop");
             canDrop = true;
         }
     }

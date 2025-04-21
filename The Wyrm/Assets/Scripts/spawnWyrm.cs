@@ -22,14 +22,17 @@ public class spawnWyrm : MonoBehaviour
             Instantiate(wyrm, this.transform);
     }
 
-    public void spawn()
+    public GameObject Spawn()
     {
         number = Random.Range(1, 7); //range in inclusive excluse so this is 1-6 not 1-7 (i think)
-        Debug.Log(number);
+        //Debug.Log(number);
         if (number >= 4 && !spawned) //Change the comparison and the number to affect chance of spawning
         {
-            Instantiate(wyrm, this.transform);
+            GameObject newWyrm = Instantiate(wyrm, this.transform);
             spawned = true;
+            return newWyrm;
         }
+
+        return null;
     }
 }

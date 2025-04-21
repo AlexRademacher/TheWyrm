@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FadeBlockingObject : MonoBehaviour
 {
-    private LayerMask layerMask;
+    /*private LayerMask layerMask;
     private Transform player;
     private Camera camera3rdPerson;
 
@@ -46,5 +46,5 @@ public class FadeBlockingObject : MonoBehaviour
                 
             }
         }
-    }
+    }*/
 }

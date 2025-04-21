@@ -164,7 +164,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Item"))
             {
-                Debug.Log(other.name + " is seen");
+                //Debug.Log(other.name + " is seen");
                 //PickUpItemState3rd(other.gameObject, true);
             }
         }
