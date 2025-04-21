@@ -8,6 +8,9 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
     private bool changed = false;
 
+    [SerializeField] GameObject wyrmSpawner;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
         {
             changed = true;
             CM.SetCameraPerspective(!CM.GetCameraPerspective());
+            wyrmSpawner.GetComponent<spawnWyrm>().spawn();
         }
     }
 
