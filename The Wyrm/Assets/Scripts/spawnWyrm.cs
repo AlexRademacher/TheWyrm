@@ -7,6 +7,7 @@ public class spawnWyrm : MonoBehaviour
 {
     int number;
     [SerializeField] GameObject wyrm;
+    bool spawned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +26,10 @@ public class spawnWyrm : MonoBehaviour
     {
         number = Random.Range(1, 7); //range in inclusive excluse so this is 1-6 not 1-7 (i think)
         Debug.Log(number);
-        if (number >= 4) //Change the comparison and the number to affect chance of spawning
+        if (number >= 4 && !spawned) //Change the comparison and the number to affect chance of spawning
         {
             Instantiate(wyrm, this.transform);
+            spawned = true;
         }
     }
 }
