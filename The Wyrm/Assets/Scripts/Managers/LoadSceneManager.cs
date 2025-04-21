@@ -28,6 +28,13 @@ public class LoadSceneManager : MonoBehaviour
         SceneManager.LoadScene(buildNum); 
     }
 
+
+    public void SendToArena()
+    {
+        if (1 != SceneManager.GetActiveScene().buildIndex && 1 <= SceneManager.sceneCountInBuildSettings)
+            LoadScene(1);
+    }
+
     private void DebugChangingActiveScene(Scene current, Scene next)
     {
         if (debug)
