@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class PlayerInventory : MonoBehaviour
     private GameObject[] inventory = new GameObject[3];
     private int inventoryIndex = 0;
     private int relicCount = 0;
+
+    [Header("Debugger")]
+    [Tooltip("Turns on inventory Debugging"), SerializeField]
+    private bool inventoryDebugging;
 
     // Start is called before the first frame update
     void Start()
@@ -66,11 +71,12 @@ public class PlayerInventory : MonoBehaviour
     {
         foreach (GameObject item in inventory)
         {
-            if (item.name.Equals(itemName))
+            if (item != null && item.name.Equals(itemName))
                 return item;
         }
 
-        Debug.LogWarning(itemName + " was not found with in the players inventory");
+        if (inventoryDebugging)
+            Debug.LogWarning(itemName + " was not found with in the players inventory");
         return null;
     }
 
@@ -83,11 +89,12 @@ public class PlayerInventory : MonoBehaviour
     {
         foreach (GameObject item in inventory)
         {
-            if (item == itemWanted)
+            if (item != null && item == itemWanted)
                 return item;
         }
 
-        Debug.LogWarning(itemWanted.name + " was not found with in the players inventory");
+        if (inventoryDebugging)
+            Debug.LogWarning(itemWanted.name + " was not found with in the players inventory");
         return null;
     }
 
@@ -112,15 +119,19 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
-        if (placedIn)
+        if (inventoryDebugging)
         {
-            Debug.LogWarning(item.name + " placed in player's inventory at slot: " + slot);
+            if (placedIn)
+            {
+                Debug.Log(item.name + " placed in player's inventory at slot: " + slot);
+                //Debug.LogWarning(inventory[slot]);
+            }
+            else
+            {
+                Debug.LogWarning("Could not place item within the player's inventory");
+            }
         }
-        else
-        {
-            Debug.LogWarning("Could not place item within the player's inventory");
-        }
-
+        
         return placedIn;
     }
 
@@ -140,14 +151,15 @@ public class PlayerInventory : MonoBehaviour
 
         if (inventory[index] == null)
         {
-            Debug.LogWarning("inventory at index: " + index + " is already empty");
+            Debug.LogWarning("inventory at index: " + index + " is empty");
             return null;
         }
 
         GameObject oldSlot = inventory[index];
         inventory[index] = null;
-        
-        Debug.LogWarning("Set inventory at index: " + index + " to null");
+
+        if (inventoryDebugging)
+            Debug.Log("Set inventory at index: " + index + " to null");
         return oldSlot;
     }
 
@@ -159,7 +171,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (item != null)
         {
-            if (GetFromInventory(item) == null && GetFromInventory(item.name) == null)
+            if (GetFromInventory(item) == null)
             {
                 if (SetToInventory(item))
                 {
@@ -179,7 +191,7 @@ public class PlayerInventory : MonoBehaviour
                     if (relicCount == 3)
                     {
                         if (GameObject.Find("Game Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
-                            lSM.SendToArena();
+                             lSM.SendToArena();
                     }
                 }
             }
@@ -200,11 +212,11 @@ public class PlayerInventory : MonoBehaviour
     /// <returns> The GameObject that was removed </returns>
     public GameObject RemoveInventory()
     {
-        GameObject item = SetInvSlotToNull(inventoryIndex);
+        GameObject item = SetInvSlotToNull(inventoryIndex - 1);
 
         if (item == null)
         {
-            Debug.Log("Inventory slot is empty");
+            Debug.LogWarning("Inventory slot is empty");
             return null;
         }
         
@@ -217,32 +229,6 @@ public class PlayerInventory : MonoBehaviour
         inventoryIndex--;
 
         return item;
-
-        /*if (inventoryIndex >= 0 && inventoryIndex < inventory.Length)
-        {
-            if (inventory[inventoryIndex] == null)
-            {
-                Debug.Log("Inventory has null in it");
-                return null;
-            }
-
-            if (inventory[inventoryIndex].gameObject.name.Contains("Relic"))
-            {
-                UI.UpdateItemCount(-1);
-            }
-
-            GameObject item = inventory[inventoryIndex];
-            inventory[inventoryIndex] = null;
-
-            inventoryIndex--;
-
-            return item;
-        }
-        else
-        {
-            Debug.Log("Inventory empty");
-            return null;
-        }*/
     }
 
     public void ListInventory()

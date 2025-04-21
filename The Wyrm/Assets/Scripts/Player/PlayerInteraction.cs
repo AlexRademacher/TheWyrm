@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+        PInv = transform.GetComponent<PlayerInventory>();
     }
 
     // Update is called once per frame
@@ -49,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     if (hitInfo.transform.gameObject.CompareTag("Item")) // Picking things up
                     {
-                        Debug.LogWarning("the Object trying to be picked up is " + hitInfo.transform.gameObject.name);
+                        //Debug.LogWarning("the Object trying to be picked up is " + hitInfo.transform.gameObject.name);
                         PickUpItem(hitInfo.transform.gameObject); // specific interactions with item
                     }
                 }
@@ -59,7 +60,7 @@ public class PlayerInteraction : MonoBehaviour
 
             // if R is clicked
             if (Input.GetKeyDown(KeyCode.R)) {
-                //DropItem();
+                DropItem();
             }
         }
     }
@@ -69,9 +70,9 @@ public class PlayerInteraction : MonoBehaviour
 
     public void PickUpItem(GameObject item)
     {
-        if (item == null)
+        if (item != null)
         {
-            if (TryGetComponent<Item>(out Item itemScript))
+            if (item.TryGetComponent<Item>(out Item itemScript))
             {
                 if (CM != null)
                 {
@@ -94,6 +95,8 @@ public class PlayerInteraction : MonoBehaviour
                 else
                     Debug.LogWarning("Camera manger not set up correctly for picking up item");
             }
+            else
+                Debug.LogWarning("item script not avalible");
         }
         else
             Debug.LogWarning("item being picked up is null");
@@ -111,6 +114,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (CM.GetCameraPerspective())
                 {
                     Instantiate(item, hitInfo.point, transform.rotation);
+                    Destroy(item);
                 }
                 else
                 {
@@ -120,40 +124,9 @@ public class PlayerInteraction : MonoBehaviour
             else
                 Debug.LogWarning("Camera manger not set up correctly for dropping item");
         }
-    }
-
-    /*public void DropItem()
-    {
-        GameObject item = transform.GetComponent<Player>().RemoveInventory();
-
-        if (item != null)
-        {
-            Instantiate(item, new Vector3(transform.position.x + 1, transform.position.y - (transform.position.y / 2) - .25f, transform.position.z), transform.rotation);
-        }
-    }
-
-    private void PickUpItemState1st(GameObject item)
-    {
-        Item itemScript = item.transform.GetComponent<Item>();
-        if (itemScript != null)
-        {
-            itemScript.FirstPersonInteraction();
-        }
         else
-            Debug.LogWarning("itemScript missing from item");
+            Debug.LogWarning("No items to drop");
     }
-
-    private void PickUpItemState3rd(GameObject item, bool pickUpState)
-    {
-        Item itemScript = item.transform.GetComponent<Item>();
-        if (itemScript != null)
-        {
-            itemScript.SetPickUpState(true);
-        }
-        else
-            Debug.LogWarning("itemScript missing from item");
-
-    }*/
 
     //----------------------------------------------------------------------------------------------------------------------
     // Door Interactions

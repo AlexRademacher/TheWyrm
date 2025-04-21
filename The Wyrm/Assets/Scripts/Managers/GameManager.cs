@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour
     {
         relicsFound = relicsFound + 1;
         Debug.Log(relicsFound);
+        Debug.Log("WE DID IT WE FOUND IT LETS GOOOO");
 
         if (relicsFound == 3)
         {

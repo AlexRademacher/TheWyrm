@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
     [Header("Debugger")]
     [Tooltip("Turns on Jump Debugging"), SerializeField]
     private bool jumpDebugging;
+    [Tooltip("Turns on hiding Debugging"), SerializeField]
+    private bool hidingDebugging;
+    [Tooltip("Turns on Drop Obsticle Debugging"), SerializeField]
+    private bool dropDebugging;
 
     [Header("Hiding and Drop")]
     [SerializeField] private bool hiding;
@@ -240,14 +244,16 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Hide" && canHide)
         {
-            Debug.Log("cantHide");
+            if (hidingDebugging)
+                Debug.Log("cantHide");
             //hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
             canHide = false;
         }
         if (other.tag == "drop" && canDrop)
         {
             nearbyDropper = null;
-            Debug.Log("canDrop");
+            if (dropDebugging)
+                Debug.Log("canDrop");
             canDrop = false;
         }
     }

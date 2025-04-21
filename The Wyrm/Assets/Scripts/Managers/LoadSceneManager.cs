@@ -31,7 +31,7 @@ public class LoadSceneManager : MonoBehaviour
 
     public void SendToArena()
     {
-        if (1 != SceneManager.GetActiveScene().buildIndex && 1 <= SceneManager.sceneCountInBuildSettings)
+        if (1 != SceneManager.GetActiveScene().buildIndex && 1 < SceneManager.sceneCountInBuildSettings)
             LoadScene(1);
     }
 
