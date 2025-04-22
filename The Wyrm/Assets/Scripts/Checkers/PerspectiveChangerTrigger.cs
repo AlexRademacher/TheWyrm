@@ -33,6 +33,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
             if (CM != null)
             {
                 CM.SetCameraPerspective(true);
+                //other.gameObject.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z, transform.rotation.w);
             }
 
             if (wyrmSpawner != null)

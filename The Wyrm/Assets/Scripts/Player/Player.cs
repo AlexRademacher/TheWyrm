@@ -45,8 +45,6 @@ public class Player : MonoBehaviour
     Vector3 hidingPos;
     [SerializeField] private bool canDrop;
     Drop nearbyDropper;
-
-    private bool dontSwap = false;
         
 
     // Start is called before the first frame update
