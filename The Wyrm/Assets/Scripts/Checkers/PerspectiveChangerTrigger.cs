@@ -59,7 +59,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
             if (wyrm != null)
             {
-                Destroy(wyrm);
+                //Destroy(wyrm);
             }
         }
     }

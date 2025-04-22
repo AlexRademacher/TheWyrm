@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -222,14 +219,14 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Hide" && !canHide)
+        if (other.CompareTag("Hide") && !canHide)
         {
             if (hidingDebugging)
                 Debug.Log("canHide");
             hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z);
             canHide = true;
         }
-        if (other.tag == "drop" && !canDrop)
+        if (other.CompareTag("drop") && !canDrop)
         {
             nearbyDropper = other.GetComponent<Drop>();
             if (dropDebugging)
@@ -240,14 +237,14 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Hide" && canHide)
+        if (other.CompareTag("Hide") && canHide)
         {
             if (hidingDebugging)
                 Debug.Log("cantHide");
             //hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
             canHide = false;
         }
-        if (other.tag == "drop" && canDrop)
+        if (other.CompareTag("drop") && canDrop)
         {
             nearbyDropper = null;
             if (dropDebugging)
@@ -256,6 +253,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (controller.enabled)
+        {
+            if (hit.gameObject.CompareTag("Wyrm"))
+            {
+                PlayerKilled();
+            }
+        }
+    }
 }
 
 

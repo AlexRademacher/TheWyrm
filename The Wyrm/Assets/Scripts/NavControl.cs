@@ -72,4 +72,16 @@ public class NavControl : MonoBehaviour
             agent.speed = 7f;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("AHHHHH");
+            if (TryGetComponent<Player>(out Player P))
+            {
+                P.PlayerKilled();
+            }
+        }
+    }
 }
