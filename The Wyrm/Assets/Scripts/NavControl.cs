@@ -72,6 +72,18 @@ public class NavControl : MonoBehaviour
             agent.speed = 7f * 0.5f;
             Debug.Log("slow zone");
         }
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("AHHHHH");
+            GameObject.Find("Player").GetComponent<Player>().PlayerKilled();
+            /*
+             if (TryGetComponent<Player>(out Player P))
+            {
+                Debug.Log("PlayerFound");
+                P.PlayerKilled();
+            }*/
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -84,14 +96,7 @@ public class NavControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("AHHHHH");
-            if (TryGetComponent<Player>(out Player P))
-            {
-                P.PlayerKilled();
-            }
-        }
+        
     }
 
     
