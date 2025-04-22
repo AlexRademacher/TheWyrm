@@ -148,8 +148,8 @@ public class Player : MonoBehaviour
     {
         if (CM.GetCameraPerspective() && speed != 3)
             speed = 3;
-        else if (!CM.GetCameraPerspective() && speed != 6)
-            speed = 6;
+        else if (!CM.GetCameraPerspective() && speed != 9)
+            speed = 9;
 
         // Running
         if (Input.GetKey(KeyCode.LeftShift))
