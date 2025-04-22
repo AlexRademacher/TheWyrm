@@ -93,14 +93,7 @@ public class NavControl : MonoBehaviour
             agent.speed = 7f;
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
     
-
     IEnumerator checkHide() 
     {
         yield return new WaitForSeconds(3);
