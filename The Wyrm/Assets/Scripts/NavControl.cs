@@ -97,9 +97,13 @@ public class NavControl : MonoBehaviour
     IEnumerator checkHide() 
     {
         yield return new WaitForSeconds(3);
-        if (!(agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete)) 
+        if (!(agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete))
         {
             Destroy(this.gameObject);
+        }
+        else 
+        {
+            checkingHide = false;
         }
     }
 }
