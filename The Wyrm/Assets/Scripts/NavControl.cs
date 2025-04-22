@@ -94,6 +94,8 @@ public class NavControl : MonoBehaviour
         }
     }
 
+    
+
     IEnumerator checkHide() 
     {
         yield return new WaitForSeconds(3);
