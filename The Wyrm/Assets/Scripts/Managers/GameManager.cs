@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         if (timer >= 1440)
         {
-
+            CloseGame();
         }
 
     }
