@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     private bool paused;
     private bool dead;
+
+    private int relicsFound = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -126,6 +129,21 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // Relics ending
+
+    public void RelicFound()
+    {
+        relicsFound = relicsFound + 1;
+        Debug.Log(relicsFound);
+        Debug.Log("WE DID IT WE FOUND IT LETS GOOOO");
+
+        if (relicsFound == 3)
+        {
+            CloseGame();
+        }
     }
 
     //----------------------------------------------------------------------------------------------

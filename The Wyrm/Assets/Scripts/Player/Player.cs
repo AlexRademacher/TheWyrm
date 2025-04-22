@@ -11,16 +11,14 @@ public class Player : MonoBehaviour
     private CameraManager CM;
     private UIManager UI;
     private PlayerInteraction PI;
+    private PlayerInventory PInv;
 
     private CharacterController controller;
     private GroundChecker gC;
 
     private Vector3 playerVelocity;
     private Vector3 respawnPos;
-
-    [Header("Area")]
-    [Tooltip("What area the player is in"), Range(1, 4), SerializeField]
-    private int currentAreaNum;
+    private Quaternion ThirdPerPlayerRotation;
 
     [Header("Movement")]
     [Tooltip("How fast the player moves"), Min(0), SerializeField]
@@ -32,15 +30,13 @@ public class Player : MonoBehaviour
     [Tooltip("What the gravity on the player is"), SerializeField]
     private float gravity = -9.81f;
 
-    [Header("Inventory")]
-    [SerializeField]
-    private GameObject relic;
-    private GameObject[] inventory = new GameObject[3];
-    private int inventoryIndex = 0;
-
     [Header("Debugger")]
     [Tooltip("Turns on Jump Debugging"), SerializeField]
     private bool jumpDebugging;
+    [Tooltip("Turns on hiding Debugging"), SerializeField]
+    private bool hidingDebugging;
+    [Tooltip("Turns on Drop Obsticle Debugging"), SerializeField]
+    private bool dropDebugging;
 
     [Header("Hiding and Drop")]
     [SerializeField] private bool hiding;
@@ -49,9 +45,9 @@ public class Player : MonoBehaviour
     Vector3 hidingPos;
     [SerializeField] private bool canDrop;
     Drop nearbyDropper;
-        
 
-    
+    private bool dontSwap = false;
+        
 
     // Start is called before the first frame update
     void Start()
@@ -59,20 +55,16 @@ public class Player : MonoBehaviour
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+        PI = transform.GetComponent<PlayerInteraction>();
+        PInv = transform.GetComponent<PlayerInventory>();
 
         controller = GetComponent<CharacterController>();
         gC = GetComponent<GroundChecker>();
 
         respawnPos = transform.position;
+        ThirdPerPlayerRotation = transform.rotation;
 
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            speed = 3;
-        }
-        else
-        {
-            speed = 6;
-        }
+        
     }
 
     // Update is called once per frame
@@ -99,20 +91,21 @@ public class Player : MonoBehaviour
 
         if (CM != null)
         {
-            if (!CM.GetCameraPerspective() && transform.rotation != new Quaternion(0, 0, 0, 0))
-                transform.rotation = new Quaternion(0,0, 0, 0);
+            if (!CM.GetCameraPerspective() && transform.rotation != ThirdPerPlayerRotation)
+                transform.rotation = ThirdPerPlayerRotation;
         }
         else
             Debug.LogWarning("CM not set up correctly for player");
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            RemoveInventory();
+            //PI.DropItem();
         }
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            PlayerKilled();
+            //PlayerKilled();
+            PInv.ListInventory();
         }
 
         if (Input.GetKeyDown(KeyCode.F) && canHide && !hiding)
@@ -158,6 +151,11 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Movement()
     {
+        if (CM.GetCameraPerspective() && speed != 3)
+            speed = 3;
+        else if (!CM.GetCameraPerspective() && speed != 6)
+            speed = 6;
+
         // Running
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -207,44 +205,6 @@ public class Player : MonoBehaviour
     }
 
     //----------------------------------------------------------------------------------------------------------------------
-    // Inventory
-    
-    public void AddToInventory(GameObject Item)
-    {
-        if (Item != null && inventoryIndex <= 2)
-        {
-            Debug.Log("heeeeeeeyyyyy I am workinnnnngggg");
-
-            GM.AddToTimer(60);
-            UI.UpdateItemCount(1);
-            inventory[inventoryIndex] = Item;
-            inventoryIndex++;
-
-            if (inventoryIndex == 2)
-            {
-                LoadSceneManager lSM = GameObject.Find("Game Manager").GetComponent<LoadSceneManager>();
-                if (1 <= SceneManager.sceneCountInBuildSettings && lSM != null)
-                    lSM.LoadScene(1);
-            }
-        }
-    }
-
-    public void RemoveInventory()
-    {
-        if (inventoryIndex > 0)
-        {
-            Debug.Log("See told you were are here");
-
-            UI.UpdateItemCount(-1);
-            inventoryIndex--;
-            inventory[inventoryIndex] = null;
-
-            Debug.Log("For you");
-            Instantiate(relic, new Vector3(transform.position.x + 1, transform.position.y - (transform.position.y / 2) - .25f, transform.position.z), transform.rotation);
-        }
-    }
-
-    //----------------------------------------------------------------------------------------------------------------------
     // Respawn and Health
 
     public void PlayerKilled()
@@ -266,14 +226,16 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Hide" && !canHide)
         {
-            Debug.Log("canHide");
+            if (hidingDebugging)
+                Debug.Log("canHide");
             hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z);
             canHide = true;
         }
         if (other.tag == "drop" && !canDrop)
         {
             nearbyDropper = other.GetComponent<Drop>();
-            Debug.Log("canDrop");
+            if (dropDebugging)
+                Debug.Log("canDrop");
             canDrop = true;
         }
     }
@@ -282,14 +244,16 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Hide" && canHide)
         {
-            Debug.Log("cantHide");
+            if (hidingDebugging)
+                Debug.Log("cantHide");
             //hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
             canHide = false;
         }
         if (other.tag == "drop" && canDrop)
         {
             nearbyDropper = null;
-            Debug.Log("canDrop");
+            if (dropDebugging)
+                Debug.Log("canDrop");
             canDrop = false;
         }
     }

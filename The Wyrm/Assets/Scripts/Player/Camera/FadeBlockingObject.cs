@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FadeBlockingObject : MonoBehaviour
 {
-    private LayerMask layerMask;
+    /*private LayerMask layerMask;
     private Transform player;
     private Camera camera3rdPerson;
 
@@ -16,8 +16,8 @@ public class FadeBlockingObject : MonoBehaviour
     [Tooltip("How many times we fade per frame"), SerializeField]
     private int FadeFPS = 30;
 
-    private List<ObjectFade> ObjectsBlockingView = new List<ObjectFade>();
-    private List<int> IndexesToClear = new List<int>();
+    //private List<ObjectFade> ObjectsBlockingView = new List<ObjectFade>();
+    //private List<int> IndexesToClear = new List<int>();
     private Dictionary<ObjectFade, Coroutine> RunningCoroutines = new Dictionary<ObjectFade, Coroutine>();
 
     private RaycastHit[] RayHits = new RaycastHit[10];
@@ -46,5 +46,5 @@ public class FadeBlockingObject : MonoBehaviour
                 
             }
         }
-    }
+    }*/
 }

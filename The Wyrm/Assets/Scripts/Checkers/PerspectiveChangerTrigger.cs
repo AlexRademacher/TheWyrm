@@ -8,6 +8,10 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
     private bool changed = false;
 
+    [SerializeField] GameObject wyrmSpawner;
+    private GameObject wyrm;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,19 @@ public class PerspectiveChangerTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !changed)
         {
             changed = true;
-            CM.SetCameraPerspective(!CM.GetCameraPerspective());
+
+            if (CM != null)
+            {
+                CM.SetCameraPerspective(true);
+            }
+
+            if (wyrmSpawner != null)
+            {
+                if (wyrmSpawner.TryGetComponent<spawnWyrm>(out spawnWyrm SW))
+                {
+                    wyrm = SW.Spawn();
+                }
+            }
         }
     }
 
@@ -34,6 +50,16 @@ public class PerspectiveChangerTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             changed = false;
+
+            if (CM != null)
+            {
+                CM.SetCameraPerspective(false);
+            }
+
+            if (wyrm != null)
+            {
+                Destroy(wyrm);
+            }
         }
     }
 }

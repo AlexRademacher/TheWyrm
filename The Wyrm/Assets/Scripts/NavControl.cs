@@ -30,11 +30,12 @@ public class NavControl : MonoBehaviour
     {
         if(!Cursor.visible) { 
             end = goal.position;
-            //
-            if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete) //Look into why it cant traverse links anymore
+            if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete) 
             {
                 agent.destination = end;
-                //agent.SetPath(path);
+                //Start coroutine.  Wait time Period (3 seconds???).  If target is still hiding return to given point or despawn.
+                //Check scene as well using bool maybe 
+                //These notes are for later when i implement what the wyrm should do after the player hides for a while
             }
             else
             {
