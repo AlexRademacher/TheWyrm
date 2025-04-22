@@ -12,6 +12,9 @@ public class NavControl : MonoBehaviour
 
     NavMeshPath path;
 
+    bool checkingHide = false;
+    [SerializeField] bool inArena;
+
 
 
     // Start is called before the first frame update
@@ -40,6 +43,12 @@ public class NavControl : MonoBehaviour
             else
             {
                 agent.destination = agent.transform.position;
+                if (!checkingHide) 
+                {
+                    if(!inArena)
+                        StartCoroutine(checkHide());
+                    checkingHide = true;
+                }
             }
             //Debug.Log(agent.remainingDistance);
             if (agent.isOnOffMeshLink)
@@ -82,6 +91,15 @@ public class NavControl : MonoBehaviour
             {
                 P.PlayerKilled();
             }
+        }
+    }
+
+    IEnumerator checkHide() 
+    {
+        yield return new WaitForSeconds(3);
+        if (!(agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete)) 
+        {
+            Destroy(this.gameObject);
         }
     }
 }
