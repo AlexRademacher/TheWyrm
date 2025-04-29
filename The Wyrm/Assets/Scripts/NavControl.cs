@@ -33,6 +33,7 @@ public class NavControl : MonoBehaviour
     {
         if(!Cursor.visible) { 
             end = goal.position;
+            
             if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete) 
             {
                 agent.destination = end;
