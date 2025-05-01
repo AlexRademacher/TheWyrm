@@ -3621,18 +3621,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 844099965}
     m_Modifications:
-    - target: {fileID: 132825963337493087, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 396293149215182973, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 675363642480640977, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1321648325441270560, guid: 3c432120441176043a61477fb8bce509, type: 3}
       propertyPath: m_LocalPosition.x
       value: 374.62
@@ -3673,61 +3661,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1365259881179523773, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1584000326219783774, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2568062244677457832, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2819584058620832636, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 3723404187012728056, guid: 3c432120441176043a61477fb8bce509, type: 3}
       propertyPath: m_Name
       value: MerchantHouse
-      objectReference: {fileID: 0}
-    - target: {fileID: 3767581897349647287, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392059442937131012, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5793028467594879309, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6223563926464956415, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6371861830179699614, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6729499383589654924, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7784486227666614225, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107314883194961962, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9129107707121957963, guid: 3c432120441176043a61477fb8bce509, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8190,7 +8126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_CollectObjects: 0
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
@@ -8205,7 +8141,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.13333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 17f9f58af2c86764abf4cfae1d28e5e5, type: 2}
   m_BuildHeightMesh: 0
