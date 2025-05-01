@@ -223,6 +223,7 @@ public class Player : MonoBehaviour
         {
             if (hidingDebugging)
                 Debug.Log("canHide");
+            UI.swapHideState();
             hidingPos = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
             canHide = true;
         }
@@ -241,6 +242,7 @@ public class Player : MonoBehaviour
         {
             if (hidingDebugging)
                 Debug.Log("cantHide");
+            UI.swapHideState();
             //hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
             canHide = false;
         }

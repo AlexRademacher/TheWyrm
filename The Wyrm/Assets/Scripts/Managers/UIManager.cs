@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour
     [Tooltip("The amount of relics you have"), SerializeField]
     private GameObject TimerCount;
 
+    [Tooltip("The Hide Prompt"), SerializeField]
+    private GameObject HidePrompt;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,8 @@ public class UIManager : MonoBehaviour
             {
                 RespawnMenu.SetActive(true);
             }
+
+            
 
             /*if (Input.GetKeyDown(KeyCode.R) && !PauseMenu.activeSelf)
             {
@@ -224,6 +229,11 @@ public class UIManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void swapHideState() 
+    {
+        HidePrompt.SetActive(!HidePrompt.activeInHierarchy);
     }
 
 }

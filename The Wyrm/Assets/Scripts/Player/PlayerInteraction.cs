@@ -179,6 +179,8 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("We are reading I hope");
             other.transform.GetComponent<NPCManager>().SetInTalkingState(true);
         }
+
+
     }
 
     private void OnTriggerExit(Collider other)
