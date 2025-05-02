@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour
     [Tooltip("The amount of relics you have"), SerializeField]
     private GameObject TimerCount;
 
+    [Tooltip("The Hide Prompt"), SerializeField]
+    private GameObject HidePrompt;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,8 @@ public class UIManager : MonoBehaviour
             {
                 RespawnMenu.SetActive(true);
             }
+
+            
 
             /*if (Input.GetKeyDown(KeyCode.R) && !PauseMenu.activeSelf)
             {
@@ -204,23 +209,31 @@ public class UIManager : MonoBehaviour
         int hours = time / 60;
         int minutes = time % 60;
 
-        if (hours < 10 && minutes < 10)
+        if (TimerCount != null)
         {
-            TimerCount.transform.GetComponent<TextMeshProUGUI>().text = "0" + hours + ":0" + minutes;
-        }
-        else if (hours < 10 && minutes >= 10)
-        {
-            TimerCount.transform.GetComponent<TextMeshProUGUI>().text = "0" + hours + ":" + minutes;
-        }
-        else if (hours >= 10 && minutes < 10)
-        {
-            TimerCount.transform.GetComponent<TextMeshProUGUI>().text = hours + ":0" + minutes;
-        }
-        else if (hours >= 10 && minutes >= 10)
-        {
-            TimerCount.transform.GetComponent<TextMeshProUGUI>().text = hours + ":" + minutes;
+            if (hours < 10 && minutes < 10)
+            {
+                TimerCount.transform.GetComponent<TextMeshProUGUI>().text = "0" + hours + ":0" + minutes;
+            }
+            else if (hours < 10 && minutes >= 10)
+            {
+                TimerCount.transform.GetComponent<TextMeshProUGUI>().text = "0" + hours + ":" + minutes;
+            }
+            else if (hours >= 10 && minutes < 10)
+            {
+                TimerCount.transform.GetComponent<TextMeshProUGUI>().text = hours + ":0" + minutes;
+            }
+            else if (hours >= 10 && minutes >= 10)
+            {
+                TimerCount.transform.GetComponent<TextMeshProUGUI>().text = hours + ":" + minutes;
+            }
         }
 
+    }
+
+    public void swapHideState() 
+    {
+        HidePrompt.SetActive(!HidePrompt.activeInHierarchy);
     }
 
 }

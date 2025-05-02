@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +13,10 @@ public class GameManager : MonoBehaviour
 
     private bool paused;
     private bool dead;
+
+    private bool talking;
+
+    private int relicsFound = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +58,7 @@ public class GameManager : MonoBehaviour
 
         if (timer >= 1440)
         {
-
+            CloseGame();
         }
 
     }
@@ -71,6 +76,16 @@ public class GameManager : MonoBehaviour
     public bool GetDeadState()
     {
         return dead;
+    }
+
+    public bool GetTalking()
+    {
+        return talking;
+    }
+
+    public void SetTalking(bool talkingState)
+    {
+        talking = talkingState;
     }
 
     //----------------------------------------------------------------------------------------------------------------------
@@ -126,6 +141,22 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // Relics ending
+
+    public void RelicFound()
+    {
+        relicsFound = relicsFound + 1;
+
+        Debug.Log("WE DID IT WE FOUND IT LETS GOOOO");
+        Debug.Log(relicsFound);
+
+        if (relicsFound == 3)
+        {
+            CloseGame();
+        }
     }
 
     //----------------------------------------------------------------------------------------------
