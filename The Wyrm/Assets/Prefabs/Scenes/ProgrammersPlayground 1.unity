@@ -703,13 +703,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34b993e5a43146489488f27a24438b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAreaNum: 1
   speed: 3
   currentSpeed: 0
   jumpForce: 1
   gravity: -9.81
-  relic: {fileID: 0}
   jumpDebugging: 0
+  hidingDebugging: 0
+  dropDebugging: 0
+  hiding: 0
+  canHide: 0
+  canDrop: 0
 --- !u!143 &331110889
 CharacterController:
   m_ObjectHideFlags: 0
@@ -831,7 +834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b1591e24db754e94f3c7b309c550f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkObject: {fileID: 5850734474295012763, guid: fbfb8441474de1f4fbcc1700eb86abed, type: 3}
 --- !u!4 &463423684
 Transform:
   m_ObjectHideFlags: 0
@@ -2482,6 +2484,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1501709417
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227138884537439329, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 252286036961960591, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: m_Name
+      value: WyrmSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149648343719032048, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
+      propertyPath: wyrm
+      value: 
+      objectReference: {fileID: 1208603542345837192, guid: 245913dfa50114b419623b8174f29587, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 684620d9892b82a47b55408dc2b46af8, type: 3}
 --- !u!1 &1632598550
 GameObject:
   m_ObjectHideFlags: 0
@@ -2837,7 +2900,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.5
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d9d3b1bac94ceeb40bd67e3e1d9d7208, type: 2}
   m_BuildHeightMesh: 0
@@ -3256,6 +3319,7 @@ MonoBehaviour:
   NPCTextBox: {fileID: 0}
   ItemCount: {fileID: 0}
   TimerCount: {fileID: 0}
+  HidePrompt: {fileID: 0}
 --- !u!114 &1932099541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3611,6 +3675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wyrm
       objectReference: {fileID: 0}
+    - target: {fileID: 1208603542345837192, guid: 245913dfa50114b419623b8174f29587, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5875692428698117176, guid: 245913dfa50114b419623b8174f29587, type: 3}
       propertyPath: goal
       value: 
@@ -3621,7 +3689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6899110829194017967, guid: 245913dfa50114b419623b8174f29587, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 9.9
       objectReference: {fileID: 0}
     - target: {fileID: 6899110829194017967, guid: 245913dfa50114b419623b8174f29587, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3675,3 +3743,4 @@ SceneRoots:
   - {fileID: 463423684}
   - {fileID: 1932099544}
   - {fileID: 1740362618}
+  - {fileID: 1501709417}

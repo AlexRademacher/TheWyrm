@@ -41,7 +41,7 @@ public class PlayerInteraction : MonoBehaviour
         rayCast = firstPersonCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)); //50% horiz, 50% vert
 
         // if hit something get its info and do the rest of the code
-        if (Physics.Raycast(rayCast, out hitInfo, 5.0f))
+        if (Physics.Raycast(rayCast, out hitInfo, 8.0f))
         {
             // if E is clicked
             if (Input.GetKeyDown(KeyCode.E))
@@ -52,6 +52,18 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         //Debug.LogWarning("the Object trying to be picked up is " + hitInfo.transform.gameObject.name);
                         PickUpItem(hitInfo.transform.gameObject); // specific interactions with item
+                    }
+
+                    if (hitInfo.transform.gameObject.CompareTag("NPC"))
+                    {
+                        hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(true);
+                        Debug.LogWarning("the NPC trying to be Talked to is " + hitInfo.transform.gameObject.name);
+                    }
+
+                    if (hitInfo.transform.gameObject.CompareTag("Door"))
+                    {
+                        DoorInteraction(hitInfo.transform.gameObject, true);
+                        DoorInteraction(hitInfo.transform.gameObject, false);
                     }
                 }
                 else
@@ -167,18 +179,19 @@ public class PlayerInteraction : MonoBehaviour
                 //Debug.Log(other.name + " is seen");
                 //PickUpItemState3rd(other.gameObject, true);
             }
+
+            if (other.gameObject.CompareTag("Door"))
+            {
+                DoorInteraction(other.gameObject, true);
+            }
+
+            if (other.gameObject.CompareTag("NPC"))
+            {
+                other.transform.GetComponent<NPCManager>().SetInTalkingState(true);
+            }
         }
 
-        if (other.gameObject.CompareTag("Door"))
-        {
-            DoorInteraction(other.gameObject, true);
-        }
 
-        if (other.gameObject.CompareTag("NPC"))
-        {
-            Debug.Log("We are reading I hope");
-            other.transform.GetComponent<NPCManager>().SetInTalkingState(true);
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -189,11 +202,16 @@ public class PlayerInteraction : MonoBehaviour
             {
                 //PickUpItemState3rd(other.gameObject, false);
             }
-        }
 
-        if (other.gameObject.CompareTag("Door"))
-        {
-            DoorInteraction(other.gameObject, false);
+            if (other.gameObject.CompareTag("Door"))
+            {
+                DoorInteraction(other.gameObject, false);
+            }
+
+            if (other.gameObject.CompareTag("NPC"))
+            {
+                other.transform.GetComponent<NPCManager>().SetInTalkingState(false);
+            }
         }
     }
 }

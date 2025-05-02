@@ -12,6 +12,9 @@ public class NavControl : MonoBehaviour
 
     NavMeshPath path;
 
+    bool checkingHide = false;
+    [SerializeField] bool inArena;
+
 
 
     // Start is called before the first frame update
@@ -30,6 +33,7 @@ public class NavControl : MonoBehaviour
     {
         if(!Cursor.visible) { 
             end = goal.position;
+            
             if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete) 
             {
                 agent.destination = end;
@@ -40,6 +44,12 @@ public class NavControl : MonoBehaviour
             else
             {
                 agent.destination = agent.transform.position;
+                if (!checkingHide) 
+                {
+                    if(!inArena)
+                        StartCoroutine(checkHide());
+                    checkingHide = true;
+                }
             }
             //Debug.Log(agent.remainingDistance);
             if (agent.isOnOffMeshLink)
@@ -63,6 +73,18 @@ public class NavControl : MonoBehaviour
             agent.speed = 7f * 0.5f;
             Debug.Log("slow zone");
         }
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("AHHHHH");
+            GameObject.Find("Player").GetComponent<Player>().PlayerKilled();
+            /*
+             if (TryGetComponent<Player>(out Player P))
+            {
+                Debug.Log("PlayerFound");
+                P.PlayerKilled();
+            }*/
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -70,6 +92,19 @@ public class NavControl : MonoBehaviour
         if (other.tag == "Slow")
         {
             agent.speed = 7f;
+        }
+    }
+    
+    IEnumerator checkHide() 
+    {
+        yield return new WaitForSeconds(3);
+        if (!(agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete))
+        {
+            Destroy(this.gameObject);
+        }
+        else 
+        {
+            checkingHide = false;
         }
     }
 }

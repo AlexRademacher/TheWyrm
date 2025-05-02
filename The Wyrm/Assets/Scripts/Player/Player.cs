@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -45,8 +42,6 @@ public class Player : MonoBehaviour
     Vector3 hidingPos;
     [SerializeField] private bool canDrop;
     Drop nearbyDropper;
-
-    private bool dontSwap = false;
         
 
     // Start is called before the first frame update
@@ -57,6 +52,7 @@ public class Player : MonoBehaviour
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = transform.GetComponent<PlayerInteraction>();
         PInv = transform.GetComponent<PlayerInventory>();
+
 
         controller = GetComponent<CharacterController>();
         gC = GetComponent<GroundChecker>();
@@ -71,7 +67,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // allows movement if cursor is hidden and controller is working
-        if (!Cursor.visible && controller != null)
+        if (!Cursor.visible && controller != null && !GM.GetTalking())
         {
             Movement(); // control of the x and z axis
 
@@ -153,8 +149,8 @@ public class Player : MonoBehaviour
     {
         if (CM.GetCameraPerspective() && speed != 3)
             speed = 3;
-        else if (!CM.GetCameraPerspective() && speed != 6)
-            speed = 6;
+        else if (!CM.GetCameraPerspective() && speed != 9)
+            speed = 9;
 
         // Running
         if (Input.GetKey(KeyCode.LeftShift))
@@ -224,14 +220,15 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Hide" && !canHide)
+        if (other.CompareTag("Hide") && !canHide)
         {
             if (hidingDebugging)
                 Debug.Log("canHide");
-            hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1.5f, other.transform.position.z);
+            UI.swapHideState();
+            hidingPos = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
             canHide = true;
         }
-        if (other.tag == "drop" && !canDrop)
+        if (other.CompareTag("drop") && !canDrop)
         {
             nearbyDropper = other.GetComponent<Drop>();
             if (dropDebugging)
@@ -242,14 +239,15 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Hide" && canHide)
+        if (other.CompareTag("Hide") && canHide)
         {
             if (hidingDebugging)
                 Debug.Log("cantHide");
+            UI.swapHideState();
             //hidingPos = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
             canHide = false;
         }
-        if (other.tag == "drop" && canDrop)
+        if (other.CompareTag("drop") && canDrop)
         {
             nearbyDropper = null;
             if (dropDebugging)
@@ -258,6 +256,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (controller.enabled)
+        {
+            if (hit.gameObject.CompareTag("Wyrm"))
+            {
+                PlayerKilled();
+            }
+        }
+    }
 }
 
 

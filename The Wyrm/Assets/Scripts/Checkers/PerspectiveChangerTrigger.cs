@@ -10,7 +10,12 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
     [SerializeField] GameObject wyrmSpawner;
     private GameObject wyrm;
-    
+
+
+    [Header("Debugger")]
+    [Tooltip("Turns on Relic Check Debugging"), SerializeField]
+    private bool debug;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +26,9 @@ public class PerspectiveChangerTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,7 +38,8 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
             if (CM != null)
             {
-                CM.SetCameraPerspective(true);
+                //CM.SetCameraPerspective(true);
+                //player.gameObject.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
             }
 
             if (wyrmSpawner != null)
@@ -53,12 +60,12 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
             if (CM != null)
             {
-                CM.SetCameraPerspective(false);
+                //CM.SetCameraPerspective(false);
             }
 
             if (wyrm != null)
             {
-                Destroy(wyrm);
+                //Destroy(wyrm);
             }
         }
     }

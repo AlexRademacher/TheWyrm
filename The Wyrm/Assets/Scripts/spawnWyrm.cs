@@ -8,6 +8,7 @@ public class spawnWyrm : MonoBehaviour
     int number;
     [SerializeField] GameObject wyrm;
     bool spawned = false;
+    GameObject newWyrm;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class spawnWyrm : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha9)) //Debug tool to spawn wyrms (Remove for final build)
-            Instantiate(wyrm, this.transform);
+            StartCoroutine(SpawnTimer());
     }
 
     public GameObject Spawn()
@@ -28,11 +29,18 @@ public class spawnWyrm : MonoBehaviour
         //Debug.Log(number);
         if (number >= 4 && !spawned) //Change the comparison and the number to affect chance of spawning
         {
-            GameObject newWyrm = Instantiate(wyrm, this.transform);
+            StartCoroutine(SpawnTimer());
             spawned = true;
             return newWyrm;
         }
 
         return null;
+    }
+
+    IEnumerator SpawnTimer() 
+    {
+        yield return new WaitForSeconds(2);
+        newWyrm = Instantiate(wyrm, this.transform);
+
     }
 }
