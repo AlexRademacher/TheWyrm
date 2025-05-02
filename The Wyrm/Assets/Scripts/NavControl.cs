@@ -7,6 +7,12 @@ public class NavControl : MonoBehaviour
 {
 
     [SerializeField] Transform goal;
+    [SerializeField] private Transform[] points;
+    private int destPoint = 0;
+
+    SpriteRenderer img;
+    bool fading;
+
     Vector3 end;
     NavMeshAgent agent;
 
@@ -25,7 +31,9 @@ public class NavControl : MonoBehaviour
         end = agent.destination;
         agent.speed = 3.5f;
         path = new NavMeshPath();
-        
+        agent.autoBraking = false;
+        img = this.GetComponent<SpriteRenderer>();
+
     }
 
     // Update is called once per frame
@@ -61,6 +69,14 @@ public class NavControl : MonoBehaviour
             {
                 agent.speed = 6.5f;
             }
+            /*if (fading) 
+            {
+                for (float i = 255; i >= 0; i -= Time.deltaTime)
+                {
+                    // set color with i as alpha
+                    img.color = new Color(1, 1, 1, i);
+                }
+            }*/
 
         }
     }
@@ -97,6 +113,7 @@ public class NavControl : MonoBehaviour
     
     IEnumerator checkHide() 
     {
+        fading = true;
         yield return new WaitForSeconds(3);
         if (!(agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete))
         {
@@ -107,4 +124,20 @@ public class NavControl : MonoBehaviour
             checkingHide = false;
         }
     }
+
+    /*void GotoNextPoint()
+    {
+        // Returns if no points have been set up
+        if (points.Length == 0)
+            return;
+
+
+        // Set the agent to go to the currently selected destination.
+
+        agent.destination = points[destPoint].position;
+
+        // Choose the next point in the array as the destination,
+        // cycling to the start if necessary.
+        destPoint = (destPoint + 1) % points.Length;
+    }*/
 }
