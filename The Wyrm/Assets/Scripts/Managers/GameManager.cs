@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private bool paused;
     private bool dead;
 
+    private bool talking;
+
     private int relicsFound = 0;
 
     // Start is called before the first frame update
@@ -74,6 +76,16 @@ public class GameManager : MonoBehaviour
     public bool GetDeadState()
     {
         return dead;
+    }
+
+    public bool GetTalking()
+    {
+        return talking;
+    }
+
+    public void SetTalking(bool talkingState)
+    {
+        talking = talkingState;
     }
 
     //----------------------------------------------------------------------------------------------------------------------

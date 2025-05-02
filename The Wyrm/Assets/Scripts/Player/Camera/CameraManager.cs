@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            firstPerson = false;
+            firstPerson = true;
         }
         else
         {

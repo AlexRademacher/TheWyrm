@@ -30,10 +30,18 @@ public class NPCManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E) && npcID == 5)
+        {
+            Debug.Log("canNeverSpeak State: " + inTalking);
+            Debug.Log("Talking State: " + inTalking);
+            Debug.Log("ID is: " + npcID);
+        }
+
         if (!canNeverSpeak && inTalking && npcID != -1)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("Talking State: " + inTalking);
                 if (!UI.GetTextBoxActiveState())
                 {
                     UI.SetTextBoxActiveState(true);
@@ -58,7 +66,7 @@ public class NPCManager : MonoBehaviour
         if (dialogue == null)
         {
             dialogue = GetDialogue(npcID, lengthNum);
-
+            Debug.Log("new dialogue " + npcID);
             maxLineNum = dialogue.Length;
         }
 
@@ -66,16 +74,30 @@ public class NPCManager : MonoBehaviour
         {
             if (lineNum < maxLineNum)
             {
+                GM.SetTalking(true);
                 UI.SetTextBox(gameObject.name.Substring(3), dialogue[lineNum]);
                 lineNum++;
-                GM.AddToTimer(20);
+
+                if (lineNum >= maxLineNum)
+                {
+                    Debug.Log("Talking State talking: " + inTalking);
+                    SetInTalkingState(false);
+                }
             }
             else
             {
-                UI.SetTextBox("New Text", "New Text");
+                Debug.Log("Talking State after talking: " + inTalking);
+                SetInTalkingState(false);
                 lineNum = 0;
+                dialogue = null;
+                //canNeverSpeak = true;
+
+                UI.SetTextBox("New Text", "New Text");
                 UI.SetTextBoxActiveState(false);
-                canNeverSpeak = true;
+
+                GM.SetTalking(false);
+                GM.AddToTimer(20);
+                Debug.Log("Talking State cleaning up: " + inTalking);
             }
         }
 
