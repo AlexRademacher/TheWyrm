@@ -36,6 +36,10 @@ public class UIManager : MonoBehaviour
     [Tooltip("The Hide Prompt"), SerializeField]
     private GameObject HidePrompt;
 
+    [Header("Screens")]
+    [Tooltip("The Loading Screen"), SerializeField]
+    private GameObject LoadingScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -235,5 +239,36 @@ public class UIManager : MonoBehaviour
         HidePrompt.SetActive(!HidePrompt.activeInHierarchy);
     }
 
+    //--------------------------------------------------------------------------------------------------------
+    // Screens
+
+    public int LoadingScreenState(bool newState)
+    {
+        LoadingScreen.SetActive(newState);
+        GM.SetLoadingState(newState);
+
+        if (newState && LoadingScreen.TryGetComponent<LoadingScreen>(out LoadingScreen LS))
+        {
+            return LS.GetCurrentScreenNum();
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    public void LoadingScreenState(bool newState, int screenNum)
+    {
+        if (LoadingScreen.TryGetComponent<LoadingScreen>(out LoadingScreen LS))
+        {
+            if (screenNum >= 0)
+                LS.SetCurrentScreenNum(screenNum);
+            else
+                Debug.LogWarning("LoadingScreen was sent a -1");
+        }
+
+        LoadingScreen.SetActive(newState);
+        GM.SetLoadingState(newState);
+    }
 }
 

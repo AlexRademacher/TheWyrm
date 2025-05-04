@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NavControl : MonoBehaviour
 {
+    private GameManager GM;
 
     [SerializeField] Transform goal;
     Vector3 end;
@@ -20,6 +21,8 @@ public class NavControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         goal = GameObject.Find("Player").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
         end = agent.destination;
@@ -31,7 +34,7 @@ public class NavControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!Cursor.visible) { 
+        if(!Cursor.visible && !GM.GetLoadingState()) { 
             end = goal.position;
             
             if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete) 

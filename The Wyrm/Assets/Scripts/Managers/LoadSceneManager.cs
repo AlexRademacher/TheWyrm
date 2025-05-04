@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneManager : MonoBehaviour
 {
-    SaveDataManager SDM;
+    private SaveDataManager SDM;
+
+    private int loadingScreenNum = -1;
 
     [Header("Debugger")]
     [Tooltip("Turns on Debugging"), SerializeField]
@@ -37,7 +39,7 @@ public class LoadSceneManager : MonoBehaviour
         if (buildNum < SceneManager.sceneCountInBuildSettings)
         {
             Debug.Log("Sending to " + SceneManager.GetSceneAt(buildNum).name);
-            ChangeScene(buildNum);
+            StartCoroutine(ChangeScene(buildNum));
         }
         else
             Debug.Log("Scene " + buildNum + " doesn't exist");
@@ -45,20 +47,28 @@ public class LoadSceneManager : MonoBehaviour
 
     public void SendToVillage()
     {
-        ChangeScene(0);
+        StartCoroutine(ChangeScene(0));
     }
 
     public void SendToArena()
     {
-        ChangeScene(1);
+        StartCoroutine(ChangeScene(1));
     }
 
-    private void ChangeScene(int buildNum)
+    private IEnumerator ChangeScene(int buildNum)
     {
         if (buildNum != SceneManager.GetActiveScene().buildIndex && buildNum < SceneManager.sceneCountInBuildSettings)
         {
+            ShowLoadingScreen(true);
+
+            yield return new WaitForSeconds(1);
+
             SDM.SaveData();
             LoadScene(buildNum);
+
+            yield return new WaitForSeconds(1);
+
+            ShowLoadingScreen(false);
         }
         else if (buildNum == SceneManager.GetActiveScene().buildIndex)
         {
@@ -74,9 +84,42 @@ public class LoadSceneManager : MonoBehaviour
     {
         DebugChangingActiveScene(SceneManager.GetActiveScene(), SceneManager.GetSceneByBuildIndex(buildNum));
 
-        SceneManager.LoadScene(buildNum); 
-
+        SceneManager.LoadScene(buildNum);
+        
+        StartCoroutine(ClearMainMenu());
         SDM.LoadData();
+    }
+
+    private IEnumerator ClearMainMenu()
+    {
+        yield return new WaitForSeconds(.01f);
+        ShowLoadingScreen(true);
+        if (GameObject.Find("Canvas").TryGetComponent<UIManager>(out UIManager UI))
+        {
+            UI.MainStartButton();
+        }
+    }
+
+    private void ShowLoadingScreen(bool screenState)
+    {
+        if (GameObject.Find("Canvas").TryGetComponent<UIManager>(out UIManager UI))
+        {
+            if (screenState)
+            {
+                if (loadingScreenNum != -1)
+                    UI.LoadingScreenState(screenState, loadingScreenNum);
+                else
+                    loadingScreenNum = UI.LoadingScreenState(screenState);
+            }
+            else
+            {
+                loadingScreenNum = UI.LoadingScreenState(screenState);
+            }
+        }
+        else if (GameObject.Find("Canvas") == null)
+            Debug.LogWarning("Couldn't find Canvas");
+        else
+            Debug.LogWarning("Couldn't find UIManager");
     }
 
     private void DebugChangingActiveScene(Scene current, Scene next)

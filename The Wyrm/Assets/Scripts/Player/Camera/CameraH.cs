@@ -5,6 +5,7 @@ using UnityEngine;
 public class LookHorizontal : MonoBehaviour
 {
     private CameraManager CM;
+    private GameManager GM;
 
     [Header("Movement")]
     [Tooltip("How easily the camera can look around"), Min(0), SerializeField]
@@ -15,13 +16,14 @@ public class LookHorizontal : MonoBehaviour
     void Start()
     {
         CM = transform.GetChild(0).GetComponent<CameraManager>();
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Gets the mouses position if cursor is hidden
-        if (!Cursor.visible && CM.GetCameraPerspective())
+        if (!Cursor.visible && CM.GetCameraPerspective() && !GM.GetLoadingState())
             mouseX = Input.GetAxis("Mouse X");
         else if (CM == null)
         {

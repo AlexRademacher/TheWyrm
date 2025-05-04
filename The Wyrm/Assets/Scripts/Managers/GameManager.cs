@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private bool paused;
     private bool dead;
 
+    private bool loading;
+
     private bool talking;
 
     private int relicsFound = 0;
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
         // allows player to free cursor by pressing escape
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!paused)
+            if (!paused && !GetLoadingState())
             {
                 PauseGame();
             }
@@ -78,6 +80,16 @@ public class GameManager : MonoBehaviour
         return dead;
     }
 
+    public bool GetLoadingState()
+    {
+        return loading;
+    }
+
+    public void SetLoadingState(bool talkingState)
+    {
+        loading = talkingState;
+    }
+
     public bool GetTalking()
     {
         return talking;
@@ -111,7 +123,7 @@ public class GameManager : MonoBehaviour
     /// Call to hide or show the cursor
     /// </summary>
     public void CursorVisiblity(bool visibleState)
-    {
+    { 
         if (!visibleState)
         {
             Time.timeScale = 1;

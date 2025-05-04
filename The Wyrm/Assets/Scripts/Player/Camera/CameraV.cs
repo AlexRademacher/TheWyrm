@@ -6,6 +6,7 @@ using UnityEngine;
 public class LookVertical : MonoBehaviour
 {
     private CameraManager CM;
+    private GameManager GM;
 
     [Header("Movement")]
     [Tooltip("How easily the camera can look around"), Min(0), SerializeField]
@@ -19,13 +20,14 @@ public class LookVertical : MonoBehaviour
     void Start()
     {
         CM = transform.parent.GetComponent<CameraManager>();
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Gets the mouses position if mouse is hidden
-        if (!Cursor.visible && CM.GetCameraPerspective())
+        if (!Cursor.visible && CM.GetCameraPerspective() && !GM.GetLoadingState())
             mouseY = Input.GetAxis("Mouse Y");
         else if (CM == null)
         {
