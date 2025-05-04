@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneManager : MonoBehaviour
 {
+    SaveDataManager SDM;
+
     [Header("Debugger")]
     [Tooltip("Turns on Debugging"), SerializeField]
     private bool debug;
@@ -12,7 +14,16 @@ public class LoadSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        if (GameObject.FindGameObjectsWithTag("SceneManager").Length == 1)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        SDM = GetComponent<SaveDataManager>();
     }
 
     // Update is called once per frame
@@ -21,18 +32,51 @@ public class LoadSceneManager : MonoBehaviour
         
     }
 
-    public void LoadScene(int buildNum)
+    public void SendToSetLevel(int buildNum)
+    {
+        if (buildNum < SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log("Sending to " + SceneManager.GetSceneAt(buildNum).name);
+            ChangeScene(buildNum);
+        }
+        else
+            Debug.Log("Scene " + buildNum + " doesn't exist");
+    }
+
+    public void SendToVillage()
+    {
+        ChangeScene(0);
+    }
+
+    public void SendToArena()
+    {
+        ChangeScene(1);
+    }
+
+    private void ChangeScene(int buildNum)
+    {
+        if (buildNum != SceneManager.GetActiveScene().buildIndex && buildNum < SceneManager.sceneCountInBuildSettings)
+        {
+            SDM.SaveData();
+            LoadScene(buildNum);
+        }
+        else if (buildNum == SceneManager.GetActiveScene().buildIndex)
+        {
+            Debug.LogWarning("Currently within the same scene you are traveling to");
+        }
+        else if (buildNum >= SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.LogWarning("Build number is higher than what is listed in the build settings");
+        }
+    }
+
+    private void LoadScene(int buildNum)
     {
         DebugChangingActiveScene(SceneManager.GetActiveScene(), SceneManager.GetSceneByBuildIndex(buildNum));
 
         SceneManager.LoadScene(buildNum); 
-    }
 
-
-    public void SendToArena()
-    {
-        if (1 != SceneManager.GetActiveScene().buildIndex && 1 < SceneManager.sceneCountInBuildSettings)
-            LoadScene(1);
+        SDM.LoadData();
     }
 
     private void DebugChangingActiveScene(Scene current, Scene next)

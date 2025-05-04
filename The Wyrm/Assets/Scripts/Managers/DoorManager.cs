@@ -25,7 +25,7 @@ public class DoorManager : MonoBehaviour
     void Start()
     {
         CM = GameObject.Find("Cameras").GetComponent<CameraManager>();
-        lSM = GameObject.Find("Game Manager").GetComponent<LoadSceneManager>();
+        lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
     }
 
     // Update is called once per frame
@@ -68,8 +68,7 @@ public class DoorManager : MonoBehaviour
         {
             SetCanOpenState(false);
             CM.SetCameraPerspective(!CM.GetCameraPerspective());
-            if (buildNum <= SceneManager.sceneCountInBuildSettings && lSM != null)
-                lSM.LoadScene(buildNum);
+            lSM.SendToSetLevel(buildNum);
         }
         catch (ArgumentException)
         {

@@ -109,9 +109,8 @@ public class UIManager : MonoBehaviour
         P.Respawn();
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
-            LoadSceneManager lSM = GameObject.Find("Game Manager").GetComponent<LoadSceneManager>();
-            if (0 <= SceneManager.sceneCountInBuildSettings && lSM != null)
-                lSM.LoadScene(0);
+            LoadSceneManager lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
+            lSM.SendToVillage();
         }
     }
 

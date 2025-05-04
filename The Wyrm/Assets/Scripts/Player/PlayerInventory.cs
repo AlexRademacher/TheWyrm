@@ -34,6 +34,11 @@ public class PlayerInventory : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------------
     // Inventory
 
+    public GameObject[] GetInventory()
+    {
+        return inventory;
+    }
+
     /// <summary>
     /// Gets item from players inventory using a specific slot
     /// </summary>
@@ -188,12 +193,12 @@ public class PlayerInventory : MonoBehaviour
                         relicCount++;
                     }
 
-                    if (relicCount == 3)
-                    {
-                        if (GameObject.Find("Game Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
-                             lSM.SendToArena();
-                    }
+                    CheckAllRelicsGot();
                 }
+            }
+            else if (item.name.Contains("Relic"))
+            {
+                CheckAllRelicsGot();
             }
             else
             {
@@ -246,6 +251,24 @@ public class PlayerInventory : MonoBehaviour
                 Debug.Log("Inventory slot " + num + " holds nothing");
             }
             num++;
+        }
+    }
+
+    private void CheckAllRelicsGot()
+    {
+        if (relicCount == 3)
+        {
+            if (GameObject.Find("Scene Manager") != null)
+            {
+                if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
+                {
+                    lSM.SendToArena();
+                }
+                else
+                    Debug.LogWarning("Scene Manager not set up right");
+            }
+            else
+                Debug.LogWarning("Scene Manager not found");
         }
     }
 }
