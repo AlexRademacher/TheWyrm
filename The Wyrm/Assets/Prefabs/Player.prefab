@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1751594539955540014}
   - component: {fileID: 3565065244062304234}
   - component: {fileID: 2162433135109321652}
-  - component: {fileID: 5225262915489563010}
   - component: {fileID: 6180137507214683982}
   - component: {fileID: 8803335052668137280}
   - component: {fileID: 3477413761519921393}
@@ -118,27 +117,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &5225262915489563010
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761194239528168583}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4, y: 2, z: 4}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6180137507214683982
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -180,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   currentSpeed: 0
-  jumpForce: 1
+  jumpForce: 0.5
   gravity: -9.81
   jumpDebugging: 0
   hidingDebugging: 0
@@ -276,7 +254,7 @@ Transform:
   m_GameObject: {fileID: 2442599002234489710}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -426,13 +404,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7814746422202638565}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2892427, y: 0.13609953, z: -0.041585725, w: 0.9466184}
-  m_LocalPosition: {x: -2.1, y: 5.3, z: -5.92}
+  m_LocalRotation: {x: 0.2576146, y: 0.14142784, z: -0.038844272, w: 0.9550519}
+  m_LocalPosition: {x: -2.16, y: 5.06, z: -6.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 641492871535235075}
-  m_LocalEulerAnglesHint: {x: 33.981, y: 16.363, z: 0}
+  m_LocalEulerAnglesHint: {x: 30.203, y: 16.823, z: -0.088}
 --- !u!20 &4126481047845837027
 Camera:
   m_ObjectHideFlags: 0

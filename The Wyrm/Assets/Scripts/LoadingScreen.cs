@@ -35,15 +35,12 @@ public class LoadingScreen : MonoBehaviour
             {
                 if (screenNum < 0)
                 {
-                    Debug.LogWarning(screenNum);
                     screenNum = Random.Range(0, loadingScreens.Length);
                     background.sprite = loadingScreens[screenNum];
-                    Debug.LogWarning(screenNum);
                 }
                 else
                 {
                     background.sprite = loadingScreens[screenNum];
-                    Debug.LogWarning(screenNum);
                 }
             }
             else if (loadingScreens.Length == 0)

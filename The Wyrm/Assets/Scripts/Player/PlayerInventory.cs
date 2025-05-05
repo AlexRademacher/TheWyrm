@@ -256,7 +256,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void CheckAllRelicsGot()
     {
-        if (relicCount == 3)
+        if (relicCount == 3 && SceneManager.GetActiveScene().buildIndex != 1)
         {
             if (GameObject.Find("Scene Manager") != null)
             {
@@ -270,5 +270,20 @@ public class PlayerInventory : MonoBehaviour
             else
                 Debug.LogWarning("Scene Manager not found");
         }
+    }
+
+    public void ClearInventory()
+    {
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i] != null)
+            {
+                inventory[i] = null;
+            }
+        }
+
+        Debug.Log("Cleared inventory");
+
+        inventoryIndex = 0;
     }
 }

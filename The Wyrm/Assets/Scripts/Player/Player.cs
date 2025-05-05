@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = transform.GetComponent<PlayerInteraction>();
-        PInv = transform.GetComponent<PlayerInventory>();
+        PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
 
 
         controller = GetComponent<CharacterController>();

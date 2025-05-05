@@ -16,7 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
-        PInv = transform.GetComponent<PlayerInventory>();
+        PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
     }
 
     // Update is called once per frame

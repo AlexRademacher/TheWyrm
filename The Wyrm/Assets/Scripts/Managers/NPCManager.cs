@@ -32,16 +32,16 @@ public class NPCManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && npcID == 5)
         {
-            Debug.Log("canNeverSpeak State: " + inTalking);
-            Debug.Log("Talking State: " + inTalking);
-            Debug.Log("ID is: " + npcID);
+            //Debug.Log("canNeverSpeak State: " + inTalking);
+            //Debug.Log("Talking State: " + inTalking);
+            //Debug.Log("ID is: " + npcID);
         }
 
         if (!canNeverSpeak && inTalking && npcID != -1)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("Talking State: " + inTalking);
+                //Debug.Log("Talking State: " + inTalking);
                 if (!UI.GetTextBoxActiveState())
                 {
                     UI.SetTextBoxActiveState(true);

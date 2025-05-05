@@ -7,6 +7,8 @@ public class LoadSceneManager : MonoBehaviour
 {
     private SaveDataManager SDM;
 
+    private bool loading = false;
+
     private int loadingScreenNum = -1;
 
     [Header("Debugger")]
@@ -57,26 +59,31 @@ public class LoadSceneManager : MonoBehaviour
 
     private IEnumerator ChangeScene(int buildNum)
     {
-        if (buildNum != SceneManager.GetActiveScene().buildIndex && buildNum < SceneManager.sceneCountInBuildSettings)
+        if (!loading)
         {
-            ShowLoadingScreen(true);
+            if (buildNum != SceneManager.GetActiveScene().buildIndex && buildNum < SceneManager.sceneCountInBuildSettings)
+            {
+                loading = true;
+                ShowLoadingScreen(true);
+                SDM.SaveData();
 
-            yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2);
 
-            SDM.SaveData();
-            LoadScene(buildNum);
+                LoadScene(buildNum);
 
-            yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2);
 
-            ShowLoadingScreen(false);
-        }
-        else if (buildNum == SceneManager.GetActiveScene().buildIndex)
-        {
-            Debug.LogWarning("Currently within the same scene you are traveling to");
-        }
-        else if (buildNum >= SceneManager.sceneCountInBuildSettings)
-        {
-            Debug.LogWarning("Build number is higher than what is listed in the build settings");
+                ShowLoadingScreen(false);
+                loading = false;
+            }
+            else if (buildNum == SceneManager.GetActiveScene().buildIndex)
+            {
+                Debug.LogWarning("Currently within the same scene you are traveling to");
+            }
+            else if (buildNum >= SceneManager.sceneCountInBuildSettings)
+            {
+                Debug.LogWarning("Build number is higher than what is listed in the build settings");
+            }
         }
     }
 
