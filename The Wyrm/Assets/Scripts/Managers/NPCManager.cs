@@ -121,16 +121,14 @@ public class NPCManager : MonoBehaviour
         switch(ID)
         {
             case 0: // Teacher
-                dialogue[0] = "It is said that to bind a wyrm, 3 sacred relics must be collected and combined.";
-                dialogue[1] = "Relics can come in many forms, but traditionally they take the form of artwork.";
-                dialogue[2] = "Think about what I said in the lesson today, my boy.";
-                dialogue[3] = "You’ll do well to understand it more, it is quite the important subject…";
+                dialogue[0] = "Think about what I said in the lesson today, my boy.";
+                dialogue[1] = "You’ll do well to understand it more, it is quite the important subject…";
                 break;
             case 1: // Merchant
                 dialogue[0] = "Oi kiddo, how are ya?";
-                dialogue[1] = "I have a little something’ in my house, you can have it";
-                dialogue[2] = "That wretched landlord gave it to me and I want nothin’ to do with it!";
-                dialogue[3] = "I don’t want to catch any of that karma comin’ his way…";
+                dialogue[1] = "I'll tell ya what, that potter holds on to some strange items...";
+                dialogue[2] = "Personally, I wouldn't keep that vile jade pendant around...";
+                dialogue[3] = "Wouldn't wanna catch any of the karma that comes with it…";
                 break;
             case 2: // Craftman
                 dialogue[0] = "Why has that greedy landlord has been getting rid of all of his kids' possessions I wonder..?";
@@ -143,8 +141,10 @@ public class NPCManager : MonoBehaviour
                 dialogue[2] = "He never cared about the village after all…";
                 break;
             case 4: // Potter
-                dialogue[0] = "Heeey, you look familiar, but I still can't recognize you…";
-                dialogue[1] = "Eh, whatever. I’m just tired, that's all.";
+                dialogue[0] = "Hey you, boy!";
+                dialogue[1] = "Don't listen to what people say about me!";
+                dialogue[2] = "Especially that slanderous merchant, calling me crazy!";
+                dialogue[3] = "I'm not crazy... I'm not...";
                 break;
             case 5: // Fisherman
                 dialogue[0] = "Ay littlun, don’t be playin’ too close to this ‘ere river! ";
@@ -157,15 +157,15 @@ public class NPCManager : MonoBehaviour
                 dialogue[2] = "Children are nothing but trouble here…";
                 break;
             case 7: // Farmer
-                dialogue[0] = "I remember when I had to chase all you rascals out of my fields ha ha!";
-                dialogue[1] = "...";
-                dialogue[2] = "Not so much anymore, though…";
+                dialogue[0] = "A sorry sight, that collapsed house is...";
+                dialogue[1] = "It was that landlord's other home, wasn't it?";
+                dialogue[2] = "Odd, he doesn't seem too bothered by it, I wonder why...";
                 break;
             case 8: // Mysterious Child
-                dialogue[0] = "Hey friend… that ruined house by the village entrance is quite the sight isn't it?";
-                dialogue[1] = "I’d go check it out but my mom said it's dangerous";
+                dialogue[0] = "Hey friend, you gotta come to class, you’ll be late!";
+                dialogue[1] = "Come on, I’ll take you there!”";
                 break;
-            case 9: // Widdow
+            case 9: // Widow
                 dialogue[0] = "...";
                 dialogue[1] = "You-";
                 dialogue[2] = "You aren’t real…";
