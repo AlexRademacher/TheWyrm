@@ -53,6 +53,7 @@ public class RelicChecker : MonoBehaviour
                         Debug.Log("Relic has been found");
 
                     GM.RelicFound();
+                    break;
                 }
             }
 
