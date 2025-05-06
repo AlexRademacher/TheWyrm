@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     UIManager UI;
 
-    private int timer = 420;
+    private int timer = 0;
     private int oldTime = 0;
 
     private bool paused;
@@ -22,6 +23,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+
+        if (SceneManager.GetActiveScene().buildIndex == 0 )
+            timer += 420;
+        else
+        {
+            UI.HideClock();
+        }
     }
 
     // Update is called once per frame
@@ -50,6 +58,11 @@ public class GameManager : MonoBehaviour
     public int GetTime()
     {
         return timer;
+    }
+
+    public void SetTime(int newtime)
+    {
+        timer = newtime;
     }
 
     public void AddToTimer(int addedTime)

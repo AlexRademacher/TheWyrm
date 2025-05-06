@@ -180,20 +180,23 @@ public class PlayerInventory : MonoBehaviour
             {
                 if (SetToInventory(item))
                 {
-                    if (GM != null)
-                        GM.AddToTimer(60);
-
-                    inventoryIndex++;
-
-                    if (item.name.Contains("Relic"))
+                    if (SceneManager.GetActiveScene().buildIndex == 0)
                     {
-                        if (UI != null)
-                            UI.UpdateItemCount(1);
+                        if (GM != null)
+                            GM.AddToTimer(60);
 
-                        relicCount++;
+                        inventoryIndex++;
+
+                        if (item.name.Contains("Relic"))
+                        {
+                            if (UI != null)
+                                UI.UpdateItemCount(1);
+
+                            relicCount++;
+                        }
+
+                        CheckAllRelicsGot();
                     }
-
-                    CheckAllRelicsGot();
                 }
             }
             else if (item.name.Contains("Relic"))

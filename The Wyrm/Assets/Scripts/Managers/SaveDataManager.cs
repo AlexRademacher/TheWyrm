@@ -16,6 +16,8 @@ public class SaveDataManager : MonoBehaviour
     [SerializeField]
     private GameObject relic2;
 
+    private int timer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +34,14 @@ public class SaveDataManager : MonoBehaviour
     {
         //GetPlayerInventory();
         GetPlayerInventoryBAD();
+        GetTimer();
     }
 
     public void LoadData()
     {
         //SetPlayerInventory();
         SetPlayerInventoryBAD();
+        SetTimer();
     }
 
 
@@ -177,6 +181,22 @@ public class SaveDataManager : MonoBehaviour
         }
         else
             Debug.LogWarning("Player couldn't be found in the scene");
+    }
+
+    private void GetTimer()
+    {
+        if (GameObject.Find("Game Manager").TryGetComponent<GameManager>(out GameManager GM))
+        {
+            timer = GM.GetTime();
+        }
+    }
+
+    private void SetTimer()
+    {
+        if (GameObject.Find("Game Manager").TryGetComponent<GameManager>(out GameManager GM))
+        {
+            GM.SetTime(timer);
+        }
     }
 }
 

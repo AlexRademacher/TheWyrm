@@ -61,19 +61,6 @@ public class UIManager : MonoBehaviour
             {
                 RespawnMenu.SetActive(true);
             }
-
-            
-
-            /*if (Input.GetKeyDown(KeyCode.R) && !PauseMenu.activeSelf)
-            {
-                NPCTextBox.SetActive(!NPCTextBox.activeSelf);
-            }*/
-
-            /*if (Input.GetKeyDown(KeyCode.E) && NPCTextBox.activeSelf)
-            {
-                SetTextBox("Blorg", "blah blah blah blah");
-                SetTextBox("blah blah blah blah blah blahb lbahb bhalb hahblahb lhba");
-            }*/
         }
     }
 
@@ -232,6 +219,11 @@ public class UIManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void HideClock()
+    {
+        TimerCount.SetActive(false);
     }
 
     public void swapHideState() 
