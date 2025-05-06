@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         respawnPos = transform.position;
         ThirdPerPlayerRotation = transform.rotation;
 
-        
+        Debug.Log("I have loaded");
     }
 
     // Update is called once per frame
@@ -78,7 +78,16 @@ public class Player : MonoBehaviour
                 Debug.LogWarning("gC for the jumping is null");
         }
         else if (controller == null)
-            Debug.LogWarning("controller for the player is null");
+        {
+            //Debug.LogWarning("controller for the player is null");
+            //Debug.Log("Cursor.visible: " + Cursor.visible);
+            //Debug.Log("controller: " + controller);
+            //Debug.Log("GM.GetTalking(): " + GM.GetTalking());
+            //Debug.Log("GM.GetLoadingState(): " + GM.GetLoadingState());
+            controller = GetComponent<CharacterController>();
+            gC = GetComponent<GroundChecker>();
+        }
+            
 
         // once falling below 100 on the y axis send player back up
         if (transform.position.y < -100)
@@ -166,7 +175,16 @@ public class Player : MonoBehaviour
 
         Vector3 newPostion = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized; // sets new postion
         newPostion = transform.TransformDirection(newPostion); // changes it to move where the character is looking
-        controller.Move(currentSpeed * Time.deltaTime * newPostion); // sends out the movement of the x and z axis
+
+        if (controller.enabled)
+        {
+            controller.Move(currentSpeed * Time.deltaTime * newPostion); // sends out the movement of the x and z axis
+        }
+        else
+        {
+            Debug.Log("Controller not enabled");
+        }
+        
     }
 
     /// <summary>
