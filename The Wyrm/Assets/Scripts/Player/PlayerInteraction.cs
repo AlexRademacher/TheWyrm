@@ -16,7 +16,10 @@ public class PlayerInteraction : MonoBehaviour
     {
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
-        PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
+        if (GameObject.Find("Scene Manager") != null)
+            PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
+        else
+            Debug.LogWarning("Scene Manager not within the scene (can be ignored if testing)");
     }
 
     // Update is called once per frame

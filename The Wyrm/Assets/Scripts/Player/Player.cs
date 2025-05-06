@@ -52,7 +52,10 @@ public class Player : MonoBehaviour
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = transform.GetComponent<PlayerInteraction>();
-        PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
+        if (GameObject.Find("Scene Manager") != null)
+            PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
+        else
+            Debug.LogWarning("Scene Manager not within the scene (can be ignored if testing)");
         PostProOnOff = GameObject.Find("PostProcessingVolume").GetComponent<postProcessOnOff>();
 
         controller = GetComponent<CharacterController>();
@@ -60,8 +63,6 @@ public class Player : MonoBehaviour
 
         respawnPos = transform.position;
         ThirdPerPlayerRotation = transform.rotation;
-
-        Debug.Log("I have loaded");
     }
 
     // Update is called once per frame
@@ -79,13 +80,7 @@ public class Player : MonoBehaviour
         }
         else if (controller == null)
         {
-            //Debug.LogWarning("controller for the player is null");
-            //Debug.Log("Cursor.visible: " + Cursor.visible);
-            //Debug.Log("controller: " + controller);
-            //Debug.Log("GM.GetTalking(): " + GM.GetTalking());
-            //Debug.Log("GM.GetLoadingState(): " + GM.GetLoadingState());
-            controller = GetComponent<CharacterController>();
-            gC = GetComponent<GroundChecker>();
+            Debug.LogWarning("controller for the player is null");
         }
             
 
