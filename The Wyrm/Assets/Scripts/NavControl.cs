@@ -16,6 +16,10 @@ public class NavControl : MonoBehaviour
     bool checkingHide = false;
     [SerializeField] bool inArena;
 
+    [SerializeField] private Transform[] points;
+    private int destPoint = 0;
+    int wyrmNumber;
+
 
 
     // Start is called before the first frame update
@@ -28,7 +32,19 @@ public class NavControl : MonoBehaviour
         end = agent.destination;
         agent.speed = 3.5f;
         path = new NavMeshPath();
-        
+
+        if (!inArena) 
+        {
+            //Find the nav points
+            for (int i = wyrmNumber; i < i + 2; i++) 
+            {
+                points[0] = GameObject.Find("PatrolPoint" + i).transform;
+                points[1] = GameObject.Find("PatrolPoint" + i).transform;
+            }
+
+            //GotoNextPoint();
+        }
+
     }
 
     // Update is called once per frame
@@ -46,14 +62,20 @@ public class NavControl : MonoBehaviour
             }
             else
             {
-                agent.destination = agent.transform.position;
+                if (!inArena)
+                    GotoNextPoint();
+                /*agent.destination = agent.transform.position;
                 if (!checkingHide) 
                 {
                     if(!inArena)
                         StartCoroutine(checkHide());
                     checkingHide = true;
-                }
+                }*/
             }
+            /*if (agent.remainingDistance < 0.5f && !seePlayer)
+            {
+                GotoNextPoint();
+            }*/
             //Debug.Log(agent.remainingDistance);
             if (agent.isOnOffMeshLink)
             { 
@@ -109,5 +131,26 @@ public class NavControl : MonoBehaviour
         {
             checkingHide = false;
         }
+    }
+
+    void GotoNextPoint()
+    {
+        // Returns if no points have been set up
+        if (points.Length == 0)
+            return;
+
+
+        // Set the agent to go to the currently selected destination.
+
+        agent.destination = points[destPoint].position;
+
+        // Choose the next point in the array as the destination,
+        // cycling to the start if necessary.
+        destPoint = (destPoint + 1) % points.Length;
+    }
+
+    public void giveNumber(int wyrmNumberPassed) 
+    {
+        wyrmNumber = wyrmNumberPassed;
     }
 }

@@ -8,6 +8,7 @@ public class spawnWyrm : MonoBehaviour
     [SerializeField] GameObject wyrm;
     bool spawned = false;
     GameObject newWyrm;
+    [SerializeField] int wyrmNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,7 @@ public class spawnWyrm : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         newWyrm = Instantiate(wyrm, this.transform);
-
+        NavControl wyrmSpawned = GameObject.Find(newWyrm.name).GetComponent<NavControl>();
+        wyrmSpawned.giveNumber(1);
     }
 }
