@@ -41,7 +41,7 @@ public class spawnWyrm : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         newWyrm = Instantiate(wyrm, this.transform);
-        NavControl wyrmSpawned = GameObject.Find(newWyrm.name).GetComponent<NavControl>();
-        wyrmSpawned.giveNumber(1);
+        NavControl wyrmSpawned = newWyrm.GetComponent<NavControl>();
+        wyrmSpawned.giveNumber(wyrmNumber);
     }
 }

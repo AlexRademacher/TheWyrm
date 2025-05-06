@@ -18,7 +18,7 @@ public class NavControl : MonoBehaviour
 
     [SerializeField] private Transform[] points;
     private int destPoint = 0;
-    int wyrmNumber;
+    [SerializeField] int wyrmNumber;
 
 
 
@@ -36,11 +36,10 @@ public class NavControl : MonoBehaviour
         if (!inArena) 
         {
             //Find the nav points
-            for (int i = wyrmNumber; i < i + 2; i++) 
-            {
-                points[0] = GameObject.Find("PatrolPoint" + i).transform;
-                points[1] = GameObject.Find("PatrolPoint" + i).transform;
-            }
+            
+            points[0] = GameObject.Find("PatrolPoint" + (wyrmNumber + 1)).transform;
+            points[1] = GameObject.Find("PatrolPoint" + (wyrmNumber + 2)).transform;
+            
 
             //GotoNextPoint();
         }
