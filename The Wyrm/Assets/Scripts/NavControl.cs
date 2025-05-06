@@ -39,9 +39,10 @@ public class NavControl : MonoBehaviour
             
             points[0] = GameObject.Find("PatrolPoint" + (wyrmNumber + 1)).transform;
             points[1] = GameObject.Find("PatrolPoint" + (wyrmNumber + 2)).transform;
-            
+            points[2] = GameObject.Find("PatrolPoint" + (wyrmNumber + 3)).transform;
 
-            //GotoNextPoint();
+
+            GotoNextPoint();
         }
 
     }
@@ -62,7 +63,10 @@ public class NavControl : MonoBehaviour
             else
             {
                 if (!inArena)
-                    GotoNextPoint();
+                    if (agent.remainingDistance < 0.5f)
+                    {
+                        GotoNextPoint();
+                    }
                 /*agent.destination = agent.transform.position;
                 if (!checkingHide) 
                 {
