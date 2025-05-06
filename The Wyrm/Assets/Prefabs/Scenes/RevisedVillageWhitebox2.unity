@@ -7645,6 +7645,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 108225653778528902, guid: 3e2accafa3a5f1b40ba86cf39bcb49a7, type: 3}
   m_PrefabInstance: {fileID: 292056529}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &292409068 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4420315215257750247, guid: b4fee12627861a046a606836454c6c8d, type: 3}
+  m_PrefabInstance: {fileID: 5439986475728543174}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &293444007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29888,6 +29893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 929105541}
   - component: {fileID: 929105540}
+  - component: {fileID: 929105542}
   m_Layer: 9
   m_Name: PostProcessingVolume
   m_TagString: Untagged
@@ -29927,6 +29933,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &929105542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929105539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e588b835d221154eaa408b5bb9e4097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessVolume: {fileID: 929105540}
 --- !u!1001 &932296923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43456,6 +43475,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 487885705732503582, guid: 5172505cfbc25c644ad2ab70b9c6271a, type: 3}
   m_PrefabInstance: {fileID: 1302974426}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1303322218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1303322219}
+  m_Layer: 0
+  m_Name: PatrolPointTest (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1303322219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303322218}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1138.64, y: 0, z: 868.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 292409068}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1303821999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50703,6 +50753,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 108225653778528902, guid: 3e2accafa3a5f1b40ba86cf39bcb49a7, type: 3}
   m_PrefabInstance: {fileID: 1095233077}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1547992631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1547992632}
+  m_Layer: 0
+  m_Name: PatrolPointTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1547992632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547992631}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -307.38, y: 0, z: 239.63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 292409068}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1548014094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68155,7 +68236,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4420315215257750247, guid: b4fee12627861a046a606836454c6c8d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1547992632}
+    - targetCorrespondingSourceObject: {fileID: 4420315215257750247, guid: b4fee12627861a046a606836454c6c8d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1303322219}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4fee12627861a046a606836454c6c8d, type: 3}
 --- !u!4 &5439986475728543175 stripped

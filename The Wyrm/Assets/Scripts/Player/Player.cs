@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private UIManager UI;
     private PlayerInteraction PI;
     private PlayerInventory PInv;
+    private postProcessOnOff PostProOnOff;
 
     private CharacterController controller;
     private GroundChecker gC;
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = transform.GetComponent<PlayerInteraction>();
         PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
-
+        PostProOnOff = GameObject.Find("PostProcessingVolume").GetComponent<postProcessOnOff>();
 
         controller = GetComponent<CharacterController>();
         gC = GetComponent<GroundChecker>();
@@ -106,6 +107,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && canHide && !hiding)
         {
+            PostProOnOff.changeVignState();
             controller.enabled = false;
             //Debug.Log("hidingCode");
             prevPosition = this.transform.position;
@@ -118,7 +120,7 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F) && hiding)
         {
-            
+            PostProOnOff.changeVignState();
             Debug.Log(prevPosition + " after hiding");
             //this.transform.SetPositionAndRotation(prevPosition, this.transform.rotation);
             this.transform.position = prevPosition;
