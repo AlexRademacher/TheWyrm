@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
     {
         timer += addedTime;
 
-        if (timer > 300 && timer <= 540)
+        if (timer >= 300 && timer <= 540)
         {
             UpdateDayLook(true, new Color(141, 67, 67), shaders[0], lightings[0]);
         }

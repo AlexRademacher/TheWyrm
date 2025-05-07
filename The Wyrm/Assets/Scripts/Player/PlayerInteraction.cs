@@ -59,7 +59,10 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (hitInfo.transform.gameObject.CompareTag("NPC"))
                     {
-                        hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(true);
+                        if (!hitInfo.transform.GetComponent<NPCManager>().canNeverSpeak)
+                            hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(true);
+                        else
+                            hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(false);
                         Debug.LogWarning("the NPC trying to be Talked to is " + hitInfo.transform.gameObject.name);
                     }
 

@@ -44,10 +44,8 @@ public class RelicChecker : MonoBehaviour
 
             foreach (Collider overlapObject in overlapObjects)
             {
-                Debug.Log("Checking overlap");
                 if (overlapObject.gameObject.name.Contains("Relic"))
                 {
-                    Debug.Log("WE FOUND IT :D");
                     check = false;
                     found = true;
 

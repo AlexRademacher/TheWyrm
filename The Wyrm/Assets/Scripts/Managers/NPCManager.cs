@@ -7,7 +7,7 @@ public class NPCManager : MonoBehaviour
     private GameManager GM;
     private UIManager UI;
 
-    private bool canNeverSpeak = false;
+    public bool canNeverSpeak = false;
     private bool inTalking = false;
 
     [Header("NPC Stats")]
@@ -85,6 +85,8 @@ public class NPCManager : MonoBehaviour
                     UI.ShowTeacherCutscene();
                 }
 
+                StartCoroutine(StopTalking());
+
                 Debug.Log("Talking State after talking: " + inTalking);
                 SetInTalkingState(false);
                 lineNum = 0;
@@ -103,6 +105,14 @@ public class NPCManager : MonoBehaviour
 
 
     }
+
+    private IEnumerator StopTalking()
+    {
+        canNeverSpeak = true;
+        yield return new WaitForSeconds(1);
+        canNeverSpeak = false;
+    }
+
 
     private string[] GetDialogue(int ID, int lengthNum)
     {
