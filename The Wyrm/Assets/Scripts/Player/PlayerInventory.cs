@@ -12,7 +12,10 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     private GameObject[] inventory = new GameObject[3];
     private int inventoryIndex = 0;
-    private int relicCount = 0;
+    private bool relicNecklaceFound;
+    private bool relicBagFound;
+    private bool relicPaperFound;
+
 
     [Header("Debugger")]
     [Tooltip("Turns on inventory Debugging"), SerializeField]
@@ -180,19 +183,27 @@ public class PlayerInventory : MonoBehaviour
             {
                 if (SetToInventory(item))
                 {
+                    inventoryIndex++;
+
                     if (SceneManager.GetActiveScene().buildIndex == 0)
                     {
                         if (GM != null)
                             GM.AddToTimer(60);
-
-                        inventoryIndex++;
 
                         if (item.name.Contains("Relic"))
                         {
                             if (UI != null)
                                 UI.UpdateItemCount(1);
 
-                            relicCount++;
+                            if (item.name.Contains("Bag")) {
+                                relicBagFound = true;
+                            }
+                            else if (item.name.Contains("Paper")) {
+                                relicPaperFound = true;
+                            } 
+                            else if (item.name.Contains("Necklace")) {
+                                relicNecklaceFound = true;
+                            }
                         }
 
                         CheckAllRelicsGot();
@@ -259,7 +270,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void CheckAllRelicsGot()
     {
-        if (relicCount == 3 && SceneManager.GetActiveScene().buildIndex != 1)
+        if (relicNecklaceFound && relicPaperFound && relicBagFound && SceneManager.GetActiveScene().buildIndex != 1)
         {
             if (GameObject.Find("Scene Manager") != null)
             {

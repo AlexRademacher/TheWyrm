@@ -77,12 +77,6 @@ public class NPCManager : MonoBehaviour
                 GM.SetTalking(true);
                 UI.SetTextBox(gameObject.name.Substring(3), dialogue[lineNum]);
                 lineNum++;
-
-                if (lineNum >= maxLineNum)
-                {
-                    Debug.Log("Talking State talking: " + inTalking);
-                    SetInTalkingState(false);
-                }
             }
             else
             {
