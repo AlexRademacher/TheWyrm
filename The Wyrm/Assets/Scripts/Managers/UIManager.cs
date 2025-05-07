@@ -36,6 +36,9 @@ public class UIManager : MonoBehaviour
     [Tooltip("The Hide Prompt"), SerializeField]
     private GameObject HidePrompt;
 
+    [Tooltip("The Map"), SerializeField]
+    private GameObject Map;
+
     [Header("Screens")]
     [Tooltip("The Loading Screen"), SerializeField]
     private GameObject LoadingScreen;
@@ -65,6 +68,11 @@ public class UIManager : MonoBehaviour
             if (GM.GetDeadState() && !RespawnMenu.activeSelf)
             {
                 RespawnMenu.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.M) && SceneManager.GetActiveScene().buildIndex == 0 && !GM.GetPauseState() && !GM.GetLoadingState() && !GM.GetDeadState() && !GM.GetTalking())
+            {
+                MapState();
             }
         }
     }
@@ -241,6 +249,19 @@ public class UIManager : MonoBehaviour
     public void swapHideState() 
     {
         HidePrompt.SetActive(!HidePrompt.activeInHierarchy);
+    }
+
+    public void MapState()
+    {
+        if (!Map.activeSelf)
+        {
+            Map.SetActive(true);
+        }
+        else
+        {
+            Map.SetActive(false);
+        }
+        
     }
 
     //--------------------------------------------------------------------------------------------------------
