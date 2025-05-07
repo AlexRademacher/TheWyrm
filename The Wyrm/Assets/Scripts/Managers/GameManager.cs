@@ -38,7 +38,8 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            AddToTimer(300);
+            //AddToTimer(300);
+            AddToTimer(1200);
             //timer += 420;
         }
         else
@@ -259,9 +260,6 @@ public class GameManager : MonoBehaviour
     public void RelicFound()
     {
         relicsFound = relicsFound + 1;
-
-        Debug.Log("WE DID IT WE FOUND IT LETS GOOOO");
-        Debug.Log(relicsFound);
 
         if (relicsFound == 3)
         {

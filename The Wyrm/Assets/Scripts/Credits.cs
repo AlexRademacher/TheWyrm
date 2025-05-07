@@ -14,9 +14,12 @@ public class Credits : MonoBehaviour
     private bool escape = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        if (GameObject.Find("Background Music").transform.GetChild(0).TryGetComponent<AudioSource>(out AudioSource audio))
+        {
+            audio.Pause();
+        }
     }
 
     // Update is called once per frame
