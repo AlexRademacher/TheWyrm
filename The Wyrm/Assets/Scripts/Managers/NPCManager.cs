@@ -80,6 +80,11 @@ public class NPCManager : MonoBehaviour
             }
             else
             {
+                if (npcID == 8)
+                {
+                    UI.ShowTeacherCutscene();
+                }
+
                 Debug.Log("Talking State after talking: " + inTalking);
                 SetInTalkingState(false);
                 lineNum = 0;

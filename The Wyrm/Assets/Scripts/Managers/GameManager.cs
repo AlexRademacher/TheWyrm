@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject[] lightings;
 
+    private bool started;
     private bool paused;
     private bool dead;
 
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (GetTimerType() && !timerAddRest && !talking && !paused && !dead && !loading)
+        if (GetTimerType() && GetStartedState() && !timerAddRest && !talking && !paused && !dead && !loading)
             StartCoroutine(goingPastTimer());
 
         if (oldTime != timer)
@@ -116,10 +117,21 @@ public class GameManager : MonoBehaviour
 
         if (timer >= 1440)
         {
-            CloseGame();
+            //CloseGame();
+            UI.ShowOutOfTimeEnding();
             timer = 0;
         }
 
+    }
+
+    public bool GetStartedState()
+    {
+        return started;
+    }
+
+    public void SetStartedState(bool NewState)
+    {
+        started = NewState;
     }
 
     public bool GetPauseState()
@@ -160,7 +172,7 @@ public class GameManager : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------------
     // Game States
 
-    private void PauseGame()
+    public void PauseGame()
     {
         paused = !GetPauseState();
         CursorVisiblity(GetPauseState());
@@ -241,7 +253,8 @@ public class GameManager : MonoBehaviour
 
         if (relicsFound == 3)
         {
-            CloseGame();
+            //CloseGame();
+            UI.ShowVictoryEnding();
         }
     }
 

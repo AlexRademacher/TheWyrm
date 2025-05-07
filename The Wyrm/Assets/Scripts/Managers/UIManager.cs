@@ -40,6 +40,11 @@ public class UIManager : MonoBehaviour
     [Tooltip("The Loading Screen"), SerializeField]
     private GameObject LoadingScreen;
 
+    [Tooltip("The Cutscenes"), SerializeField]
+    private GameObject[] Cutscenes;
+    [Tooltip("The Cutscene 1 teleport"), SerializeField]
+    private GameObject position;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,15 +74,22 @@ public class UIManager : MonoBehaviour
 
     public void MainStartButton()
     {
-        MainMenu.SetActive(false);
-        GM.CursorVisiblity(false);
-        GM.SetPauseState(false);
-        GM.PlayerKilledState(false);
+        Cutscenes[0].SetActive(true);
     }
 
     public void MainQuitButton()
     {
         GM.CloseGame();
+    }
+
+    public void CutSceneIntroContinue()
+    {
+        GM.SetStartedState(true);
+        Cutscenes[0].SetActive(false);
+        MainMenu.SetActive(false);
+        GM.CursorVisiblity(false);
+        GM.SetPauseState(false);
+        GM.PlayerKilledState(false);
     }
 
     public void PauseContinueButton()
@@ -116,7 +128,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateItemCount(int ItemNum)
     {
-        Debug.Log("Updateing relic count");
         UpdateItemAmount(ItemNum);
     }
 
@@ -262,6 +273,43 @@ public class UIManager : MonoBehaviour
 
         LoadingScreen.SetActive(newState);
         GM.SetLoadingState(newState);
+    }
+
+    public void ShowTeacherCutscene()
+    {
+        Cutscenes[1].SetActive(true);
+        GM.PauseGame();
+    }
+
+    public void CutSceneTeacherContinue()
+    {
+        PauseContinueButton();
+
+        P.GetComponent<CharacterController>().enabled = false;
+        P.transform.position = position.transform.position;
+        P.GetComponent<CharacterController>().enabled = true;
+
+        Cutscenes[1].SetActive(false);
+    }
+
+    public void ShowOutOfTimeEnding()
+    {
+        Cutscenes[3].SetActive(true);
+    }
+
+    public void CutSceneOutOfTimeEndingContinue()
+    {
+        GM.CloseGame();
+    }
+
+    public void ShowVictoryEnding()
+    {
+        Cutscenes[2].SetActive(true);
+    }
+
+    public void CutSceneVictoryEndingContinue()
+    {
+        GM.CloseGame();
     }
 }
 
