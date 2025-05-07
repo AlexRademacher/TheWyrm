@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class SaveDataManager : MonoBehaviour
 {
     private List<GameObject> playerInventory = new List<GameObject>();
+
+    [SerializeField]
     private List<int> playerInventoryRelicIndex = new List<int>();
 
     [SerializeField]
@@ -143,6 +145,11 @@ public class SaveDataManager : MonoBehaviour
         {
             if (playerInventory != null)
             {
+                PI.ClearInventory();
+
+                if (GameObject.Find("Canvas").TryGetComponent<UIManager>(out UIManager UI))
+                    UI.UpdateItemCount(3);
+
                 foreach (int num in playerInventoryRelicIndex)
                 {
                     switch(num)

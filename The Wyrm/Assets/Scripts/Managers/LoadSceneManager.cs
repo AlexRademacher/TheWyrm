@@ -57,32 +57,49 @@ public class LoadSceneManager : MonoBehaviour
         StartCoroutine(ChangeScene(1));
     }
 
+    public void Restart()
+    {
+        int buildNum = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(ChangeScene(buildNum, true));
+    }
+
     private IEnumerator ChangeScene(int buildNum)
+    {
+        StartCoroutine(ChangeScene(buildNum, false));
+        yield return null;
+    }
+
+    private IEnumerator ChangeScene(int buildNum, bool restart)
     {
         if (!loading)
         {
-            if (buildNum != SceneManager.GetActiveScene().buildIndex && buildNum < SceneManager.sceneCountInBuildSettings)
+            if ((restart || buildNum != SceneManager.GetActiveScene().buildIndex))
             {
-                loading = true;
-                ShowLoadingScreen(true);
-                SDM.SaveData();
+                if (buildNum < SceneManager.sceneCountInBuildSettings)
+                {
+                    loading = true;
+                    ShowLoadingScreen(true);
 
-                yield return new WaitForSeconds(2);
+                    if (!restart)
+                        SDM.SaveData();
 
-                LoadScene(buildNum);
+                    yield return new WaitForSeconds(2);
 
-                yield return new WaitForSeconds(2);
+                    LoadScene(buildNum);
 
-                ShowLoadingScreen(false);
-                loading = false;
+                    yield return new WaitForSeconds(2);
+
+                    ShowLoadingScreen(false);
+                    loading = false;
+                }
+                else if (buildNum >= SceneManager.sceneCountInBuildSettings)
+                {
+                    Debug.LogWarning("Build number is higher than what is listed in the build settings");
+                }
             }
-            else if (buildNum == SceneManager.GetActiveScene().buildIndex)
+            else if (!restart && buildNum == SceneManager.GetActiveScene().buildIndex)
             {
                 Debug.LogWarning("Currently within the same scene you are traveling to");
-            }
-            else if (buildNum >= SceneManager.sceneCountInBuildSettings)
-            {
-                Debug.LogWarning("Build number is higher than what is listed in the build settings");
             }
         }
     }
