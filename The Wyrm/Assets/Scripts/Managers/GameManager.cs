@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     private int relicsFound = 0;
 
+    private bool credits = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
         // allows player to free cursor by pressing escape
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!paused && !GetLoadingState())
+            if (!paused && !GetLoadingState() && !GetCreditsState())
             {
                 PauseGame();
             }
@@ -167,6 +169,16 @@ public class GameManager : MonoBehaviour
     public void SetTalking(bool talkingState)
     {
         talking = talkingState;
+    }
+
+    public bool GetCreditsState()
+    {
+        return credits;
+    }
+
+    public void SetCreditsState(bool newState)
+    {
+        credits = newState;
     }
 
     //----------------------------------------------------------------------------------------------------------------------

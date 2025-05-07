@@ -48,6 +48,13 @@ public class UIManager : MonoBehaviour
     [Tooltip("The Cutscene 1 teleport"), SerializeField]
     private GameObject position;
 
+    [Tooltip("The Credits"), SerializeField]
+    private GameObject Credits;
+
+    [Tooltip("The Controls"), SerializeField]
+    private GameObject Controls;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,7 +99,13 @@ public class UIManager : MonoBehaviour
 
     public void CutSceneIntroContinue()
     {
+        Controls.SetActive(true);
+    }
+
+    public void ControlsScreenContinue()
+    {
         GM.SetStartedState(true);
+        Controls.SetActive(false);
         Cutscenes[0].SetActive(false);
         MainMenu.SetActive(false);
         GM.CursorVisiblity(false);
@@ -331,21 +344,27 @@ public class UIManager : MonoBehaviour
     public void ShowOutOfTimeEnding()
     {
         Cutscenes[3].SetActive(true);
+        GM.PauseGame();
     }
 
     public void CutSceneOutOfTimeEndingContinue()
     {
-        GM.CloseGame();
+        PauseContinueButton();
+        GM.SetCreditsState(true);
+        Credits.SetActive(true);
     }
 
     public void ShowVictoryEnding()
     {
         Cutscenes[2].SetActive(true);
+        GM.PauseGame();
     }
 
     public void CutSceneVictoryEndingContinue()
     {
-        GM.CloseGame();
+        PauseContinueButton();
+        GM.SetCreditsState(true);
+        Credits.SetActive(true);
     }
 }
 
