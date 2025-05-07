@@ -38,7 +38,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
         {
             changed = true;
 
-            GM.AddToTimer(60);
+            //GM.AddToTimer(60);
 
             if (CM != null)
             {

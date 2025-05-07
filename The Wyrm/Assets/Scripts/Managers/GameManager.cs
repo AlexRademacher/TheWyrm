@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (!timerAddRest)
+        if (!timerAddRest && !talking && !paused && !dead && !loading)
             StartCoroutine(goingPastTimer());
 
         if (oldTime != timer)

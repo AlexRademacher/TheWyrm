@@ -188,7 +188,7 @@ public class PlayerInventory : MonoBehaviour
                     if (SceneManager.GetActiveScene().buildIndex == 0)
                     {
                         if (GM != null)
-                            GM.AddToTimer(60);
+                            //GM.AddToTimer(60);
 
                         if (item.name.Contains("Relic"))
                         {
