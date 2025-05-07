@@ -80,8 +80,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator goingPastTimer()
     {
         timerAddRest = true;
-        yield return new WaitForSeconds(5);
-        AddToTimer(10);
+        yield return new WaitForSeconds(1);
+        AddToTimer(1);
         timerAddRest = false;
     }
 
