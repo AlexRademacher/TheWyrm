@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             //PlayerKilled();
-            PInv.ListInventory();
+            //PInv.ListInventory();
         }
 
         if (Input.GetKeyDown(KeyCode.F) && canHide && !hiding)

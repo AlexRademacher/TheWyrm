@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            //AddToTimer(300);
-            AddToTimer(1200);
+            AddToTimer(300);
+            //AddToTimer(1200);
             //timer += 420;
         }
         else
