@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PerspectiveChangerTrigger : MonoBehaviour
 {
+    GameManager GM;
     CameraManager CM;
 
     private bool changed = false;
@@ -20,6 +21,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         CM = GameObject.Find("Cameras").GetComponent<CameraManager>();
     }
 
@@ -35,6 +37,8 @@ public class PerspectiveChangerTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !changed)
         {
             changed = true;
+
+            GM.AddToTimer(60);
 
             if (CM != null)
             {
