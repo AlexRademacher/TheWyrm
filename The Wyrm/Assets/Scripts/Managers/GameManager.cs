@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     private int timer = 0;
     private int oldTime = 0;
+    private bool timerAddRest = false;
 
     [SerializeField]
     private Material[] shaders;
@@ -52,6 +53,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (!timerAddRest)
+            StartCoroutine(goingPastTimer());
+
         if (oldTime != timer)
         {
             UI.UpdateClockTimer(timer);
@@ -71,6 +75,14 @@ public class GameManager : MonoBehaviour
     public void SetTime(int newtime)
     {
         timer = newtime;
+    }
+
+    private IEnumerator goingPastTimer()
+    {
+        timerAddRest = true;
+        yield return new WaitForSeconds(5);
+        AddToTimer(10);
+        timerAddRest = false;
     }
 
     public void AddToTimer(int addedTime)
