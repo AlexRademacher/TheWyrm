@@ -98,6 +98,11 @@ public class UIManager : MonoBehaviour
         GM.CursorVisiblity(false);
         GM.SetPauseState(false);
         GM.PlayerKilledState(false);
+
+        if (GameObject.Find("Background Music").transform.GetChild(0).TryGetComponent<AudioSource>(out AudioSource audio))
+        {
+            audio.Play();
+        }
     }
 
     public void PauseContinueButton()
@@ -111,6 +116,11 @@ public class UIManager : MonoBehaviour
     {
         PauseMenu.SetActive(false);
         MainMenu.SetActive(true);
+
+        if (GameObject.Find("Background Music").transform.GetChild(0).TryGetComponent<AudioSource>(out AudioSource audio))
+        {
+            audio.Pause();
+        }
     }
 
     public void RespawnRespawnButton()
@@ -129,6 +139,11 @@ public class UIManager : MonoBehaviour
     {
         RespawnMenu.SetActive(false);
         MainMenu.SetActive(true);
+
+        if (GameObject.Find("Background Music").transform.GetChild(0).TryGetComponent<AudioSource>(out AudioSource audio))
+        {
+            audio.Pause();
+        }
     }
 
     //--------------------------------------------------------------------------------------------------------

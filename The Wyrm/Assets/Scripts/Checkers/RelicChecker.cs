@@ -52,6 +52,11 @@ public class RelicChecker : MonoBehaviour
                     if (relicDebug)
                         Debug.Log("Relic has been found");
 
+                    if (TryGetComponent<AudioSource>(out AudioSource audio))
+                    {
+                        audio.Play();
+                    }
+
                     GM.RelicFound();
                     break;
                 }
