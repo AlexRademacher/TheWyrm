@@ -90,7 +90,8 @@ public class NPCManager : MonoBehaviour
                 UI.SetTextBoxActiveState(false);
 
                 GM.SetTalking(false);
-                //GM.AddToTimer(20);
+                if (!GM.GetTimerType())
+                    GM.AddToTimer(20);
                 Debug.Log("Talking State cleaning up: " + inTalking);
             }
         }

@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     private int timer = 0;
     private int oldTime = 0;
     private bool timerAddRest = false;
+    [Header("Timer")]
+    [Tooltip("True is the timer that counts over time, False is the timer that counts over actions"), SerializeField]
+    private bool timerType = true;
 
     [SerializeField]
     private Material[] shaders;
@@ -32,7 +35,7 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            AddToTimer(420);
+            AddToTimer(300);
             //timer += 420;
         }
         else
@@ -53,7 +56,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (!timerAddRest && !talking && !paused && !dead && !loading)
+        if (GetTimerType() && !timerAddRest && !talking && !paused && !dead && !loading)
             StartCoroutine(goingPastTimer());
 
         if (oldTime != timer)
@@ -66,6 +69,11 @@ public class GameManager : MonoBehaviour
 
     //--------------------------------------------------------------------------------------------------------
     // Get and set
+
+    public bool GetTimerType()
+    {
+        return timerType;
+    }
 
     public int GetTime()
     {

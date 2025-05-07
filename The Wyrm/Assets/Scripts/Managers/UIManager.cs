@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             LoadSceneManager lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
-            lSM.SendToVillage();
+            lSM.Restart();
         }
     }
 
@@ -116,6 +116,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateItemCount(int ItemNum)
     {
+        Debug.Log("Updateing relic count");
         UpdateItemAmount(ItemNum);
     }
 

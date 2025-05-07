@@ -185,24 +185,27 @@ public class PlayerInventory : MonoBehaviour
                 {
                     inventoryIndex++;
 
+                    if (item.name.Contains("Relic"))
+                    {
+                        if (UI != null)
+                            UI.UpdateItemCount(1);
+                    }
+
                     if (SceneManager.GetActiveScene().buildIndex == 0)
                     {
-                        if (GM != null)
-                            //GM.AddToTimer(60);
+                        if (GM != null && !GM.GetTimerType())
+                            GM.AddToTimer(60);
 
                         if (item.name.Contains("Relic"))
                         {
-                            if (UI != null)
-                                UI.UpdateItemCount(1);
-
                             if (item.name.Contains("Bag")) {
-                                relicBagFound = true;
+                                    relicBagFound = true;
                             }
                             else if (item.name.Contains("Paper")) {
-                                relicPaperFound = true;
+                                    relicPaperFound = true;
                             } 
                             else if (item.name.Contains("Necklace")) {
-                                relicNecklaceFound = true;
+                                    relicNecklaceFound = true;
                             }
                         }
 
