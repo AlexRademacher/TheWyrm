@@ -30,13 +30,24 @@ public class NPCManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && npcID == 5)
+        if (Input.GetKeyDown(KeyCode.E) && npcID == 7)
         {
             //Debug.Log("canNeverSpeak State: " + inTalking);
             //Debug.Log("Talking State: " + inTalking);
             //Debug.Log("ID is: " + npcID);
         }
 
+        Speaking();
+    }
+
+    public void SetInTalkingState(bool newState)
+    {
+        inTalking = newState;
+        Speaking();
+    }
+
+    private void Speaking()
+    {
         if (!canNeverSpeak && inTalking && npcID != -1)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -54,11 +65,6 @@ public class NPCManager : MonoBehaviour
                     
             }
         }
-    }
-
-    public void SetInTalkingState(bool newState)
-    {
-        inTalking = newState;
     }
 
     private void ReadDialogue()
