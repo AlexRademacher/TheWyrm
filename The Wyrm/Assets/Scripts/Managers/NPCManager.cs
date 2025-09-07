@@ -37,13 +37,14 @@ public class NPCManager : MonoBehaviour
             //Debug.Log("ID is: " + npcID);
         }
 
-        Speaking();
+        //Speaking();
     }
 
     public void SetInTalkingState(bool newState)
     {
         inTalking = newState;
         Speaking();
+        Debug.LogWarning("We are starting talking now");
     }
 
     private void Speaking()
@@ -52,6 +53,7 @@ public class NPCManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Debug.LogWarning("We are talking now");
                 //Debug.Log("Talking State: " + inTalking);
                 if (!UI.GetTextBoxActiveState())
                 {
