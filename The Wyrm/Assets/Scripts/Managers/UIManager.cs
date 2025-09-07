@@ -36,6 +36,15 @@ public class UIManager : MonoBehaviour
     [Tooltip("The Hide Prompt"), SerializeField]
     private GameObject HidePrompt;
 
+    [Tooltip("The Original Crosshair"), SerializeField]
+    private GameObject Crosshair;
+    [Tooltip("The Crosshair for Picking up/Talking"), SerializeField]
+    private GameObject CrosshairE;
+    [Tooltip("The Crosshair for Dropping Items"), SerializeField]
+    private GameObject CrosshairR;
+    [Tooltip("The Crosshair for Dropping Obsticles"), SerializeField]
+    private GameObject CrosshairF;
+
     [Tooltip("The Map"), SerializeField]
     private GameObject Map;
 
@@ -80,6 +89,15 @@ public class UIManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.M) && SceneManager.GetActiveScene().buildIndex == 0 && !GM.GetPauseState() && !GM.GetLoadingState() && !GM.GetDeadState() && !GM.GetTalking())
             {
                 MapState();
+            }
+
+            if (CrosshairE.activeSelf || CrosshairR.activeSelf || CrosshairF.activeSelf)
+            {
+                Crosshair.SetActive(false);
+            }
+            else if (!CrosshairE.activeSelf && !CrosshairR.activeSelf && !CrosshairF.activeSelf)
+            {
+                Crosshair.SetActive(true);
             }
         }
     }
@@ -290,6 +308,26 @@ public class UIManager : MonoBehaviour
             Map.SetActive(false);
         }
         
+    }
+
+    public void CrosshairToggle(bool newState)
+    {
+        Crosshair.SetActive(newState);
+    }
+
+    public void CrosshairEToggle(bool newState)
+    {
+        CrosshairE.SetActive(newState);
+    }
+
+    public void CrosshairRToggle(bool newState)
+    {
+        CrosshairR.SetActive(newState);
+    }
+
+    public void CrosshairFToggle(bool newState)
+    {
+        CrosshairF.SetActive(newState);
     }
 
     //--------------------------------------------------------------------------------------------------------

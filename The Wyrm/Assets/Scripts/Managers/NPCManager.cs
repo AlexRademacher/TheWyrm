@@ -36,8 +36,6 @@ public class NPCManager : MonoBehaviour
             //Debug.Log("Talking State: " + inTalking);
             //Debug.Log("ID is: " + npcID);
         }
-
-        //Speaking();
     }
 
     public void SetInTalkingState(bool newState)

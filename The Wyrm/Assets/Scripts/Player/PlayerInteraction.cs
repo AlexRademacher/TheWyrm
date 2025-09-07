@@ -46,6 +46,30 @@ public class PlayerInteraction : MonoBehaviour
         // if hit something get its info and do the rest of the code
         if (Physics.Raycast(rayCast, out hitInfo, 8.0f))
         {
+            if (hitInfo.transform.gameObject.CompareTag("Item") || hitInfo.transform.gameObject.CompareTag("NPC")) {
+                UI.CrosshairEToggle(true);
+            }
+            else
+            {
+                UI.CrosshairEToggle(false);
+            }
+
+            if (hitInfo.transform.gameObject.CompareTag("Table")) {
+                UI.CrosshairRToggle(true);
+            }
+            else
+            {
+                UI.CrosshairRToggle(false);
+            }
+
+            if (hitInfo.transform.gameObject.CompareTag("drop")) {
+                UI.CrosshairFToggle(true);
+            }
+            else
+            {
+                UI.CrosshairFToggle(false);
+            }
+
             // if E is clicked
             if (Input.GetKeyDown(KeyCode.E))
             {
