@@ -223,6 +223,9 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Respawn()
     {
+        if (canHide)
+            canHide = false;
+
         controller.enabled = false;
         transform.position = respawnPos;
         controller.enabled = true;
