@@ -93,7 +93,7 @@ public class NavControl : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("trigger");
         if (other.tag == "Slow")
@@ -115,7 +115,7 @@ public class NavControl : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Slow")
         {
