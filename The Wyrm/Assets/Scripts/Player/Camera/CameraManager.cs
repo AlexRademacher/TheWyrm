@@ -9,6 +9,7 @@ public class CameraManager : MonoBehaviour
 
     private Camera Camera3rdPerson;
     private Camera Camera1stPerson;
+    [SerializeField] private Camera MapCam;
 
     [Header("Debugger")]
     [Tooltip("Turns on Camera Debugging"), SerializeField]
@@ -28,6 +29,7 @@ public class CameraManager : MonoBehaviour
         {
             firstPerson = true;
         }
+        MapCam.enabled = false;
     }
 
     // Update is called once per frame
@@ -47,6 +49,12 @@ public class CameraManager : MonoBehaviour
         {
             Camera3rdPerson.enabled = true;
             Camera1stPerson.enabled = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Camera1stPerson.enabled = !Camera1stPerson.enabled;
+            MapCam.enabled = !MapCam.enabled;
         }
     }
 
