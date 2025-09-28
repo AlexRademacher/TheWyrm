@@ -20,6 +20,8 @@ public class NPCManager : MonoBehaviour
 
     private string[] dialogue;
 
+    [SerializeField] Dialog dialog;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +53,8 @@ public class NPCManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.LogWarning("We are talking now");
+                DialogueManager.Instance.ShowDialog(dialog);
+                /*Debug.LogWarning("We are talking now");
                 //Debug.Log("Talking State: " + inTalking);
                 if (!UI.GetTextBoxActiveState())
                 {
@@ -61,7 +64,7 @@ public class NPCManager : MonoBehaviour
                 if (UI.GetTextBoxActiveState())
                 {
                     ReadDialogue();
-                }
+                }*/
                     
             }
         }
