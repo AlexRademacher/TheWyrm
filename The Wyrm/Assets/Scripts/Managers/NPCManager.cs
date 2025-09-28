@@ -53,7 +53,7 @@ public class NPCManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                DialogueManager.Instance.ShowDialog(dialog);
+                StartCoroutine(DialogueManager.Instance.ShowDialog(dialog));
                 /*Debug.LogWarning("We are talking now");
                 //Debug.Log("Talking State: " + inTalking);
                 if (!UI.GetTextBoxActiveState())

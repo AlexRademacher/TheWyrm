@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,14 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Text dialogText;
     [SerializeField] int lettersPerSecond;
 
+    public event Action OnShowDialog;
+    public event Action OnHideDialog;
+
+    Dialog dialog;
+    int currentLine = 0;
+
+    bool isTyping;
+
     public static DialogueManager Instance { get; private set; }
 
     private void Awake()
@@ -16,8 +25,12 @@ public class DialogueManager : MonoBehaviour
         Instance = this;
     }
 
-    public void ShowDialog(Dialog dialog) 
+    public IEnumerator ShowDialog(Dialog dialog) 
     {
+        yield return new WaitForEndOfFrame();
+        OnShowDialog?.Invoke();
+
+        this.dialog = dialog;
         dialogBox.SetActive(true);
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }
@@ -26,11 +39,31 @@ public class DialogueManager : MonoBehaviour
     //letters show up one by one
     public IEnumerator TypeDialog(string line) 
     {
+        isTyping = true;    
         dialogText.text = "";
         foreach (var letter in line.ToCharArray())
         {
             dialogText.text += letter;
             yield return new WaitForSeconds(1f / lettersPerSecond);
+        }
+        isTyping = false;
+    }
+
+    private void Update()
+    {
+        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus) && !isTyping) 
+        {
+            ++currentLine;
+            if (currentLine < dialog.Lines.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+            }
+            else 
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+            }
         }
     }
 }

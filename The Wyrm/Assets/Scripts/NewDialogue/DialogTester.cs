@@ -16,7 +16,7 @@ public class DialogTester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Y)) 
         {
-            DialogueManager.Instance.ShowDialog(dialog);
+            StartCoroutine(DialogueManager.Instance.ShowDialog(dialog));
         }
     }
 }
