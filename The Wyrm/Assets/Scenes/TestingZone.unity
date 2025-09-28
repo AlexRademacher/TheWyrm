@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -758,6 +758,7 @@ MonoBehaviour:
   dialogBox: {fileID: 1409570254}
   dialogText: {fileID: 1844979710}
   lettersPerSecond: 10
+  choiceLine: 0
 --- !u!1 &1844979708
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -868,10 +869,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lines:
-  - Testing Line 1
-  - 2
+  - Testing Line 1.  Minus to continue
+  - choice press 1 or 2
   - 3 this is a really long line for testing if it can handle large text boxes of
     large size and other such cases like that.
+  - Second option picked
 --- !u!114 &1949577344
 MonoBehaviour:
   m_ObjectHideFlags: 0

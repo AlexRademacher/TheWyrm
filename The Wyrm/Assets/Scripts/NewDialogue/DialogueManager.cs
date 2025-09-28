@@ -18,6 +18,8 @@ public class DialogueManager : MonoBehaviour
 
     bool isTyping;
 
+    [SerializeField] bool choiceLine = false;
+
     public static DialogueManager Instance { get; private set; }
 
     private void Awake()
@@ -41,6 +43,11 @@ public class DialogueManager : MonoBehaviour
     {
         isTyping = true;    
         dialogText.text = "";
+        if (line.StartsWith("&"))
+            choiceLine = true;
+        else 
+            choiceLine = false;
+
         foreach (var letter in line.ToCharArray())
         {
             dialogText.text += letter;
@@ -51,14 +58,46 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus) && !isTyping) 
+        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus) && !isTyping && !choiceLine)
         {
             ++currentLine;
             if (currentLine < dialog.Lines.Count)
             {
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }
-            else 
+            else
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+            }
+        }
+        else if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            //Do something based on choice here.  
+            Debug.Log("triggered");
+            ++currentLine;
+            if (currentLine < dialog.Lines.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+            }
+            else
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+            }
+        }
+        else if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && Input.GetKeyDown(KeyCode.Alpha2)) 
+        {
+            //Do something based on choice here.  
+            Debug.Log("triggered");
+            currentLine = currentLine + 2;
+            if (currentLine < dialog.Lines.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+            }
+            else
             {
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
