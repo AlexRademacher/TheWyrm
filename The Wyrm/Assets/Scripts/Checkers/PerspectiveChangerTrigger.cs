@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PerspectiveChangerTrigger : MonoBehaviour
 {
-    GameManager GM;
-    CameraManager CM;
+    private GameManager GM;
+    private WyrmSpawnManager WSM;
 
-    private bool changed = false;
+    private bool entered = false;
 
-    [SerializeField] GameObject wyrmSpawner;
-    private GameObject wyrm;
+    [Tooltip("Where the wyrm is being spawned"), SerializeField] 
+    private GameObject WyrmSpawner;
+    private GameObject NewWyrm;
+    private int wyrmWait = 0;
 
+    private bool respawnWyrm = false;
 
     [Header("Debugger")]
     [Tooltip("Turns on Relic Check Debugging"), SerializeField]
@@ -22,38 +25,72 @@ public class PerspectiveChangerTrigger : MonoBehaviour
     void Start()
     {
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        CM = GameObject.Find("Cameras").GetComponent<CameraManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+         
     }
 
+    private void TryGetWyrm(Transform playerTransform)
+    {
+        if (WyrmSpawner != null)
+        {
+            Debug.Log("Player has entered");
+
+            if (WyrmSpawner.TryGetComponent<WyrmSpawnManager>(out WSM))
+            {
+                wyrmWait = Random.Range(1, 10);
+                WSM.TrySpawnWyrm(playerTransform, wyrmWait, respawnWyrm);
+
+                StartCoroutine(GetWyrm());
+            }
+            else
+            {
+                Debug.LogWarning("Could not find the Wyrm Spawn Manager script");
+            }
+        }
+    }
+
+    private IEnumerator GetWyrm()
+    {
+        yield return new WaitForSecondsRealtime(wyrmWait);
+
+        if (WSM != null)
+        {
+            NewWyrm = WSM.GetCurrentWyrm();
+        }
+        else
+            Debug.LogWarning("Could not find the Wyrm Spawn Manager script");
+    }
+
+    private IEnumerator RemovalCheck()
+    {
+        yield return new WaitForSecondsRealtime(wyrmWait);
+
+        if (NewWyrm != null && !entered)
+        {
+            if (NewWyrm.TryGetComponent<WyrmManager>(out WyrmManager WM))
+            {
+                respawnWyrm = true;
+                StartCoroutine(WM.StartCountdownToLeave(Random.Range(1, 3), WSM));
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && !changed)
+        if (other.gameObject.CompareTag("Player") && !entered)
         {
-            changed = true;
-
             if (!GM.GetTimerType())
                 GM.AddToTimer(60);
 
-            if (CM != null)
-            {
-                //CM.SetCameraPerspective(true);
-                //player.gameObject.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-            }
+            Debug.Log("Player entering");
+            if (!entered)
+                TryGetWyrm(other.transform);
 
-            if (wyrmSpawner != null)
-            {
-                if (wyrmSpawner.TryGetComponent<spawnWyrm>(out spawnWyrm SW))
-                {
-                    wyrm = SW.Spawn();
-                }
-            }
+            entered = true;
         }
     }
 
@@ -61,16 +98,19 @@ public class PerspectiveChangerTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            changed = false;
+            entered = false;
 
-            if (CM != null)
+            if (NewWyrm != null)
             {
-                //CM.SetCameraPerspective(false);
+                if (NewWyrm.TryGetComponent<WyrmManager>(out WyrmManager WM))
+                {
+                    respawnWyrm = true;
+                    StartCoroutine(WM.StartCountdownToLeave(Random.Range(3, 6), WSM));
+                }
             }
-
-            if (wyrm != null)
+            else
             {
-                //Destroy(wyrm);
+                StartCoroutine(RemovalCheck());
             }
         }
     }

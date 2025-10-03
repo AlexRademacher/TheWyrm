@@ -56,7 +56,11 @@ public class Player : MonoBehaviour
             PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
         else
             Debug.LogWarning("Scene Manager not within the scene (can be ignored if testing)");
-        PostProOnOff = GameObject.Find("PostProcessingVolume").GetComponent<postProcessOnOff>();
+
+        if (GameObject.Find("PostProcessingVolume") != null)
+            PostProOnOff = GameObject.Find("PostProcessingVolume").GetComponent<postProcessOnOff>();
+        else
+            Debug.LogWarning("PostProcessingVolume not within the scene (can be ignored if testing)");
 
         controller = GetComponent<CharacterController>();
         gC = GetComponent<GroundChecker>();

@@ -33,10 +33,10 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cameraDebugging && Input.GetKeyDown(KeyCode.P))
+        /*if (cameraDebugging && Input.GetKeyDown(KeyCode.P))
         {
             SetCameraPerspective(!GetCameraPerspective());
-        }
+        }*/
 
         if (GetCameraPerspective() && Camera3rdPerson.enabled)
         {

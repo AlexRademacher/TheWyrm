@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3346011300244772884}
   - component: {fileID: 123516030674839079}
   - component: {fileID: 4149648343719032048}
+  - component: {fileID: 3896997566724993682}
   m_Layer: 0
   m_Name: WyrmSpawn
   m_TagString: Untagged
@@ -91,9 +92,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252286036961960591}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05a27bc2beddc0a44b8b0031070342f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wyrm: {fileID: 1208603542345837192, guid: 8b765161d930f614f9881b46fd812c21, type: 3}
+  wyrmNumber: 0
+--- !u!114 &3896997566724993682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252286036961960591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1e5c5879af2784eb20ed18fe7657c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Wyrm: {fileID: 1208603542345837192, guid: 8b765161d930f614f9881b46fd812c21, type: 3}

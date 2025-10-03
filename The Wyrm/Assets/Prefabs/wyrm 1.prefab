@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1350341683179945633}
   - component: {fileID: 4314727573663842238}
   - component: {fileID: 3443581275452577350}
+  - component: {fileID: 8798505202682411821}
   - component: {fileID: 7684708979480599039}
   m_Layer: 0
   m_Name: wyrm 1
@@ -150,6 +151,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   wyrmNumber: 0
+--- !u!114 &8798505202682411821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208603542345837192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4c430221e93d9418577478b1144728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &7684708979480599039
 AudioSource:
   m_ObjectHideFlags: 0

@@ -130,10 +130,15 @@ public class UIManager : MonoBehaviour
         GM.SetPauseState(false);
         GM.PlayerKilledState(false);
 
-        if (GameObject.Find("Background Music").transform.GetChild(0).TryGetComponent<AudioSource>(out AudioSource audio))
+        if (GameObject.Find("Background Music") != null)
         {
-            audio.Play();
+            if (GameObject.Find("Background Music").transform.GetChild(0).TryGetComponent<AudioSource>(out AudioSource audio))
+            {
+                audio.Play();
+            }
         }
+        else
+            Debug.LogWarning("Background Music not within the scene (can be ignored if testing)");
     }
 
     public void PauseContinueButton()
@@ -148,10 +153,15 @@ public class UIManager : MonoBehaviour
         PauseMenu.SetActive(false);
         MainMenu.SetActive(true);
 
-        if (GameObject.Find("Background Music").transform.GetChild(0).TryGetComponent<AudioSource>(out AudioSource audio))
+        if (GameObject.Find("Background Music") != null)
         {
-            audio.Pause();
+            if (GameObject.Find("Background Music").transform.GetChild(0).TryGetComponent<AudioSource>(out AudioSource audio))
+            {
+                audio.Pause();
+            }
         }
+        else
+            Debug.LogWarning("Background Music not within the scene (can be ignored if testing)");
     }
 
     public void RespawnRespawnButton()
