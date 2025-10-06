@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     bool isTyping;
 
     [SerializeField] bool choiceLine = false;
+    [SerializeField] bool endingLine = false;
 
     public static DialogueManager Instance { get; private set; }
 
@@ -27,6 +28,7 @@ public class DialogueManager : MonoBehaviour
         Instance = this;
     }
 
+    //Call this function to show a dialog
     public IEnumerator ShowDialog(Dialog dialog) 
     {
         yield return new WaitForEndOfFrame();
@@ -41,12 +43,19 @@ public class DialogueManager : MonoBehaviour
     //letters show up one by one
     public IEnumerator TypeDialog(string line) 
     {
+        //change to something easily hidden
         isTyping = true;    
         dialogText.text = "";
         if (line.StartsWith("&"))
             choiceLine = true;
         else 
             choiceLine = false;
+
+        //change to something easily hidden
+        if (line.EndsWith("&"))
+            endingLine = true; 
+        else
+            endingLine = false;
 
         foreach (var letter in line.ToCharArray())
         {
@@ -58,7 +67,15 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus) && !isTyping && !choiceLine)
+        //if its an ending line close and reset the dialouge box
+        if (endingLine && !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus)) 
+        {
+            dialogBox.SetActive(false);
+            OnHideDialog?.Invoke();
+            currentLine = 0;
+        }
+        //If the current dialog is not a choice progress normally
+        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus) && !isTyping && !choiceLine && !endingLine)
         {
             ++currentLine;
             if (currentLine < dialog.Lines.Count)
@@ -72,10 +89,13 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
             }
         }
-        else if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && Input.GetKeyDown(KeyCode.Alpha1))
+    }
+
+    //If the current dialog is a choice progress to the first option. (next line)
+    public void choiceOne()
+    {
+        if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && !endingLine)
         {
-            //Do something based on choice here.  
-            Debug.Log("triggered");
             ++currentLine;
             if (currentLine < dialog.Lines.Count)
             {
@@ -88,10 +108,13 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
             }
         }
-        else if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && Input.GetKeyDown(KeyCode.Alpha2)) 
+    }
+
+    //If the current dialog is a choice progress to the second option. (2 lines ahead)
+    public void choiceTwo()
+    {
+        if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && !endingLine)
         {
-            //Do something based on choice here.  
-            Debug.Log("triggered");
             currentLine = currentLine + 2;
             if (currentLine < dialog.Lines.Count)
             {
@@ -106,3 +129,5 @@ public class DialogueManager : MonoBehaviour
         }
     }
 }
+
+
