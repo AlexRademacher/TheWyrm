@@ -9,6 +9,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject dialogBox;
     [SerializeField] Text dialogText;
     [SerializeField] int lettersPerSecond;
+    [SerializeField] GameObject buttonOne;
+    [SerializeField] GameObject buttonTwo;
 
     public event Action OnShowDialog;
     public event Action OnHideDialog;
@@ -26,6 +28,12 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void ShowButtons() 
+    {
+        buttonOne.SetActive(true);
+        buttonTwo.SetActive(true);
     }
 
     //Call this function to show a dialog
@@ -89,6 +97,9 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
             }
         }
+
+        if (choiceLine)
+            ShowButtons();
     }
 
     //If the current dialog is a choice progress to the first option. (next line)
@@ -107,6 +118,8 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
             }
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
         }
     }
 
@@ -126,6 +139,8 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
             }
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
         }
     }
 }
