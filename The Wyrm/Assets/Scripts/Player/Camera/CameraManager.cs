@@ -55,6 +55,7 @@ public class CameraManager : MonoBehaviour
         {
             Camera1stPerson.enabled = !Camera1stPerson.enabled;
             MapCam.enabled = !MapCam.enabled;
+            firstPerson = !firstPerson;
         }
     }
 
@@ -67,6 +68,7 @@ public class CameraManager : MonoBehaviour
     /// <returns> true = first person, false = third person </returns>
     public bool GetCameraPerspective()
     {
+        Debug.Log(firstPerson);
         return firstPerson;
     }
 
