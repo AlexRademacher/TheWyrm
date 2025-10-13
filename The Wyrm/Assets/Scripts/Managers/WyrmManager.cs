@@ -37,9 +37,11 @@ public class WyrmManager : MonoBehaviour
         {
             if (inArena)
             {
-                if (agent.CalculatePath(player.position, path) && path.status == NavMeshPathStatus.PathComplete)
+                if (agent.hasPath && agent.CalculatePath(player.position, path) && path.status == NavMeshPathStatus.PathComplete)
                 {
                     agent.destination = player.position;
+
+                    
                 }
                 else
                 {
