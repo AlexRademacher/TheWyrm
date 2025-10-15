@@ -191,7 +191,7 @@ public class PlayerInventory : MonoBehaviour
                             UI.UpdateItemCount(1);
                     }
 
-                    if (SceneManager.GetActiveScene().buildIndex == 0)
+                    if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
                     {
                         if (GM != null && !GM.GetTimerType())
                             GM.AddToTimer(60);
@@ -273,7 +273,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void CheckAllRelicsGot()
     {
-        if (relicNecklaceFound && relicPaperFound && relicBagFound && SceneManager.GetActiveScene().buildIndex != 1)
+        if (relicNecklaceFound && relicPaperFound && relicBagFound && (SceneManager.GetActiveScene().buildIndex != 1 || SceneManager.GetActiveScene().buildIndex != 3 || SceneManager.GetActiveScene().buildIndex != 5))
         {
             if (GameObject.Find("Scene Manager") != null)
             {

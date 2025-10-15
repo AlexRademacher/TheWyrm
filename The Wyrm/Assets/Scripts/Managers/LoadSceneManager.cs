@@ -14,10 +14,13 @@ public class LoadSceneManager : MonoBehaviour
     [Header("Debugger")]
     [Tooltip("Turns on Debugging"), SerializeField]
     private bool debug;
+    //Scene loadedScene;
 
     // Start is called before the first frame update
     void Start()
     {
+        //loadedScene = SceneManager.GetActiveScene();
+
         if (GameObject.FindGameObjectsWithTag("SceneManager").Length == 1)
         {
             DontDestroyOnLoad(gameObject);
@@ -49,12 +52,12 @@ public class LoadSceneManager : MonoBehaviour
 
     public void SendToVillage()
     {
-        StartCoroutine(ChangeScene(0));
+        StartCoroutine(ChangeScene(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void SendToArena()
     {
-        StartCoroutine(ChangeScene(1));
+        StartCoroutine(ChangeScene(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void Restart()
