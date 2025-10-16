@@ -9,6 +9,7 @@ public class CameraManager : MonoBehaviour
 
     private Camera Camera3rdPerson;
     private Camera Camera1stPerson;
+    [SerializeField] private Camera MapCam;
 
     [Header("Debugger")]
     [Tooltip("Turns on Camera Debugging"), SerializeField]
@@ -28,15 +29,16 @@ public class CameraManager : MonoBehaviour
         {
             firstPerson = true;
         }
+        MapCam.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (cameraDebugging && Input.GetKeyDown(KeyCode.P))
+        if (cameraDebugging && Input.GetKeyDown(KeyCode.P))
         {
             SetCameraPerspective(!GetCameraPerspective());
-        }*/
+        }
 
         if (GetCameraPerspective() && Camera3rdPerson.enabled)
         {
@@ -47,6 +49,13 @@ public class CameraManager : MonoBehaviour
         {
             Camera3rdPerson.enabled = true;
             Camera1stPerson.enabled = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Camera1stPerson.enabled = !Camera1stPerson.enabled;
+            MapCam.enabled = !MapCam.enabled;
+            firstPerson = !firstPerson;
         }
     }
 
@@ -59,6 +68,7 @@ public class CameraManager : MonoBehaviour
     /// <returns> true = first person, false = third person </returns>
     public bool GetCameraPerspective()
     {
+        Debug.Log(firstPerson);
         return firstPerson;
     }
 
