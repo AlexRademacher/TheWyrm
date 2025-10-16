@@ -2696,13 +2696,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5615697586019291202, guid: 5b80ff5ee362fea4e9d0114f2a1383c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 506921944}
   m_SourcePrefab: {fileID: 100100000, guid: 5b80ff5ee362fea4e9d0114f2a1383c7, type: 3}
 --- !u!4 &506921942 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 788947755033848134, guid: 5b80ff5ee362fea4e9d0114f2a1383c7, type: 3}
   m_PrefabInstance: {fileID: 506921941}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &506921943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5615697586019291202, guid: 5b80ff5ee362fea4e9d0114f2a1383c7, type: 3}
+  m_PrefabInstance: {fileID: 506921941}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &506921944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506921943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - What do you need, young one?
+  - '& What is a relic again?'
+  - Relics are objects imbued with spiritual significance to the owner, usually,
+    but not always deceased.
+  - Try to listen better in my lectures, would you?
+  - "What was today\u2019s assignment?"
+  - Find a few items that may be of spiritual importance to the owner.
+  - I am certain you shall find them very interesting.
 --- !u!1001 &518881720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7734,6 +7763,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5172505cfbc25c644ad2ab70b9c6271a, type: 3}
+--- !u!1 &1556598351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556598352}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556598352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556598351}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 580.29944, y: 29.846668, z: 130.14194}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1562715914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11676,3 +11736,4 @@ SceneRoots:
   - {fileID: 2104342071}
   - {fileID: 1042761790}
   - {fileID: 2143118509}
+  - {fileID: 1556598352}

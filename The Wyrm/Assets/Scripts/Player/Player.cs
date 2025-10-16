@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float currentSpeed;
     [Tooltip("How high the player jumps"), Min(0), SerializeField]
-    private float jumpForce = 1;
+    private float jumpForce = 1.5f;
     [Tooltip("What the gravity on the player is"), SerializeField]
     private float gravity = -9.81f;
 
