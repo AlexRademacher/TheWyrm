@@ -263,8 +263,17 @@ public class GameManager : MonoBehaviour
 
         if (relicsFound == 3)
         {
-            //CloseGame();
-            UI.ShowVictoryEnding();
+            if (GameObject.Find("Scene Manager") != null)
+            {
+                if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
+                {
+                    lSM.SendToArena();
+                }
+                else
+                    Debug.LogWarning("Scene Manager not set up right");
+            }
+            else
+                Debug.LogWarning("Scene Manager not found");
         }
     }
 
