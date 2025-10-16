@@ -1,0 +1,148 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class DialogueManager : MonoBehaviour
+{
+    [SerializeField] GameObject dialogBox;
+    [SerializeField] Text dialogText;
+    [SerializeField] int lettersPerSecond;
+    [SerializeField] GameObject buttonOne;
+    [SerializeField] GameObject buttonTwo;
+
+    public event Action OnShowDialog;
+    public event Action OnHideDialog;
+
+    Dialog dialog;
+    int currentLine = 0;
+
+    bool isTyping;
+
+    [SerializeField] bool choiceLine = false;
+    [SerializeField] bool endingLine = false;
+
+    public static DialogueManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void ShowButtons() 
+    {
+        buttonOne.SetActive(true);
+        buttonTwo.SetActive(true);
+    }
+
+    //Call this function to show a dialog
+    public IEnumerator ShowDialog(Dialog dialog) 
+    {
+        yield return new WaitForEndOfFrame();
+        OnShowDialog?.Invoke();
+
+        this.dialog = dialog;
+        dialogBox.SetActive(true);
+        StartCoroutine(TypeDialog(dialog.Lines[0]));
+    }
+
+
+    //letters show up one by one
+    public IEnumerator TypeDialog(string line) 
+    {
+        //change to something easily hidden
+        isTyping = true;    
+        dialogText.text = "";
+        if (line.StartsWith("&"))
+            choiceLine = true;
+        else 
+            choiceLine = false;
+
+        //change to something easily hidden
+        if (line.EndsWith("&"))
+            endingLine = true; 
+        else
+            endingLine = false;
+
+        foreach (var letter in line.ToCharArray())
+        {
+            dialogText.text += letter;
+            yield return new WaitForSeconds(1f / lettersPerSecond);
+        }
+        isTyping = false;
+    }
+
+    private void Update()
+    {
+        //if its an ending line close and reset the dialouge box
+        if (endingLine && !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus)) 
+        {
+            dialogBox.SetActive(false);
+            OnHideDialog?.Invoke();
+            currentLine = 0;
+        }
+        //If the current dialog is not a choice progress normally
+        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus) && !isTyping && !choiceLine && !endingLine)
+        {
+            ++currentLine;
+            if (currentLine < dialog.Lines.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+            }
+            else
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+            }
+        }
+
+        if (choiceLine)
+            ShowButtons();
+    }
+
+    //If the current dialog is a choice progress to the first option. (next line)
+    public void choiceOne()
+    {
+        if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && !endingLine)
+        {
+            ++currentLine;
+            if (currentLine < dialog.Lines.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+            }
+            else
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+            }
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+        }
+    }
+
+    //If the current dialog is a choice progress to the second option. (2 lines ahead)
+    public void choiceTwo()
+    {
+        if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && !endingLine)
+        {
+            currentLine = currentLine + 2;
+            if (currentLine < dialog.Lines.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+            }
+            else
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+            }
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+        }
+    }
+}
+
+
