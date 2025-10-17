@@ -32,7 +32,7 @@ public class Item : MonoBehaviour
     {
         if (particles != null)
         {
-            Debug.Log("PARITCLES :D :D :D :D");
+            //Debug.Log("PARITCLES :D :D :D :D");
             particles.Play();
         }
 

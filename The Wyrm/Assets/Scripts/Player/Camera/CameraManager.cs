@@ -29,7 +29,9 @@ public class CameraManager : MonoBehaviour
         {
             firstPerson = true;
         }
-        MapCam.enabled = false;
+
+        if (MapCam)
+            MapCam.enabled = false;
     }
 
     // Update is called once per frame
@@ -68,7 +70,7 @@ public class CameraManager : MonoBehaviour
     /// <returns> true = first person, false = third person </returns>
     public bool GetCameraPerspective()
     {
-        Debug.Log(firstPerson);
+        //Debug.Log(firstPerson);
         return firstPerson;
     }
 

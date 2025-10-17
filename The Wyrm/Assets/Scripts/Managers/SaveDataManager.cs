@@ -17,6 +17,18 @@ public class SaveDataManager : MonoBehaviour
     private GameObject relic1;
     [SerializeField]
     private GameObject relic2;
+    [SerializeField]
+    private GameObject relic3;
+    [SerializeField]
+    private GameObject relic4;
+    [SerializeField]
+    private GameObject relic5;
+    [SerializeField]
+    private GameObject relic6;
+    [SerializeField]
+    private GameObject relic7;
+    [SerializeField]
+    private GameObject relic8;
 
     private int timer;
 
@@ -61,16 +73,68 @@ public class SaveDataManager : MonoBehaviour
                 {
                     if (relic != null)
                         playerInventory.Add(relic);
+                    else
+                        Debug.LogError("Relic not given to SaveDataManager");
                 }
                 else if (item.name.Contains("Paper"))
                 {
                     if (relic1 != null)
                         playerInventory.Add(relic1);
+                    else
+                        Debug.LogError("Relic not given to SaveDataManager");
                 }
-                else
+                else if (item.name.Contains("Bag"))
                 {
                     if (relic2 != null)
                         playerInventory.Add(relic2);
+                    else
+                        Debug.LogError("Relic not given to SaveDataManager");
+                }
+                else if (item.name.Contains("Feather"))
+                {
+                    if (relic3 != null)
+                        playerInventory.Add(relic3);
+                    else
+                        Debug.LogError("Relic not given to SaveDataManager");
+                }
+                else if (item.name.Contains("Scaler"))
+                {
+                    if (relic4 != null)
+                        playerInventory.Add(relic4);
+                    else
+                        Debug.LogError("Relic not given to SaveDataManager");
+                }
+                else if (item.name.Contains("Net"))
+                {
+                    if (relic5 != null)
+                        playerInventory.Add(relic5);
+                    else
+                        Debug.LogError("Relic not given to SaveDataManager");
+                }
+                else if (item.name.Contains("Scythe"))
+                {
+                    if (relic6 != null)
+                        playerInventory.Add(relic6);
+                    else
+                        Debug.LogError("Relic not given to SaveDataManager");
+                }
+                else if (item.name.Contains("Hat"))
+                {
+                    if (relic7 != null)
+                        playerInventory.Add(relic7);
+                    else
+                        Debug.LogError("Relic not given to SaveDataManager");
+                }
+                else if (item.name.Contains("Doll"))
+                {
+                    if (relic8 != null)
+                        playerInventory.Add(relic8);
+                    else
+                        Debug.LogError("Relic not given to SaveDataManager");
+                }
+                else
+                {
+                    Debug.LogError("Relic collected has an incorrect name or was not set correctly within the code");
                 }
 
             }
