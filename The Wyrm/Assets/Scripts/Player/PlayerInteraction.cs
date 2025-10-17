@@ -92,8 +92,7 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (hitInfo.transform.gameObject.CompareTag("NPC"))
                     {
-                        Cursor.visible = true;
-                        Cursor.lockState = CursorLockMode.None;
+                        
                         if (!hitInfo.transform.GetComponent<NPCManager>().canNeverSpeak)
                         {
                             Dialog dialog = hitInfo.transform.GetComponent<Dialog>();
@@ -103,6 +102,8 @@ public class PlayerInteraction : MonoBehaviour
                             {
                                 Debug.Log("found Dialog");
                                 StartCoroutine(DialogueManager.Instance.ShowDialog(dialog));
+                                Cursor.visible = true;
+                                Cursor.lockState = CursorLockMode.None;
                             }
                             
                            
