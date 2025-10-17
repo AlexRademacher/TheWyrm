@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateDayLook(bool fogState, Color fogColor, Material skyLook, GameObject lighting)
     {
-        RenderSettings.fog = fogState;
+        //RenderSettings.fog = fogState;
         //RenderSettings.fogColor = fogColor;
 
         RenderSettings.skybox = skyLook;
