@@ -21358,8 +21358,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2948130011701028105, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2067828297}
   m_SourcePrefab: {fileID: 100100000, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
+--- !u!1 &1775334970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2948130011701028105, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
+  m_PrefabInstance: {fileID: 1775334969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1783369614
 GameObject:
   m_ObjectHideFlags: 0
@@ -25407,6 +25415,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2961322828725166391, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
   m_PrefabInstance: {fileID: 1775334969}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2067828297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775334970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - When this goes away youll be teleported.
 --- !u!1 &2077819133 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3723404187012728056, guid: 3c432120441176043a61477fb8bce509, type: 3}
