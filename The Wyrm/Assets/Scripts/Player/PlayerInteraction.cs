@@ -97,12 +97,16 @@ public class PlayerInteraction : MonoBehaviour
                         if (!hitInfo.transform.GetComponent<NPCManager>().canNeverSpeak)
                         {
                             Dialog dialog = hitInfo.transform.GetComponent<Dialog>();
-                            if (dialog != null)
-                                Debug.Log("found Dialog");
                             if (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID == 8)
                                 lastNpcId = 8;
+                            if (dialog != null)
+                            {
+                                Debug.Log("found Dialog");
+                                StartCoroutine(DialogueManager.Instance.ShowDialog(dialog));
+                            }
+                            
                            
-                            StartCoroutine(DialogueManager.Instance.ShowDialog(dialog));
+                            
                         }
                         else
                             hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(false);
