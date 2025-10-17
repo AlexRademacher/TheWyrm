@@ -9132,7 +9132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &752743734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9145,11 +9145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c16b9a8b9e11f488e80d1698b586ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogBox: {fileID: 0}
-  dialogText: {fileID: 0}
+  dialogBox: {fileID: 2112274833}
+  dialogText: {fileID: 2112274832}
   lettersPerSecond: 50
-  buttonOne: {fileID: 0}
-  buttonTwo: {fileID: 0}
+  buttonOne: {fileID: 2112274831}
+  buttonTwo: {fileID: 2112274830}
   choiceLine: 0
   endingLine: 0
 --- !u!4 &752743735
@@ -26069,6 +26069,32 @@ PrefabInstance:
 --- !u!224 &2112274829 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7414716645605641526, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+  m_PrefabInstance: {fileID: 2112274828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2112274830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1019227250928140134, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+  m_PrefabInstance: {fileID: 2112274828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2112274831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5683567833316549697, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+  m_PrefabInstance: {fileID: 2112274828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2112274832 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5834201002198148065, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+  m_PrefabInstance: {fileID: 2112274828}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2112274833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1860681659715716791, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
   m_PrefabInstance: {fileID: 2112274828}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2116566756
