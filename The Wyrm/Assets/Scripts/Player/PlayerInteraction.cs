@@ -10,6 +10,8 @@ public class PlayerInteraction : MonoBehaviour
 
     public Ray rayCast;
     public RaycastHit hitInfo;
+    
+    private int lastNpcId;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,13 @@ public class PlayerInteraction : MonoBehaviour
         if (CM.GetCameraPerspective())
         {
             InteractFirstPerson();
+        }
+
+        if (lastNpcId == 8 && Cursor.visible == false)
+        {
+            lastNpcId = 0;
+            UI.ShowTeacherCutscene();
+
         }
     }
 
@@ -83,8 +92,18 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (hitInfo.transform.gameObject.CompareTag("NPC"))
                     {
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
                         if (!hitInfo.transform.GetComponent<NPCManager>().canNeverSpeak)
-                            hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(true);
+                        {
+                            Dialog dialog = hitInfo.transform.GetComponent<Dialog>();
+                            if (dialog != null)
+                                Debug.Log("found Dialog");
+                            if (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID == 8)
+                                lastNpcId = 8;
+                           
+                            StartCoroutine(DialogueManager.Instance.ShowDialog(dialog));
+                        }
                         else
                             hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(false);
                         Debug.LogWarning("the NPC trying to be Talked to is " + hitInfo.transform.gameObject.name);
