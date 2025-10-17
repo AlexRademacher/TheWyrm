@@ -12,7 +12,7 @@ public class NPCManager : MonoBehaviour
 
     [Header("NPC Stats")]
     [Tooltip("The ID that goes with the dialogue"), SerializeField]
-    private int npcID;
+    public int npcID;
     [Tooltip("The length of dialogue"), SerializeField]
     private int lengthNum;
     private int lineNum = 0;

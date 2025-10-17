@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] GameObject dialogBox;
+    [SerializeField] public GameObject dialogBox;
     [SerializeField] Text dialogText;
     [SerializeField] int lettersPerSecond;
     [SerializeField] GameObject buttonOne;
@@ -81,6 +81,8 @@ public class DialogueManager : MonoBehaviour
             dialogBox.SetActive(false);
             OnHideDialog?.Invoke();
             currentLine = 0;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         //If the current dialog is not a choice progress normally
         if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus) && !isTyping && !choiceLine && !endingLine)
@@ -95,6 +97,8 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
 
@@ -117,6 +121,8 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -138,6 +144,8 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
