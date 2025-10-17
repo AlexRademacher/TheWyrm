@@ -267,7 +267,8 @@ public class GameManager : MonoBehaviour
             {
                 if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
                 {
-                    lSM.SendToArena();
+                    relicsFound = 0;
+                    lSM.SendToVillage();
                 }
                 else
                     Debug.LogWarning("Scene Manager not set up right");

@@ -58,6 +58,11 @@ public class SaveDataManager : MonoBehaviour
         SetTimer();
     }
 
+    public void ClearData()
+    {
+        ClearDataPlayerInventory();
+    }
+
 
     //--------------------------------------------------------------------------------------------------------
     // Player Inventory
@@ -173,16 +178,68 @@ public class SaveDataManager : MonoBehaviour
                     {
                         if (relic != null)
                             playerInventoryRelicIndex.Add(0);
+                        else
+                            Debug.LogError("Relic not given to SaveDataManager");
                     }
                     else if (item.name.Contains("Paper"))
                     {
                         if (relic1 != null)
                             playerInventoryRelicIndex.Add(1);
+                        else
+                            Debug.LogError("Relic not given to SaveDataManager");
                     }
-                    else
+                    else if (item.name.Contains("Bag"))
                     {
                         if (relic2 != null)
                             playerInventoryRelicIndex.Add(2);
+                        else
+                            Debug.LogError("Relic not given to SaveDataManager");
+                    }
+                    else if (item.name.Contains("Feather"))
+                    {
+                        if (relic3 != null)
+                            playerInventoryRelicIndex.Add(3);
+                        else
+                            Debug.LogError("Relic not given to SaveDataManager");
+                    }
+                    else if (item.name.Contains("Scaler"))
+                    {
+                        if (relic4 != null)
+                            playerInventoryRelicIndex.Add(4);
+                        else
+                            Debug.LogError("Relic not given to SaveDataManager");
+                    }
+                    else if (item.name.Contains("Net"))
+                    {
+                        if (relic5 != null)
+                            playerInventoryRelicIndex.Add(5);
+                        else
+                            Debug.LogError("Relic not given to SaveDataManager");
+                    }
+                    else if (item.name.Contains("Scythe"))
+                    {
+                        if (relic6 != null)
+                            playerInventoryRelicIndex.Add(6);
+                        else
+                            Debug.LogError("Relic not given to SaveDataManager");
+                    }
+                    else if (item.name.Contains("Hat"))
+                    {
+                        if (relic7 != null)
+                            playerInventoryRelicIndex.Add(7);
+                        else
+                            Debug.LogError("Relic not given to SaveDataManager");
+                    }
+                    else if (item.name.Contains("Doll"))
+                    {
+                        if (relic8 != null)
+                            playerInventoryRelicIndex.Add(8);
+                        else
+                            Debug.LogError("Relic not given to SaveDataManager");
+                    }
+                    else
+                    {
+                        Debug.LogError("Relic collected has an incorrect name or was not set correctly within the code");
                     }
                 }
                 else
@@ -235,9 +292,50 @@ public class SaveDataManager : MonoBehaviour
                         case 2:
                             if (relic2 != null)
                             {
-
                                 PI.AddToInventory(relic2);
                                 Debug.Log("relic2 Set");
+                            }
+                            break;
+                        case 3:
+                            if (relic3 != null)
+                            {
+                                PI.AddToInventory(relic3);
+                                Debug.Log("relic3 Set");
+                            }
+                            break;
+                        case 4:
+                            if (relic4 != null)
+                            {
+                                PI.AddToInventory(relic4);
+                                Debug.Log("relic4 Set");
+                            }
+                            break;
+                        case 5:
+                            if (relic5 != null)
+                            {
+                                PI.AddToInventory(relic5);
+                                Debug.Log("relic5 Set");
+                            }
+                            break;
+                        case 6:
+                            if (relic6 != null)
+                            {
+                                PI.AddToInventory(relic6);
+                                Debug.Log("relic6 Set");
+                            }
+                            break;
+                        case 7:
+                            if (relic7 != null)
+                            {
+                                PI.AddToInventory(relic7);
+                                Debug.Log("relic7 Set");
+                            }
+                            break;
+                        case 8:
+                            if (relic8 != null)
+                            {
+                                PI.AddToInventory(relic8);
+                                Debug.Log("relic8 Set");
                             }
                             break;
                         default:
@@ -252,6 +350,12 @@ public class SaveDataManager : MonoBehaviour
         }
         else
             Debug.LogWarning("Player couldn't be found in the scene");
+    }
+
+    private void ClearDataPlayerInventory()
+    {
+        playerInventory.Clear();
+        playerInventoryRelicIndex.Clear();
     }
 
     private void GetTimer()

@@ -52,7 +52,9 @@ public class LoadSceneManager : MonoBehaviour
 
     public void SendToVillage()
     {
-        StartCoroutine(ChangeScene(SceneManager.GetActiveScene().buildIndex + 1));
+        Debug.Log("Going to village");
+        SDM.ClearData();
+        StartCoroutine(ChangeScene(SceneManager.GetActiveScene().buildIndex + 1, true));
     }
 
     public void SendToArena()
@@ -83,7 +85,7 @@ public class LoadSceneManager : MonoBehaviour
                     loading = true;
                     ShowLoadingScreen(true);
 
-                    if (!restart)
+                    if (!restart && SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
                         SDM.SaveData();
 
                     yield return new WaitForSeconds(2);

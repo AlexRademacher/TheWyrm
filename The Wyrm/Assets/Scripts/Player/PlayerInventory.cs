@@ -12,9 +12,9 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     private GameObject[] inventory = new GameObject[3];
     private int inventoryIndex = 0;
-    private bool relicNecklaceFound;
-    private bool relicBagFound;
-    private bool relicPaperFound;
+    private bool relic1Found;
+    private bool relic2Found;
+    private bool relic3Found;
 
 
     [Header("Debugger")]
@@ -198,14 +198,14 @@ public class PlayerInventory : MonoBehaviour
 
                         if (item.name.Contains("Relic"))
                         {
-                            if (item.name.Contains("Bag")) {
-                                    relicBagFound = true;
+                            if (item.name.Contains("Bag") || item.name.Contains("Net") || item.name.Contains("Doll")) {
+                                    relic1Found = true;
                             }
-                            else if (item.name.Contains("Paper")) {
-                                    relicPaperFound = true;
+                            else if (item.name.Contains("Paper") || item.name.Contains("Scaler") || item.name.Contains("Hat")) {
+                                    relic2Found = true;
                             } 
-                            else if (item.name.Contains("Necklace")) {
-                                    relicNecklaceFound = true;
+                            else if (item.name.Contains("Necklace") || item.name.Contains("Feather") || item.name.Contains("Scythe")) {
+                                    relic3Found = true;
                             }
                         }
 
@@ -273,12 +273,16 @@ public class PlayerInventory : MonoBehaviour
 
     private void CheckAllRelicsGot()
     {
-        if (relicNecklaceFound && relicPaperFound && relicBagFound && (SceneManager.GetActiveScene().buildIndex != 1 || SceneManager.GetActiveScene().buildIndex != 3 || SceneManager.GetActiveScene().buildIndex != 5))
+        Debug.Log("Checking relics");
+        if (relic1Found && relic2Found && relic3Found && (SceneManager.GetActiveScene().buildIndex != 1 || SceneManager.GetActiveScene().buildIndex != 3 || SceneManager.GetActiveScene().buildIndex != 5))
         {
             if (GameObject.Find("Scene Manager") != null)
             {
                 if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
                 {
+                    relic1Found = false;
+                    relic2Found = false;
+                    relic3Found = false;
                     lSM.SendToArena();
                 }
                 else

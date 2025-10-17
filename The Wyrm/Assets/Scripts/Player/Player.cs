@@ -102,11 +102,6 @@ public class Player : MonoBehaviour
         else
             Debug.LogWarning("CM not set up correctly for player");
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            //PI.DropItem();
-        }
-
         if (Input.GetKeyDown(KeyCode.H))
         {
             //PlayerKilled();

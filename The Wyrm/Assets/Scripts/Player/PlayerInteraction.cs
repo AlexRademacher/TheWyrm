@@ -166,27 +166,30 @@ public class PlayerInteraction : MonoBehaviour
 
     public void DropItem()
     {
-        GameObject item = PInv.RemoveInventory();
-
-        if (item != null)
+        if (hitInfo.collider.name.Contains("DropOff"))
         {
-            if (CM != null)
+            GameObject item = PInv.RemoveInventory();
+
+            if (item != null)
             {
-                if (CM.GetCameraPerspective())
+                if (CM != null)
                 {
-                    Instantiate(item, hitInfo.point, transform.rotation);
-                    Destroy(item);
+                    if (CM.GetCameraPerspective())
+                    {
+                        Debug.LogWarning("Placed relic");
+                        Instantiate(item, hitInfo.point, transform.rotation);
+                    }
+                    else
+                    {
+                        Instantiate(item, new Vector3(transform.position.x + 1, transform.position.y - (transform.position.y / 2) - .25f, transform.position.z), transform.rotation);
+                    }
                 }
                 else
-                {
-                    Instantiate(item, new Vector3(transform.position.x + 1, transform.position.y - (transform.position.y / 2) - .25f, transform.position.z), transform.rotation);
-                }
+                    Debug.LogWarning("Camera manger not set up correctly for dropping item");
             }
             else
-                Debug.LogWarning("Camera manger not set up correctly for dropping item");
+                Debug.LogWarning("No items to drop");
         }
-        else
-            Debug.LogWarning("No items to drop");
     }
 
     //----------------------------------------------------------------------------------------------------------------------
