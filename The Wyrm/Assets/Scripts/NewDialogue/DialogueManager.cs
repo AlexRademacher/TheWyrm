@@ -18,6 +18,8 @@ public class DialogueManager : MonoBehaviour
     Dialog dialog;
     int currentLine = 0;
 
+    int skipNumFound = 1;
+
     bool isTyping;
 
     [SerializeField] bool choiceLine = false;
@@ -43,6 +45,7 @@ public class DialogueManager : MonoBehaviour
         OnShowDialog?.Invoke();
 
         this.dialog = dialog;
+        skipNumFound = this.dialog.skipNum;
         dialogBox.SetActive(true);
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }
@@ -129,12 +132,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    //If the current dialog is a choice progress to the second option. (2 lines ahead)
+    //If the current dialog is a choice progress to the second option. (skipNum lines ahead)
     public void choiceTwo()
     {
         if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && !endingLine)
         {
-            currentLine = currentLine + 2;
+            currentLine = currentLine + skipNumFound;
             if (currentLine < dialog.Lines.Count)
             {
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));

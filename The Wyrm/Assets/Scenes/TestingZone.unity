@@ -1276,8 +1276,12 @@ MonoBehaviour:
   lines:
   - Testing Line 1.  Minus to continue
   - '& 1. What is a relic? 2. What do relics do'
-  - A relic is ...&
-  - A relic does...
+  - 3 A relic is ...
+  - 4 A relic does... &
+  - 5 Skips to here if Skip num 3
+  - 6 Skips to here if Skip num 4
+  - 7 Skip num 5
+  skipNum: 3
 --- !u!114 &1949577344
 MonoBehaviour:
   m_ObjectHideFlags: 0

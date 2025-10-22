@@ -7,6 +7,8 @@ public class Dialog : MonoBehaviour
 {
     [SerializeField] List<string> lines;
 
+    [SerializeField] public int skipNum;
+
     public List<string> Lines 
     {
         get { return lines; }
