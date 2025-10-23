@@ -80,7 +80,7 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             // if E is clicked
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && Cursor.visible == false)
             {
                 if (hitInfo.transform.gameObject != null)
                 {

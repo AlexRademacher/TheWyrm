@@ -79,7 +79,7 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         //if its an ending line close and reset the dialouge box
-        if (endingLine && !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus)) 
+        if (endingLine && !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E)) 
         {
             dialogBox.SetActive(false);
             OnHideDialog?.Invoke();
@@ -88,7 +88,7 @@ public class DialogueManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
         //If the current dialog is not a choice progress normally
-        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Minus) && !isTyping && !choiceLine && !endingLine)
+        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E) && !isTyping && !choiceLine && !endingLine)
         {
             ++currentLine;
             if (currentLine < dialog.Lines.Count)

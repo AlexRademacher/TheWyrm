@@ -4653,7 +4653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogBox: {fileID: 2112274833}
   dialogText: {fileID: 2112274832}
-  lettersPerSecond: 50
+  lettersPerSecond: 100
   buttonOne: {fileID: 2112274831}
   buttonTwo: {fileID: 2112274830}
   choiceLine: 0
@@ -12434,6 +12434,10 @@ PrefabInstance:
     - target: {fileID: 509591136068959601, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: choiceTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019227250928140134, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1860681659715716791, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
       propertyPath: m_IsActive
