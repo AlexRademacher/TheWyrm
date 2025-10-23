@@ -591,8 +591,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3697391138202274055, guid: efe8a8ab005982646a6c871498ec1a86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 291108373}
   m_SourcePrefab: {fileID: 100100000, guid: efe8a8ab005982646a6c871498ec1a86, type: 3}
+--- !u!1 &57387907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3697391138202274055, guid: efe8a8ab005982646a6c871498ec1a86, type: 3}
+  m_PrefabInstance: {fileID: 57387906}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &66625522 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5717816713034021577, guid: 255ab9b5010b7a74f9696282beaf6f2b, type: 3}
@@ -2501,6 +2509,25 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2503336017733111009, guid: efe8a8ab005982646a6c871498ec1a86, type: 3}
   m_PrefabInstance: {fileID: 57387906}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &291108373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57387907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Hey you, boy! Don't listen to what the rest say about me! I'm not crazy!
+  - '& 1: Who says you''re crazy? 2: I don''t think you''re crazy sir.'
+  - Everyone! All because I know the landlord is hiding a secret.
+  - That cursed deed in the collapsed house is proof enough... &
+  - T-thanks... at least there's someone in the village that likes me...
+  skipNum: 2
 --- !u!1 &297712973
 GameObject:
   m_ObjectHideFlags: 0
@@ -4722,8 +4749,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1113870853}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1278100058}
   m_SourcePrefab: {fileID: 100100000, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+--- !u!1 &715907386 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+  m_PrefabInstance: {fileID: 715907385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &717778666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1321648325441270560, guid: 3c432120441176043a61477fb8bce509, type: 3}
@@ -4799,13 +4834,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1199485645}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 720214763}
   m_SourcePrefab: {fileID: 100100000, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
 --- !u!4 &720214761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
   m_PrefabInstance: {fileID: 720214760}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &720214762 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+  m_PrefabInstance: {fileID: 720214760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &720214763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720214762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - No dialog in doc
+  skipNum: 0
 --- !u!1 &747825631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3723404187012728056, guid: 3c432120441176043a61477fb8bce509, type: 3}
@@ -6812,8 +6870,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 316986491}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1473513739}
   m_SourcePrefab: {fileID: 100100000, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+--- !u!1 &1107564745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+  m_PrefabInstance: {fileID: 1107564744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1109150787 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4015595421224296055, guid: 255ab9b5010b7a74f9696282beaf6f2b, type: 3}
@@ -7479,8 +7545,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 208235789922435563, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
       insertIndex: -1
       addedObject: {fileID: 56725301}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9021179385695715157, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1677007152}
   m_SourcePrefab: {fileID: 100100000, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
+--- !u!1 &1185011798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9021179385695715157, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
+  m_PrefabInstance: {fileID: 1185011797}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1193301192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7559,8 +7633,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4180710886893918622, guid: 6c09d2d8bbc94274fb9a7769d189c2c6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1208435693}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2540304753883426418, guid: 6c09d2d8bbc94274fb9a7769d189c2c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1200651769}
   m_SourcePrefab: {fileID: 100100000, guid: 6c09d2d8bbc94274fb9a7769d189c2c6, type: 3}
+--- !u!1 &1193301193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2540304753883426418, guid: 6c09d2d8bbc94274fb9a7769d189c2c6, type: 3}
+  m_PrefabInstance: {fileID: 1193301192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1195220368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7833,6 +7915,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4180710886893918622, guid: 6c09d2d8bbc94274fb9a7769d189c2c6, type: 3}
   m_PrefabInstance: {fileID: 1193301192}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1200651769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193301193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - What do you think you are doing here, boy!?
+  - '& 1: This is a sacred place for all, I can come in here. 2: To pray?'
+  - This is a place for those who seek to aid the village's strife
+  - 'Children like you are an affliction! begone! & '
+  - Your prayers mean nothing, child! How ignorant of you...
+  skipNum: 2
 --- !u!1 &1208435692
 GameObject:
   m_ObjectHideFlags: 0
@@ -8264,6 +8365,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
   m_PrefabInstance: {fileID: 715907385}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1278100058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715907386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - You there! You're awfully close to my property there, boy!
+  - '& 1: Sorry, I didn''t know. 2: Why can''t I be close to it?'
+  - No? Well, be more careful! Children like you are what's wrong with this village.
+  - Go on, Scram! Before you do something unwise. &
+  - B-because it's my property! A clumsy child like you would break something.
+  - Go on, Scram! Before you do something unwise.
+  skipNum: 0
 --- !u!1001 &1282351418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9026,6 +9147,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
   m_PrefabInstance: {fileID: 1107564744}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1473513739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107564745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - I'll tell you, my poor neighbor, the farmer, has had some rotten luck, but then
+    again so have all of us...
+  - '& 1: What kind of luck? 2: Whereabouts does he live?'
+  - 'The grim kind, my friend. If you ask me it''s because of that damn inheritance
+    money he stole... & '
+  - Just down the way at the end. Be careful not to catch his karma if you go by
+    there haha...
+  skipNum: 0
 --- !u!1001 &1480354201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10006,8 +10148,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5491955377135259392, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1660011237}
   m_SourcePrefab: {fileID: 100100000, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
+--- !u!1 &1660011236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5491955377135259392, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
+  m_PrefabInstance: {fileID: 1660011235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1660011237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660011236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - I told you! I won't talk to you anymore! wait, you...
+  - '& 1: Sorry did I startle you? 2: Why are you so upset?'
+  - You... you aren't real...
+  - Leave me be... &
+  - I- Get away... I won't fraternize with spirits...
+  - Leave me be...
+  skipNum: 0
 --- !u!1 &1668662933 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 225400215010513126, guid: 255ab9b5010b7a74f9696282beaf6f2b, type: 3}
@@ -10067,6 +10237,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 208235789922435563, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
   m_PrefabInstance: {fileID: 1185011797}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1677007152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185011798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - I wouldn't go by the Pagoda if I were you, little fellow.  That shaman is a nasty
+    sort.
+  - '& 1: Pagoda? 2: What''s wrong with him?'
+  - Yes, up on the hill. You can see if from here. &
+  - All his self importance is long gone now.  All he does nowadays is pray and demand
+    pity...
+  skipNum: 1
 --- !u!1 &1677323168
 GameObject:
   m_ObjectHideFlags: 0
