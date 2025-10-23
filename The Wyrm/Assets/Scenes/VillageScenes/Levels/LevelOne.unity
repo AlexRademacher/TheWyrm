@@ -2951,8 +2951,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8651082650695882707, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 950414442}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7571997969669627284, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 844135876}
   m_SourcePrefab: {fileID: 100100000, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
+--- !u!1 &375585886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7571997969669627284, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
+  m_PrefabInstance: {fileID: 375585885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &380134649
 GameObject:
   m_ObjectHideFlags: 0
@@ -3058,13 +3066,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1677323169}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 393671493}
   m_SourcePrefab: {fileID: 100100000, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
 --- !u!4 &393671491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
   m_PrefabInstance: {fileID: 393671490}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &393671492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+  m_PrefabInstance: {fileID: 393671490}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &393671493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393671492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Hey you. No idea who you are, but I'm in charge around here, got it?
+  - '& 1: Who put you in charge? 2: Whatever you say...'
+  - My big bro always said "never back down" so I ain't taking anything from you!
+  - Yeah, get lost. &
+  - Hey! Don't brush me off, loser! Do you have any idea who my father is?
+  - 'Yeah, get lost. '
+  skipNum: 2
 --- !u!1 &403267072 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8614690378877952735, guid: 255ab9b5010b7a74f9696282beaf6f2b, type: 3}
@@ -5212,6 +5248,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8651082650695882707, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
   m_PrefabInstance: {fileID: 375585885}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &844135876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375585886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Oi, kiddo, How are ya? Lookin' for something to buy?
+  - '& 1: Do you have any ''spiritual'' items? 2: I''ll go in and take a look if
+    that''s okay.'
+  - Hmm, maybe somewhere. If you find any, just take it. I don't need that kind of
+    karma...
+  - By all means! See if you can't find something.
+  skipNum: 1
 --- !u!4 &850654489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9198359284010872124, guid: 2a413b1af6857884888b3fbbe7e926fb, type: 3}
@@ -7949,8 +8005,32 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 455261389}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1208709802}
   m_SourcePrefab: {fileID: 100100000, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+--- !u!1 &1208709801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+  m_PrefabInstance: {fileID: 1208709800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1208709802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208709801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Hey there sonny!
+  - No other dialog in Doc!!!! :O
+  skipNum: 0
 --- !u!1 &1224857469
 GameObject:
   m_ObjectHideFlags: 0
@@ -8724,8 +8804,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 171238966002064993, guid: 7ef574deb1dce12458c34cf45c74bff7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1823236544}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5197671984470541068, guid: 7ef574deb1dce12458c34cf45c74bff7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1420681400}
   m_SourcePrefab: {fileID: 100100000, guid: 7ef574deb1dce12458c34cf45c74bff7, type: 3}
+--- !u!1 &1420681399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5197671984470541068, guid: 7ef574deb1dce12458c34cf45c74bff7, type: 3}
+  m_PrefabInstance: {fileID: 1420681398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1420681400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420681399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Aye, LIttun, don't be playin' too close to this 'ere river. You kids oughta be
+    more careful.
+  - Though, I can't say I've seen ye' around...
+  - '& 1: Why? Has something happened by the river before? 2: For a fisherman, you
+    don''t seem to have a boat...'
+  - N-no!... I was just bein' cautious. Yeah, just bein' cautious, that's all...
+  - Anyway- run home, littlun.  Yer wastin' time talkin' to a hermit like me... &
+  - 'Yes, err- I lost it in a flood a ''bout year back. I just fish from th'' bank
+    nowadays. '
+  - 'Anyway- run home, littlun.  Yer wastin'' time talkin'' to a hermit like me... '
+  skipNum: 2
 --- !u!1 &1427087905
 GameObject:
   m_ObjectHideFlags: 0
@@ -9247,13 +9359,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1109714355}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1515192197}
   m_SourcePrefab: {fileID: 100100000, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
 --- !u!4 &1515192195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
   m_PrefabInstance: {fileID: 1515192194}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1515192196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+  m_PrefabInstance: {fileID: 1515192194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1515192197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515192196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Hi! I'm (Name). Say, I haven't seen you around before...
+  - '& 1: I''m new, I came from another village... 2: I just don''t think we''ve
+    met before'
+  - Well, my advice is stay away from the landlord's kid. He's really mean!
+  - Glad we have, then! You should visit me and my dad for dinner sometime!
+  skipNum: 1
 --- !u!4 &1555828262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4893161885381238198, guid: 829d0ae900868274d81efb78aa4d73b3, type: 3}
@@ -9462,13 +9601,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - What do you need, young one?
-  - '& What is a relic again?'
+  - "& 1: What is a relic again? 2: What was today\u2019s assignment?"
   - Relics are objects imbued with spiritual significance to the owner, usually,
     but not always deceased.
   - Try to listen better in my lectures, would you?
-  - "What was today\u2019s assignment?"
   - Find a few items that may be of spiritual importance to the owner.
   - I am certain you shall find them very interesting.
+  skipNum: 2
 --- !u!1001 &1632503493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11988,7 +12127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lines:
-  - When this goes away youll be teleported.
+  - Hey friend, you gotta come to class! C'mon, I'll take you there!
+  - '& 1: Class? What Class? 2: Who are you?'
+  - What're you talking about? We all go to class every day.
+  - Let's go! We'll be late. &
+  - I'm your new friend, of course! Now let's go!
+  - Let's go! We'll be late.
+  skipNum: 2
 --- !u!1 &2109333111
 GameObject:
   m_ObjectHideFlags: 0
