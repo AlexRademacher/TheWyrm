@@ -2576,6 +2576,7 @@ MonoBehaviour:
   - "What was today\u2019s assignment?"
   - Find a few items that may be of spiritual importance to the owner.
   - I am certain you shall find them very interesting.
+  skipNum: 0
 --- !u!1 &548842546
 GameObject:
   m_ObjectHideFlags: 0
@@ -12404,9 +12405,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1107728965}
     m_Modifications:
+    - target: {fileID: 509591136068959601, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1366375186}
+    - target: {fileID: 509591136068959601, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: choiceTwo
+      objectReference: {fileID: 0}
     - target: {fileID: 1860681659715716791, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2046882210214168759, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1366375186}
+    - target: {fileID: 2046882210214168759, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: choiceOne
       objectReference: {fileID: 0}
     - target: {fileID: 2453056414966843243, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
       propertyPath: m_IsActive
