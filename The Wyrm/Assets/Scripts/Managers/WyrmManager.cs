@@ -103,7 +103,7 @@ public class WyrmManager : MonoBehaviour
                     {
                         agent.destination = player.position;
 
-                        agent.speed = agent.remainingDistance;
+                        agent.speed = 8;
                     }
                     else
                     {
