@@ -87,15 +87,15 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         //if its an ending line close and reset the dialouge box
-        if (endingLine && !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E)) 
+        if (endingLine && !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("We are closing the dialog");
+
             dialogBox.SetActive(false);
             OnHideDialog?.Invoke();
             currentLine = 0;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-
-            
         }
 
         //If the current dialog is not a choice progress normally
@@ -108,11 +108,21 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("We are closing the dialoggggggggggg");
+
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+
+                if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
+                {
+                    if (currentNpc.TryGetComponent<Item>(out Item itemScript))
+                    {
+                        itemScript.PickedUp();
+                    }
+                }
             }
         }
 

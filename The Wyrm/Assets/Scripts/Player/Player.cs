@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -141,7 +142,13 @@ public class Player : MonoBehaviour
 
         }
 
-
+        if (SceneManager.GetActiveScene().buildIndex == 6)
+        {
+            if (transform.position.y < 45)
+            {
+                PlayerKilled();
+            } 
+        }
     }
 
     //----------------------------------------------------------------------------------------------------------------------
