@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -32,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour
             InteractFirstPerson();
         }
 
-        if (lastNpcId == 8 && Cursor.visible == false)
+        if (lastNpcId == 8 && Cursor.visible == false && SceneManager.GetActiveScene().buildIndex == 0)
         {
             lastNpcId = 0;
             UI.ShowTeacherCutscene();
