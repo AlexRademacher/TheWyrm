@@ -251,10 +251,10 @@ public class SaveDataManager : MonoBehaviour
 
             PI.ClearInventory();
 
-            foreach (int num in playerInventoryRelicIndex)
+            /*foreach (int num in playerInventoryRelicIndex)
             {
                 Debug.Log(num);
-            }
+            }*/
         }
         else
             Debug.LogWarning("Player couldn't be found in the scene");
