@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    private GameManager GM;
     [SerializeField] public GameObject dialogBox;
     [SerializeField] Text dialogText;
     [SerializeField] float lettersPerSecond = 100;
@@ -32,6 +33,11 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     private void ShowButtons() 
@@ -96,6 +102,15 @@ public class DialogueManager : MonoBehaviour
             currentLine = 0;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
+            {
+                if (currentNpc.TryGetComponent<Item>(out Item itemScript))
+                {
+                    itemScript.PickedUp();
+                    GM.sacraficed();
+                }
+            }
         }
 
         //If the current dialog is not a choice progress normally
@@ -121,6 +136,7 @@ public class DialogueManager : MonoBehaviour
                     if (currentNpc.TryGetComponent<Item>(out Item itemScript))
                     {
                         itemScript.PickedUp();
+                        GM.sacraficed();
                     }
                 }
             }

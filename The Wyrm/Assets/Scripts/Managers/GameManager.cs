@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject[] lightings;
 
+    [SerializeField]
+    private GameObject FinalRelics;
+
     private bool started;
     private bool paused;
     private bool dead;
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
     private bool talking;
 
     private int relicsFound = 0;
+
+    private int sacrificed = 0;
 
     private bool credits = false;
 
@@ -69,6 +74,31 @@ public class GameManager : MonoBehaviour
             oldTime = timer;
         }
 
+
+        if (SceneManager.GetActiveScene().buildIndex == 6)
+        {
+            if (sacrificed >= 2)
+            {
+                FinalRelics.SetActive(true);
+
+                /*if (GameObject.Find("Scene Manager") != null)
+                {
+                    if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
+                    {
+                        lSM.SendToArena();
+                    }
+                    else
+                        Debug.LogWarning("Scene Manager not set up right");
+                }
+                else
+                    Debug.LogWarning("Scene Manager not found");*/
+            }
+        }
+    }
+
+    public void sacraficed()
+    {
+        sacrificed = sacrificed + 1;
     }
 
     //--------------------------------------------------------------------------------------------------------
