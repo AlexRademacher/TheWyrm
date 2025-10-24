@@ -16,6 +16,11 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
     private bool respawnWyrm = false;
 
+    [Tooltip("The Wrym will leave sooner if true, if false they will follow a path for a bit"), SerializeField]
+    private bool leaveFast;
+    [Tooltip("The Wrym will spawn sooner if true"), SerializeField]
+    private bool spawnFast;
+
     [Header("Debugger")]
     [Tooltip("Turns on Relic Check Debugging"), SerializeField]
     private bool debug;
@@ -55,6 +60,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
     private IEnumerator GetWyrm()
     {
+        Debug.Log("Time to wait " + wyrmWait);
         yield return new WaitForSecondsRealtime(wyrmWait);
 
         if (WSM != null)
@@ -67,6 +73,10 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
     private IEnumerator RemovalCheck()
     {
+        if (spawnFast)
+        {
+            wyrmWait = wyrmWait / 2;
+        }
         yield return new WaitForSecondsRealtime(wyrmWait);
 
         if (NewWyrm != null && !entered)
@@ -74,7 +84,10 @@ public class PerspectiveChangerTrigger : MonoBehaviour
             if (NewWyrm.TryGetComponent<WyrmManager>(out WyrmManager WM))
             {
                 respawnWyrm = true;
-                StartCoroutine(WM.StartCountdownToLeave(Random.Range(1, 3), WSM));
+                if (leaveFast)
+                    StartCoroutine(WM.StartCountdownToLeave(Random.Range(1, 3), WSM));
+                else
+                    StartCoroutine(WM.StartCountdownToLeave(Random.Range(3, 10), WSM));
             }
         }
     }
@@ -105,7 +118,10 @@ public class PerspectiveChangerTrigger : MonoBehaviour
                 if (NewWyrm.TryGetComponent<WyrmManager>(out WyrmManager WM))
                 {
                     respawnWyrm = true;
-                    StartCoroutine(WM.StartCountdownToLeave(Random.Range(3, 6), WSM));
+                    if (leaveFast)
+                        StartCoroutine(WM.StartCountdownToLeave(Random.Range(3, 6), WSM));
+                    else
+                        StartCoroutine(WM.StartCountdownToLeave(Random.Range(10, 30), WSM));
                 }
             }
             else
