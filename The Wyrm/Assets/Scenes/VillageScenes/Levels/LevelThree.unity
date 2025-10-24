@@ -561,13 +561,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1683422492}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 90870941}
   m_SourcePrefab: {fileID: 100100000, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
 --- !u!4 &90870939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
   m_PrefabInstance: {fileID: 90870938}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &90870940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+  m_PrefabInstance: {fileID: 90870938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &90870941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90870940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Betcha the fisherman made it hurt for that shaman.
+  - '& 1: Aren''t you scared of the storms? 2: Why pick on the farmer''s son?'
+  - Dad says they'll pass, but they're gettin' worse. &
+  - He's soft, like his dead sister was to die like that, hehe.
+  - 'I want that hand scythe she used to always bring to town gatherings... '
+  skipNum: 1
 --- !u!1001 &99988596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -821,13 +848,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 171238966002064993, guid: 7ef574deb1dce12458c34cf45c74bff7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1811359044}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5197671984470541068, guid: 7ef574deb1dce12458c34cf45c74bff7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 149407301}
   m_SourcePrefab: {fileID: 100100000, guid: 7ef574deb1dce12458c34cf45c74bff7, type: 3}
 --- !u!4 &149407299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 171238966002064993, guid: 7ef574deb1dce12458c34cf45c74bff7, type: 3}
   m_PrefabInstance: {fileID: 149407298}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &149407300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5197671984470541068, guid: 7ef574deb1dce12458c34cf45c74bff7, type: 3}
+  m_PrefabInstance: {fileID: 149407298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &149407301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149407300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - You... I ended the shaman, I did it! No regrets, he d'served it.
+  - '& 1: Why did you kill him? 2: What about the farmer''s daughter?'
+  - He tricked us into sacrificin' our children-
+  - My boy's gone... and the storms rage on anyway. &
+  - She was killed just as my son was. A damned tragedy...
+  - Her belongings might still hold some meaning.
+  skipNum: 0
 --- !u!1 &160122189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,13 +1100,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1620943837}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 206944350}
   m_SourcePrefab: {fileID: 100100000, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
 --- !u!4 &206944348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
   m_PrefabInstance: {fileID: 206944347}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &206944349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+  m_PrefabInstance: {fileID: 206944347}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &206944350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206944349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Hey, man... shaman's dead. Dad seems a bit lighter.
+  - '& 1: Did you know your sister? 2: What''s with the worsening weather?'
+  - I was only little when she died from something or other, so not really.
+  - I couldn't keep the hat she had, though. I put it by her grave.
+  - Storms never stopped after the sacrifices.
+  - Dad says the shaman was fooled by something evil.
+  skipNum: 2
 --- !u!1001 &207451134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2568,15 +2651,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lines:
-  - What do you need, young one?
-  - '& What is a relic again?'
-  - Relics are objects imbued with spiritual significance to the owner, usually,
-    but not always deceased.
-  - Try to listen better in my lectures, would you?
-  - "What was today\u2019s assignment?"
-  - Find a few items that may be of spiritual importance to the owner.
-  - I am certain you shall find them very interesting.
-  skipNum: 0
+  - Hello there, child. Do you have a question?
+  - '& 1: What happened to the shaman? 2: What''s on your mind today?'
+  - The fisherman took action against his deceit.
+  - 'His influence ends, but shadow lingers. Be careful. & '
+  - The farmer's daughter... her loss weighs heavy.
+  - Memories of her linger in quiet corners.
+  skipNum: 2
 --- !u!1 &548842546
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,13 +3876,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1305273545}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 758189378}
   m_SourcePrefab: {fileID: 100100000, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
 --- !u!4 &758189376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
   m_PrefabInstance: {fileID: 758189375}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &758189377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+  m_PrefabInstance: {fileID: 758189375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &758189378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758189377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - You again, new friend... shaman's dead. It feels very ominous.
+  - '& 1: What do you know about the sacrifices? 2: Did you know the farmer''s daughter?'
+  - Only the fourth kids were taken to stop the weather.
+  - But it didn't; something darker was at play. &
+  - No, I never met her. But her rother did, just not very well.
+  - He'd never tell you, but he's very sad about it.
+  skipNum: 2
 --- !u!1 &759564317
 GameObject:
   m_ObjectHideFlags: 0
@@ -4230,13 +4339,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2948130011701028105, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 834516610}
   m_SourcePrefab: {fileID: 100100000, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
 --- !u!4 &834516608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2961322828725166391, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
   m_PrefabInstance: {fileID: 834516607}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &834516609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2948130011701028105, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
+  m_PrefabInstance: {fileID: 834516607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &834516610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834516609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Hey, brother... the shaman's gone. We're nearing something big.
+  - '& 1: Brother? What do you mean? 2: What''s different today?'
+  - We were both taken as fourth borns... and sacrificed.
+  - I'm sorry I didn't tell you sooner, but we've been working together. You just
+    didn't realize it. &
+  - 'The farmer''s girl left things behind. '
+  - 'Seek where children once gathered or rested.  Our mission will be complete soon... '
+  skipNum: 2
 --- !u!64 &843473854
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5824,13 +5962,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3697391138202274055, guid: efe8a8ab005982646a6c871498ec1a86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 954669882}
   m_SourcePrefab: {fileID: 100100000, guid: efe8a8ab005982646a6c871498ec1a86, type: 3}
 --- !u!224 &954669880 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2503336017733111009, guid: efe8a8ab005982646a6c871498ec1a86, type: 3}
   m_PrefabInstance: {fileID: 954669879}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &954669881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3697391138202274055, guid: efe8a8ab005982646a6c871498ec1a86, type: 3}
+  m_PrefabInstance: {fileID: 954669879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &954669882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954669881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Hey kid! Did you see, did you see! The shamn got what was coming to him!
+  - '& 1: You seem happy. 2: The weather is getting worse.'
+  - Yeah! His lies killed so many, even my friend the farmer's daughter.
+  - 'So sad... I remember she used to bring that doll to school every day... & '
+  - 'It is. The village won''t be able to take it much longer.  '
+  skipNum: 2
 --- !u!1001 &997265991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7977,13 +8142,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1187231635}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1354697882}
   m_SourcePrefab: {fileID: 100100000, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
 --- !u!4 &1354697880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
   m_PrefabInstance: {fileID: 1354697879}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1354697881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+  m_PrefabInstance: {fileID: 1354697879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1354697882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354697881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Shaman's dead, you say? A shame! He was a good fella.
+  - '& 1: You liked him before, didn''t you? 2: Heard about the farmer''s daughter?'
+  - He cleared the weak, freed up some land for me.
+  - But the weather's still foul, it seems his plans faltered.
+  - She withered away like many kids. Who really cares, anyway?
+  skipNum: 2
 --- !u!1 &1366375184
 GameObject:
   m_ObjectHideFlags: 0
@@ -8197,13 +8389,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5491955377135259392, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1383062075}
   m_SourcePrefab: {fileID: 100100000, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
 --- !u!4 &1383062073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7086662949080736626, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
   m_PrefabInstance: {fileID: 1383062072}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1383062074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5491955377135259392, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
+  m_PrefabInstance: {fileID: 1383062072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1383062075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383062074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - You... my son? No, you're gone... a haunting memory.
+  - '& 1: Why do you think I''m a spirit? 2: What does the shaman''s death mean for
+    the village?'
+  - You resemble him. My fourth, lost to the frenzy.
+  - The shaman's lies took him. I'm glad he's dead... &
+  - Nothing. It's all been done already. The nightmare will never end.
+  skipNum: 2
 --- !u!1001 &1445789800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10254,13 +10474,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 621771389}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1722506535}
   m_SourcePrefab: {fileID: 100100000, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
 --- !u!4 &1722506533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
   m_PrefabInstance: {fileID: 1722506532}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1722506534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+  m_PrefabInstance: {fileID: 1722506532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1722506535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722506534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Crazy day, kid. Shaman's gone, but storms persist.
+  - '& 1: What did you think of the shaman? 2: Know anything about the farmer?'
+  - 'A rotten man he was. Though, I don''t think death equals justice. & '
+  - 'I know lots! He''s a good friend of mine. '
+  - 'Poor man lost just about his whole family. Needless to say, he treasures his
+    son.  '
+  skipNum: 1
 --- !u!1001 &1726219521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11299,6 +11547,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5930728943638586533, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+      propertyPath: npcID
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930728943638586533, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
       propertyPath: lengthNum
       value: 3
       objectReference: {fileID: 0}
@@ -11312,13 +11564,42 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 945544187}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1824603737}
   m_SourcePrefab: {fileID: 100100000, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
 --- !u!4 &1824603735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
   m_PrefabInstance: {fileID: 1824603734}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1824603736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+  m_PrefabInstance: {fileID: 1824603734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1824603737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824603736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Sonny... shaman's gone, but the rains keep comin'
+  - '& 1: What happened to your daugther? 2: Why do you hate the craftsman?'
+  - Well she- I had to...
+  - I was desperate, I just wanted some of my children to live through the famine
+  - 'It was all a big lie... I am a murderer. & '
+  - 'He scoffs at our shared grief, always acts superior. '
+  - But we all here are true friends, bonded by our shared pain
+  skipNum: 3
 --- !u!1001 &1828695645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11393,13 +11674,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8651082650695882707, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1146473499}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7571997969669627284, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1828695648}
   m_SourcePrefab: {fileID: 100100000, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
 --- !u!4 &1828695646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8651082650695882707, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
   m_PrefabInstance: {fileID: 1828695645}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1828695647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7571997969669627284, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
+  m_PrefabInstance: {fileID: 1828695645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1828695648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828695647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Big news, kiddo, the shaman's dead. Village is a'buzzin'.
+  - '& 1: How does everyone feel about it? 2: Seen anything special around?'
+  - 'Eh, I don''t really care. That''s where false promises will getcha, I say. & '
+  - Hmm. There's that old hand scythe that's been in the community center for years.
+  - Could be worth somethin.
+  skipNum: 1
 --- !u!64 &1846342972
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12338,13 +12646,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 208235789922435563, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
       insertIndex: -1
       addedObject: {fileID: 182211523}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9021179385695715157, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2091754149}
   m_SourcePrefab: {fileID: 100100000, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
 --- !u!4 &2091754147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 208235789922435563, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
   m_PrefabInstance: {fileID: 2091754146}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2091754148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9021179385695715157, guid: edc6deea4fa86f047ba2c1d82dc79a40, type: 3}
+  m_PrefabInstance: {fileID: 2091754146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2091754149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091754148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Hmm? You again, little fellow?
+  - '& 1: Did you hear the shaman died. 2: The deaths of children are none of your
+    business?'
+  - 'Indeed. None of my business though. '
+  - 'I keep to myself; no time for any of that business. & '
+  - I never had a fourth born child, therefore I cannot empathize with their loss.
+  skipNum: 2
 --- !u!1 &2095414026
 GameObject:
   m_ObjectHideFlags: 0
