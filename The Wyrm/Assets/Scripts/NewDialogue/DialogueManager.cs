@@ -143,7 +143,9 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && !endingLine)
         {
+            Debug.Log(skipNumFound);
             currentLine = currentLine + skipNumFound;
+            Debug.Log(currentLine);
             if (currentLine < dialog.Lines.Count)
             {
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));

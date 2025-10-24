@@ -101,45 +101,59 @@ public class PlayerInteraction : MonoBehaviour
                             {
                                 case 0:
                                     UI.SetTextNameBox("Teacher");
+                                    lastNpcId = 0;
                                     break;
                                 case 1:
                                     UI.SetTextNameBox("Merchant");
+                                    lastNpcId = 1;
                                     break;
                                 case 2:
                                     UI.SetTextNameBox("Craftsman");
+                                    lastNpcId = 2;
                                     break;
                                 case 3:
                                     UI.SetTextNameBox("Wood Sculptor");
+                                    lastNpcId = 3;
                                     break;
                                 case 4:
                                     UI.SetTextNameBox("Potter");
+                                    lastNpcId = 4;
                                     break;
                                 case 5:
                                     UI.SetTextNameBox("Fisherman");
+                                    lastNpcId = 5;
                                     break;
                                 case 6:
                                     UI.SetTextNameBox("Landlord");
+                                    lastNpcId = 6;
                                     break;
                                 case 7:
                                     UI.SetTextNameBox("Farmer");
+                                    lastNpcId = 7;
                                     break;
                                 case 8:
                                     UI.SetTextNameBox("Brother");
+                                    lastNpcId = 8;
                                     break;
                                 case 9:
                                     UI.SetTextNameBox("Widow");
+                                    lastNpcId = 9;
                                     break;
                                 case 10:
                                     UI.SetTextNameBox("Shaman");
+                                    lastNpcId = 10;
                                     break;
                                 case 11:
                                     UI.SetTextNameBox("Landlord's Son");
+                                    lastNpcId = 11;
                                     break;
                                 case 12:
                                     UI.SetTextNameBox("Farmer's Son");
+                                    lastNpcId = 12;
                                     break;
                                 case 13:
                                     UI.SetTextNameBox("Sculptor's Son");
+                                    lastNpcId = 13;
                                     break;
                                 default:
                                     Debug.LogWarning("Unknown ID");
