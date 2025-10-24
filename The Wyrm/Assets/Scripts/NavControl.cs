@@ -50,46 +50,53 @@ public class NavControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!Cursor.visible && !GM.GetLoadingState()) { 
-            end = goal.position;
-            
-            if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete) 
+        if(!Cursor.visible && !GM.GetLoadingState() && agent != null) { 
+            if (agent.isOnNavMesh )
             {
-                agent.destination = end;
-                //Start coroutine.  Wait time Period (3 seconds???).  If target is still hiding return to given point or despawn.
-                //Check scene as well using bool maybe 
-                //These notes are for later when i implement what the wyrm should do after the player hides for a while
-            }
-            else
-            {
-                if (!inArena)
-                    if (agent.remainingDistance < 0.5f)
-                    {
-                        GotoNextPoint();
-                    }
-                /*agent.destination = agent.transform.position;
-                if (!checkingHide) 
-                {
-                    if(!inArena)
-                        StartCoroutine(checkHide());
-                    checkingHide = true;
-                }*/
-            }
-            /*if (agent.remainingDistance < 0.5f && !seePlayer)
-            {
-                GotoNextPoint();
-            }*/
-            //Debug.Log(agent.remainingDistance);
-            if (agent.isOnOffMeshLink)
-            { 
-                agent.speed = 6.5f / 6f; //Change the second number to slow down or speed up the wyrm
-                //Play an animation for jumping over something here
-            }
-            else
-            {
-                agent.speed = 6.5f;
-            }
+                end = goal.position;
 
+                if (agent.CalculatePath(end, path) && path.status == NavMeshPathStatus.PathComplete)
+                {
+                    agent.destination = end;
+                    //Start coroutine.  Wait time Period (3 seconds???).  If target is still hiding return to given point or despawn.
+                    //Check scene as well using bool maybe 
+                    //These notes are for later when i implement what the wyrm should do after the player hides for a while
+                }
+                else
+                {
+                    if (!inArena)
+                        if (agent.remainingDistance < 0.5f)
+                        {
+                            GotoNextPoint();
+                        }
+                    /*agent.destination = agent.transform.position;
+                    if (!checkingHide) 
+                    {
+                        if(!inArena)
+                            StartCoroutine(checkHide());
+                        checkingHide = true;
+                    }*/
+                }
+                /*if (agent.remainingDistance < 0.5f && !seePlayer)
+                {
+                    GotoNextPoint();
+                }*/
+                //Debug.Log(agent.remainingDistance);
+                if (agent.isOnOffMeshLink)
+                {
+                    agent.speed = 6.5f / 6f; //Change the second number to slow down or speed up the wyrm
+                                             //Play an animation for jumping over something here
+                }
+                else
+                {
+                    agent.speed = 6.5f;
+                }
+            }
+            else
+            {
+                Debug.LogError("Nav Mesh is missing for the Wyrm");
+                agent = null;
+            }
         }
     }
 

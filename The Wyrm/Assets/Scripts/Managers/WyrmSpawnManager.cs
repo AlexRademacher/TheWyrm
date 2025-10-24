@@ -12,10 +12,20 @@ public class WyrmSpawnManager : MonoBehaviour
 
     private bool spawnedWyrm = false;
 
+    private Transform[] WyrmPoints;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (WyrmPoints == null && transform.childCount > 0)
+        {
+            WyrmPoints = new Transform[transform.childCount];
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                WyrmPoints[i] = transform.GetChild(i);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -41,7 +51,8 @@ public class WyrmSpawnManager : MonoBehaviour
         {
             if (respawning)
             {
-                StartCoroutine(SpawnCountdown(waitTime));
+                Debug.Log("spawning wyrm");
+                StartCoroutine(SpawnCountdown(1));
             }
             else if (Random.Range(5, 7) > 4)
             {
@@ -57,13 +68,19 @@ public class WyrmSpawnManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(waitTime);
 
-        CurrentWyrm = Instantiate(Wyrm, transform);
+        CurrentWyrm = Instantiate(Wyrm, transform.position, transform.rotation);
 
         if (CurrentWyrm.TryGetComponent<WyrmManager>(out WyrmManager WM))
         {
+            
             if (playerPosition != null)
             {
                 WM.SetPlayerPosition(playerPosition);
+
+                if (WyrmPoints != null)
+                {
+                    WM.SetNavPoints(WyrmPoints);
+                }
             }
         }
         else
