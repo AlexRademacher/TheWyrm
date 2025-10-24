@@ -143,7 +143,7 @@ public class WyrmManager : MonoBehaviour
 
         if (points != null)
         {
-            Debug.LogWarning("We got the points!");
+            //Debug.LogWarning("We got the points!");
         }
         else
         {

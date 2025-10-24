@@ -70,7 +70,10 @@ public class DialogueManager : MonoBehaviour
 
         foreach (var letter in line.ToCharArray())
         {
-            dialogText.text += letter;
+            if (letter != '&')
+            {
+                dialogText.text += letter;
+            }
             yield return new WaitForSeconds(1f / lettersPerSecond);
         }
         isTyping = false;
@@ -86,7 +89,10 @@ public class DialogueManager : MonoBehaviour
             currentLine = 0;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            
         }
+
         //If the current dialog is not a choice progress normally
         if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E) && !isTyping && !choiceLine && !endingLine)
         {

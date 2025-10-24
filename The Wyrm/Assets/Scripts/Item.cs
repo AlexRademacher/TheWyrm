@@ -37,7 +37,11 @@ public class Item : MonoBehaviour
         }
 
         transform.GetChild(1).gameObject.SetActive(false);
-        transform.GetComponent<BoxCollider>().enabled = false;
+
+        if (transform.parent.name.Contains("NPC"))
+            transform.GetComponent<MeshCollider>().enabled = false;
+        else
+            transform.GetComponent<BoxCollider>().enabled = false;
         //transform.position = new Vector3(transform.position.x, transform.position.y - 30, transform.position.z);
     }
 }
