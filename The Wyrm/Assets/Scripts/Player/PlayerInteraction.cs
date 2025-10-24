@@ -150,7 +150,7 @@ public class PlayerInteraction : MonoBehaviour
                                 lastNpcId = 8;
                             if (dialog != null)
                             {
-                                Debug.Log("found Dialog");
+                                //Debug.Log("found Dialog");
                                 StartCoroutine(DialogueManager.Instance.ShowDialog(dialog));
                                 Cursor.visible = true;
                                 Cursor.lockState = CursorLockMode.None;
@@ -161,7 +161,7 @@ public class PlayerInteraction : MonoBehaviour
                         }
                         else
                             hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(false);
-                        Debug.LogWarning("the NPC trying to be Talked to is " + hitInfo.transform.gameObject.name);
+                        //Debug.LogWarning("the NPC trying to be Talked to is " + hitInfo.transform.gameObject.name);
                     }
 
                     if (hitInfo.transform.gameObject.CompareTag("Door"))

@@ -294,7 +294,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 3000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6372f444529e35b4993fa9d1f03dc421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapCam: {fileID: 0}
   cameraDebugging: 1
 --- !u!1 &6244407972511502375
 GameObject:
