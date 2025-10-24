@@ -19,8 +19,8 @@ public class spawnWyrm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha9)) //Debug tool to spawn wyrms (Remove for final build)
-            StartCoroutine(SpawnTimer());
+        //if (Input.GetKeyDown(KeyCode.Alpha9)) //Debug tool to spawn wyrms (Remove for final build)
+            //StartCoroutine(SpawnTimer());
     }
 
     public GameObject Spawn()
