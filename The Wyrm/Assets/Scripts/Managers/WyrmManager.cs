@@ -77,7 +77,11 @@ public class WyrmManager : MonoBehaviour
                                 agent.speed = 100;
                         }
                         else if (wyrmNum == 3)
-                            agent.speed = 1000 - agent.remainingDistance;
+                            if (agent.remainingDistance < 1000)
+                                agent.speed = 1000 - agent.remainingDistance;
+                            else if (agent.remainingDistance > 1000)
+                                agent.speed = 1000;
+
                         Debug.LogWarning("Speed: " + agent.speed);
                     }
                     else

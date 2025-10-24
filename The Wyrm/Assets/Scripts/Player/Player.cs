@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     Vector3 prevPosition;
     Vector3 hidingPos;
     [SerializeField] private bool canDrop;
-    Drop nearbyDropper;
+    private FallablePlatform nearbyDropper;
         
 
     // Start is called before the first frame update
@@ -134,10 +134,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && canDrop && nearbyDropper != null)
         {
-            if (!nearbyDropper.down)
-                nearbyDropper.dropThis();
-            else if (nearbyDropper.down)
-                nearbyDropper.upThis();
+            if (nearbyDropper.transform.GetChild(0).gameObject.activeSelf)
+                nearbyDropper.FallOver();
+            else if (nearbyDropper.transform.GetChild(1).gameObject.activeSelf)
+                nearbyDropper.StandUp();
 
         }
 
@@ -242,7 +242,7 @@ public class Player : MonoBehaviour
         }
         if (other.CompareTag("drop") && !canDrop)
         {
-            nearbyDropper = other.GetComponent<Drop>();
+            nearbyDropper = other.GetComponent<FallablePlatform>();
             if (dropDebugging)
                 Debug.Log("canDrop");
             canDrop = true;
