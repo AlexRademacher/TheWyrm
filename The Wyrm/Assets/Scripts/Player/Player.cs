@@ -206,7 +206,12 @@ public class Player : MonoBehaviour
         if (jumpDebugging)
             Debug.Log("Vertical velocity is:" + playerVelocity.y);
 
-        controller.Move(playerVelocity * Time.deltaTime); // sets movement of the y axis
+        if (controller.enabled)
+            controller.Move(playerVelocity * Time.deltaTime); // sets movement of the y axis
+        else
+        {
+            Debug.Log("Controller not enabled");
+        }
     }
 
     //----------------------------------------------------------------------------------------------------------------------

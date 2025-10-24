@@ -82,7 +82,7 @@ public class WyrmManager : MonoBehaviour
                             else if (agent.remainingDistance > 1000)
                                 agent.speed = 1000;
 
-                        Debug.LogWarning("Speed: " + agent.speed);
+                        //Debug.LogWarning("Speed: " + agent.speed);
                     }
                     else
                     {
@@ -170,7 +170,7 @@ public class WyrmManager : MonoBehaviour
             agent.destination = points[currentPoint].position;
 
         currentPoint = (currentPoint + 1) % points.Length;
-        Debug.Log("Going to point " + currentPoint);
+        //Debug.Log("Going to point " + currentPoint);
     }
 
     public IEnumerator StartCountdownToLeave(int time, WyrmSpawnManager WSM)

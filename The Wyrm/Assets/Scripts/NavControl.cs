@@ -13,7 +13,7 @@ public class NavControl : MonoBehaviour
 
     NavMeshPath path;
 
-    bool checkingHide = false;
+    //bool checkingHide = false;
     [SerializeField] bool inArena;
 
     [SerializeField] private Transform[] points;
@@ -139,7 +139,7 @@ public class NavControl : MonoBehaviour
         }
         else 
         {
-            checkingHide = false;
+            //checkingHide = false;
         }
     }
 

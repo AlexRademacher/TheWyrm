@@ -9,7 +9,6 @@ public class PerspectiveChangerTrigger : MonoBehaviour
 
     private bool entered = false;
 
-    [Tooltip("Where the wyrm is being spawned"), SerializeField] 
     private GameObject WyrmSpawner;
     private GameObject NewWyrm;
     private int wyrmWait = 0;
@@ -30,6 +29,11 @@ public class PerspectiveChangerTrigger : MonoBehaviour
     void Start()
     {
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
+        if (WyrmSpawner == null && transform.childCount > 0)
+        {
+            WyrmSpawner = transform.GetChild(0).gameObject;
+        }
     }
 
     // Update is called once per frame
