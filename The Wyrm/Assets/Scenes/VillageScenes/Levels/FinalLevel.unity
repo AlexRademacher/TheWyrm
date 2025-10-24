@@ -5409,13 +5409,46 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5615697586019291202, guid: 5b80ff5ee362fea4e9d0114f2a1383c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 506921944}
   m_SourcePrefab: {fileID: 100100000, guid: 5b80ff5ee362fea4e9d0114f2a1383c7, type: 3}
 --- !u!4 &506921942 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 788947755033848134, guid: 5b80ff5ee362fea4e9d0114f2a1383c7, type: 3}
   m_PrefabInstance: {fileID: 506921941}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &506921943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5615697586019291202, guid: 5b80ff5ee362fea4e9d0114f2a1383c7, type: 3}
+  m_PrefabInstance: {fileID: 506921941}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &506921944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506921943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Child! Listen to me, we have not time!
+  - '& 1: What is it!? 2: What''s going on!?'
+  - 'I must sacrifce myself to bind Thuong Luong. As do you. '
+  - But... you can't die!
+  - I must. Find your brother, together you can banish Thuong Luong.
+  - 'I- I will! Thank you teacher. & '
+  - Thuong Luong has come! The wyrms you sealed have broken free!
+  - How do we stop it!?
+  - We need to bind Thuong Luong itself, the same way he is here now!
+  - How is that?
+  - Through sacrifice-
+  skipNum: 4
 --- !u!1 &509862858
 GameObject:
   m_ObjectHideFlags: 0
@@ -8582,13 +8615,37 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
       insertIndex: -1
       addedObject: {fileID: 819920378}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 855511785}
   m_SourcePrefab: {fileID: 100100000, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
 --- !u!4 &855511783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8334098081008940130, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
   m_PrefabInstance: {fileID: 855511782}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &855511784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1432078573104173884, guid: 399dcf9c30d903c41b47257ddfee5109, type: 3}
+  m_PrefabInstance: {fileID: 855511782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &855511785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855511784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - 'My dad... he''s dead... He just couldn''t leave his belongings. '
+  - If I hadn't run away from him, I'd have died, too.
+  skipNum: 0
 --- !u!1001 &855711700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8680,13 +8737,48 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2948130011701028105, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 855711703}
   m_SourcePrefab: {fileID: 100100000, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
 --- !u!4 &855711701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2961322828725166391, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
   m_PrefabInstance: {fileID: 855711700}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &855711702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2948130011701028105, guid: 8c1a52ffc656d974f9e57fc90d9ca514, type: 3}
+  m_PrefabInstance: {fileID: 855711700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &855711703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855711702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Isn't this great? Retribution for the deaths of us and our friends!
+  - '& 1: This is wrong, brother. You can stop this. 2: Are we truly no better than
+    them!?'
+  - W-what? No... they killed us!
+  - 'Yes, they did. But they were deceived.  Manipulated. '
+  - B-but... this needs to be made right!
+  - It was evil, but so is this. We can make this right, together!
+  - Then... what can we do?
+  - 'There is one thing that evil hates, and its forgiveness. & '
+  - What!? They killed so many of us! They deserve this!
+  - Please see reason! The shaman is dead, we can move on!
+  - No! I won't let them get away with it!
+  - If you won't stop it, then I'll make you.
+  skipNum: 6
 --- !u!1 &858185699
 GameObject:
   m_ObjectHideFlags: 0
@@ -9365,13 +9457,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 296488949}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 903278047}
   m_SourcePrefab: {fileID: 100100000, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
 --- !u!4 &903278045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
   m_PrefabInstance: {fileID: 903278044}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &903278046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+  m_PrefabInstance: {fileID: 903278044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &903278047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903278046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Oh man, I'm so glad you're okay!
+  - '& 1: There are people missing 2: Are you hurt?'
+  - A few people didn't make it out.  The teacher turned back though!
+  - 'You gotta save him, I don''t know what got into him. & '
+  - Only a little, a piece of driftwood snagged me.  I'll live.
+  skipNum: 2
 --- !u!1001 &917546308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9442,13 +9561,37 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 858185700}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 917546311}
   m_SourcePrefab: {fileID: 100100000, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
 --- !u!4 &917546309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2586377887973420252, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
   m_PrefabInstance: {fileID: 917546308}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &917546310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1537320969008489666, guid: 4f1da90c8d65d664ea77162d3fbd295a, type: 3}
+  m_PrefabInstance: {fileID: 917546308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &917546311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917546310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - The potter died... I tried to get him to flee but he got caught by debris
+  - I should have gone back for him...
+  skipNum: 0
 --- !u!1001 &919078318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14829,13 +14972,39 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 162760199}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1406014634}
   m_SourcePrefab: {fileID: 100100000, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
 --- !u!4 &1406014632 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
   m_PrefabInstance: {fileID: 1406014631}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1406014633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+  m_PrefabInstance: {fileID: 1406014631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406014634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406014633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - 'Hey, friend. That other kid you hang out with is still in the village. '
+  - '& 1: He''s my brother. 2: Where is he?'
+  - 'Really? I never would have guessed... & '
+  - I don't know. Last I saw him, he was running up the hill by the farm.
+  skipNum: 1
 --- !u!1001 &1410348498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17123,13 +17292,37 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8651082650695882707, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1764251816}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7571997969669627284, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1623370885}
   m_SourcePrefab: {fileID: 100100000, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
 --- !u!4 &1623370883 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8651082650695882707, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
   m_PrefabInstance: {fileID: 1623370882}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623370884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7571997969669627284, guid: 8647b1bde1689364c90410e4884801aa, type: 3}
+  m_PrefabInstance: {fileID: 1623370882}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1623370885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623370884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - My things! All my wares are ruined! Kiddo, help get 'em back!
+  - Wha- where are you going!?
+  skipNum: 0
 --- !u!1001 &1624297134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17499,7 +17692,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lines:
-  - Test
+  - 'Look there, little fellow! Pillars crash into our village from another realm... '
+  - 'Perhaps this is karma for what atrocities we committed. '
   skipNum: 0
 --- !u!1 &1635646872
 GameObject:
@@ -17668,13 +17862,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1857479252}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1651332797}
   m_SourcePrefab: {fileID: 100100000, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
 --- !u!4 &1651332795 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2368974003616763783, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
   m_PrefabInstance: {fileID: 1651332794}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1651332796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7054598889946009614, guid: 6d5a49fd0f0d92d40b98ea9943cc03f3, type: 3}
+  m_PrefabInstance: {fileID: 1651332794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1651332797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651332796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - Oh dear... the wter keeps rising faster.  We're doomed, I tell you!
+  skipNum: 0
 --- !u!4 &1666623774 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 455957966157736352, guid: decec03a9de484948b79da6219847d52, type: 3}
@@ -20357,13 +20574,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5491955377135259392, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1854289924}
   m_SourcePrefab: {fileID: 100100000, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
 --- !u!4 &1854289922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7086662949080736626, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
   m_PrefabInstance: {fileID: 1854289921}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1854289923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5491955377135259392, guid: 95e0e9e5a3f577d478a1b6f4d3daf037, type: 3}
+  m_PrefabInstance: {fileID: 1854289921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1854289924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854289923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bf03f7928083b42bd7626d10bdfb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - I know it now.  You're my son. You know it too don't you?
+  - '& 1: Mother... 2: What about my father?'
+  - Yes, it is you! But- I know you can't stay...
+  - 'I''m sorry for letting you die. I love you. & '
+  - That man... is no longer a man. This is because of him
+  - 'Go. Stop this madness. Goodbye, my beloved son. '
+  skipNum: 2
 --- !u!1 &1857479251
 GameObject:
   m_ObjectHideFlags: 0
