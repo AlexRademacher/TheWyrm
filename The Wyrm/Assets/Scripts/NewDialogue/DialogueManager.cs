@@ -8,7 +8,7 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField] public GameObject dialogBox;
     [SerializeField] Text dialogText;
-    [SerializeField] int lettersPerSecond;
+    [SerializeField] float lettersPerSecond = 100;
     [SerializeField] GameObject buttonOne;
     [SerializeField] GameObject buttonTwo;
 

@@ -96,6 +96,56 @@ public class PlayerInteraction : MonoBehaviour
                         if (!hitInfo.transform.GetComponent<NPCManager>().canNeverSpeak)
                         {
                             Dialog dialog = hitInfo.transform.GetComponent<Dialog>();
+
+                            switch (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID) 
+                            {
+                                case 0:
+                                    UI.SetTextNameBox("Teacher");
+                                    break;
+                                case 1:
+                                    UI.SetTextNameBox("Merchant");
+                                    break;
+                                case 2:
+                                    UI.SetTextNameBox("Craftsman");
+                                    break;
+                                case 3:
+                                    UI.SetTextNameBox("Wood Sculptor");
+                                    break;
+                                case 4:
+                                    UI.SetTextNameBox("Potter");
+                                    break;
+                                case 5:
+                                    UI.SetTextNameBox("Fisherman");
+                                    break;
+                                case 6:
+                                    UI.SetTextNameBox("Landlord");
+                                    break;
+                                case 7:
+                                    UI.SetTextNameBox("Farmer");
+                                    break;
+                                case 8:
+                                    UI.SetTextNameBox("Brother");
+                                    break;
+                                case 9:
+                                    UI.SetTextNameBox("Widow");
+                                    break;
+                                case 10:
+                                    UI.SetTextNameBox("Shaman");
+                                    break;
+                                case 11:
+                                    UI.SetTextNameBox("Landlord's Son");
+                                    break;
+                                case 12:
+                                    UI.SetTextNameBox("Farmer's Son");
+                                    break;
+                                case 13:
+                                    UI.SetTextNameBox("Sculptor's Son");
+                                    break;
+                                default:
+                                    Debug.LogWarning("Unknown ID");
+                                    break;
+                            }
+                            
                             if (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID == 8)
                                 lastNpcId = 8;
                             if (dialog != null)

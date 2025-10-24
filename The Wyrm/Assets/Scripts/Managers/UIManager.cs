@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [Header("Menus")]
     [Tooltip("the Main menu"), SerializeField]
     private GameObject MainMenu;
-    
+
     [Tooltip("the Pause menu"), SerializeField]
     private GameObject PauseMenu;
 
@@ -302,22 +302,22 @@ public class UIManager : MonoBehaviour
         TimerCount.SetActive(false);
     }
 
-    public void swapHideState() 
+    public void swapHideState()
     {
         HidePrompt.SetActive(!HidePrompt.activeInHierarchy);
     }
 
     public void MapState()
     {
-        if (!Map.activeSelf)
+        /*if (!Map.activeSelf)
         {
             Map.SetActive(true);
         }
         else
         {
             Map.SetActive(false);
-        }
-        
+        }*/
+
     }
 
     public void CrosshairToggle(bool newState)
@@ -414,5 +414,12 @@ public class UIManager : MonoBehaviour
         GM.SetCreditsState(true);
         Credits.SetActive(true);
     }
+
+
+    public void SetTextNameBox(string name) 
+    {
+        TextBoxName = NPCTextBox.transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
+        TextBoxName.GetComponent<TextMeshProUGUI>().text = name;
+    } 
 }
 
