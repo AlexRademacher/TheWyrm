@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject buttonOne;
     [SerializeField] GameObject buttonTwo;
 
+    GameObject currentNpc;
+
     public event Action OnShowDialog;
     public event Action OnHideDialog;
 
@@ -39,10 +41,13 @@ public class DialogueManager : MonoBehaviour
     }
 
     //Call this function to show a dialog
-    public IEnumerator ShowDialog(Dialog dialog) 
+    public IEnumerator ShowDialog(Dialog dialog, GameObject npc) 
     {
         yield return new WaitForEndOfFrame();
         OnShowDialog?.Invoke();
+
+        currentNpc = npc;
+        Debug.Log(currentNpc.name);
 
         this.dialog = dialog;
         skipNumFound = this.dialog.skipNum;

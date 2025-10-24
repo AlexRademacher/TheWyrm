@@ -165,7 +165,7 @@ public class PlayerInteraction : MonoBehaviour
                             if (dialog != null)
                             {
                                 //Debug.Log("found Dialog");
-                                StartCoroutine(DialogueManager.Instance.ShowDialog(dialog));
+                                StartCoroutine(DialogueManager.Instance.ShowDialog(dialog, hitInfo.transform.gameObject));
                                 Cursor.visible = true;
                                 Cursor.lockState = CursorLockMode.None;
                             }
