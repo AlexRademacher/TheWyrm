@@ -36,10 +36,10 @@ public class Item : MonoBehaviour
             particles.Play();
         }
 
-        transform.GetChild(1).gameObject.SetActive(false);
+        transform.gameObject.SetActive(false);
 
         if (transform.parent.name.Contains("NPC"))
-            transform.GetComponent<MeshCollider>().enabled = false;
+            transform.GetComponent<BoxCollider>().enabled = false;
         else
             transform.GetComponent<BoxCollider>().enabled = false;
         //transform.position = new Vector3(transform.position.x, transform.position.y - 30, transform.position.z);
