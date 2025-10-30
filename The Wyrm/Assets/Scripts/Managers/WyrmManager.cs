@@ -61,28 +61,38 @@ public class WyrmManager : MonoBehaviour
                 {
                     if (agent.hasPath && agent.CalculatePath(player.position, path) && path.status == NavMeshPathStatus.PathComplete)
                     {
-                        agent.destination = player.position;
-
-                        if (wyrmNum == 1)
-                            agent.speed = 8;
-                        else if (wyrmNum == 2)
+                        if (player.TryGetComponent<Player>(out Player playerScript))
                         {
-                            if (agent.remainingDistance < 5)
-                                agent.speed = agent.remainingDistance;
-                            else if (agent.remainingDistance > 5 && agent.remainingDistance < 15)
-                                agent.speed = agent.remainingDistance / 1.5f;
-                            else if (agent.remainingDistance > 15 && agent.remainingDistance < 200)
-                                agent.speed = agent.remainingDistance / 2;
-                            else if (agent.remainingDistance > 200)
-                                agent.speed = 100;
-                        }
-                        else if (wyrmNum == 3)
-                            if (agent.remainingDistance < 1000)
-                                agent.speed = 1000 - agent.remainingDistance;
-                            else if (agent.remainingDistance > 1000)
-                                agent.speed = 1000;
+                            if (!playerScript.CheckIfHiding())
+                            {
+                                agent.destination = player.position;
 
-                        //Debug.LogWarning("Speed: " + agent.speed);
+                                if (wyrmNum == 1)
+                                    agent.speed = 8;
+                                else if (wyrmNum == 2)
+                                {
+                                    if (agent.remainingDistance < 5)
+                                        agent.speed = agent.remainingDistance;
+                                    else if (agent.remainingDistance > 5 && agent.remainingDistance < 15)
+                                        agent.speed = agent.remainingDistance / 1.5f;
+                                    else if (agent.remainingDistance > 15 && agent.remainingDistance < 200)
+                                        agent.speed = agent.remainingDistance / 2;
+                                    else if (agent.remainingDistance > 200)
+                                        agent.speed = 100;
+                                }
+                                else if (wyrmNum == 3)
+                                    if (agent.remainingDistance < 1000)
+                                        agent.speed = 1000 - agent.remainingDistance;
+                                    else if (agent.remainingDistance > 1000)
+                                        agent.speed = 1000;
+
+                                //Debug.LogWarning("Speed: " + agent.speed);
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogError("Player script on player not found for wyrm");
+                        }
                     }
                     else
                     {

@@ -154,6 +154,12 @@ public class Player : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------------
     // Movement
 
+    public bool CheckIfHiding()
+    {
+        return hiding;
+    }
+
+    
     /// <summary>
     /// The Player's Movement: X and Z Axis Movement
     /// </summary>
