@@ -39,9 +39,18 @@ public class Item : MonoBehaviour
         transform.gameObject.SetActive(false);
 
         if (transform.parent.name.Contains("NPC"))
-            transform.GetComponent<BoxCollider>().enabled = false;
+        {
+            if (transform.TryGetComponent<BoxCollider>(out BoxCollider collider))
+                collider.enabled = false;
+            else if (transform.TryGetComponent<MeshCollider>(out MeshCollider collider2))
+                collider2.enabled = false;
+        }
         else
+        {
             transform.GetComponent<BoxCollider>().enabled = false;
+            Debug.Log("Colected object");
+        }
+            
         //transform.position = new Vector3(transform.position.x, transform.position.y - 30, transform.position.z);
     }
 }

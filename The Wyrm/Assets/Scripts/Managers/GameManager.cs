@@ -80,6 +80,11 @@ public class GameManager : MonoBehaviour
             {
                 FinalRelics.SetActive(true);
 
+                if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
+                {
+                    lSM.SendToArena();
+                }
+
                 /*if (GameObject.Find("Scene Manager") != null)
                 {
                     if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
@@ -98,6 +103,7 @@ public class GameManager : MonoBehaviour
     public void sacraficed()
     {
         sacrificed = sacrificed + 1;
+        Debug.Log("Sacrificed!");
     }
 
     //--------------------------------------------------------------------------------------------------------
@@ -290,6 +296,8 @@ public class GameManager : MonoBehaviour
     {
         relicsFound = relicsFound + 1;
 
+        Debug.Log("A Relic found!");
+
         if (relicsFound == 3)
         {
             if (GameObject.Find("Scene Manager") != null)
@@ -298,7 +306,7 @@ public class GameManager : MonoBehaviour
                 {
                     relicsFound = 0;
 
-                    if (SceneManager.GetActiveScene().buildIndex != 6)
+                    if (SceneManager.GetActiveScene().buildIndex != 7)
                         lSM.SendToVillage();
                     else
                         UI.ShowVictoryEnding();

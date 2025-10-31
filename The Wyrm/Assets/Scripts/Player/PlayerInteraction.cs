@@ -192,6 +192,7 @@ public class PlayerInteraction : MonoBehaviour
             // if R is clicked
             if (Input.GetKeyDown(KeyCode.R)) {
                 DropItem();
+
             }
         }
     }
@@ -247,7 +248,8 @@ public class PlayerInteraction : MonoBehaviour
                     if (CM.GetCameraPerspective())
                     {
                         Debug.LogWarning("Placed relic");
-                        Instantiate(item, hitInfo.point, transform.rotation);
+                        GameObject newRelic = Instantiate(item, hitInfo.point, transform.rotation);
+                        newRelic.SetActive(true);
                     }
                     else
                     {
