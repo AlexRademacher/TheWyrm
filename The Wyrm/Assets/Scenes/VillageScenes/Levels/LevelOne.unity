@@ -4541,6 +4541,10 @@ MonoBehaviour:
   - Everyone! All because I know the landlord is hiding a secret.
   - That cursed deed in the collapsed house is proof enough... &
   - T-thanks... at least there's someone in the village that likes me...
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 3
 --- !u!1 &294350818 stripped
 GameObject:
@@ -6144,6 +6148,10 @@ MonoBehaviour:
   - Yeah, get lost. &
   - Hey! Don't brush me off, loser! Do you have any idea who my father is?
   - 'Yeah, get lost. '
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 3
 --- !u!1 &397368167
 GameObject:
@@ -11092,6 +11100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - ...
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 0
 --- !u!1 &721858689
 GameObject:
@@ -13050,6 +13062,10 @@ MonoBehaviour:
   - Hmm, maybe somewhere. If you find any, just take it. I don't need that kind of
     karma... &
   - By all means! See if you can't find something.
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 2
 --- !u!4 &850654489 stripped
 Transform:
@@ -17643,6 +17659,10 @@ MonoBehaviour:
   - This is a place for those who seek to aid the village's strife
   - Children like you are an affliction! begone! &
   - Your prayers mean nothing, child! How ignorant of you...
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 3
 --- !u!1 &1202930228
 GameObject:
@@ -17945,6 +17965,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - Hey there sonny!
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 0
 --- !u!1 &1223258388
 GameObject:
@@ -19324,6 +19348,10 @@ MonoBehaviour:
   - Go on, Scram! Before you do something unwise. &
   - B-because it's my property! A clumsy child like you would break something.
   - Go on, Scram! Before you do something unwise.
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 3
 --- !u!1001 &1282351418
 PrefabInstance:
@@ -19910,6 +19938,8 @@ MonoBehaviour:
   buttonTwo: {fileID: 2112274829}
   choiceLine: 0
   endingLine: 0
+  branchLine1n2: 0
+  branchLine3n4: 0
 --- !u!4 &1325461465
 Transform:
   m_ObjectHideFlags: 0
@@ -20791,8 +20821,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - Aye, LIttun, don't be playin' too close to this 'ere river. You kids oughta be
-    more careful.
-  - Though, I can't say I've seen ye' around...
+    more careful. ^
+  - ^ Though, I can't say I've seen ye' around...
   - '& 1: Why? Has something happened by the river before? 2: For a fisherman, you
     don''t seem to have a boat...'
   - N-no!... I was just bein' cautious. Yeah, just bein' cautious, that's all...
@@ -20800,6 +20830,14 @@ MonoBehaviour:
   - 'Yes, err- I lost it in a flood a ''bout year back. I just fish from th'' bank
     nowadays. '
   - 'Anyway- run home, littlun.  Yer wastin'' time talkin'' to a hermit like me... '
+  branch1:
+  - branching 1
+  branch2:
+  - branching 2 &
+  branch3:
+  - branching 3 &
+  branch4:
+  - branching 4 &
   skipNum: 3
 --- !u!1 &1427087905
 GameObject:
@@ -21281,6 +21319,10 @@ MonoBehaviour:
     money he stole... &
   - Just down the way at the end. Be careful not to catch his karma if you go by
     there haha...
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 2
 --- !u!1001 &1483648927
 PrefabInstance:
@@ -21782,6 +21824,10 @@ MonoBehaviour:
     met before'
   - Well, my advice is stay away from the landlord's kid. He's really mean! &
   - Glad we have, then! You should visit me and my dad for dinner sometime!
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 2
 --- !u!1 &1515212755
 GameObject:
@@ -22809,6 +22855,10 @@ MonoBehaviour:
   - Try to listen better in my lectures, would you? &
   - Find a few items that may be of spiritual importance to the owner.
   - I am certain you shall find them very interesting.
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 3
 --- !u!1 &1626543986
 GameObject:
@@ -23715,6 +23765,10 @@ MonoBehaviour:
   - Leave me be... &
   - I- Get away... I won't fraternize with spirits...
   - Leave me be...
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 3
 --- !u!1 &1664836013
 GameObject:
@@ -23930,6 +23984,10 @@ MonoBehaviour:
   - Yes, up on the hill. You can see if from here. &
   - All his self importance is long gone now.  All he does nowadays is pray and demand
     pity...
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 2
 --- !u!1 &1677323168
 GameObject:
@@ -28952,6 +29010,10 @@ MonoBehaviour:
   - Let's go! We'll be late. &
   - I'm your new friend, of course! Now let's go!
   - Let's go! We'll be late.
+  branch1: []
+  branch2: []
+  branch3: []
+  branch4: []
   skipNum: 3
 --- !u!1 &2081796738
 GameObject:

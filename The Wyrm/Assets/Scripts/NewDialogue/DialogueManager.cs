@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    /*
+     * Questions in the box
+     * progress questions on button presses
+     */
     private GameManager GM;
     [SerializeField] public GameObject dialogBox;
     [SerializeField] Text dialogText;
@@ -27,6 +31,8 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] bool choiceLine = false;
     [SerializeField] bool endingLine = false;
+    [SerializeField] bool branchLine1n2 = false;
+    [SerializeField] bool branchLine3n4 = false;
 
     public static DialogueManager Instance { get; private set; }
 
@@ -79,14 +85,24 @@ public class DialogueManager : MonoBehaviour
         else
             endingLine = false;
 
-        foreach (var letter in line.ToCharArray())
-        {
-            if (letter != '&')
+        if (line.EndsWith("^"))
+            branchLine1n2 = true; 
+        else
+            branchLine1n2 = false;
+
+        if (line.StartsWith("^"))
+            branchLine3n4 = true;
+        else
+            branchLine3n4 = false;
+
+            foreach (var letter in line.ToCharArray())
             {
-                dialogText.text += letter;
+                if (letter != '&' || letter != '^') // ^ <- this isnt getting removed
+                {
+                    dialogText.text += letter;
+                }
+                yield return new WaitForSeconds(1f / lettersPerSecond);
             }
-            yield return new WaitForSeconds(1f / lettersPerSecond);
-        }
         isTyping = false;
     }
 
@@ -112,6 +128,9 @@ public class DialogueManager : MonoBehaviour
                 }
             }
         }
+
+        
+
 
         //If the current dialog is not a choice progress normally
         if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E) && !isTyping && !choiceLine && !endingLine)
@@ -142,13 +161,14 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        if (choiceLine)
+        if (choiceLine || branchLine1n2 || branchLine3n4)
             ShowButtons();
     }
 
     //If the current dialog is a choice progress to the first option. (next line)
     public void choiceOne()
     {
+        //if its not typing and its a choice line
         if (dialogBox.activeInHierarchy == true && !isTyping && choiceLine && !endingLine)
         {
             ++currentLine;
@@ -167,6 +187,45 @@ public class DialogueManager : MonoBehaviour
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
         }
+        //if its a branch line and its not typing
+        if (dialogBox.activeInHierarchy && !isTyping && branchLine1n2 && !endingLine && dialog.Branch1 != null) 
+        {
+            currentLine = 0;
+            if (currentLine < dialog.Branch1.Count) 
+            {
+                StartCoroutine(TypeDialog(dialog.Branch1[currentLine]));
+            }
+            else
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+        }
+
+        if (dialogBox.activeInHierarchy && !isTyping && branchLine3n4 && !endingLine && dialog.Branch3 != null)
+        {
+            currentLine = 0;
+            if (currentLine < dialog.Branch3.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Branch3[currentLine]));
+            }
+            else
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+        }
+        
     }
 
     //If the current dialog is a choice progress to the second option. (skipNum lines ahead)
@@ -192,6 +251,45 @@ public class DialogueManager : MonoBehaviour
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
         }
+        //if its a branch line and its not typing
+        if (dialogBox.activeInHierarchy && !isTyping && branchLine1n2 && !endingLine && dialog.Branch2 != null)
+        {
+            currentLine = 0;
+            if (currentLine < dialog.Branch2.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Branch2[currentLine]));
+            }
+            else
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+        }
+        if (dialogBox.activeInHierarchy && !isTyping && branchLine3n4 && !endingLine && dialog.Branch4 != null)
+        {
+            currentLine = 0;
+            if (currentLine < dialog.Branch4.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Branch4[currentLine]));
+            }
+            else
+            {
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            buttonOne.SetActive(false);
+            buttonTwo.SetActive(false);
+        }
+        buttonOne.SetActive(false);
+        buttonTwo.SetActive(false);
     }
 }
 
