@@ -20,7 +20,7 @@ public class WyrmManager : MonoBehaviour
     private int wyrmNum;
 
     private bool inArena;
-    
+    private bool playerHiding;
 
     // Start is called before the first frame update
     void Start()
@@ -59,74 +59,11 @@ public class WyrmManager : MonoBehaviour
             {
                 if (inArena)
                 {
-                    if (agent.hasPath && agent.CalculatePath(player.position, path) && path.status == NavMeshPathStatus.PathComplete)
-                    {
-                        if (player.TryGetComponent<Player>(out Player playerScript))
-                        {
-                            if (!playerScript.CheckIfHiding())
-                            {
-                                agent.destination = player.position;
-
-                                if (wyrmNum == 1)
-                                    agent.speed = 8;
-                                else if (wyrmNum == 2)
-                                {
-                                    if (agent.remainingDistance < 5)
-                                        agent.speed = agent.remainingDistance;
-                                    else if (agent.remainingDistance > 5 && agent.remainingDistance < 15)
-                                        agent.speed = agent.remainingDistance / 1.5f;
-                                    else if (agent.remainingDistance > 15 && agent.remainingDistance < 200)
-                                        agent.speed = agent.remainingDistance / 2;
-                                    else if (agent.remainingDistance > 200)
-                                        agent.speed = 100;
-                                }
-                                else if (wyrmNum == 3)
-                                    if (agent.remainingDistance < 1000)
-                                        agent.speed = 1000 - agent.remainingDistance;
-                                    else if (agent.remainingDistance > 1000)
-                                        agent.speed = 1000;
-
-                                //Debug.LogWarning("Speed: " + agent.speed);
-                            }
-                        }
-                        else
-                        {
-                            Debug.LogError("Player script on player not found for wyrm");
-                        }
-                    }
-                    else
-                    {
-                        if (agent.remainingDistance < 0.5f)
-                        {
-                            if (agent.speed != 6)
-                            {
-                                agent.speed = 6;
-                            }
-
-                            GotoNextPoint();
-                        }
-                    }
+                    WyrmArenaMovement();
                 }
                 else
                 {
-                    if (agent.CalculatePath(player.position, path) && path.status == NavMeshPathStatus.PathComplete)
-                    {
-                        agent.destination = player.position;
-
-                        agent.speed = 8;
-                    }
-                    else
-                    {
-                        if (agent.remainingDistance < 0.5f)
-                        {
-                            if (agent.speed != 6)
-                            {
-                                agent.speed = 6;
-                            }
-
-                            GotoNextPoint();
-                        }
-                    }
+                    WyrmVillageMovement();
                 }
             }
             else
@@ -183,10 +120,115 @@ public class WyrmManager : MonoBehaviour
         //Debug.Log("Going to point " + currentPoint);
     }
 
+    private void WyrmVillageMovement()
+    {
+        if (!playerHiding && agent.CalculatePath(player.position, path) && path.status == NavMeshPathStatus.PathComplete)
+        {
+            if (player.TryGetComponent<Player>(out Player playerScript))
+            {
+                if (!playerScript.CheckIfHiding())
+                {
+                    agent.destination = player.position;
+
+                    agent.speed = 8;
+                }
+                else
+                {
+                    playerHiding = true;
+                }
+            }
+        }
+        else
+        {
+            FollowPoints();
+        }
+    }
+
+    private void WyrmArenaMovement()
+    {
+        if (!playerHiding && agent.CalculatePath(player.position, path) && path.status == NavMeshPathStatus.PathComplete)
+        {
+            if (player.TryGetComponent<Player>(out Player playerScript))
+            {
+                if (!playerScript.CheckIfHiding())
+                {
+                    agent.destination = player.position;
+
+                    if (wyrmNum == 1)
+                        Wyrm1Movement();
+                    else if (wyrmNum == 2)
+                        Wyrm2Movement();
+                    else if (wyrmNum == 3)
+                        Wyrm3Movement();
+
+                    //Debug.LogWarning("Speed: " + agent.speed);
+                }
+                else
+                {
+                    playerHiding = true;
+                }
+            }
+            else
+            {
+                Debug.LogError("Player script on player not found for wyrm");
+            }
+        }
+        else
+        {
+            FollowPoints();
+        }
+    }
+    
+    private void Wyrm1Movement()
+    {
+        agent.speed = 8;
+    }
+
+    private void Wyrm2Movement()
+    {
+        if (agent.remainingDistance < 5)
+            agent.speed = agent.remainingDistance;
+        else if (agent.remainingDistance > 5 && agent.remainingDistance < 15)
+            agent.speed = agent.remainingDistance / 1.5f;
+        else if (agent.remainingDistance > 15 && agent.remainingDistance < 200)
+            agent.speed = agent.remainingDistance / 2;
+        else if (agent.remainingDistance > 200)
+            agent.speed = 100;
+    }
+
+    private void Wyrm3Movement()
+    {
+        if (agent.remainingDistance < 1000)
+            agent.speed = 1000 - agent.remainingDistance;
+        else if (agent.remainingDistance > 1000)
+            agent.speed = 1000;
+    }
+
+    private void FollowPoints()
+    {
+        if (agent.remainingDistance < 0.5f)
+        {
+            if (agent.speed != 6)
+            {
+                agent.speed = 6;
+            }
+
+            GotoNextPoint();
+        }
+
+        if (agent.CalculatePath(player.position, path))
+        {
+            playerHiding = false;
+        }
+    }
+
     public IEnumerator StartCountdownToLeave(int time, WyrmSpawnManager WSM)
     {
+        Debug.Log("Wyrm will leave in " + time + " seconds");
         yield return new WaitForSecondsRealtime(time);
         WSM.WyrmLeft();
-        Destroy(gameObject);
+
+        if (gameObject)
+            Destroy(gameObject);
     }
 }

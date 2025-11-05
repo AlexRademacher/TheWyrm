@@ -66,7 +66,7 @@ public class Credits : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
         waitTime = false;
 
-        if (transform.position.y > 2500)
+        if (transform.position.y > 2800)
         {
             startCredits = false;
             StartCoroutine(End());

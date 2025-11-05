@@ -118,14 +118,14 @@ public class Player : MonoBehaviour
             //this.transform.SetPositionAndRotation(hidingPos, this.transform.rotation);
             this.transform.position = hidingPos;
             hiding = true;
-            Debug.Log(prevPosition + " before hiding");
+            //Debug.Log(prevPosition + " before hiding");
 
 
         }
         else if (Input.GetKeyDown(KeyCode.F) && hiding)
         {
             PostProOnOff.changeVignState();
-            Debug.Log(prevPosition + " after hiding");
+            //Debug.Log(prevPosition + " after hiding");
             //this.transform.SetPositionAndRotation(prevPosition, this.transform.rotation);
             this.transform.position = prevPosition;
             hiding = false;

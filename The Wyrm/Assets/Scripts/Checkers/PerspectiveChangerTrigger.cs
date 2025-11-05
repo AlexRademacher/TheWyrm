@@ -46,7 +46,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
     {
         if (WyrmSpawner != null)
         {
-            Debug.Log("Player has entered");
+            //Debug.Log("Player has entered");
 
             if (WyrmSpawner.TryGetComponent<WyrmSpawnManager>(out WSM))
             {
@@ -81,7 +81,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
         {
             wyrmWait = wyrmWait / 2;
         }
-        yield return new WaitForSecondsRealtime(wyrmWait);
+        yield return new WaitForSecondsRealtime(wyrmWait + 1);
 
         if (NewWyrm != null && !entered)
         {
@@ -92,7 +92,18 @@ public class PerspectiveChangerTrigger : MonoBehaviour
                     StartCoroutine(WM.StartCountdownToLeave(Random.Range(1, 3), WSM));
                 else
                     StartCoroutine(WM.StartCountdownToLeave(Random.Range(3, 10), WSM));
+
+                NewWyrm = null;
             }
+            else
+            {
+                Debug.LogError("Couldn't find wyrm script to remove wyrm");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Wyrm missing retrying removal");
+            StartCoroutine(RemovalCheck());
         }
     }
 
@@ -103,7 +114,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
             if (!GM.GetTimerType())
                 GM.AddToTimer(60);
 
-            Debug.Log("Player entering");
+            //Debug.Log("Player entering");
             if (!entered)
                 TryGetWyrm(other.transform);
 
