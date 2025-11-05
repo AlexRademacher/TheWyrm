@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     {
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
 
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex % 2 == 0)
         {
             AddToTimer(300);
             //AddToTimer(1200);
@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
         {
             UI.HideClock();
         }
+
+        Debug.Log(SceneManager.GetActiveScene().buildIndex);
     }
 
     // Update is called once per frame
@@ -67,9 +69,12 @@ public class GameManager : MonoBehaviour
         if (GetTimerType() && GetStartedState() && !timerAddRest && !talking && !paused && !dead && !loading)
             StartCoroutine(goingPastTimer());
 
-        if (oldTime != timer)
+        if ( oldTime != timer)
         {
-            UI.UpdateClockTimer(timer);
+            if (SceneManager.GetActiveScene().buildIndex != 6)
+                UI.UpdateClockTimer(timer);
+            else
+                UI.UpdateClockTimer(300);
             oldTime = timer;
         }
 
@@ -136,30 +141,32 @@ public class GameManager : MonoBehaviour
     {
         timer += addedTime;
 
-        if (timer >= 300 && timer <= 540)
+        if (SceneManager.GetActiveScene().buildIndex != 6)
         {
-            UpdateDayLook(true, new Color(141, 67, 67), shaders[0], lightings[0]);
-        }
-        else if (timer > 540 && timer <= 960)
-        { 
-            UpdateDayLook(false, new Color(241, 188, 117), shaders[1], lightings[1]);
-        } 
-        else if (timer > 960 && timer <= 1200)
-        {
-            UpdateDayLook(true, new Color(141, 67, 67), shaders[2], lightings[0]);
-        }
-        else if (timer > 1200 && timer < 1440)
-        {
-            UpdateDayLook(true, new Color(50, 12, 15), shaders[3], lightings[2]);
-        }
+            if (timer >= 300 && timer <= 540)
+            {
+                UpdateDayLook(true, new Color(141, 67, 67), shaders[0], lightings[0]);
+            }
+            else if (timer > 540 && timer <= 960)
+            {
+                UpdateDayLook(false, new Color(241, 188, 117), shaders[1], lightings[1]);
+            }
+            else if (timer > 960 && timer <= 1200)
+            {
+                UpdateDayLook(true, new Color(141, 67, 67), shaders[2], lightings[0]);
+            }
+            else if (timer > 1200 && timer < 1440)
+            {
+                UpdateDayLook(true, new Color(50, 12, 15), shaders[3], lightings[2]);
+            }
 
-        if (timer >= 1440)
-        {
-            //CloseGame();
-            UI.ShowOutOfTimeEnding();
-            timer = 0;
+            if (timer >= 1440)
+            {
+                //CloseGame();
+                UI.ShowOutOfTimeEnding();
+                timer = 0;
+            }
         }
-
     }
 
     public bool GetStartedState()
