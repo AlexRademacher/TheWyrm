@@ -19,6 +19,9 @@ public class WyrmManager : MonoBehaviour
     [Tooltip("The Wrym number for which type"), SerializeField, Range(1,3)]
     private int wyrmNum;
 
+    [Tooltip("The Wrym number for which type"), SerializeField]
+    private Sprite[] wyrmSprites;
+
     private bool inArena;
     private bool playerHiding;
 
@@ -39,10 +42,18 @@ public class WyrmManager : MonoBehaviour
 
                 for (int i = 1; i < transform.parent.childCount - 1; i++)
                 {
-                    points[i - 1] = transform.parent.GetChild(i);
+                    if (transform.parent.GetChild(i).name.Contains("point"))
+                        points[i - 1] = transform.parent.GetChild(i);
                 }
             }
         }
+
+        if (transform.GetChild(0).TryGetComponent<SpriteRenderer>(out SpriteRenderer wyrmLook))
+        {
+            wyrmLook.sprite = wyrmSprites[wyrmNum - 1];
+        }
+        else
+            Debug.Log("Default wyrm sprite was placed as a default as the correct sprite failed to be applied");
 
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 6;
