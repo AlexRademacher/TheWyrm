@@ -19684,6 +19684,8 @@ MonoBehaviour:
   endingLine: 0
   branchLine1n2: 0
   branchLine3n4: 0
+  inBranch: 0
+  currentBranch: 0
 --- !u!4 &1325461465
 Transform:
   m_ObjectHideFlags: 0
@@ -20604,7 +20606,9 @@ MonoBehaviour:
     nowadays. '
   - 'Anyway- run home, littlun.  Yer wastin'' time talkin'' to a hermit like me... '
   branch1:
-  - branching 1 &
+  - branch 1 line 1
+  - branch 1 line 2
+  - branch 1 line 3 &
   branch2:
   - branching 2 &
   branch3:

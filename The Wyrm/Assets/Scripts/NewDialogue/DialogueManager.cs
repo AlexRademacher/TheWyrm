@@ -33,6 +33,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] bool endingLine = false;
     [SerializeField] bool branchLine1n2 = false;
     [SerializeField] bool branchLine3n4 = false;
+    [SerializeField] bool inBranch = false;
+    [SerializeField] int currentBranch = 0;
 
     public static DialogueManager Instance { get; private set; }
 
@@ -108,6 +110,47 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
+
+        if (inBranch &&  !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E))
+        {
+            currentLine++;
+            if (currentBranch == 1 && currentLine < dialog.Branch1.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Branch1[currentLine]));
+            }
+            else if (currentBranch == 2 && currentLine < dialog.Branch2.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Branch2[currentLine]));
+            }
+            else if (currentBranch == 3 && currentLine < dialog.Branch3.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Branch3[currentLine]));
+            }
+            else if (currentBranch == 4 && currentLine < dialog.Branch4.Count)
+            {
+                StartCoroutine(TypeDialog(dialog.Branch4[currentLine]));
+            }
+            else
+            {
+                Debug.Log("We are closing the dialoggggggggggg");
+
+                dialogBox.SetActive(false);
+                OnHideDialog?.Invoke();
+                currentLine = 0;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+
+                if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
+                {
+                    if (currentNpc.TryGetComponent<Item>(out Item itemScript))
+                    {
+                        itemScript.PickedUp();
+                        GM.sacraficed();
+                    }
+                }
+            }
+        }
+
         //if its an ending line close and reset the dialouge box
         if (endingLine && !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E))
         {
@@ -137,13 +180,15 @@ public class DialogueManager : MonoBehaviour
         {
             
             ++currentLine;
-            if (currentLine < dialog.Lines.Count /* && currentLine < dialog.Branch1.Count && currentLine < dialog.Branch2.Count && currentLine < dialog.Branch3.Count && currentLine < dialog.Branch4.Count*/)
+            if (currentLine < dialog.Lines.Count)
             {
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }
             else
             {
                 Debug.Log("We are closing the dialoggggggggggg");
+                inBranch = false;
+                currentBranch = 0;
 
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
@@ -191,6 +236,8 @@ public class DialogueManager : MonoBehaviour
         //if its a branch line and its not typing
         if (dialogBox.activeInHierarchy && !isTyping && branchLine1n2 && !endingLine && dialog.Branch1 != null) 
         {
+            inBranch = true;
+            currentBranch = 1;
             currentLine = 0;
             if (currentLine < dialog.Branch1.Count) 
             {
@@ -210,6 +257,8 @@ public class DialogueManager : MonoBehaviour
 
         if (dialogBox.activeInHierarchy && !isTyping && branchLine3n4 && !endingLine && dialog.Branch3 != null)
         {
+            inBranch = true;
+            currentBranch = 3;
             currentLine = 0;
             if (currentLine < dialog.Branch3.Count)
             {
@@ -255,6 +304,8 @@ public class DialogueManager : MonoBehaviour
         //if its a branch line and its not typing
         if (dialogBox.activeInHierarchy && !isTyping && branchLine1n2 && !endingLine && dialog.Branch2 != null)
         {
+            inBranch = true;
+            currentBranch = 2;
             currentLine = 0;
             if (currentLine < dialog.Branch2.Count)
             {
@@ -273,6 +324,8 @@ public class DialogueManager : MonoBehaviour
         }
         if (dialogBox.activeInHierarchy && !isTyping && branchLine3n4 && !endingLine && dialog.Branch4 != null)
         {
+            inBranch = true;
+            currentBranch = 4;
             currentLine = 0;
             if (currentLine < dialog.Branch4.Count)
             {
