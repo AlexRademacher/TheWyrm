@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     Vector3 hidingPos;
     [SerializeField] private bool canDrop;
     private FallablePlatform nearbyDropper;
+
+    [SerializeField] private GameObject dialogBox;
         
 
     // Start is called before the first frame update
@@ -74,7 +76,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // allows movement if cursor is hidden and controller is working
-        if (!Cursor.visible && controller != null && !GM.GetTalking() && !GM.GetLoadingState())
+        if (!Cursor.visible && controller != null && !GM.GetTalking() && !GM.GetLoadingState() && dialogBox.activeInHierarchy == false)
         {
             Movement(); // control of the x and z axis
 

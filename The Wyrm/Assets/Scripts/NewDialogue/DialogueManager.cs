@@ -111,6 +111,12 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
 
+        if (choiceLine || branchLine1n2 || branchLine3n4) 
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         if (inBranch &&  !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E))
         {
             currentLine++;
@@ -133,6 +139,9 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 Debug.Log("We are closing the dialoggggggggggg");
+
+                inBranch = false;
+                currentBranch = 0;
 
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();

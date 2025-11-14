@@ -15,6 +15,8 @@ public class LookVertical : MonoBehaviour
 
     private Vector3 newRotation;
 
+    [SerializeField] private GameObject dialogBox;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class LookVertical : MonoBehaviour
     void Update()
     {
         // Gets the mouses position if mouse is hidden
-        if (!Cursor.visible && CM.GetCameraPerspective() && !GM.GetLoadingState())
+        if (!Cursor.visible && CM.GetCameraPerspective() && !GM.GetLoadingState() && dialogBox.activeInHierarchy == false)
             mouseY = Input.GetAxis("Mouse Y");
         else if (CM == null)
         {

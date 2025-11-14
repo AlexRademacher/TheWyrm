@@ -14,6 +14,9 @@ public class PlayerInteraction : MonoBehaviour
     
     private int lastNpcId;
 
+    [SerializeField] private GameObject dialogBox;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -163,7 +166,7 @@ public class PlayerInteraction : MonoBehaviour
                             
                             if (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID == 8)
                                 lastNpcId = 8;
-                            if (dialog != null)
+                            if (dialog != null && dialogBox.activeInHierarchy == false)
                             {
                                 //Debug.Log("found Dialog");
                                 StartCoroutine(DialogueManager.Instance.ShowDialog(dialog, hitInfo.transform.gameObject));

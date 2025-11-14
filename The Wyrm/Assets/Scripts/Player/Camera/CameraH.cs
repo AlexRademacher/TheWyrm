@@ -12,18 +12,22 @@ public class LookHorizontal : MonoBehaviour
     private float sensitivity = 4.5f;
     private float mouseX;
 
+    [SerializeField] private GameObject dialogBox;
+
     // Start is called before the first frame update
     void Start()
     {
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         // Gets the mouses position if cursor is hidden
-        if (!Cursor.visible && CM.GetCameraPerspective() && !GM.GetLoadingState())
+        if (!Cursor.visible && CM.GetCameraPerspective() && !GM.GetLoadingState() && dialogBox.activeInHierarchy == false )
             mouseX = Input.GetAxis("Mouse X");
         else if (CM == null)
         {
