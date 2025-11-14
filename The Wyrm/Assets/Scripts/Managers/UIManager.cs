@@ -382,6 +382,7 @@ public class UIManager : MonoBehaviour
     {
         PauseContinueButton();
 
+        Debug.Log("Cutscene trigger");
         P.GetComponent<CharacterController>().enabled = false;
         P.transform.position = position.transform.position;
         P.GetComponent<CharacterController>().enabled = true;
