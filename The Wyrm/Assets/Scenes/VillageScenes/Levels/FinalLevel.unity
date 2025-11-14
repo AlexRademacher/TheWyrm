@@ -16538,10 +16538,26 @@ PrefabInstance:
       propertyPath: far clip plane
       value: 3000
       objectReference: {fileID: 0}
+    - target: {fileID: 3060870250433180198, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 1426069067}
     - target: {fileID: 4114952061439743809, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
       propertyPath: MapCam
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7108127449959467389, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 1426069067}
+    - target: {fileID: 7648907098761367918, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 1426069067}
+    - target: {fileID: 8803335052668137280, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 1426069067}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -22558,6 +22574,8 @@ MonoBehaviour:
   endingLine: 0
   branchLine1n2: 0
   branchLine3n4: 0
+  inBranch: 0
+  currentBranch: 0
 --- !u!4 &1635646874
 Transform:
   m_ObjectHideFlags: 0
