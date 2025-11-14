@@ -399,8 +399,10 @@ public class UIManager : MonoBehaviour
     public void CutSceneOutOfTimeEndingContinue()
     {
         PauseContinueButton();
-        GM.SetCreditsState(true);
-        Credits.SetActive(true);
+        RespawnRespawnButton();
+        Cutscenes[3].SetActive(false);
+        //GM.SetCreditsState(true);
+        //Credits.SetActive(true);
     }
 
     public void ShowVictoryEnding()
