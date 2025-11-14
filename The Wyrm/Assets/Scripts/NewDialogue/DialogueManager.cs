@@ -97,7 +97,7 @@ public class DialogueManager : MonoBehaviour
 
             foreach (var letter in line.ToCharArray())
             {
-                if (letter != '&' || letter != '^') // ^ <- this isnt getting removed
+                if (letter != '&' && letter != '^') 
                 {
                     dialogText.text += letter;
                 }
@@ -135,8 +135,9 @@ public class DialogueManager : MonoBehaviour
         //If the current dialog is not a choice progress normally
         if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E) && !isTyping && !choiceLine && !endingLine)
         {
+            
             ++currentLine;
-            if (currentLine < dialog.Lines.Count)
+            if (currentLine < dialog.Lines.Count /* && currentLine < dialog.Branch1.Count && currentLine < dialog.Branch2.Count && currentLine < dialog.Branch3.Count && currentLine < dialog.Branch4.Count*/)
             {
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }
