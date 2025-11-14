@@ -11764,6 +11764,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+--- !u!1 &876193343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1860681659715716791, guid: 83cc19d0ada295f4cb53700fd6acb73a, type: 3}
+  m_PrefabInstance: {fileID: 876193342}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &891060658
 GameObject:
   m_ObjectHideFlags: 0
@@ -28410,14 +28415,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3060870250433180198, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 876193343}
     - target: {fileID: 6180137507214683982, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7108127449959467389, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 876193343}
+    - target: {fileID: 7648907098761367918, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 876193343}
     - target: {fileID: 8803335052668137280, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8803335052668137280, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 876193343}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
