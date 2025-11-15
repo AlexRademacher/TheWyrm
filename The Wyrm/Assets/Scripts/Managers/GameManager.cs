@@ -314,10 +314,11 @@ public class GameManager : MonoBehaviour
                 {
                     relicsFound = 0;
 
-                    if (SceneManager.GetActiveScene().buildIndex != 7)
-                        lSM.SendToVillage();
-                    else
+                    if (SceneManager.GetActiveScene().buildIndex == 7)
                         UI.ShowVictoryEnding();
+                    else
+                        lSM.SendToVillage();
+
                 }
                 else
                     Debug.LogWarning("Scene Manager not set up right");

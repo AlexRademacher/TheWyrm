@@ -137,11 +137,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && canDrop && nearbyDropper != null)
         {
-            if (nearbyDropper.transform.GetChild(0).gameObject.activeSelf)
-                nearbyDropper.FallOver();
-            else if (nearbyDropper.transform.GetChild(1).gameObject.activeSelf)
-                nearbyDropper.StandUp();
-
+            nearbyDropper.FallableControl();
         }
 
         if (SceneManager.GetActiveScene().buildIndex == 6)
