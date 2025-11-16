@@ -136,7 +136,10 @@ public class PlayerInteraction : MonoBehaviour
                                     lastNpcId = 7;
                                     break;
                                 case 8:
-                                    UI.SetTextNameBox("Brother");
+                                    if (SceneManager.GetActiveScene().buildIndex == 0)
+                                        UI.SetTextNameBox("Mysterious Child");
+                                    else 
+                                        UI.SetTextNameBox("Brother");
                                     lastNpcId = 8;
                                     break;
                                 case 9:
