@@ -10,6 +10,8 @@ public class WyrmManager : MonoBehaviour
 
     private Transform player;
 
+    private WyrmSoundManager WSM;
+
     private NavMeshAgent agent;
     private NavMeshPath path;
 
@@ -31,6 +33,11 @@ public class WyrmManager : MonoBehaviour
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         player = GameObject.Find("Player").GetComponent<Transform>();
+
+        if (!transform.TryGetComponent<WyrmSoundManager>(out WSM))
+        {
+            Debug.LogWarning("Could not find sound manager on Wyrm");
+        }
 
         if (SceneManager.GetActiveScene().name.Contains("Arena"))
         {
@@ -242,4 +249,18 @@ public class WyrmManager : MonoBehaviour
         if (gameObject)
             Destroy(gameObject);
     }
+
+    /*private void OnTriggerEnter(Collider hit)
+    {
+        if (hit.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Got child"); 
+
+            if (WSM != null)
+                WSM.BiteSound();
+
+            if (!playerHiding && player.TryGetComponent<Player>(out Player playerScript))
+                playerScript.PlayerKilled();
+        }
+    }*/
 }

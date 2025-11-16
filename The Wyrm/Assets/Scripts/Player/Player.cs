@@ -291,6 +291,9 @@ public class Player : MonoBehaviour
             if (hit.gameObject.CompareTag("Wyrm"))
             {
                 PlayerKilled();
+
+                if (hit.gameObject.TryGetComponent<WyrmSoundManager>(out WyrmSoundManager WSM))
+                    WSM.BiteSound();
             }
         }
     }
