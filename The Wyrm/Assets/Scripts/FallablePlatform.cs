@@ -51,11 +51,21 @@ public class FallablePlatform : MonoBehaviour
     {
         standing.SetActive(false);
         fallen.SetActive(true);
+
+        if (fallen.transform.childCount > 0)
+        {
+            fallen.transform.GetChild(0).transform.Rotate(new Vector3(1, 0, 0), 180);
+        }
     }
 
     private void StandUp()
     {
         standing.SetActive(true);
         fallen.SetActive(false);
+
+        if (fallen.transform.childCount > 0)
+        {
+            fallen.transform.GetChild(0).transform.Rotate(new Vector3(1, 0, 0), 180);
+        }
     }
 }

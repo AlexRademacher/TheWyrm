@@ -64,8 +64,8 @@ public class RelicChecker : MonoBehaviour
 
             currChecks++;
 
-            if (relicDebug)
-                Debug.Log("Collider overlaps array " + overlapObjects.Length);
+            //if (relicDebug)
+                //Debug.Log("Collider overlaps array " + overlapObjects.Length);
         }
     }
 

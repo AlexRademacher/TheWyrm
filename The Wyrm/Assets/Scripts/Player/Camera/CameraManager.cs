@@ -7,7 +7,6 @@ public class CameraManager : MonoBehaviour
 {
     private bool firstPerson;
 
-    private Camera Camera3rdPerson;
     private Camera Camera1stPerson;
     [SerializeField] private Camera MapCam;
 
@@ -19,7 +18,6 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         Camera1stPerson = transform.GetChild(0).GetComponent<Camera>();
-        Camera3rdPerson = transform.GetChild(1).GetComponent<Camera>();
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -37,21 +35,6 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cameraDebugging && Input.GetKeyDown(KeyCode.P))
-        {
-            SetCameraPerspective(!GetCameraPerspective());
-        }
-
-        if (GetCameraPerspective() && Camera3rdPerson.enabled)
-        {
-            Camera3rdPerson.enabled = false;
-            Camera1stPerson.enabled = true;
-        }
-        else if (!GetCameraPerspective() && Camera1stPerson.enabled)
-        {
-            Camera3rdPerson.enabled = true;
-            Camera1stPerson.enabled = false;
-        }
 
         if (Input.GetKeyDown(KeyCode.M))
         {

@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
             UI.HideClock();
         }
 
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
+        //Debug.Log(SceneManager.GetActiveScene().buildIndex);
     }
 
     // Update is called once per frame
@@ -304,7 +304,9 @@ public class GameManager : MonoBehaviour
     {
         relicsFound = relicsFound + 1;
 
-        Debug.Log("A Relic found!");
+        //Debug.Log("A Relic found on table!");
+        //Debug.Log("Relic placed amount: " + relicsFound);
+        //Debug.Log("relicsFound == 3: " + (relicsFound == 3));
 
         if (relicsFound == 3)
         {
@@ -312,7 +314,7 @@ public class GameManager : MonoBehaviour
             {
                 if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
                 {
-                    relicsFound = 0;
+                    //relicsFound = 0;
 
                     if (SceneManager.GetActiveScene().buildIndex == 7)
                         UI.ShowVictoryEnding();

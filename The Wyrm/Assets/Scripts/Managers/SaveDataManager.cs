@@ -343,7 +343,7 @@ public class SaveDataManager : MonoBehaviour
                     }
                 }
 
-                Debug.Log("Inventory Set");
+                //Debug.Log("Inventory Set");
             }
             else
                 Debug.LogWarning("Haven't pull data from player inventory yet");

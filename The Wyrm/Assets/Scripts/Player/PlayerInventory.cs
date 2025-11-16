@@ -273,7 +273,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void CheckAllRelicsGot()
     {
-        Debug.Log("Checking relics");
+        //Debug.Log("Checking relics");
         if (relic1Found && relic2Found && relic3Found && (SceneManager.GetActiveScene().buildIndex != 1 || SceneManager.GetActiveScene().buildIndex != 3 || SceneManager.GetActiveScene().buildIndex != 5))
         {
             if (GameObject.Find("Scene Manager") != null)
@@ -303,7 +303,7 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
-        Debug.Log("Cleared inventory");
+        //Debug.Log("Cleared inventory");
 
         inventoryIndex = 0;
     }

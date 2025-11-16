@@ -48,7 +48,7 @@ public class Item : MonoBehaviour
         else
         {
             transform.GetComponent<BoxCollider>().enabled = false;
-            Debug.Log("Colected object");
+            //Debug.Log("Colected object");
         }
             
         //transform.position = new Vector3(transform.position.x, transform.position.y - 30, transform.position.z);

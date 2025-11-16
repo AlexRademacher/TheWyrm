@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
 
     [Tooltip("the Respawn menu"), SerializeField]
     private GameObject RespawnMenu;
+    [Tooltip("Tips and info that go on to the respawn screen"), SerializeField]
+    private string[] RespawnMenuInfo;
 
     [Header("Player UI")]
     [Tooltip("The npc text box"), SerializeField]
@@ -83,6 +85,7 @@ public class UIManager : MonoBehaviour
 
             if (GM.GetDeadState() && !RespawnMenu.activeSelf)
             {
+                SetRespawnInfo();
                 RespawnMenu.SetActive(true);
             }
 
@@ -424,5 +427,20 @@ public class UIManager : MonoBehaviour
         TextBoxName = NPCTextBox.transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
         TextBoxName.GetComponent<TextMeshProUGUI>().text = name;
     } 
+
+    private void SetRespawnInfo()
+    {
+        if (RespawnMenu.transform.GetChild(2).TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI respawnText)) {
+            if (RespawnMenuInfo == null || RespawnMenuInfo.Length == 0)
+            {
+                Debug.LogWarning("RespawnMenuInfo is empty or missing in UI");
+                return;
+            }
+
+            respawnText.text = RespawnMenuInfo[Random.Range(0, RespawnMenuInfo.Length)];
+        }
+        else
+            Debug.LogWarning("Could not find text to set RespawnMenuInfo");
+    }
 }
 
