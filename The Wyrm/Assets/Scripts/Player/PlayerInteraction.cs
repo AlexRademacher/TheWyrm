@@ -59,7 +59,7 @@ public class PlayerInteraction : MonoBehaviour
         // if hit something get its info and do the rest of the code
         if (Physics.Raycast(rayCast, out hitInfo, 8.0f))
         {
-            if (hitInfo.transform.gameObject.CompareTag("Item") || hitInfo.transform.gameObject.CompareTag("NPC")) {
+            if (hitInfo.transform.gameObject.CompareTag("Item") || hitInfo.transform.gameObject.CompareTag("NPC") || hitInfo.transform.gameObject.CompareTag("Openable")) {
                 UI.CrosshairEToggle(true);
             }
             else
@@ -189,6 +189,21 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         DoorInteraction(hitInfo.transform.gameObject, true);
                         DoorInteraction(hitInfo.transform.gameObject, false);
+                    }
+
+                    if (hitInfo.transform.gameObject.CompareTag("Openable"))
+                    {
+                        if (hitInfo.transform.parent != null)
+                        {
+                            if (hitInfo.transform.parent.TryGetComponent<OpenableManager>(out OpenableManager OMScript))
+                            {
+                                OMScript.OpenControl();
+                            }
+                            else
+                                Debug.LogError("Openable not correctly set up missing OpenableManager in parent object");
+                        }
+                        else
+                            Debug.LogError("Openable not correctly set up missing parent object");
                     }
                 }
                 else
