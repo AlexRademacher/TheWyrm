@@ -59,29 +59,7 @@ public class PlayerInteraction : MonoBehaviour
         // if hit something get its info and do the rest of the code
         if (Physics.Raycast(rayCast, out hitInfo, 8.0f))
         {
-            if (hitInfo.transform.gameObject.CompareTag("Item") || hitInfo.transform.gameObject.CompareTag("NPC") || hitInfo.transform.gameObject.CompareTag("Openable")) {
-                UI.CrosshairEToggle(true);
-            }
-            else
-            {
-                UI.CrosshairEToggle(false);
-            }
-
-            if (hitInfo.transform.gameObject.CompareTag("Table")) {
-                UI.CrosshairRToggle(true);
-            }
-            else
-            {
-                UI.CrosshairRToggle(false);
-            }
-
-            if (hitInfo.transform.gameObject.CompareTag("drop")) {
-                UI.CrosshairFToggle(true);
-            }
-            else
-            {
-                UI.CrosshairFToggle(false);
-            }
+            Crosshair();
 
             // if E is clicked
             if (Input.GetKeyDown(KeyCode.E) && Cursor.visible == false)
@@ -96,93 +74,7 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (hitInfo.transform.gameObject.CompareTag("NPC"))
                     {
-                        
-                        if (!hitInfo.transform.GetComponent<NPCManager>().canNeverSpeak)
-                        {
-                            Dialog dialog = hitInfo.transform.GetComponent<Dialog>();
-
-                            switch (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID) 
-                            {
-                                case 0:
-                                    UI.SetTextNameBox("Teacher");
-                                    lastNpcId = 0;
-                                    break;
-                                case 1:
-                                    UI.SetTextNameBox("Merchant");
-                                    lastNpcId = 1;
-                                    break;
-                                case 2:
-                                    UI.SetTextNameBox("Craftsman");
-                                    lastNpcId = 2;
-                                    break;
-                                case 3:
-                                    UI.SetTextNameBox("Wood Sculptor");
-                                    lastNpcId = 3;
-                                    break;
-                                case 4:
-                                    UI.SetTextNameBox("Potter");
-                                    lastNpcId = 4;
-                                    break;
-                                case 5:
-                                    UI.SetTextNameBox("Fisherman");
-                                    lastNpcId = 5;
-                                    break;
-                                case 6:
-                                    UI.SetTextNameBox("Landlord");
-                                    lastNpcId = 6;
-                                    break;
-                                case 7:
-                                    UI.SetTextNameBox("Farmer");
-                                    lastNpcId = 7;
-                                    break;
-                                case 8:
-                                    if (SceneManager.GetActiveScene().buildIndex == 0)
-                                        UI.SetTextNameBox("Mysterious Child");
-                                    else 
-                                        UI.SetTextNameBox("Brother");
-                                    lastNpcId = 8;
-                                    break;
-                                case 9:
-                                    UI.SetTextNameBox("Widow");
-                                    lastNpcId = 9;
-                                    break;
-                                case 10:
-                                    UI.SetTextNameBox("Shaman");
-                                    lastNpcId = 10;
-                                    break;
-                                case 11:
-                                    UI.SetTextNameBox("Landlord's Son");
-                                    lastNpcId = 11;
-                                    break;
-                                case 12:
-                                    UI.SetTextNameBox("Farmer's Son");
-                                    lastNpcId = 12;
-                                    break;
-                                case 13:
-                                    UI.SetTextNameBox("Sculptor's Son");
-                                    lastNpcId = 13;
-                                    break;
-                                default:
-                                    Debug.LogWarning("Unknown ID");
-                                    break;
-                            }
-                            
-                            if (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID == 8)
-                                lastNpcId = 8;
-                            if (dialog != null && dialogBox.activeInHierarchy == false)
-                            {
-                                //Debug.Log("found Dialog");
-                                StartCoroutine(DialogueManager.Instance.ShowDialog(dialog, hitInfo.transform.gameObject));
-                                Cursor.visible = true;
-                                Cursor.lockState = CursorLockMode.None;
-                            }
-                            
-                           
-                            
-                        }
-                        else
-                            hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(false);
-                        //Debug.LogWarning("the NPC trying to be Talked to is " + hitInfo.transform.gameObject.name);
+                        TalkingToNPC();
                     }
 
                     if (hitInfo.transform.gameObject.CompareTag("Door"))
@@ -193,17 +85,7 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (hitInfo.transform.gameObject.CompareTag("Openable"))
                     {
-                        if (hitInfo.transform.parent != null)
-                        {
-                            if (hitInfo.transform.parent.TryGetComponent<OpenableManager>(out OpenableManager OMScript))
-                            {
-                                OMScript.OpenControl();
-                            }
-                            else
-                                Debug.LogError("Openable not correctly set up missing OpenableManager in parent object");
-                        }
-                        else
-                            Debug.LogError("Openable not correctly set up missing parent object");
+                        OpenObject();
                     }
                 }
                 else
@@ -215,6 +97,37 @@ public class PlayerInteraction : MonoBehaviour
                 DropItem();
 
             }
+        }
+    }
+
+
+    private void Crosshair()
+    {
+        if (hitInfo.transform.gameObject.CompareTag("Item") || hitInfo.transform.gameObject.CompareTag("NPC") || hitInfo.transform.gameObject.CompareTag("Openable"))
+        {
+            UI.CrosshairEToggle(true);
+        }
+        else
+        {
+            UI.CrosshairEToggle(false);
+        }
+
+        if (hitInfo.transform.gameObject.CompareTag("Table"))
+        {
+            UI.CrosshairRToggle(true);
+        }
+        else
+        {
+            UI.CrosshairRToggle(false);
+        }
+
+        if (hitInfo.transform.gameObject.CompareTag("drop"))
+        {
+            UI.CrosshairFToggle(true);
+        }
+        else
+        {
+            UI.CrosshairFToggle(false);
         }
     }
 
@@ -313,6 +226,113 @@ public class PlayerInteraction : MonoBehaviour
         else
             Debug.LogWarning("doorScript missing from door");
     }
+
+    private void OpenObject()
+    {
+        if (hitInfo.transform.parent != null)
+        {
+            if (hitInfo.transform.parent.TryGetComponent<OpenableManager>(out OpenableManager OMScript))
+            {
+                OMScript.OpenControl();
+            }
+            else
+                Debug.LogError("Openable not correctly set up missing OpenableManager in parent object");
+        }
+        else
+            Debug.LogError("Openable not correctly set up missing parent object");
+    }
+
+
+    private void TalkingToNPC()
+    {
+        if (!hitInfo.transform.GetComponent<NPCManager>().canNeverSpeak)
+        {
+            Dialog dialog = hitInfo.transform.GetComponent<Dialog>();
+
+            switch (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID)
+            {
+                case 0:
+                    UI.SetTextNameBox("Teacher");
+                    lastNpcId = 0;
+                    break;
+                case 1:
+                    UI.SetTextNameBox("Merchant");
+                    lastNpcId = 1;
+                    break;
+                case 2:
+                    UI.SetTextNameBox("Craftsman");
+                    lastNpcId = 2;
+                    break;
+                case 3:
+                    UI.SetTextNameBox("Wood Sculptor");
+                    lastNpcId = 3;
+                    break;
+                case 4:
+                    UI.SetTextNameBox("Potter");
+                    lastNpcId = 4;
+                    break;
+                case 5:
+                    UI.SetTextNameBox("Fisherman");
+                    lastNpcId = 5;
+                    break;
+                case 6:
+                    UI.SetTextNameBox("Landlord");
+                    lastNpcId = 6;
+                    break;
+                case 7:
+                    UI.SetTextNameBox("Farmer");
+                    lastNpcId = 7;
+                    break;
+                case 8:
+                    if (SceneManager.GetActiveScene().buildIndex == 0)
+                        UI.SetTextNameBox("Mysterious Child");
+                    else
+                        UI.SetTextNameBox("Brother");
+                    lastNpcId = 8;
+                    break;
+                case 9:
+                    UI.SetTextNameBox("Widow");
+                    lastNpcId = 9;
+                    break;
+                case 10:
+                    UI.SetTextNameBox("Shaman");
+                    lastNpcId = 10;
+                    break;
+                case 11:
+                    UI.SetTextNameBox("Landlord's Son");
+                    lastNpcId = 11;
+                    break;
+                case 12:
+                    UI.SetTextNameBox("Farmer's Son");
+                    lastNpcId = 12;
+                    break;
+                case 13:
+                    UI.SetTextNameBox("Sculptor's Son");
+                    lastNpcId = 13;
+                    break;
+                default:
+                    Debug.LogWarning("Unknown ID");
+                    break;
+            }
+
+            if (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID == 8)
+                lastNpcId = 8;
+            if (dialog != null && dialogBox.activeInHierarchy == false)
+            {
+                //Debug.Log("found Dialog");
+                StartCoroutine(DialogueManager.Instance.ShowDialog(dialog, hitInfo.transform.gameObject));
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+
+
+
+        }
+        else
+            hitInfo.transform.GetComponent<NPCManager>().SetInTalkingState(false);
+        //Debug.LogWarning("the NPC trying to be Talked to is " + hitInfo.transform.gameObject.name);
+    }
+
 
 
     private void OnTriggerEnter(Collider other)
