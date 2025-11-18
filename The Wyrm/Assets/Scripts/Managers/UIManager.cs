@@ -93,15 +93,6 @@ public class UIManager : MonoBehaviour
             {
                 MapState();
             }
-
-            if (CrosshairE.activeSelf || CrosshairR.activeSelf || CrosshairF.activeSelf)
-            {
-                Crosshair.SetActive(false);
-            }
-            else if (!CrosshairE.activeSelf && !CrosshairR.activeSelf && !CrosshairF.activeSelf)
-            {
-                Crosshair.SetActive(true);
-            }
         }
     }
 
@@ -326,21 +317,47 @@ public class UIManager : MonoBehaviour
     public void CrosshairToggle(bool newState)
     {
         Crosshair.SetActive(newState);
+
+        if (!newState)
+            StartCoroutine(ResetCrosshair());
+        else
+        {
+            CrosshairEToggle(false);
+            CrosshairRToggle(false);
+            CrosshairFToggle(false);
+        }
     }
 
     public void CrosshairEToggle(bool newState)
     {
         CrosshairE.SetActive(newState);
+
+        if (newState)
+            CrosshairToggle(false);
     }
 
     public void CrosshairRToggle(bool newState)
     {
         CrosshairR.SetActive(newState);
+        
+        if (newState)
+            CrosshairToggle(false);
     }
 
     public void CrosshairFToggle(bool newState)
     {
         CrosshairF.SetActive(newState);
+
+        if (newState)
+            CrosshairToggle(false);
+    }
+
+    private IEnumerator ResetCrosshair()
+    {
+        yield return new WaitForSecondsRealtime(3f);
+
+        if (!Crosshair.activeSelf)
+            CrosshairToggle(true);
     }
 
     //--------------------------------------------------------------------------------------------------------

@@ -107,27 +107,17 @@ public class PlayerInteraction : MonoBehaviour
         {
             UI.CrosshairEToggle(true);
         }
-        else
-        {
-            UI.CrosshairEToggle(false);
-        }
-
-        if (hitInfo.transform.gameObject.CompareTag("Table"))
+        else if (hitInfo.transform.gameObject.CompareTag("Table"))
         {
             UI.CrosshairRToggle(true);
         }
-        else
-        {
-            UI.CrosshairRToggle(false);
-        }
-
-        if (hitInfo.transform.gameObject.CompareTag("drop"))
+        else if (hitInfo.transform.gameObject.CompareTag("drop"))
         {
             UI.CrosshairFToggle(true);
         }
         else
         {
-            UI.CrosshairFToggle(false);
+            UI.CrosshairToggle(true);
         }
     }
 
