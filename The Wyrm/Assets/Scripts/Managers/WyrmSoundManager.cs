@@ -6,8 +6,6 @@ public class WyrmSoundManager : MonoBehaviour
 {
     private GameManager GM;
 
-    private Transform player;
-
     private AudioSource Running;
     private AudioSource Yell;
     private AudioSource Bite;
@@ -16,8 +14,6 @@ public class WyrmSoundManager : MonoBehaviour
     void Start()
     {
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
-
-        player = GameObject.Find("Player").GetComponent<Transform>();
 
         if (!transform.GetChild(1).TryGetComponent<AudioSource>(out Running))
         {
