@@ -151,6 +151,13 @@ public class PlayerInteraction : MonoBehaviour
                             Debug.LogWarning("Inventory script not set up correctly for picking up item");
 
                         itemScript.PickedUp();
+
+                        if (TM != null && !TM.HasGrabbed())
+                        {
+                            StartCoroutine(TM.IsGrabbing());
+                        }
+                        else if (TM == null)
+                            Debug.LogError("Tutorial for Camera Movement couldn't be found");
                     }
                     else
                     {
@@ -183,6 +190,13 @@ public class PlayerInteraction : MonoBehaviour
                         Debug.LogWarning("Placed relic");
                         GameObject newRelic = Instantiate(item, hitInfo.point, transform.rotation);
                         newRelic.SetActive(true);
+
+                        if (TM != null && !TM.HasPlaced())
+                        {
+                            StartCoroutine(TM.IsPlacing());
+                        }
+                        else if (TM == null)
+                            Debug.LogError("Tutorial for Camera Movement couldn't be found");
                     }
                     else
                     {
@@ -239,6 +253,13 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
             Debug.LogError("Openable not correctly set up missing parent object");
+
+        if (TM != null && !TM.HasSearched())
+        {
+            StartCoroutine(TM.IsSearching());
+        }
+        else if (TM == null)
+            Debug.LogError("Tutorial for Camera Movement couldn't be found");
     }
 
 
