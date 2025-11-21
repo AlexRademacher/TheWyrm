@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = transform.GetComponent<PlayerInteraction>();
 
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 1)
             TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
 
         if (GameObject.Find("Scene Manager") != null)
@@ -128,7 +128,12 @@ public class Player : MonoBehaviour
             hiding = true;
             //Debug.Log(prevPosition + " before hiding");
 
-
+            if (TM != null && !TM.HasHidden())
+            {
+                StartCoroutine(TM.IsHiding());
+            }
+            else if (TM == null)
+                Debug.LogError("Tutorial for Dropping couldn't be found");
         }
         else if (Input.GetKeyDown(KeyCode.F) && hiding)
         {
@@ -138,7 +143,6 @@ public class Player : MonoBehaviour
             this.transform.position = prevPosition;
             hiding = false;
             controller.enabled = true;
-
         }
 
         if (Input.GetKeyDown(KeyCode.F) && canDrop && nearbyDropper != null)

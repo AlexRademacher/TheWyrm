@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FallablePlatform : MonoBehaviour
 {
+    private TutorialManager TM;
+
     private GameObject standing;
     private GameObject fallen;
 
@@ -12,6 +15,9 @@ public class FallablePlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 1)
+            TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
+
         standing = transform.GetChild(0).gameObject;
         fallen = transform.GetChild(1).gameObject;
 
@@ -36,6 +42,13 @@ public class FallablePlatform : MonoBehaviour
             canDrop = false;
 
             FallOver();
+
+            if (TM != null && !TM.HasDropped())
+            {
+                StartCoroutine(TM.IsDropping());
+            }
+            else if (TM == null)
+                Debug.LogError("Tutorial for Dropping couldn't be found");
 
             yield return new WaitForSeconds(10);
 

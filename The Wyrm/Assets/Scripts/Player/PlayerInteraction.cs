@@ -157,7 +157,7 @@ public class PlayerInteraction : MonoBehaviour
                             StartCoroutine(TM.IsGrabbing());
                         }
                         else if (TM == null)
-                            Debug.LogError("Tutorial for Camera Movement couldn't be found");
+                            Debug.LogError("Tutorial for Picking Up couldn't be found");
                     }
                     else
                     {
@@ -196,7 +196,7 @@ public class PlayerInteraction : MonoBehaviour
                             StartCoroutine(TM.IsPlacing());
                         }
                         else if (TM == null)
-                            Debug.LogError("Tutorial for Camera Movement couldn't be found");
+                            Debug.LogError("Tutorial for Placing couldn't be found");
                     }
                     else
                     {
@@ -259,7 +259,7 @@ public class PlayerInteraction : MonoBehaviour
             StartCoroutine(TM.IsSearching());
         }
         else if (TM == null)
-            Debug.LogError("Tutorial for Camera Movement couldn't be found");
+            Debug.LogError("Tutorial for Searching couldn't be found");
     }
 
 

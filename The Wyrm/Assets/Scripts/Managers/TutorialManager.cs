@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class TutorialManager : MonoBehaviour
     private bool Grabing = false;
     private bool Searching = false;
     private bool Placing = false;
+    private bool Hiding = false;
+    private bool Dropping = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,9 @@ public class TutorialManager : MonoBehaviour
         {
             tutorial.SetActive(false);
         }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+            StageNum = 8;
     }
 
     // Update is called once per frame
@@ -61,7 +67,7 @@ public class TutorialManager : MonoBehaviour
                     EndTutorial();
                 break;
             case 4:
-                if (!Grabing)
+                if (!Hiding)
                     StartTutorial();
                 else
                     EndTutorial();
@@ -72,8 +78,28 @@ public class TutorialManager : MonoBehaviour
                 else
                     EndTutorial();
                 break;
+                
             case 6:
+                if (!Grabing)
+                    StartTutorial();
+                else
+                    EndTutorial();
+                break;
+                
+            case 7:
                 if (!Placing)
+                    StartTutorial();
+                else
+                    EndTutorial();
+                break;
+            case 8:
+                if (!Dropping)
+                    StartTutorial();
+                else
+                    EndTutorial();
+                break;
+            case 9:
+                if (!Dropping)
                     StartTutorial();
                 else
                     EndTutorial();
@@ -93,7 +119,11 @@ public class TutorialManager : MonoBehaviour
     {
         if (Tutorials != null && Tutorials.Length >= StageNum && Tutorials[StageNum] != null && Tutorials[StageNum].activeSelf)
             Tutorials[StageNum].SetActive(false);
+
         StageNum++;
+
+        if (StageNum == 8)
+            Hiding = false;
     }
 
     public bool HasLooked()
@@ -129,6 +159,16 @@ public class TutorialManager : MonoBehaviour
     public bool HasPlaced()
     {
         return Placing;
+    }
+
+    public bool HasHidden()
+    {
+        return Hiding;
+    }
+
+    public bool HasDropped()
+    {
+        return Dropping;
     }
 
     public IEnumerator IsLooking()
@@ -184,6 +224,22 @@ public class TutorialManager : MonoBehaviour
 
         if (!Placing)
             Placing = true;
+    }
+
+    public IEnumerator IsHiding()
+    {
+        yield return new WaitForSeconds(0);
+
+        if (!Hiding)
+            Hiding = true;
+    }
+
+    public IEnumerator IsDropping()
+    {
+        yield return new WaitForSeconds(0);
+
+        if (!Dropping)
+            Dropping = true;
     }
 
 }
