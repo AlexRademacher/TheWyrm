@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private CharacterController controller;
     private GroundChecker gC;
 
+    private TutorialManager TM;
+
     private Vector3 playerVelocity;
     private Vector3 respawnPos;
     private Quaternion ThirdPerPlayerRotation;
@@ -55,6 +57,8 @@ public class Player : MonoBehaviour
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = transform.GetComponent<PlayerInteraction>();
+        TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
+
         if (GameObject.Find("Scene Manager") != null)
             PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
         else
@@ -167,6 +171,13 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeed = speed * 1.75f; // running speed
+
+            if (TM != null && !TM.HasRan())
+            {
+                StartCoroutine(TM.IsRunning());
+            }
+            else if (TM == null)
+                Debug.LogError("Tutorial for Player Movement couldn't be found");
         }
         else
         {
@@ -185,6 +196,11 @@ public class Player : MonoBehaviour
             Debug.Log("Controller not enabled");
         }
         
+        if (TM != null && !TM.HasMoved() && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)) {
+            StartCoroutine(TM.IsMoving());
+        }
+        else if (TM == null)
+            Debug.LogError("Tutorial for Player Movement couldn't be found");
     }
 
     /// <summary>

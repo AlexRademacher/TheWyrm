@@ -7,6 +7,8 @@ public class LookVertical : MonoBehaviour
     private CameraManager CM;
     private GameManager GM;
 
+    private TutorialManager TM;
+
     [Header("Movement")]
     [Tooltip("How easily the camera can look around"), Min(0), SerializeField]
     private float sensitivity = 4.5f;
@@ -22,6 +24,7 @@ public class LookVertical : MonoBehaviour
     {
         CM = transform.parent.GetComponent<CameraManager>();
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
     }
 
     // Update is called once per frame
@@ -29,7 +32,16 @@ public class LookVertical : MonoBehaviour
     {
         // Gets the mouses position if mouse is hidden
         if (!Cursor.visible && CM.GetCameraPerspective() && !GM.GetLoadingState() && dialogBox.activeInHierarchy == false)
+        {
             mouseY = Input.GetAxis("Mouse Y");
+
+            if (TM != null && !TM.HasLooked() && Input.GetAxis("Mouse Y") != 0)
+            {
+                StartCoroutine(TM.IsLooking());
+            }
+            else if (TM == null)
+                Debug.LogError("Tutorial for Camera Movement couldn't be found");
+        }
         else if (CM == null)
         {
             mouseY = 0;
