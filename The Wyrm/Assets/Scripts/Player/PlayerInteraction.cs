@@ -93,9 +93,8 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             // if R is clicked
-            if (Input.GetKeyDown(KeyCode.R)) {
+            if (Input.GetKeyDown(KeyCode.R) && Cursor.visible == false) {
                 DropItem();
-
             }
         }
         else
