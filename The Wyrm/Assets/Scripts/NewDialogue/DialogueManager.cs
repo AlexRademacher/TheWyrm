@@ -57,15 +57,23 @@ public class DialogueManager : MonoBehaviour
     //Call this function to show a dialog
     public IEnumerator ShowDialog(Dialog dialog, GameObject npc) 
     {
+        //Calls up the dialog box taking a Dialog scipt and a Gameobject (only needed for npcs just pass any gameobject otherwise)
+        //Waits for the end of the current frame
         yield return new WaitForEndOfFrame();
+        //not sure what this does honestly but its needed i think
         OnShowDialog?.Invoke();
 
+        //sets the currentNPC to the passed in gameobject
         currentNpc = npc;
-        Debug.Log(currentNpc.name);
+        //Debug.Log(currentNpc.name);
 
+        //sets the dialog to the passed in dialog
         this.dialog = dialog;
+        //sets the skip number
         skipNumFound = this.dialog.skipNum;
+        //sets the dialog box to be active in the scene
         dialogBox.SetActive(true);
+        //Types the dialog
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }
 
@@ -73,7 +81,6 @@ public class DialogueManager : MonoBehaviour
     //letters show up one by one
     public IEnumerator TypeDialog(string line) 
     {
-        //change to something easily hidden
         isTyping = true;    
         dialogText.text = "";
         if (line.StartsWith("&"))
@@ -81,7 +88,6 @@ public class DialogueManager : MonoBehaviour
         else 
             choiceLine = false;
 
-        //change to something easily hidden
         if (line.EndsWith("&"))
             endingLine = true; 
         else
