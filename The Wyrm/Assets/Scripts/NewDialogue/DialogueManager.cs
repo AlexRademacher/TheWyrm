@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     dialogText.text += letter;
                 }
-                yield return new WaitForSeconds(1f / lettersPerSecond);
+                yield return new WaitForSeconds((1f / lettersPerSecond) * Time.deltaTime);
             }
         isTyping = false;
     }
@@ -138,7 +138,20 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("We are closing the dialoggggggggggg");
+                Debug.Log("We are closing the dialog");
+
+
+                Debug.Log(currentNpc.name + ": current npc name");
+                if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
+                {
+                    Debug.Log("NPC Check");
+                    if (currentNpc.TryGetComponent<Item>(out Item itemScript))
+                    {
+                        Debug.Log("ParticleCheck");
+                        itemScript.PickedUp();
+                        GM.sacraficed();
+                    }
+                }
 
                 inBranch = false;
                 currentBranch = 0;
@@ -149,14 +162,7 @@ public class DialogueManager : MonoBehaviour
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
 
-                if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
-                {
-                    if (currentNpc.TryGetComponent<Item>(out Item itemScript))
-                    {
-                        itemScript.PickedUp();
-                        GM.sacraficed();
-                    }
-                }
+                
             }
         }
 

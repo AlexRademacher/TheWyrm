@@ -36,7 +36,7 @@ public class Item : MonoBehaviour
             particles.Play();
         }
 
-        transform.gameObject.SetActive(false);
+        transform.gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
         if (transform.parent.name.Contains("NPC"))
         {
