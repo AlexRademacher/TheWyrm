@@ -98,6 +98,10 @@ public class PlayerInteraction : MonoBehaviour
 
             }
         }
+        else
+        {
+            UI.CrosshairToggle(true);
+        }
     }
 
 

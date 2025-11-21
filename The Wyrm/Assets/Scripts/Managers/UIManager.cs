@@ -318,9 +318,7 @@ public class UIManager : MonoBehaviour
     {
         Crosshair.SetActive(newState);
 
-        if (!newState)
-            StartCoroutine(ResetCrosshair());
-        else
+        if (newState)
         {
             CrosshairEToggle(false);
             CrosshairRToggle(false);
@@ -350,14 +348,6 @@ public class UIManager : MonoBehaviour
 
         if (newState)
             CrosshairToggle(false);
-    }
-
-    private IEnumerator ResetCrosshair()
-    {
-        yield return new WaitForSecondsRealtime(3f);
-
-        if (!Crosshair.activeSelf)
-            CrosshairToggle(true);
     }
 
     //--------------------------------------------------------------------------------------------------------
