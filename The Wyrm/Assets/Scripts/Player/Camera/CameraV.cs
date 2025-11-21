@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LookVertical : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class LookVertical : MonoBehaviour
     {
         CM = transform.parent.GetComponent<CameraManager>();
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
     }
 
     // Update is called once per frame

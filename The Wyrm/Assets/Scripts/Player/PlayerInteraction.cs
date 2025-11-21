@@ -9,6 +9,8 @@ public class PlayerInteraction : MonoBehaviour
     private UIManager UI;
     private PlayerInventory PInv;
 
+    private TutorialManager TM;
+
     public Ray rayCast;
     public RaycastHit hitInfo;
     
@@ -22,6 +24,10 @@ public class PlayerInteraction : MonoBehaviour
     {
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
+
         if (GameObject.Find("Scene Manager") != null)
             PInv = GameObject.Find("Scene Manager").GetComponent<PlayerInventory>();
         else
@@ -318,7 +324,12 @@ public class PlayerInteraction : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
 
-
+            if (TM != null && !TM.HasTalked())
+            {
+                StartCoroutine(TM.IsTalking());
+            }
+            else if (TM == null)
+                Debug.LogError("Tutorial for Camera Movement couldn't be found");
 
         }
         else

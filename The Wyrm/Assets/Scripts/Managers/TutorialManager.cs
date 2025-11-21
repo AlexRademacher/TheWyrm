@@ -17,9 +17,6 @@ public class TutorialManager : MonoBehaviour
     private bool Searching = false;
     private bool Placing = false;
 
-    [Tooltip("How long you stay on the current tutorial after completing it to move on to the next one"), SerializeField]
-    private int WaitTime;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +54,30 @@ public class TutorialManager : MonoBehaviour
                 else
                     EndTutorial();
                 break;
+            case 3:
+                if (!Talking)
+                    StartTutorial();
+                else
+                    EndTutorial();
+                break;
+            case 4:
+                if (!Grabing)
+                    StartTutorial();
+                else
+                    EndTutorial();
+                break;
+            case 5:
+                if (!Searching)
+                    StartTutorial();
+                else
+                    EndTutorial();
+                break;
+            case 6:
+                if (!Placing)
+                    StartTutorial();
+                else
+                    EndTutorial();
+                break;
             default:
                 break;
         }
@@ -64,12 +85,14 @@ public class TutorialManager : MonoBehaviour
 
     private void StartTutorial()
     {
-        Tutorials[StageNum].SetActive(true);
+        if (Tutorials != null && Tutorials.Length >= StageNum && Tutorials[StageNum] != null)
+            Tutorials[StageNum].SetActive(true);
     }
 
     private void EndTutorial()
     {
-        Tutorials[StageNum].SetActive(false);
+        if (Tutorials != null && Tutorials.Length >= StageNum && Tutorials[StageNum] != null && Tutorials[StageNum].activeSelf)
+            Tutorials[StageNum].SetActive(false);
         StageNum++;
     }
 
@@ -88,9 +111,29 @@ public class TutorialManager : MonoBehaviour
         return Running;
     }
 
+    public bool HasTalked()
+    {
+        return Talking;
+    }
+
+    public bool HasGrabbed()
+    {
+        return Grabing;
+    }
+
+    public bool HasSearched()
+    {
+        return Searching;
+    }
+
+    public bool HasPlaced()
+    {
+        return Placing;
+    }
+
     public IEnumerator IsLooking()
     {
-        yield return new WaitForSeconds(WaitTime);
+        yield return new WaitForSeconds(3);
 
         if (!Looking)
             Looking = true;
@@ -98,7 +141,7 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator IsMoving()
     {
-        yield return new WaitForSeconds(WaitTime);
+        yield return new WaitForSeconds(3);
 
         if (!Moving)
             Moving = true;
@@ -106,9 +149,41 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator IsRunning()
     {
-        yield return new WaitForSeconds(WaitTime);
+        yield return new WaitForSeconds(2);
 
         if (!Running)
             Running = true;
     }
+    public IEnumerator IsTalking()
+    {
+        yield return new WaitForSeconds(0);
+
+        if (!Talking)
+            Talking = true;
+    }
+
+    public IEnumerator IsGrabbing()
+    {
+        yield return new WaitForSeconds(0);
+
+        if (!Grabing)
+            Grabing = true;
+    }
+
+    public IEnumerator IsSearching()
+    {
+        yield return new WaitForSeconds(0);
+
+        if (!Searching)
+            Searching = true;
+    }
+
+    public IEnumerator IsPlacing()
+    {
+        yield return new WaitForSeconds(0);
+
+        if (!Placing)
+            Placing = true;
+    }
+
 }

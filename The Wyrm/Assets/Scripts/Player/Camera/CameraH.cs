@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LookHorizontal : MonoBehaviour
 {
@@ -21,7 +22,9 @@ public class LookHorizontal : MonoBehaviour
     {
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
 
     }
 
