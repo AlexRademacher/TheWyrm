@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class UIManager : MonoBehaviour
     private GameObject ItemCounter;
     private int ItemAmount = 0;
 
-    [Tooltip("The amount of relics you have"), SerializeField]
+    [Tooltip("The amount of time you have"), SerializeField]
     private GameObject TimerCount;
 
     [Tooltip("The Hide Prompt"), SerializeField]
@@ -65,6 +66,14 @@ public class UIManager : MonoBehaviour
     [Tooltip("The Controls"), SerializeField]
     private GameObject Controls;
 
+    [Header("Time Images")]
+    [SerializeField] private Sprite TimeImageOne;
+    [SerializeField] private Sprite TimeImageTwo;
+    [SerializeField] private Sprite TimeImageThree;
+    [SerializeField] private Sprite TimeImageFour;
+    [SerializeField] private Sprite TimeImageFive;
+    [SerializeField] private Sprite TimeImageSix;
+    [SerializeField] private Sprite TimeImageSeven;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +85,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (!MainMenu.activeSelf)
         {
             if (GM.GetPauseState() && !PauseMenu.activeSelf)
@@ -271,22 +281,20 @@ public class UIManager : MonoBehaviour
 
         if (TimerCount != null)
         {
-            if (hours < 10 && minutes < 10)
-            {
-                TimerCount.transform.GetComponent<TextMeshProUGUI>().text = "0" + hours + ":0" + minutes;
-            }
-            else if (hours < 10 && minutes >= 10)
-            {
-                TimerCount.transform.GetComponent<TextMeshProUGUI>().text = "0" + hours + ":" + minutes;
-            }
-            else if (hours >= 10 && minutes < 10)
-            {
-                TimerCount.transform.GetComponent<TextMeshProUGUI>().text = hours + ":0" + minutes;
-            }
-            else if (hours >= 10 && minutes >= 10)
-            {
-                TimerCount.transform.GetComponent<TextMeshProUGUI>().text = hours + ":" + minutes;
-            }
+            if (hours == 5 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = TimeImageOne;
+            else if (hours == 9 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = TimeImageTwo;
+            else if (hours == 12 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = TimeImageThree;
+            else if (hours == 15 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = TimeImageFour;
+            else if (hours == 17 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = TimeImageFive;
+            else if (hours == 21 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = TimeImageSix;
+            else if (hours == 24 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = TimeImageSeven;
         }
 
     }
