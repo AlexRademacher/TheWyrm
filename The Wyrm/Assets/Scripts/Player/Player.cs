@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
         {
             controller.Move(currentSpeed * Time.deltaTime * newPostion); // sends out the movement of the x and z axis
         }
-        else
+        else if (!hiding)
         {
             Debug.Log("Controller not enabled");
         }
@@ -241,7 +241,7 @@ public class Player : MonoBehaviour
 
         if (controller.enabled)
             controller.Move(playerVelocity * Time.deltaTime); // sets movement of the y axis
-        else
+        else if (!hiding)
         {
             Debug.Log("Controller not enabled");
         }
