@@ -57,7 +57,11 @@ public class RelicChecker : MonoBehaviour
                         audio.Play();
                     }
 
-                    GM.RelicFound();
+                    GM.RelicFoundArena();
+
+                    gameObject.tag = "Untagged";
+                    overlapObject.gameObject.tag = "Untagged";
+
                     break;
                 }
             }

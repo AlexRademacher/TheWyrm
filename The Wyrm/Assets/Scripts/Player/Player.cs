@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = transform.GetComponent<PlayerInteraction>();
 
-        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
             TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
 
         if (GameObject.Find("Scene Manager") != null)
@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
             {
                 StartCoroutine(TM.IsHiding());
             }
-            else if (TM == null)
+            else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
                 Debug.LogError("Tutorial for Dropping couldn't be found");
         }
         else if (Input.GetKeyDown(KeyCode.F) && hiding)
@@ -182,7 +182,7 @@ public class Player : MonoBehaviour
             {
                 StartCoroutine(TM.IsRunning());
             }
-            else if (TM == null)
+            else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
                 Debug.LogError("Tutorial for Player Movement couldn't be found");
         }
         else
@@ -205,7 +205,7 @@ public class Player : MonoBehaviour
         if (TM != null && !TM.HasMoved() && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)) {
             StartCoroutine(TM.IsMoving());
         }
-        else if (TM == null)
+        else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
             Debug.LogError("Tutorial for Player Movement couldn't be found");
     }
 

@@ -18,7 +18,6 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private GameObject dialogBox;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -156,7 +155,7 @@ public class PlayerInteraction : MonoBehaviour
                         {
                             StartCoroutine(TM.IsGrabbing());
                         }
-                        else if (TM == null)
+                        else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
                             Debug.LogError("Tutorial for Picking Up couldn't be found");
                     }
                     else
@@ -191,11 +190,29 @@ public class PlayerInteraction : MonoBehaviour
                         GameObject newRelic = Instantiate(item, hitInfo.point, transform.rotation);
                         newRelic.SetActive(true);
 
+                        if (newRelic.transform.TryGetComponent<SpriteRenderer>(out SpriteRenderer itemRenderer))
+                        {
+                            if (itemRenderer != null)
+                                itemRenderer.enabled = true;
+                        }
+                        else
+                        {
+                            if (newRelic.transform.GetChild(1).TryGetComponent<Canvas>(out Canvas itemSpriteCanvas))
+                                if (itemSpriteCanvas != null)
+                                    itemSpriteCanvas.enabled = true;
+                        }
+                            
+                        if (newRelic.transform.TryGetComponent<BoxCollider>(out BoxCollider collider)) {
+                            collider.enabled = true;
+                        }
+
+                        
+
                         if (TM != null && !TM.HasPlaced())
                         {
                             StartCoroutine(TM.IsPlacing());
                         }
-                        else if (TM == null)
+                        else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
                             Debug.LogError("Tutorial for Placing couldn't be found");
                     }
                     else
@@ -258,7 +275,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             StartCoroutine(TM.IsSearching());
         }
-        else if (TM == null)
+        else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
             Debug.LogError("Tutorial for Searching couldn't be found");
     }
 
@@ -349,7 +366,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 StartCoroutine(TM.IsTalking());
             }
-            else if (TM == null)
+            else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
                 Debug.LogError("Tutorial for Camera Movement couldn't be found");
 
         }

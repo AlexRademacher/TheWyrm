@@ -63,7 +63,7 @@ public class FallablePlatform : MonoBehaviour
             {
                 StartCoroutine(TM.IsDropping());
             }
-            else if (TM == null)
+            else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
                 Debug.LogError("Tutorial for Dropping couldn't be found");
 
             yield return new WaitForSeconds(10);
