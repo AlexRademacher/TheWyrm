@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(timer/60 + ":"+ timer%60);
         // allows player to free cursor by pressing escape
         if (Input.GetKeyDown(KeyCode.Escape))
         {
