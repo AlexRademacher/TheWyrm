@@ -42,7 +42,7 @@ public class LookVertical : MonoBehaviour
             {
                 StartCoroutine(TM.IsLooking());
             }
-            else if (TM == null)
+            else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
                 Debug.LogError("Tutorial for Camera Movement couldn't be found");
         }
         else if (CM == null)

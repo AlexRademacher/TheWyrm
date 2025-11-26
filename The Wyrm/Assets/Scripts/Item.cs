@@ -7,6 +7,8 @@ public class Item : MonoBehaviour
     private UIManager UI;
 
     private ParticleSystem particles;
+    private SpriteRenderer Renderer;
+    private Canvas SpriteCanvas;
 
     // Start is called before the first frame update
     void Start()
@@ -30,13 +32,21 @@ public class Item : MonoBehaviour
 
     public void PickedUp()
     {
+        Debug.LogWarning("picking up!!!");
         if (particles != null)
         {
             //Debug.Log("PARITCLES :D :D :D :D");
             particles.Play();
         }
 
-        transform.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        if (!transform.TryGetComponent<SpriteRenderer>(out Renderer))
+            if (transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
+
+        if (Renderer != null)
+            Renderer.enabled = false;
+
+        if (SpriteCanvas != null)
+            SpriteCanvas.enabled = false;
 
         if (transform.parent.name.Contains("NPC"))
         {

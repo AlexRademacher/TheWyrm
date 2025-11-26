@@ -15,7 +15,7 @@ public class FallablePlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
             TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
 
         standing = transform.GetChild(0).gameObject;
@@ -37,6 +37,22 @@ public class FallablePlatform : MonoBehaviour
 
     private IEnumerator MovementControl()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            if (TM.GetPlaceInTutorial() >= 7)
+                StartCoroutine(DroppingControl());
+        }
+        else
+            StartCoroutine(DroppingControl());
+
+        yield return new WaitForSeconds(.1f);
+
+         if (SceneManager.GetActiveScene().buildIndex != 0)
+            canDrop = true;
+    }
+
+    private IEnumerator DroppingControl()
+    {
         if (transform.GetChild(0).gameObject.activeSelf && canDrop)
         {
             canDrop = false;
@@ -47,17 +63,14 @@ public class FallablePlatform : MonoBehaviour
             {
                 StartCoroutine(TM.IsDropping());
             }
-            else if (TM == null)
+            else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
                 Debug.LogError("Tutorial for Dropping couldn't be found");
 
             yield return new WaitForSeconds(10);
 
-            StandUp();
+            if (SceneManager.GetActiveScene().buildIndex != 0)
+                StandUp();
         }
-
-        yield return new WaitForSeconds(.1f);
-
-        canDrop = true;
     }
 
     private void FallOver()

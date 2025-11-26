@@ -87,19 +87,13 @@ public class TutorialManager : MonoBehaviour
                 break;
                 
             case 7:
-                if (!Placing)
+                if (!Dropping)
                     StartTutorial();
                 else
                     EndTutorial();
                 break;
             case 8:
-                if (!Dropping)
-                    StartTutorial();
-                else
-                    EndTutorial();
-                break;
-            case 9:
-                if (!Dropping)
+                if (!Placing)
                     StartTutorial();
                 else
                     EndTutorial();
@@ -107,6 +101,11 @@ public class TutorialManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public int GetPlaceInTutorial()
+    {
+        return StageNum;
     }
 
     private void StartTutorial()
