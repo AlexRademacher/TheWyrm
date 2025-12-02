@@ -206,7 +206,10 @@ public class PlayerInteraction : MonoBehaviour
                             collider.enabled = true;
                         }
 
-                        
+                        if (UI != null)
+                        {
+                            UI.UpdateItemCount(-1);
+                        }
 
                         if (TM != null && !TM.HasPlaced())
                         {

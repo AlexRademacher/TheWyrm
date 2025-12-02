@@ -243,12 +243,12 @@ public class PlayerInventory : MonoBehaviour
             Debug.LogWarning("Inventory slot is empty");
             return null;
         }
-        
-        if (item.name.Contains("Relic"))
+
+        /*if (item.name.Contains("Relic"))
         {
             if (UI != null)
                 UI.UpdateItemCount(-1);
-        }
+        }*/
 
         inventoryIndex--;
 
