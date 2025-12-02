@@ -247,7 +247,7 @@ public class SaveDataManager : MonoBehaviour
                 else
                 {
                     Debug.LogWarning("Item is null");
-                    Debug.Log("Within " + SceneManager.GetActiveScene().name);
+                    //Debug.Log("Within " + SceneManager.GetActiveScene().name);
                 }
             }
 
