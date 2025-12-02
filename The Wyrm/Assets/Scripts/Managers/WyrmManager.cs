@@ -246,7 +246,7 @@ public class WyrmManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(time);
         WSM.WyrmLeft();
 
-        if (gameObject.activeSelf)
+        if (gameObject != null && gameObject.activeSelf)
             Destroy(gameObject);
     }
 

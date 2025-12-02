@@ -301,7 +301,7 @@ public class GameManager : MonoBehaviour
     //----------------------------------------------------------------------------------------------
     // Relics ending
 
-    public void RelicFoundArena()
+    public void RelicFound()
     {
         relicsFound = relicsFound + 1;
 
@@ -320,8 +320,12 @@ public class GameManager : MonoBehaviour
                     if (SceneManager.GetActiveScene().buildIndex == 7)
                         UI.ShowVictoryEnding();
                     else
-                        lSM.SendToVillage();
-
+                    {
+                        if (SceneManager.GetActiveScene().name.Contains("Level") || SceneManager.GetActiveScene().name.Contains("level"))
+                            lSM.SendToArena();
+                        else if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena"))
+                            lSM.SendToVillage();
+                    }
                 }
                 else
                     Debug.LogWarning("Scene Manager not set up right");

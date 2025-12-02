@@ -174,6 +174,8 @@ public class SaveDataManager : MonoBehaviour
             {
                 if (item != null)
                 {
+                    //Debug.Log("Relic saved: " + item.name);
+
                     if (item.name.Contains("Necklace"))
                     {
                         if (relic != null)
@@ -273,6 +275,8 @@ public class SaveDataManager : MonoBehaviour
 
                 foreach (int num in playerInventoryRelicIndex)
                 {
+                    //Debug.Log("Relic number loaded: " + num);
+
                     switch(num)
                     {
                         case 0:

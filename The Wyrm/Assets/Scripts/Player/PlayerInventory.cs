@@ -164,7 +164,9 @@ public class PlayerInventory : MonoBehaviour
         }
 
         GameObject oldSlot = inventory[index];
-        inventory[index] = null;
+
+        if (!SceneManager.GetActiveScene().name.Contains("Level"))
+            inventory[index] = null;
 
         if (inventoryDebugging)
             Debug.Log("Set inventory at index: " + index + " to null");
@@ -198,18 +200,18 @@ public class PlayerInventory : MonoBehaviour
 
                         if (item.name.Contains("Relic"))
                         {
-                            if (item.name.Contains("Bag") || item.name.Contains("Net") || item.name.Contains("Doll")) {
-                                    relic1Found = true;
-                            }
-                            else if (item.name.Contains("Paper") || item.name.Contains("Scaler") || item.name.Contains("Hat")) {
-                                    relic2Found = true;
-                            } 
-                            else if (item.name.Contains("Necklace") || item.name.Contains("Feather") || item.name.Contains("Scythe")) {
-                                    relic3Found = true;
-                            }
-                        }
+                            if (relic2Found)
+                                relic3Found = true;
 
-                        CheckAllRelicsGot();
+                            if (relic1Found)
+                                relic2Found = true;
+
+                            if (!relic1Found)
+                                relic1Found = true;
+
+                            if (relic3Found)
+                                CheckAllRelicsGot();
+                        }
                     }
                 }
             }
@@ -283,7 +285,7 @@ public class PlayerInventory : MonoBehaviour
                     relic1Found = false;
                     relic2Found = false;
                     relic3Found = false;
-                    lSM.SendToArena();
+                    //lSM.SendToArena();
                 }
                 else
                     Debug.LogWarning("Scene Manager not set up right");

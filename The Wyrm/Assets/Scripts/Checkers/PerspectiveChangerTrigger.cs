@@ -19,6 +19,8 @@ public class PerspectiveChangerTrigger : MonoBehaviour
     private bool leaveFast;
     [Tooltip("The Wrym will spawn sooner if true"), SerializeField]
     private bool spawnFast;
+    [Tooltip("The Max amount of reloads allowed to happen"), SerializeField]
+    private int maxReloads = 5;
 
     [Header("Debugger")]
     [Tooltip("Turns on Relic Check Debugging"), SerializeField]
@@ -75,7 +77,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
             Debug.LogWarning("Could not find the Wyrm Spawn Manager script");
     }
 
-    private IEnumerator RemovalCheck()
+    private IEnumerator RemovalCheck(int currentCheck)
     {
         if (spawnFast)
         {
@@ -102,8 +104,13 @@ public class PerspectiveChangerTrigger : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Wyrm missing retrying removal");
-            StartCoroutine(RemovalCheck());
+            if (currentCheck <= maxReloads)
+            {
+                //Debug.LogWarning("Wyrm missing retrying removal");
+                StartCoroutine(RemovalCheck(currentCheck + 1));
+            }
+            else
+                Debug.LogWarning("Max amount of retrying removal reached Wyrm missing");
         }
     }
 
@@ -141,7 +148,7 @@ public class PerspectiveChangerTrigger : MonoBehaviour
             }
             else
             {
-                StartCoroutine(RemovalCheck());
+                StartCoroutine(RemovalCheck(0));
             }
         }
     }

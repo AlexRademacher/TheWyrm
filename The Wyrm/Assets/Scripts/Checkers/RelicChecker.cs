@@ -50,14 +50,18 @@ public class RelicChecker : MonoBehaviour
                     found = true;
 
                     if (relicDebug)
-                        Debug.Log("Relic has been found");
+                    {
+                        Debug.Log(gameObject.name + ": Relic has been found");
+                        Debug.Log(overlapObject.name + " overlaps at" + overlapObject.transform.position);
+                    }
+                        
 
                     if (TryGetComponent<AudioSource>(out AudioSource audio))
                     {
                         audio.Play();
                     }
 
-                    GM.RelicFoundArena();
+                    GM.RelicFound();
 
                     gameObject.tag = "Untagged";
                     overlapObject.gameObject.tag = "Untagged";
