@@ -389,6 +389,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowTeacherCutscene()
     {
+        Replacer replacer = GameObject.Find("NPCBrother").GetComponent<Replacer>();
+        replacer.Replace();
         Cutscenes[1].SetActive(true);
         GM.PauseGame();
     }
