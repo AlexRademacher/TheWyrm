@@ -22,7 +22,7 @@ public class Replacer : MonoBehaviour
     public void Replace() 
     {
         Debug.Log("Replaced");
-        Instantiate(newBrother, new Vector3(353.7f, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+        Instantiate(newBrother, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
         Destroy(this.gameObject, 2f);
     }
 }
