@@ -347,6 +347,13 @@ public class PlayerInteraction : MonoBehaviour
                     UI.SetTextNameBox("Sculptor's Son");
                     lastNpcId = 13;
                     break;
+                case 14: //Brother Box
+                    if (SceneManager.GetActiveScene().buildIndex == 0)
+                        UI.SetTextNameBox("Mysterious Child");
+                    else
+                        UI.SetTextNameBox("Brother");
+                    lastNpcId = 8;
+                    break;
                 default:
                     Debug.LogWarning("Unknown ID");
                     break;
