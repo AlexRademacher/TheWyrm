@@ -63,8 +63,8 @@ public class UIManager : MonoBehaviour
     [Tooltip("The Credits"), SerializeField]
     private GameObject Credits;
 
-    [Tooltip("The Controls"), SerializeField]
-    private GameObject Controls;
+    //[Tooltip("The Controls"), SerializeField]
+    //private GameObject Controls;
 
     [Header("Time Images")]
     [SerializeField] private Sprite TimeImageOne;
@@ -121,13 +121,7 @@ public class UIManager : MonoBehaviour
 
     public void CutSceneIntroContinue()
     {
-        Controls.SetActive(true);
-    }
-
-    public void ControlsScreenContinue()
-    {
         GM.SetStartedState(true);
-        Controls.SetActive(false);
         Cutscenes[0].SetActive(false);
         MainMenu.SetActive(false);
         GM.CursorVisiblity(false);

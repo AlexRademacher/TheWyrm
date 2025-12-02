@@ -126,8 +126,7 @@ public class LoadSceneManager : MonoBehaviour
         if (GameObject.Find("Canvas").TryGetComponent<UIManager>(out UIManager UI))
         {
             //UI.MainStartButton();
-            //UI.CutSceneIntroContinue();
-            UI.ControlsScreenContinue();
+            UI.CutSceneIntroContinue();
         }
     }
 
