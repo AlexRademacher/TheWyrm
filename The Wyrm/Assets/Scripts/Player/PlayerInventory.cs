@@ -210,7 +210,8 @@ public class PlayerInventory : MonoBehaviour
                                 relic1Found = true;
 
                             if (relic3Found)
-                                CheckAllRelicsGot();
+                                if (SceneManager.GetActiveScene().buildIndex == 4)
+                                    UI.CutsceneVillageToVillage();
                         }
                     }
                 }

@@ -323,10 +323,7 @@ public class GameManager : MonoBehaviour
                     {
                         if (SceneManager.GetActiveScene().name.Contains("Level") || SceneManager.GetActiveScene().name.Contains("level"))
                         {
-                            if (SceneManager.GetActiveScene().buildIndex == 4)
-                                UI.CutsceneVillageToVillage();
-                            else
-                                lSM.SendToArena();
+                            lSM.SendToArena();
                         }
                         else if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena"))
                         {
