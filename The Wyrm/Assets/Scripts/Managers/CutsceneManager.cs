@@ -47,6 +47,8 @@ public class CutsceneManager : MonoBehaviour
     {
         if (transform.parent.name.Contains("Intro"))
             UI.CutSceneIntroContinue();
+        else if (transform.parent.name.Contains("Teacher"))
+            UI.CutSceneTeacherContinue();
         else
             gameObject.SetActive(false);
     }

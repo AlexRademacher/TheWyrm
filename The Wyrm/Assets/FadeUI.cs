@@ -19,8 +19,14 @@ public class FadeUI : MonoBehaviour
     {
         if (StartFadeIn)
         {
-            currentColor = GetComponent<Image>().color;
-            FadeInImage(currentColor);
+            if (TryGetComponent<Image>(out Image image))
+            {
+                FadeIn(image.color);
+            }
+            else if (TryGetComponent<Material>(out Material material))
+            {
+                FadeIn(material.color);
+            }
         }
 
         if (StartTempFadeIn)
