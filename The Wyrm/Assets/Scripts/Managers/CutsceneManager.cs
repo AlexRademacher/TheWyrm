@@ -49,6 +49,14 @@ public class CutsceneManager : MonoBehaviour
             UI.CutSceneIntroContinue();
         else if (transform.parent.name.Contains("Teacher"))
             UI.CutSceneTeacherContinue();
+        else if (transform.parent.name.Contains("Village Transition"))
+            UI.CutSceneTeacherContinue();
+        else if (transform.parent.name.Contains("Arena 1 Final"))
+            UI.CutSceneTeacherContinue();
+        else if (transform.parent.name.Contains("Arena 2 Final"))
+            UI.CutSceneTeacherContinue();
+        else if (transform.parent.name.Contains("Arena 3 Final"))
+            UI.CutSceneTeacherContinue();
         else
             gameObject.SetActive(false);
     }
