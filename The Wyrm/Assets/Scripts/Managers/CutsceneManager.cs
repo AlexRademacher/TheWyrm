@@ -50,13 +50,21 @@ public class CutsceneManager : MonoBehaviour
         else if (transform.parent.name.Contains("Teacher"))
             UI.CutSceneTeacherContinue();
         else if (transform.parent.name.Contains("Village Transition"))
-            UI.CutSceneTeacherContinue();
-        else if (transform.parent.name.Contains("Arena 1 Final"))
-            UI.CutSceneTeacherContinue();
-        else if (transform.parent.name.Contains("Arena 2 Final"))
-            UI.CutSceneTeacherContinue();
+        {
+            if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
+            {
+                lSM.SendToArena();
+            }
+        }
+        else if (transform.parent.name.Contains("Arena 1 Final") || transform.parent.name.Contains("Arena 2 Final"))
+        {
+            if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
+            {
+                lSM.SendToVillage();
+            }
+        }
         else if (transform.parent.name.Contains("Arena 3 Final"))
-            UI.CutSceneTeacherContinue();
+            UI.ShowVictoryEnding();
         else
             gameObject.SetActive(false);
     }

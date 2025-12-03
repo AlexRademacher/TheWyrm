@@ -188,6 +188,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void CutsceneVillageToVillage()
+    {
+        Cutscenes[5].SetActive(true);
+    }
+
+    public void CutsceneArena1()
+    {
+        Cutscenes[6].SetActive(true);
+    }
+
+    public void CutsceneArena2()
+    {
+        Cutscenes[7].SetActive(true);
+    }
+
+    public void CutsceneArena3()
+    {
+        Cutscenes[8].SetActive(true);
+    }
+
     //--------------------------------------------------------------------------------------------------------
     // Player UI
 

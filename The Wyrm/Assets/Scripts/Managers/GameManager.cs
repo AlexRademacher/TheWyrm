@@ -318,13 +318,24 @@ public class GameManager : MonoBehaviour
                     //relicsFound = 0;
 
                     if (SceneManager.GetActiveScene().buildIndex == 7)
-                        UI.ShowVictoryEnding();
+                        UI.CutsceneArena3();
                     else
                     {
                         if (SceneManager.GetActiveScene().name.Contains("Level") || SceneManager.GetActiveScene().name.Contains("level"))
-                            lSM.SendToArena();
+                        {
+                            if (SceneManager.GetActiveScene().buildIndex == 4)
+                                UI.CutsceneVillageToVillage();
+                            else
+                                lSM.SendToArena();
+                        }
                         else if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena"))
-                            lSM.SendToVillage();
+                        {
+                            if (SceneManager.GetActiveScene().buildIndex == 1)
+                                UI.CutsceneArena1();
+                            else if (SceneManager.GetActiveScene().buildIndex == 3)
+                                UI.CutsceneArena2();
+                        }
+
                     }
                 }
                 else
