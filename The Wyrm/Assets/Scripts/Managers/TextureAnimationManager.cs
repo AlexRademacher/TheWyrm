@@ -36,7 +36,6 @@ public class TextureAnimationManager : MonoBehaviour
         if (TargetRenderer != null)
         {
             TargetRenderer.material.SetTexture("_MainTex", Textures[i]);
-            Debug.Log("Renderering animation");
         }
         else
             Debug.LogWarning("Renderer not found");
