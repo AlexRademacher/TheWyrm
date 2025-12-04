@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class FadeUI : MonoBehaviour
 {
+    private Image image;
+    private Material material;
+
     bool hiding = true;
     //bool showing = false;
     Color currentColor;
@@ -19,12 +22,14 @@ public class FadeUI : MonoBehaviour
     {
         if (StartFadeIn)
         {
-            if (TryGetComponent<Image>(out Image image))
+            if (TryGetComponent<Image>(out image))
             {
+                image.color = new (image.color.r, image.color.b, image.color.g, 0);
                 FadeIn(image.color);
             }
-            else if (TryGetComponent<Material>(out Material material))
+            else if (TryGetComponent<Material>(out material))
             {
+                material.color = new(image.color.r, image.color.b, image.color.g, 0);
                 FadeIn(material.color);
             }
         }
@@ -32,7 +37,7 @@ public class FadeUI : MonoBehaviour
         if (StartTempFadeIn)
         {
             currentColor = GetComponent<Image>().color;
-            FadeInTemporary(currentColor, 5);
+            FadeInTemporary(currentColor, 1);
         }
         
     }
@@ -46,7 +51,7 @@ public class FadeUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentColor.a);
+        /*Debug.Log(currentColor.a);
         if (currentColor.a >= 10/255f && hiding == true) //if alpha is greater than ten decrease alpha
             currentColor = new Color(currentColor.r, currentColor.g, currentColor.b, currentColor.a - 10 / 255f); //decreases alpha over time
         else if (currentColor.a == 1f) // if alpha is at max allow alpha to go down
@@ -56,7 +61,7 @@ public class FadeUI : MonoBehaviour
             hiding = false;
             currentColor = new Color(currentColor.r, currentColor.g, currentColor.b, currentColor.a + 10 / 255f); //increases alpha over time
         }
-        GetComponent<Image>().color = currentColor;
+        GetComponent<Image>().color = currentColor;*/
     }
 
     public bool FadeIn(Color color)
@@ -89,8 +94,13 @@ public class FadeUI : MonoBehaviour
         {
             while (currentAlpha.a < 1)
             {
-                currentAlpha = new Color(currentAlpha.r, currentAlpha.g, currentAlpha.b, currentAlpha.a + 10 / 255f); //decreases alpha over time
+                currentAlpha = new Color(currentAlpha.r, currentAlpha.g, currentAlpha.b, currentAlpha.a + 1 / 255f); //decreases alpha over time
                 Debug.Log(currentAlpha.a);
+
+                if (image != null)
+                    image.color = currentAlpha;
+                else if (material != null)
+                    material.color = currentAlpha;
             }
                 
             return true;
@@ -107,8 +117,13 @@ public class FadeUI : MonoBehaviour
         {
             while (currentAlpha.a > 0)
             {
-                currentAlpha = new Color(currentAlpha.r, currentAlpha.g, currentAlpha.b, currentAlpha.a - 10 / 255f); //decreases alpha over time
+                currentAlpha = new Color(currentAlpha.r, currentAlpha.g, currentAlpha.b, currentAlpha.a - 1 / 255f); //decreases alpha over time
                 Debug.Log(currentAlpha.a);
+
+                if (image != null)
+                    image.color = currentAlpha;
+                else if (material != null)
+                    material.color = currentAlpha;
             }
                 
             return true;
