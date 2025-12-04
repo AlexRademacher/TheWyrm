@@ -54,6 +54,18 @@ public class WyrmManager : MonoBehaviour
                 }
             }
         }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            int num = Random.Range(1, 3);
+            if (num == 1)
+            {
+                wyrmNum = 1;
+            }
+            else
+            {
+                wyrmNum = 3;
+            }
+        }
 
         if (transform.GetChild(0).TryGetComponent<SpriteRenderer>(out SpriteRenderer wyrmLook))
         {
