@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+
+    private SpriteRenderer Renderer;
+    private Canvas SpriteCanvas;
+
     /*
      * Questions in the box
      * progress questions on button presses
@@ -221,6 +225,15 @@ public class DialogueManager : MonoBehaviour
                 {
                     if (currentNpc.TryGetComponent<Item>(out Item itemScript))
                     {
+                        if (!transform.TryGetComponent<SpriteRenderer>(out Renderer))
+                            if (transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
+
+                                if (Renderer != null)
+                                    Renderer.enabled = false;
+
+                        if (SpriteCanvas != null)
+                            SpriteCanvas.enabled = false;
+
                         itemScript.PickedUp();
                         GM.sacraficed();
                     }

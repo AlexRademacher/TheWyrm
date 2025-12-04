@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
             nearbyDropper.FallableControl();
         }
 
-        if (SceneManager.GetActiveScene().buildIndex == 6)
+        if (SceneManager.GetActiveScene().buildIndex == 5)
         {
             if (transform.position.y < 45)
             {
