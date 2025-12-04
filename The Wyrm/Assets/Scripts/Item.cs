@@ -48,7 +48,7 @@ public class Item : MonoBehaviour
         if (SpriteCanvas != null)
             SpriteCanvas.enabled = false;
 
-        if (transform.parent.name.Contains("NPC"))
+        if (transform.name.Contains("NPC"))
         {
             if (transform.TryGetComponent<BoxCollider>(out BoxCollider collider))
                 collider.enabled = false;
