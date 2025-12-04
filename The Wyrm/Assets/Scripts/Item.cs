@@ -39,11 +39,20 @@ public class Item : MonoBehaviour
             particles.Play();
         }
 
-        if (!transform.TryGetComponent<SpriteRenderer>(out Renderer))
+        if (!transform.TryGetComponent<SpriteRenderer>(out Renderer)) {
+            Debug.LogWarning("killing npc");
             if (transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
+            {
+                Debug.LogWarning("killing npc");
+            }
+        }
+            
 
         if (Renderer != null)
+        {
             Renderer.enabled = false;
+        }
+            
 
         if (SpriteCanvas != null)
             SpriteCanvas.enabled = false;
