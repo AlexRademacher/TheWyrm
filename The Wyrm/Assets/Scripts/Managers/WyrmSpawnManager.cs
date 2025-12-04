@@ -54,7 +54,7 @@ public class WyrmSpawnManager : MonoBehaviour
                 Debug.Log("spawning wyrm");
                 StartCoroutine(SpawnCountdown(1));
             }
-            else if (Random.Range(1, 7) > 0)
+            else if (Random.Range(1, 7) > 4)
             {
                 Debug.Log("Wyrm spawning");
                 StartCoroutine(SpawnCountdown(waitTime));
