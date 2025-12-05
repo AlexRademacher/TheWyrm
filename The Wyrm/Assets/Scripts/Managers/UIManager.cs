@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         P = GameObject.Find("Player").GetComponent<Player>();
 
-        if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena"))
+        if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena") || SceneManager.GetActiveScene().buildIndex == 5)
             UpdateItemCount(3);
     }
 

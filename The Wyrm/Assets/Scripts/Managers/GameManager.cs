@@ -251,12 +251,16 @@ public class GameManager : MonoBehaviour
 
         RenderSettings.skybox = skyLook;
 
-        foreach (GameObject light in lightings)
+        if (lightings != null)
         {
-            light.SetActive(false);
+            foreach (GameObject light in lightings)
+            {
+                light.SetActive(false);
+            }
+            lighting.SetActive(true);
         }
-        lighting.SetActive(true);
-
+        else
+            Debug.LogWarning("Missing Sky box and lighting");
     }
 
     //----------------------------------------------------------------------------------------------------------------------
