@@ -226,7 +226,7 @@ public class DialogueManager : MonoBehaviour
                     if (currentNpc.TryGetComponent<Item>(out Item itemScript))
                     {
                         if (!transform.TryGetComponent<SpriteRenderer>(out Renderer))
-                            if (transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
+                            if (transform.childCount > 0 && transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
 
                                 if (Renderer != null)
                                     Renderer.enabled = false;

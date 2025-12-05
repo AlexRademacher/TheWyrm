@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
         if ( oldTime != timer)
         {
-            if (SceneManager.GetActiveScene().buildIndex != 6)
+            if (SceneManager.GetActiveScene().buildIndex != 5)
                 UI.UpdateClockTimer(timer);
             else
                 UI.UpdateClockTimer(300);
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (SceneManager.GetActiveScene().buildIndex == 6)
+        if (SceneManager.GetActiveScene().buildIndex == 5)
         {
             if (sacrificed >= 2)
             {
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
     {
         timer += addedTime;
 
-        if (SceneManager.GetActiveScene().buildIndex != 6)
+        if (SceneManager.GetActiveScene().buildIndex != 5)
         {
             if (timer >= 300 && timer <= 540)
             {
@@ -317,7 +317,7 @@ public class GameManager : MonoBehaviour
                 {
                     //relicsFound = 0;
 
-                    if (SceneManager.GetActiveScene().buildIndex == 7)
+                    if (SceneManager.GetActiveScene().buildIndex == 6)
                         UI.CutsceneArena3();
                     else
                     {

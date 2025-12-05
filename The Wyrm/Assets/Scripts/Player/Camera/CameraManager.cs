@@ -36,7 +36,7 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && (SceneManager.GetActiveScene().buildIndex != 5))
         {
             Camera1stPerson.enabled = !Camera1stPerson.enabled;
             MapCam.enabled = !MapCam.enabled;
