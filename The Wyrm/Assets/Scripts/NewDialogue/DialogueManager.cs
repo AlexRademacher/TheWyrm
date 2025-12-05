@@ -201,7 +201,7 @@ public class DialogueManager : MonoBehaviour
 
 
         //If the current dialog is not a choice progress normally
-        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E) && !isTyping && !choiceLine && !endingLine)
+        if (dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E) && !isTyping && !choiceLine && !endingLine && !branchLine1n2 && !branchLine3n4)
         {
             
             ++currentLine;
