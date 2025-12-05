@@ -121,7 +121,17 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (hitInfo.transform.gameObject.CompareTag("drop"))
         {
-            UI.CrosshairFToggle(true);
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                if (TM.GetPlaceInTutorial() == 7)
+                {
+                    UI.CrosshairFToggle(true);
+                }
+            }
+            else if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena"))
+            {
+                UI.CrosshairFToggle(true);
+            }
         }
         else
         {
