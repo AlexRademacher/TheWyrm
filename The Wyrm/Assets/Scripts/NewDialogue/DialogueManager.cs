@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] bool branchLine1n2 = false;
     [SerializeField] bool branchLine3n4 = false;
     [SerializeField] bool inBranch = false;
+    [SerializeField] bool waitingOnChoice = false;
     [SerializeField] int currentBranch = 0;
 
     public static DialogueManager Instance { get; private set; }
@@ -241,8 +242,12 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        if (choiceLine || branchLine1n2 || branchLine3n4)
-            ShowButtons();
+        if ((choiceLine || branchLine1n2 || branchLine3n4) && Input.GetKeyDown(KeyCode.Alpha1))
+            choiceOne();
+
+        if ((choiceLine || branchLine1n2 || branchLine3n4) && Input.GetKeyDown(KeyCode.Alpha2))
+            choiceTwo();
+            //ShowButtons(); //Switch to button presses
     }
 
     //If the current dialog is a choice progress to the first option. (next line)
