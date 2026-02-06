@@ -114,7 +114,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     dialogText.text += letter;
                 }
-                yield return new WaitForSeconds(5 * Time.deltaTime);
+                yield return new WaitForSeconds(0.001F);
             }
         isTyping = false;
     }
