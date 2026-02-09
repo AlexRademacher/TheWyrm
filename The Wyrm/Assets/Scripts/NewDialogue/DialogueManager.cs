@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +43,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] int currentBranch = 0;
 
     public static DialogueManager Instance { get; private set; }
+
+    public bool inDialouge = false;
 
     private void Awake()
     {
@@ -124,8 +127,7 @@ public class DialogueManager : MonoBehaviour
 
         if (choiceLine || branchLine1n2 || branchLine3n4) 
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            inDialouge = true;
         }
 
         if (inBranch &&  !isTyping && dialogBox.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E))
@@ -170,8 +172,7 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(delayBool());
 
                 
             }
@@ -185,8 +186,7 @@ public class DialogueManager : MonoBehaviour
             dialogBox.SetActive(false);
             OnHideDialog?.Invoke();
             currentLine = 0;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            StartCoroutine(delayBool());
 
             if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
             {
@@ -219,8 +219,7 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(delayBool());
 
                 if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
                 {
@@ -266,8 +265,7 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(delayBool());
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -287,8 +285,7 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(delayBool());
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -308,8 +305,7 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(delayBool());
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -334,8 +330,7 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(delayBool());
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -355,8 +350,7 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(delayBool());
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -375,14 +369,19 @@ public class DialogueManager : MonoBehaviour
                 dialogBox.SetActive(false);
                 OnHideDialog?.Invoke();
                 currentLine = 0;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine(delayBool());
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
         }
         buttonOne.SetActive(false);
         buttonTwo.SetActive(false);
+    }
+
+    IEnumerator delayBool() 
+    {
+        yield return new WaitForSeconds(1);
+        inDialouge = false;
     }
 }
 

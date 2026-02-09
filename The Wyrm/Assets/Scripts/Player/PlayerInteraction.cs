@@ -67,7 +67,7 @@ public class PlayerInteraction : MonoBehaviour
             Crosshair();
 
             // if E is clicked
-            if (Input.GetKeyDown(KeyCode.E) && Cursor.visible == false)
+            if (Input.GetKeyDown(KeyCode.E) && DialogueManager.Instance.inDialouge == false)
             {
                 if (hitInfo.transform.gameObject != null)
                 {
@@ -381,8 +381,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 //Debug.Log("found Dialog");
                 StartCoroutine(DialogueManager.Instance.ShowDialog(dialog, hitInfo.transform.gameObject));
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                
             }
 
             if (TM != null && !TM.HasTalked())
