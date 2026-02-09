@@ -41,7 +41,7 @@ public class PlayerInteraction : MonoBehaviour
             InteractFirstPerson();
         }
 
-        if (lastNpcId == 8 && Cursor.visible == false && SceneManager.GetActiveScene().buildIndex == 0)
+        if (lastNpcId == 8 && DialogueManager.Instance.triggerCutsceneable == true && SceneManager.GetActiveScene().buildIndex == 0)
         {
             lastNpcId = 0;
             UI.ShowTeacherCutscene();

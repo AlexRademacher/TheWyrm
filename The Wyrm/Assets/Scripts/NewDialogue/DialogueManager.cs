@@ -45,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance { get; private set; }
 
     public bool inDialouge = false;
+    public bool triggerCutsceneable = false;
 
     private void Awake()
     {
@@ -173,7 +174,7 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
                 StartCoroutine(delayBool());
-
+                triggerCutsceneable = true;
                 
             }
         }
@@ -196,6 +197,7 @@ public class DialogueManager : MonoBehaviour
                     GM.sacraficed();
                 }
             }
+            triggerCutsceneable = true;
         }
 
         
@@ -238,6 +240,7 @@ public class DialogueManager : MonoBehaviour
                         GM.sacraficed();
                     }
                 }
+                triggerCutsceneable = true;
             }
         }
 
@@ -266,6 +269,7 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
                 StartCoroutine(delayBool());
+                triggerCutsceneable = true;
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -286,6 +290,7 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
                 StartCoroutine(delayBool());
+                triggerCutsceneable = true;
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -306,6 +311,7 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
                 StartCoroutine(delayBool());
+                triggerCutsceneable = true;
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -331,6 +337,7 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
                 StartCoroutine(delayBool());
+                triggerCutsceneable = true;
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -351,6 +358,7 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
                 StartCoroutine(delayBool());
+                triggerCutsceneable = true;
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -370,6 +378,7 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
                 StartCoroutine(delayBool());
+                triggerCutsceneable = true;
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
