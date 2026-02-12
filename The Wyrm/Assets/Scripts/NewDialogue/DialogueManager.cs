@@ -84,6 +84,7 @@ public class DialogueManager : MonoBehaviour
         dialogBox.SetActive(true);
         //Types the dialog
         StartCoroutine(TypeDialog(dialog.Lines[0]));
+        inDialouge = true;
     }
 
 
