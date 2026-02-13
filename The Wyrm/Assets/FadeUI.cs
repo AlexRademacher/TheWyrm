@@ -95,7 +95,7 @@ public class FadeUI : MonoBehaviour
             while (currentAlpha.a < 1)
             {
                 currentAlpha = new Color(currentAlpha.r, currentAlpha.g, currentAlpha.b, currentAlpha.a + 1 / 255f); //decreases alpha over time
-                Debug.Log(currentAlpha.a);
+                //Debug.Log(currentAlpha.a);
 
                 if (image != null)
                     image.color = currentAlpha;

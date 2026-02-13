@@ -41,10 +41,10 @@ public class PlayerInteraction : MonoBehaviour
             InteractFirstPerson();
         }
 
-        if (lastNpcId == 8 && DialogueManager.Instance.triggerCutsceneable == true && SceneManager.GetActiveScene().buildIndex == 0)
+        if (lastNpcId == 8 && SceneManager.GetActiveScene().buildIndex == 0)
         {
-            lastNpcId = 0;
-            UI.ShowTeacherCutscene();
+            //lastNpcId = 0;
+            StartCoroutine(delayCutsceneCheck());
 
         }
     }
@@ -67,38 +67,44 @@ public class PlayerInteraction : MonoBehaviour
             Crosshair();
 
             // if E is clicked
-            if (Input.GetKeyDown(KeyCode.E) && DialogueManager.Instance.inDialouge == false)
+            if (DialogueManager.Instance != null)
             {
-                if (hitInfo.transform.gameObject != null)
+                if (Input.GetKeyDown(KeyCode.E) && DialogueManager.Instance.inDialouge == false)
                 {
-                    if (hitInfo.transform.gameObject.CompareTag("Item")) // Picking things up
+                    if (hitInfo.transform.gameObject != null)
                     {
-                        //Debug.LogWarning("the Object trying to be picked up is " + hitInfo.transform.gameObject.name);
-                        PickUpItem(hitInfo.transform.gameObject); // specific interactions with item
-                    }
+                        if (hitInfo.transform.gameObject.CompareTag("Item")) // Picking things up
+                        {
+                            //Debug.LogWarning("the Object trying to be picked up is " + hitInfo.transform.gameObject.name);
+                            PickUpItem(hitInfo.transform.gameObject); // specific interactions with item
+                        }
 
-                    if (hitInfo.transform.gameObject.CompareTag("NPC"))
-                    {
-                        TalkingToNPC();
-                    }
+                        if (hitInfo.transform.gameObject.CompareTag("NPC"))
+                        {
+                            TalkingToNPC();
+                        }
 
-                    if (hitInfo.transform.gameObject.CompareTag("Door"))
-                    {
-                        DoorInteraction(hitInfo.transform.gameObject, true);
-                        DoorInteraction(hitInfo.transform.gameObject, false);
-                    }
+                        if (hitInfo.transform.gameObject.CompareTag("Door"))
+                        {
+                            DoorInteraction(hitInfo.transform.gameObject, true);
+                            DoorInteraction(hitInfo.transform.gameObject, false);
+                        }
 
-                    if (hitInfo.transform.gameObject.CompareTag("Openable"))
-                    {
-                        OpenObject();
+                        if (hitInfo.transform.gameObject.CompareTag("Openable"))
+                        {
+                            OpenObject();
+                        }
                     }
+                    else
+                        Debug.LogWarning("Object being interacted with is null");
                 }
-                else
-                    Debug.LogWarning("Object being interacted with is null");
             }
+            else
+                Debug.LogWarning("Dialouge Manager is missing");
 
             // if R is clicked
-            if (Input.GetKeyDown(KeyCode.R) && Cursor.visible == false) {
+            if (Input.GetKeyDown(KeyCode.R) && Cursor.visible == false)
+            {
                 DropItem();
             }
         }
@@ -297,90 +303,93 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (!hitInfo.transform.GetComponent<NPCManager>().canNeverSpeak)
         {
-            Dialog dialog = hitInfo.transform.GetComponent<Dialog>();
-
-            switch (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID)
-            {
-                case 0:
-                    UI.SetTextNameBox("Teacher");
-                    lastNpcId = 0;
-                    break;
-                case 1:
-                    UI.SetTextNameBox("Merchant");
-                    lastNpcId = 1;
-                    break;
-                case 2:
-                    UI.SetTextNameBox("Craftsman");
-                    lastNpcId = 2;
-                    break;
-                case 3:
-                    UI.SetTextNameBox("Wood Sculptor");
-                    lastNpcId = 3;
-                    break;
-                case 4:
-                    UI.SetTextNameBox("Potter");
-                    lastNpcId = 4;
-                    break;
-                case 5:
-                    UI.SetTextNameBox("Fisherman");
-                    lastNpcId = 5;
-                    break;
-                case 6:
-                    UI.SetTextNameBox("Landlord");
-                    lastNpcId = 6;
-                    break;
-                case 7:
-                    UI.SetTextNameBox("Farmer");
-                    lastNpcId = 7;
-                    break;
-                case 8:
-                    if (SceneManager.GetActiveScene().buildIndex == 0)
-                    {
-                        UI.SetTextNameBox("Mysterious Child");
-                        //hitInfo.transform.gameObject;
-                    }
-                    else
-                        UI.SetTextNameBox("Brother");
-                    lastNpcId = 8;
-                    break;
-                case 9:
-                    UI.SetTextNameBox("Widow");
-                    lastNpcId = 9;
-                    break;
-                case 10:
-                    UI.SetTextNameBox("Shaman");
-                    lastNpcId = 10;
-                    break;
-                case 11:
-                    UI.SetTextNameBox("Landlord's Son");
-                    lastNpcId = 11;
-                    break;
-                case 12:
-                    UI.SetTextNameBox("Farmer's Son");
-                    lastNpcId = 12;
-                    break;
-                case 13:
-                    UI.SetTextNameBox("Sculptor's Son");
-                    lastNpcId = 13;
-                    break;
-                case 14: //Brother Replacement
-                    if (SceneManager.GetActiveScene().buildIndex == 0)
-                        UI.SetTextNameBox("Mysterious Child");
-                    else
-                        UI.SetTextNameBox("Brother");
-                    lastNpcId = 8;
-                    break;
-                default:
-                    Debug.LogWarning("Unknown ID");
-                    break;
-            }
+            Dialog Dialog;
+            if (GameObject.FindGameObjectWithTag("Box") == null)
+                Dialog = hitInfo.transform.GetComponent<Dialog>();
+            else 
+                Dialog = hitInfo.transform.GetChild(0).GetComponent<Dialog>();
+                switch (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID)
+                {
+                    case 0:
+                        UI.SetTextNameBox("Teacher");
+                        lastNpcId = 0;
+                        break;
+                    case 1:
+                        UI.SetTextNameBox("Merchant");
+                        lastNpcId = 1;
+                        break;
+                    case 2:
+                        UI.SetTextNameBox("Craftsman");
+                        lastNpcId = 2;
+                        break;
+                    case 3:
+                        UI.SetTextNameBox("Wood Sculptor");
+                        lastNpcId = 3;
+                        break;
+                    case 4:
+                        UI.SetTextNameBox("Potter");
+                        lastNpcId = 4;
+                        break;
+                    case 5:
+                        UI.SetTextNameBox("Fisherman");
+                        lastNpcId = 5;
+                        break;
+                    case 6:
+                        UI.SetTextNameBox("Landlord");
+                        lastNpcId = 6;
+                        break;
+                    case 7:
+                        UI.SetTextNameBox("Farmer");
+                        lastNpcId = 7;
+                        break;
+                    case 8:
+                        if (SceneManager.GetActiveScene().buildIndex == 0)
+                        {
+                            UI.SetTextNameBox("Mysterious Child");
+                            //hitInfo.transform.gameObject;
+                        }
+                        else
+                            UI.SetTextNameBox("Brother");
+                        lastNpcId = 8;
+                        break;
+                    case 9:
+                        UI.SetTextNameBox("Widow");
+                        lastNpcId = 9;
+                        break;
+                    case 10:
+                        UI.SetTextNameBox("Shaman");
+                        lastNpcId = 10;
+                        break;
+                    case 11:
+                        UI.SetTextNameBox("Landlord's Son");
+                        lastNpcId = 11;
+                        break;
+                    case 12:
+                        UI.SetTextNameBox("Farmer's Son");
+                        lastNpcId = 12;
+                        break;
+                    case 13:
+                        UI.SetTextNameBox("Sculptor's Son");
+                        lastNpcId = 13;
+                        break;
+                    case 14: //Brother Replacement
+                        if (SceneManager.GetActiveScene().buildIndex == 0)
+                            UI.SetTextNameBox("Mysterious Child");
+                        else
+                            UI.SetTextNameBox("Brother");
+                        lastNpcId = 8;
+                        break;
+                    default:
+                        Debug.LogWarning("Unknown ID");
+                        break;
+                }
 
             if (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID == 8)
                 lastNpcId = 8;
-            if (dialog != null && dialogBox.activeInHierarchy == false)
+            if (Dialog != null && dialogBox.activeInHierarchy == false)
             {
                 //Debug.Log("found Dialog");
-                StartCoroutine(DialogueManager.Instance.ShowDialog(dialog, hitInfo.transform.gameObject));
+                StartCoroutine(DialogueManager.Instance.ShowDialog(Dialog, hitInfo.transform.gameObject));
                 
             }
 
@@ -441,6 +450,16 @@ public class PlayerInteraction : MonoBehaviour
             {
                 other.transform.GetComponent<NPCManager>().SetInTalkingState(false);
             }
+        }
+    }
+
+    IEnumerator delayCutsceneCheck() 
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (DialogueManager.Instance.triggerCutsceneable == true)
+        {
+            UI.ShowTeacherCutscene();
+            DialogueManager.Instance.triggerCutsceneable = false;
         }
     }
 }

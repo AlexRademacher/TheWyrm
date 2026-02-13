@@ -32,4 +32,17 @@ public class SwipeController : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Player P = other.GetComponent<Player>();
+
+            if (P != null)
+            {
+                P.PlayerKilled();
+            }
+        }
+    }
 }
