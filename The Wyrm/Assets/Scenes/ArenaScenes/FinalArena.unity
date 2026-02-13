@@ -3922,6 +3922,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 182095232}
+  - component: {fileID: 182095234}
+  - component: {fileID: 182095233}
   m_Layer: 0
   m_Name: Swipe test
   m_TagString: Untagged
@@ -3947,6 +3949,39 @@ Transform:
   - {fileID: 285239508}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &182095233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182095231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3eef78060fe58a4a899f7e01a055dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &182095234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182095231}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 4, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &184904334
 GameObject:
   m_ObjectHideFlags: 0
@@ -6141,7 +6176,7 @@ GameObject:
   - component: {fileID: 285239504}
   - component: {fileID: 285239509}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Swipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40282,6 +40317,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1826247383}
+  - component: {fileID: 1826247385}
+  - component: {fileID: 1826247384}
   m_Layer: 0
   m_Name: Claw test
   m_TagString: Untagged
@@ -40298,7 +40335,7 @@ Transform:
   m_GameObject: {fileID: 1826247382}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -214.74004, y: -7, z: 50.260002}
+  m_LocalPosition: {x: -106.64, y: 34.3, z: 6.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40306,6 +40343,39 @@ Transform:
   - {fileID: 2133440783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826247384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826247382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3eef78060fe58a4a899f7e01a055dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1826247385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826247382}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 4, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1829702927
 GameObject:
   m_ObjectHideFlags: 0
@@ -47604,12 +47674,12 @@ GameObject:
   - component: {fileID: 2133440779}
   - component: {fileID: 2133440784}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Claw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2133440779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47648,7 +47718,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -47712,7 +47782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133440778}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.67443687, y: 0.15688244, z: 0.17438877, w: 0.7000796}
+  m_LocalRotation: {x: -0.6744374, y: 0.15688281, z: 0.17438884, w: 0.70007896}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
