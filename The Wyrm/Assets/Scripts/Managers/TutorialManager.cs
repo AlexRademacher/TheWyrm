@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
+    private LoadSceneManager LSM;
+
     [Tooltip("Where each part of the tutorial is stored"), SerializeField]
     private GameObject[] Tutorials;
 
@@ -28,8 +30,20 @@ public class TutorialManager : MonoBehaviour
             tutorial.SetActive(false);
         }
 
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-            StageNum = 8;
+        LSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
+
+        if (LSM.GetReloadNum() > 0)
+        {
+            Looking = true;
+            Moving = true;
+            Running = true;
+            Talking = true;
+            Grabing = true;
+            Searching = true;
+            Placing = true;
+            Hiding = true;
+            Dropping = true;
+        }
     }
 
     // Update is called once per frame
