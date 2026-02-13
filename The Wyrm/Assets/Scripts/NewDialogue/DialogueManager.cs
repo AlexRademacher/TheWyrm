@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -85,6 +87,7 @@ public class DialogueManager : MonoBehaviour
         //Types the dialog
         StartCoroutine(TypeDialog(dialog.Lines[0]));
         inDialouge = true;
+        triggerCutsceneable = false;
     }
 
 
@@ -190,13 +193,17 @@ public class DialogueManager : MonoBehaviour
             currentLine = 0;
             StartCoroutine(delayBool());
 
-            if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
+            if (SceneManager.GetActiveScene().buildIndex == 6)
             {
-                if (currentNpc.TryGetComponent<Item>(out Item itemScript))
+                if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
                 {
-                    itemScript.PickedUp();
-                    GM.sacraficed();
+                    if (currentNpc.TryGetComponent<Item>(out Item itemScript))
+                    {
+                        itemScript.PickedUp();
+                        GM.sacraficed();
+                    }
                 }
+                
             }
             triggerCutsceneable = true;
         }
