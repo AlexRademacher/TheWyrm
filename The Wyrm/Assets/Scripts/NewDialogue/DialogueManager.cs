@@ -34,10 +34,10 @@ public class DialogueManager : MonoBehaviour
 
     bool isTyping;
 
-    [SerializeField] bool choiceLine = false;
+    [SerializeField] public bool choiceLine = false;
     [SerializeField] bool endingLine = false;
-    [SerializeField] bool branchLine1n2 = false;
-    [SerializeField] bool branchLine3n4 = false;
+    [SerializeField] public bool branchLine1n2 = false;
+    [SerializeField] public bool branchLine3n4 = false;
     [SerializeField] bool inBranch = false;
     [SerializeField] bool waitingOnChoice = false;
     [SerializeField] int currentBranch = 0;
