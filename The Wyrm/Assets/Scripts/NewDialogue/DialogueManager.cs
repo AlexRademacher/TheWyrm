@@ -192,15 +192,18 @@ public class DialogueManager : MonoBehaviour
             currentLine = 0;
             StartCoroutine(delayBool());
 
-            if ((currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother")) && SceneManager.GetActiveScene().buildIndex == 6)
+            if (SceneManager.GetActiveScene().buildIndex == 6)
             {
-                if (currentNpc.TryGetComponent<Item>(out Item itemScript))
+                if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
                 {
-                    itemScript.PickedUp();
-                    GM.sacraficed();
+                    if (currentNpc.TryGetComponent<Item>(out Item itemScript))
+                    {
+                        itemScript.PickedUp();
+                        GM.sacraficed();
+                    }
                 }
+                triggerCutsceneable = true;
             }
-            triggerCutsceneable = true;
         }
 
         
