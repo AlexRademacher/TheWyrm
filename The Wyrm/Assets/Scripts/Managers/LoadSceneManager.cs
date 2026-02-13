@@ -10,6 +10,7 @@ public class LoadSceneManager : MonoBehaviour
     private bool loading = false;
 
     private int loadingScreenNum = -1;
+    private int reloadNum = 0;
 
     [Header("Debugger")]
     [Tooltip("Turns on Debugging"), SerializeField]
@@ -37,6 +38,11 @@ public class LoadSceneManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int GetReloadNum()
+    {
+        return reloadNum;
     }
 
     public void SendToSetLevel(int buildNum)
@@ -76,6 +82,8 @@ public class LoadSceneManager : MonoBehaviour
 
     private IEnumerator ChangeScene(int buildNum, bool restart)
     {
+        ++reloadNum;
+
         if (!loading)
         {
             if ((restart || buildNum != SceneManager.GetActiveScene().buildIndex))

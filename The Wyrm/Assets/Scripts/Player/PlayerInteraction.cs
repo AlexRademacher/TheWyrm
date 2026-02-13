@@ -67,34 +67,37 @@ public class PlayerInteraction : MonoBehaviour
             Crosshair();
 
             // if E is clicked
-            if (Input.GetKeyDown(KeyCode.E) && DialogueManager.Instance.inDialouge == false)
+            if (DialogueManager.Instance != null)
             {
-                if (hitInfo.transform.gameObject != null)
+                if (Input.GetKeyDown(KeyCode.E) && DialogueManager.Instance.inDialouge == false)
                 {
-                    if (hitInfo.transform.gameObject.CompareTag("Item")) // Picking things up
+                    if (hitInfo.transform.gameObject != null)
                     {
-                        //Debug.LogWarning("the Object trying to be picked up is " + hitInfo.transform.gameObject.name);
-                        PickUpItem(hitInfo.transform.gameObject); // specific interactions with item
-                    }
+                        if (hitInfo.transform.gameObject.CompareTag("Item")) // Picking things up
+                        {
+                            //Debug.LogWarning("the Object trying to be picked up is " + hitInfo.transform.gameObject.name);
+                            PickUpItem(hitInfo.transform.gameObject); // specific interactions with item
+                        }
 
-                    if (hitInfo.transform.gameObject.CompareTag("NPC"))
-                    {
-                        TalkingToNPC();
-                    }
+                        if (hitInfo.transform.gameObject.CompareTag("NPC"))
+                        {
+                            TalkingToNPC();
+                        }
 
-                    if (hitInfo.transform.gameObject.CompareTag("Door"))
-                    {
-                        DoorInteraction(hitInfo.transform.gameObject, true);
-                        DoorInteraction(hitInfo.transform.gameObject, false);
-                    }
+                        if (hitInfo.transform.gameObject.CompareTag("Door"))
+                        {
+                            DoorInteraction(hitInfo.transform.gameObject, true);
+                            DoorInteraction(hitInfo.transform.gameObject, false);
+                        }
 
-                    if (hitInfo.transform.gameObject.CompareTag("Openable"))
-                    {
-                        OpenObject();
+                        if (hitInfo.transform.gameObject.CompareTag("Openable"))
+                        {
+                            OpenObject();
+                        }
                     }
+                    else
+                        Debug.LogWarning("Object being interacted with is null");
                 }
-                else
-                    Debug.LogWarning("Object being interacted with is null");
             }
             else
                 Debug.LogWarning("Dialouge Manager is missing");

@@ -6,12 +6,14 @@ public class GameManager : MonoBehaviour
 {
     UIManager UI;
 
-    private int timer = 0;
-    private int oldTime = 0;
-    private bool timerAddRest = false;
     [Header("Timer")]
     [Tooltip("True is the timer that counts over time, False is the timer that counts over actions"), SerializeField]
     private bool timerType = true;
+    [Tooltip("The time we start with"), SerializeField]
+    private int startTimer = 0;
+    private int timer = 0;
+    private int oldTime = 0;
+    private bool timerAddRest = false;
 
     [SerializeField]
     private Material[] shaders;
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex % 2 == 0)
         {
-            AddToTimer(300);
+            AddToTimer(startTimer);
             //AddToTimer(1200);
             //timer += 420;
         }
@@ -166,6 +168,7 @@ public class GameManager : MonoBehaviour
             {
                 //CloseGame();
                 UI.ShowOutOfTimeEnding();
+                CursorVisiblity(true);
                 timer = 0;
             }
         }

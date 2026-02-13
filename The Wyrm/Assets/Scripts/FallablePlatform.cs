@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class FallablePlatform : MonoBehaviour
 {
     private TutorialManager TM;
+    private LoadSceneManager LSM;
 
     private GameObject standing;
     private GameObject fallen;
@@ -15,11 +16,19 @@ public class FallablePlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-            TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
-
         standing = transform.GetChild(0).gameObject;
         fallen = transform.GetChild(1).gameObject;
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
+            LSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
+
+            if (LSM.GetReloadNum() > 0)
+            {
+                FallOver();
+            }
+        }
 
         canDrop = true;
     }
