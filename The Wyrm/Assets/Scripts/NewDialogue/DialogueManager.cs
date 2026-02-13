@@ -87,6 +87,7 @@ public class DialogueManager : MonoBehaviour
         //Types the dialog
         StartCoroutine(TypeDialog(dialog.Lines[0]));
         inDialouge = true;
+        triggerCutsceneable = false;
     }
 
 
@@ -202,8 +203,9 @@ public class DialogueManager : MonoBehaviour
                         GM.sacraficed();
                     }
                 }
-                triggerCutsceneable = true;
+                
             }
+            triggerCutsceneable = true;
         }
 
         

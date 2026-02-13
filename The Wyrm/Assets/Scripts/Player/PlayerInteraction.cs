@@ -41,10 +41,10 @@ public class PlayerInteraction : MonoBehaviour
             InteractFirstPerson();
         }
 
-        if (lastNpcId == 8 && DialogueManager.Instance.triggerCutsceneable == true && SceneManager.GetActiveScene().buildIndex == 0)
+        if (lastNpcId == 8 && SceneManager.GetActiveScene().buildIndex == 0)
         {
-            lastNpcId = 0;
-            UI.ShowTeacherCutscene();
+            //lastNpcId = 0;
+            StartCoroutine(delayCutsceneCheck());
 
         }
     }
@@ -447,6 +447,16 @@ public class PlayerInteraction : MonoBehaviour
             {
                 other.transform.GetComponent<NPCManager>().SetInTalkingState(false);
             }
+        }
+    }
+
+    IEnumerator delayCutsceneCheck() 
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (DialogueManager.Instance.triggerCutsceneable == true)
+        {
+            UI.ShowTeacherCutscene();
+            DialogueManager.Instance.triggerCutsceneable = false;
         }
     }
 }
