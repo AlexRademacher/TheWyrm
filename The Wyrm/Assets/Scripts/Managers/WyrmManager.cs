@@ -12,6 +12,9 @@ public class WyrmManager : MonoBehaviour
 
     private WyrmSoundManager WSM;
 
+    public Ray rayCast;
+    public RaycastHit hitInfo;
+
     private NavMeshAgent agent;
     private NavMeshPath path;
 
@@ -118,6 +121,25 @@ public class WyrmManager : MonoBehaviour
         player = playerTransform;
     }
 
+    public void Raycasting()
+    {
+        Camera firstPersonCamera = transform.GetChild(0).GetChild(0).GetComponent<Camera>();
+
+        // creates and updates the raycast
+        rayCast = firstPersonCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)); //50% horiz, 50% vert
+
+        RaycastHit[] hits = Physics.SphereCastAll(rayCast, 8.0f);
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.transform.tag.Contains("Player"))
+            {
+                hitInfo = hit;
+                Debug.Log(hitInfo.transform.name);
+            }
+        }
+    }
+
     public void SetNavPoints(Transform[] WyrmNavPoints)
     {
         points = WyrmNavPoints;
@@ -136,6 +158,27 @@ public class WyrmManager : MonoBehaviour
             Debug.LogWarning("We dont got the points!");
         }
         
+    }
+
+    private void FollowPoints()
+    {
+        if (agent.remainingDistance < 0.5f || (letingPlayerGo && playerHiding))
+        {
+            if (letingPlayerGo)
+                letingPlayerGo = false;
+
+            if (agent.speed != 6)
+            {
+                agent.speed = 6;
+            }
+
+            GotoNextPoint();
+        }
+
+        if (agent.CalculatePath(player.position, path))
+        {
+            playerHiding = false;
+        }
     }
 
     private void GotoNextPoint()
@@ -302,27 +345,6 @@ public class WyrmManager : MonoBehaviour
             agent.speed = 1000 - agent.remainingDistance;
         else if (agent.remainingDistance > 1000)
             agent.speed = 1000;
-    }
-
-    private void FollowPoints()
-    {
-        if (agent.remainingDistance < 0.5f || (letingPlayerGo && playerHiding))
-        {
-            if (letingPlayerGo)
-                letingPlayerGo = false;
-
-            if (agent.speed != 6)
-            {
-                agent.speed = 6;
-            }
-
-            GotoNextPoint();
-        }
-
-        if (agent.CalculatePath(player.position, path))
-        {
-            playerHiding = false;
-        }
     }
 
     public IEnumerator StartCountdownToLeave(int time, WyrmSpawnManager WSM)
