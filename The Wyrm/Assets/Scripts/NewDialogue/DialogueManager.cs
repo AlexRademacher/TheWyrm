@@ -30,7 +30,7 @@ public class DialogueManager : MonoBehaviour
     public event Action OnHideDialog;
 
     Dialog dialog;
-    int currentLine = 0;
+    [SerializeField] int currentLine = 0;
 
     int skipNumFound = 1;
 
