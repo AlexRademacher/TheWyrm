@@ -233,10 +233,13 @@ public class DialogueManager : MonoBehaviour
 
                 if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
                 {
+                    Debug.Log("Npc Check Success");
                     if (currentNpc.TryGetComponent<Item>(out Item itemScript))
                     {
+                        Debug.Log("Item Check Success");
                         if (!transform.TryGetComponent<SpriteRenderer>(out Renderer))
-                            if (transform.childCount > 0 && transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
+                            Debug.Log("sprite renderer check success");
+                            if (transform.childCount > 0 && transform.GetChild(0).TryGetComponent<Canvas>(out SpriteCanvas))
 
                                 if (Renderer != null)
                                     Renderer.enabled = false;
