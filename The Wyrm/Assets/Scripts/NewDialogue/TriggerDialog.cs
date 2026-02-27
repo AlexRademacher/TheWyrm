@@ -10,12 +10,14 @@ public class NewBehaviourScript : MonoBehaviour
     Dialog thisDialog;
     bool triggered;
     private UIManager UI;
+    private PlayerInteraction PI;
 
 
     // Start is called before the first frame update
     void Start()
     {
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+        PI = GameObject.Find("Player").GetComponent<PlayerInteraction>();
     }
 
     // Update is called once per frame
@@ -62,6 +64,7 @@ public class NewBehaviourScript : MonoBehaviour
                     if (SceneManager.GetActiveScene().buildIndex == 0)
                     {
                         UI.SetTextNameBox("Mysterious Child");
+                        PI.lastNpcId = 8;
                         //hitInfo.transform.gameObject;
                     }
                     else

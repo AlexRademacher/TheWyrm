@@ -14,7 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     public Ray rayCast;
     public RaycastHit hitInfo;
     
-    private int lastNpcId;
+    public int lastNpcId;
 
     [SerializeField] private GameObject dialogBox;
 
