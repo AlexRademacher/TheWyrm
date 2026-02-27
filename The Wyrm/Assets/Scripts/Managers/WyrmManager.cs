@@ -18,6 +18,8 @@ public class WyrmManager : MonoBehaviour
     private NavMeshAgent agent;
     private NavMeshPath path;
 
+    private Camera firstPersonCamera;
+
     private Transform[] points;
     private int currentPoint = 0;
 
@@ -36,8 +38,6 @@ public class WyrmManager : MonoBehaviour
     void Start()
     {
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
-
-        player = GameObject.Find("Player").GetComponent<Transform>();
 
         if (!transform.TryGetComponent<WyrmSoundManager>(out WSM))
         {
@@ -99,6 +99,22 @@ public class WyrmManager : MonoBehaviour
         {
             if (agent.isOnNavMesh)
             {
+                Raycasting();
+
+                if (player != null && agent.CalculatePath(player.position, path))
+                {
+                    if (agent.remainingDistance > 22)
+                    {
+                        Debug.Log("HE ESCAPED");
+                        player = null;
+                        letingPlayerGo = true;
+                        ResetPoints();
+                        Debug.Log(agent.name);
+                    }
+                    else
+                        Debug.Log(agent.remainingDistance);
+                }
+
                 if (inArena)
                 {
                     WyrmArenaMovement();
@@ -107,6 +123,8 @@ public class WyrmManager : MonoBehaviour
                 {
                     WyrmVillageMovement();
                 }
+
+                
             }
             else
             {
@@ -123,21 +141,61 @@ public class WyrmManager : MonoBehaviour
 
     public void Raycasting()
     {
-        Camera firstPersonCamera = transform.GetChild(0).GetChild(0).GetComponent<Camera>();
-
-        // creates and updates the raycast
-        rayCast = firstPersonCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)); //50% horiz, 50% vert
-
-        RaycastHit[] hits = Physics.SphereCastAll(rayCast, 8.0f);
-
-        foreach (RaycastHit hit in hits)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            if (hit.transform.tag.Contains("Player"))
+            if (transform.GetChild(i).name.Contains("Camera"))
             {
-                hitInfo = hit;
-                Debug.Log(hitInfo.transform.name);
+                firstPersonCamera = transform.GetChild(i).GetComponent<Camera>();
+                break;
             }
         }
+
+        if (firstPersonCamera != null)
+        {
+            // creates and updates the raycast
+            rayCast = firstPersonCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)); //50% horiz, 50% vert
+
+            RaycastHit[] hits = Physics.SphereCastAll(rayCast, 16.0f);
+
+            if (player == null)
+            {
+                foreach (RaycastHit hit in hits)
+                {
+                    if (hit.transform.tag.Contains("Player"))
+                    {
+                        hitInfo = hit;
+                        if (!Physics.Linecast(transform.position, hitInfo.transform.position, 8))
+                        {
+                            player = hitInfo.transform;
+                            break;
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Raycast interrupted");
+                        }
+                    }
+                }
+            }
+
+            if (player != null && hitInfo.distance > 22)
+            {
+                player = null;
+            }
+        }
+        else
+        {
+            Debug.Log("Raycast failing");
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red; // pick color
+        Gizmos.DrawSphere(rayCast.origin, 16);
+
+        Gizmos.color = Color.blue;
+        if (player != null)
+            Gizmos.DrawLine(transform.position, player.position);
     }
 
     public void SetNavPoints(Transform[] WyrmNavPoints)
@@ -162,7 +220,7 @@ public class WyrmManager : MonoBehaviour
 
     private void FollowPoints()
     {
-        if (agent.remainingDistance < 0.5f || (letingPlayerGo && playerHiding))
+        if (agent.remainingDistance < 0.5f || (letingPlayerGo && playerHiding) || (letingPlayerGo && player == null))
         {
             if (letingPlayerGo)
                 letingPlayerGo = false;
@@ -175,7 +233,7 @@ public class WyrmManager : MonoBehaviour
             GotoNextPoint();
         }
 
-        if (agent.CalculatePath(player.position, path))
+        if (player != null && agent.CalculatePath(player.position, path))
         {
             playerHiding = false;
         }
@@ -236,7 +294,7 @@ public class WyrmManager : MonoBehaviour
 
     private void WyrmVillageMovement()
     {
-        if (!playerHiding && agent.CalculatePath(player.position, path) && path.status == NavMeshPathStatus.PathComplete)
+        if (player != null && !playerHiding && agent.CalculatePath(player.position, path))
         {
             if (player.TryGetComponent<Player>(out Player playerScript))
             {
@@ -264,7 +322,7 @@ public class WyrmManager : MonoBehaviour
 
     private void WyrmArenaMovement()
     {
-        if (!playerHiding && agent.CalculatePath(player.position, path))
+        if (player != null && !playerHiding && agent.CalculatePath(player.position, path))
         {
             if (player.TryGetComponent<Player>(out Player playerScript))
             {
