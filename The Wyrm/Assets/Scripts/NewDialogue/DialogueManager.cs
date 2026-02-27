@@ -239,7 +239,7 @@ public class DialogueManager : MonoBehaviour
                         Debug.Log("Item Check Success");
                         if (!transform.TryGetComponent<SpriteRenderer>(out Renderer))
                             Debug.Log("sprite renderer check success");
-                            if (transform.childCount > 0 && transform.GetChild(0).TryGetComponent<Canvas>(out SpriteCanvas))
+                            if (transform.childCount > 0 && transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
 
                                 if (Renderer != null)
                                     Renderer.enabled = false;

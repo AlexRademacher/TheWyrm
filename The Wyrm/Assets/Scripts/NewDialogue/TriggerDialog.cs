@@ -38,6 +38,7 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 case 0:
                     UI.SetTextNameBox("Teacher");
+                    PI.lastNpcId = 0;
                     break;
                 case 1:
                     UI.SetTextNameBox("Merchant");
@@ -75,6 +76,7 @@ public class NewBehaviourScript : MonoBehaviour
                     break;
                 case 10:
                     UI.SetTextNameBox("Shaman");
+                    PI.lastNpcId = 10;
                     break;
                 case 11:
                     UI.SetTextNameBox("Landlord's Son");
