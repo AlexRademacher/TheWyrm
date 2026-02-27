@@ -12,11 +12,14 @@ public class WyrmManager : MonoBehaviour
 
     private WyrmSoundManager WSM;
 
+    public Ray rayCast;
+    public RaycastHit hitInfo;
+
     private NavMeshAgent agent;
     private NavMeshPath path;
 
     private Transform[] points;
-    private int currentPoint;
+    private int currentPoint = 0;
 
     [Tooltip("The Wrym number for which type"), SerializeField, Range(1,3)]
     private int wyrmNum;
@@ -24,8 +27,10 @@ public class WyrmManager : MonoBehaviour
     [Tooltip("The Wrym number for which type"), SerializeField]
     private Sprite[] wyrmSprites;
 
-    private bool inArena;
-    private bool playerHiding;
+    private bool inArena = false;
+    private bool playerHiding = false;
+    private bool pointsReset = false;
+    private bool letingPlayerGo = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +55,14 @@ public class WyrmManager : MonoBehaviour
                 for (int i = 1; i < transform.parent.childCount - 1; i++)
                 {
                     if (transform.parent.GetChild(i).name.Contains("point"))
+                    {
                         points[i - 1] = transform.parent.GetChild(i);
+                    }
+                }
+
+                while (points[currentPoint] == null)
+                {
+                    currentPoint++;
                 }
             }
         }
@@ -109,6 +121,25 @@ public class WyrmManager : MonoBehaviour
         player = playerTransform;
     }
 
+    public void Raycasting()
+    {
+        Camera firstPersonCamera = transform.GetChild(0).GetChild(0).GetComponent<Camera>();
+
+        // creates and updates the raycast
+        rayCast = firstPersonCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)); //50% horiz, 50% vert
+
+        RaycastHit[] hits = Physics.SphereCastAll(rayCast, 8.0f);
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.transform.tag.Contains("Player"))
+            {
+                hitInfo = hit;
+                Debug.Log(hitInfo.transform.name);
+            }
+        }
+    }
+
     public void SetNavPoints(Transform[] WyrmNavPoints)
     {
         points = WyrmNavPoints;
@@ -129,6 +160,27 @@ public class WyrmManager : MonoBehaviour
         
     }
 
+    private void FollowPoints()
+    {
+        if (agent.remainingDistance < 0.5f || (letingPlayerGo && playerHiding))
+        {
+            if (letingPlayerGo)
+                letingPlayerGo = false;
+
+            if (agent.speed != 6)
+            {
+                agent.speed = 6;
+            }
+
+            GotoNextPoint();
+        }
+
+        if (agent.CalculatePath(player.position, path))
+        {
+            playerHiding = false;
+        }
+    }
+
     private void GotoNextPoint()
     {
         if (points == null)
@@ -139,15 +191,47 @@ public class WyrmManager : MonoBehaviour
 
         if (points.Length <= 0)
         {
-            Debug.LogWarning("THere are no points stored in the wyrm");
+            Debug.LogWarning("Thjere are no points stored in the wyrm");
             return;
         }
+
+        //Debug.Log("The closet point is " + currentPoint + " and is being set now");
             
         if (points[currentPoint] != null)
             agent.destination = points[currentPoint].position;
 
         currentPoint = (currentPoint + 1) % points.Length;
         //Debug.Log("Going to point " + currentPoint);
+    }
+
+    private void ResetPoints()
+    {
+        if (points[currentPoint] != null)
+        {
+            float closestPointDistance = Vector3.Distance(points[currentPoint].transform.position, transform.position);
+            int num = 0;
+
+            foreach (Transform point in points)
+            {
+                if (point != null)
+                {
+                    float pointDistance = Vector3.Distance(point.transform.position, transform.position);
+
+                    if (closestPointDistance > pointDistance)
+                    {
+                        closestPointDistance = pointDistance;
+                        currentPoint = num;
+                    }
+
+                    num++;
+                }
+            }
+
+            pointsReset = true;
+            //Debug.Log("pointsReset to true!!!!!!!");
+            //Debug.Log(closestPointDistance);
+            //Debug.Log("Wyrm: " + transform.name + " has the closest point " + currentPoint);
+        }
     }
 
     private void WyrmVillageMovement()
@@ -161,6 +245,7 @@ public class WyrmManager : MonoBehaviour
                     agent.destination = player.position;
 
                     agent.speed = 8;
+                    pointsReset = false;
                 }
                 else
                 {
@@ -170,13 +255,16 @@ public class WyrmManager : MonoBehaviour
         }
         else
         {
-            FollowPoints();
+            if (!pointsReset)
+                ResetPoints();
+            else
+                FollowPoints();
         }
     }
 
     private void WyrmArenaMovement()
     {
-        if (!playerHiding && agent.CalculatePath(player.position, path) && path.status == NavMeshPathStatus.PathComplete)
+        if (!playerHiding && agent.CalculatePath(player.position, path))
         {
             if (player.TryGetComponent<Player>(out Player playerScript))
             {
@@ -192,10 +280,24 @@ public class WyrmManager : MonoBehaviour
                         Wyrm3Movement();
 
                     //Debug.LogWarning("Speed: " + agent.speed);
+                    pointsReset = false;
                 }
                 else
                 {
                     playerHiding = true;
+
+                    if (!pointsReset)
+                    {
+                        //Debug.Log("Points Reset Before: " + pointsReset);
+                        ResetPoints();
+                        //Debug.Log("Points Reset after: " + pointsReset);
+                        letingPlayerGo = true;
+                    }
+                    else
+                    {
+                        FollowPoints();
+                        //GotoNextPoint();
+                    }
                 }
             }
             else
@@ -205,7 +307,18 @@ public class WyrmManager : MonoBehaviour
         }
         else
         {
-            FollowPoints();
+            if (!pointsReset)
+            {
+                //Debug.Log("Points Reset Before2: " + pointsReset);
+                ResetPoints();
+                //Debug.Log("Points Reset after2: " + pointsReset);
+            }
+            else
+            {
+                FollowPoints();
+            }
+            //Debug.Log("The closet point is " + currentPoint);
+
         }
     }
     
@@ -232,24 +345,6 @@ public class WyrmManager : MonoBehaviour
             agent.speed = 1000 - agent.remainingDistance;
         else if (agent.remainingDistance > 1000)
             agent.speed = 1000;
-    }
-
-    private void FollowPoints()
-    {
-        if (agent.remainingDistance < 0.5f)
-        {
-            if (agent.speed != 6)
-            {
-                agent.speed = 6;
-            }
-
-            GotoNextPoint();
-        }
-
-        if (agent.CalculatePath(player.position, path))
-        {
-            playerHiding = false;
-        }
     }
 
     public IEnumerator StartCountdownToLeave(int time, WyrmSpawnManager WSM)
