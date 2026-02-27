@@ -41,7 +41,7 @@ public class Item : MonoBehaviour
 
         if (!transform.TryGetComponent<SpriteRenderer>(out Renderer)) {
             Debug.LogWarning("killing npc");
-            if (transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
+            if (transform.GetChild(0).TryGetComponent<Canvas>(out SpriteCanvas))
             {
                 Debug.LogWarning("killing npc");
             }
@@ -59,10 +59,17 @@ public class Item : MonoBehaviour
 
         if (transform.name.Contains("NPC"))
         {
-            if (transform.TryGetComponent<BoxCollider>(out BoxCollider collider))
+            Debug.Log("NPCfound");
+            if (transform.GetChild(0).TryGetComponent<BoxCollider>(out BoxCollider collider))
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                 collider.enabled = false;
-            else if (transform.TryGetComponent<MeshCollider>(out MeshCollider collider2))
+            }
+            else if (transform.GetChild(0).TryGetComponent<MeshCollider>(out MeshCollider collider2))
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                 collider2.enabled = false;
+            }
         }
         else
         {
