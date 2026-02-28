@@ -36,7 +36,7 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.M) && (SceneManager.GetActiveScene().buildIndex != 5) && DialogueManager.Instance.inDialouge == false)
+        if (Input.GetKeyDown(KeyCode.Tab) && (SceneManager.GetActiveScene().buildIndex != 5) && DialogueManager.Instance.inDialouge == false)
         {
             RenderSettings.fog = !RenderSettings.fog;
             Camera1stPerson.enabled = !Camera1stPerson.enabled;

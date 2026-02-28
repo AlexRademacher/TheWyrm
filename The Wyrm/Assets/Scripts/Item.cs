@@ -40,10 +40,13 @@ public class Item : MonoBehaviour
         }
 
         if (!transform.TryGetComponent<SpriteRenderer>(out Renderer)) {
-            Debug.LogWarning("killing npc");
-            if (transform.GetChild(0).TryGetComponent<Canvas>(out SpriteCanvas))
+            if (transform.childCount == 1 && transform.GetChild(0).TryGetComponent<Canvas>(out SpriteCanvas))
             {
-                Debug.LogWarning("killing npc");
+
+            }
+            else if (transform.childCount > 1 && transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
+            {
+
             }
         }
             

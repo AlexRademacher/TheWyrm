@@ -96,7 +96,7 @@ public class UIManager : MonoBehaviour
                 RespawnMenu.SetActive(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.M) && SceneManager.GetActiveScene().buildIndex == 0 && !GM.GetPauseState() && !GM.GetLoadingState() && !GM.GetDeadState() && !GM.GetTalking())
+            if (Input.GetKeyDown(KeyCode.Tab) && SceneManager.GetActiveScene().buildIndex == 0 && !GM.GetPauseState() && !GM.GetLoadingState() && !GM.GetDeadState() && !GM.GetTalking())
             {
                 MapState();
             }
@@ -218,6 +218,9 @@ public class UIManager : MonoBehaviour
 
             ItemAmount += ItemNum;
 
+            if (ItemAmount < 0)
+                ItemAmount = 0;
+
             string count = ItemAmount + "x";
 
             ItemCounter.GetComponent<TextMeshProUGUI>().text = count;
@@ -286,13 +289,11 @@ public class UIManager : MonoBehaviour
     {
         int hours = time / 60;
         int minutes = time % 60;
-        Debug.Log("anything");
 
         if (TimerCount != null)
         {
             if (hours == 5 && minutes == 0) { 
                 TimerCount.transform.GetComponent<Image>().sprite = timeSprites[0];
-            Debug.Log("my code is running");
             }
             else if (hours == 6 && minutes == 0)
                 TimerCount.transform.GetComponent<Image>().sprite = timeSprites[1];

@@ -65,6 +65,7 @@ public class RelicChecker : MonoBehaviour
 
                     gameObject.tag = "Untagged";
                     overlapObject.gameObject.tag = "Untagged";
+                    overlapObject.enabled = false;
 
                     break;
                 }
