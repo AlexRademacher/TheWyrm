@@ -164,8 +164,6 @@ public class UIManager : MonoBehaviour
         RespawnMenu.SetActive(false);
         GM.PlayerKilledState(false);
         P.Respawn();
-        LoadSceneManager lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
-        lSM.Restart();
     }
 
     public void RespawnExitButton()
