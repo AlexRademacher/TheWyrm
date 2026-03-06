@@ -11,6 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
     bool triggered;
     private UIManager UI;
     private PlayerInteraction PI;
+    private LookVertical CV;
 
 
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = GameObject.Find("Player").GetComponent<PlayerInteraction>();
+        CV = GameObject.Find("First Person Camera").GetComponent<LookVertical>();
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class NewBehaviourScript : MonoBehaviour
             triggered = true;
             thisDialog = GetComponent<Dialog>();
             other.gameObject.transform.LookAt(this.transform.position);
+            CV.TriggerCamUpdate(this.transform);
             StartCoroutine(DialogueManager.Instance.ShowDialog(thisDialog, this.gameObject));
             switch (this.gameObject.GetComponent<NPCManager>().npcID)
             {
