@@ -137,12 +137,13 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena"))
             {
-                UI.CrosshairFToggle(true);
+                //UI.CrosshairFToggle(true);
             }
         }
         else
         {
-            UI.CrosshairToggle(true);
+            UI.CrosshairEToggle(false);
+            UI.CrosshairRToggle(false);
         }
     }
 
