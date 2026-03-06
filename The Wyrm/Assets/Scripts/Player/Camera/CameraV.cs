@@ -69,6 +69,6 @@ public class LookVertical : MonoBehaviour
 
     public void TriggerCamUpdate(Transform newRotation) 
     {
-        
+        this.transform.LookAt(newRotation);
     }
 }
