@@ -20,6 +20,8 @@ public class LookVertical : MonoBehaviour
 
     [SerializeField] private GameObject dialogBox;
 
+    private float newX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,6 @@ public class LookVertical : MonoBehaviour
 
     public void TriggerCamUpdate(Transform newRotation) 
     {
-        //transform.rotation = newRotation.rotation;
+        
     }
 }
