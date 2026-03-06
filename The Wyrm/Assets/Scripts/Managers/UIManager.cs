@@ -67,13 +67,7 @@ public class UIManager : MonoBehaviour
     //private GameObject Controls;
 
     [Header("Time Images")]
-    [SerializeField] private Sprite TimeImageOne;
-    [SerializeField] private Sprite TimeImageTwo;
-    [SerializeField] private Sprite TimeImageThree;
-    [SerializeField] private Sprite TimeImageFour;
-    [SerializeField] private Sprite TimeImageFive;
-    [SerializeField] private Sprite TimeImageSix;
-    [SerializeField] private Sprite TimeImageSeven;
+    [SerializeField] private Sprite[] timeSprites;
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +96,7 @@ public class UIManager : MonoBehaviour
                 RespawnMenu.SetActive(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.M) && SceneManager.GetActiveScene().buildIndex == 0 && !GM.GetPauseState() && !GM.GetLoadingState() && !GM.GetDeadState() && !GM.GetTalking())
+            if (Input.GetKeyDown(KeyCode.Tab) && SceneManager.GetActiveScene().buildIndex == 0 && !GM.GetPauseState() && !GM.GetLoadingState() && !GM.GetDeadState() && !GM.GetTalking())
             {
                 MapState();
             }
@@ -170,8 +164,6 @@ public class UIManager : MonoBehaviour
         RespawnMenu.SetActive(false);
         GM.PlayerKilledState(false);
         P.Respawn();
-        LoadSceneManager lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
-        lSM.Restart();
     }
 
     public void RespawnExitButton()
@@ -223,6 +215,9 @@ public class UIManager : MonoBehaviour
             }
 
             ItemAmount += ItemNum;
+
+            if (ItemAmount < 0)
+                ItemAmount = 0;
 
             string count = ItemAmount + "x";
 
@@ -295,20 +290,47 @@ public class UIManager : MonoBehaviour
 
         if (TimerCount != null)
         {
-            if (hours == 5 && minutes == 0)
-                TimerCount.transform.GetComponent<Image>().sprite = TimeImageOne;
+            if (hours == 5 && minutes == 0) { 
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[0];
+            }
+            else if (hours == 6 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[1];
+            else if (hours == 7 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[2];
+            else if (hours == 8 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[3];
             else if (hours == 9 && minutes == 0)
-                TimerCount.transform.GetComponent<Image>().sprite = TimeImageTwo;
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[4];
+            else if (hours == 10 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[5];
+            else if (hours == 11 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[6];
             else if (hours == 12 && minutes == 0)
-                TimerCount.transform.GetComponent<Image>().sprite = TimeImageThree;
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[7];
+            else if (hours == 13 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[8];
+            else if (hours == 14 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[9];
             else if (hours == 15 && minutes == 0)
-                TimerCount.transform.GetComponent<Image>().sprite = TimeImageFour;
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[10];
+            else if (hours == 16 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[11];
             else if (hours == 17 && minutes == 0)
-                TimerCount.transform.GetComponent<Image>().sprite = TimeImageFive;
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[12];
+            else if (hours == 18 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[13];
+            else if (hours == 19 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[14];
+            else if (hours == 20 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[15];
             else if (hours == 21 && minutes == 0)
-                TimerCount.transform.GetComponent<Image>().sprite = TimeImageSix;
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[16];
+            else if (hours == 22 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[17];
+            else if (hours == 23 && minutes == 0)
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[18];
             else if (hours == 24 && minutes == 0)
-                TimerCount.transform.GetComponent<Image>().sprite = TimeImageSeven;
+                TimerCount.transform.GetComponent<Image>().sprite = timeSprites[19];
         }
 
     }

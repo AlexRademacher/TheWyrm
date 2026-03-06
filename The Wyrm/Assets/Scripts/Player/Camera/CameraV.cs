@@ -20,6 +20,8 @@ public class LookVertical : MonoBehaviour
 
     [SerializeField] private GameObject dialogBox;
 
+    private float newX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,5 +65,10 @@ public class LookVertical : MonoBehaviour
         newRotation.x = pitch;
 
         transform.localEulerAngles = newRotation;
+    }
+
+    public void TriggerCamUpdate(Transform newRotation) 
+    {
+        this.transform.LookAt(newRotation);
     }
 }

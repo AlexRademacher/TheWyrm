@@ -30,7 +30,7 @@ public class DialogueManager : MonoBehaviour
     public event Action OnHideDialog;
 
     Dialog dialog;
-    int currentLine = 0;
+    [SerializeField] int currentLine = 0;
 
     int skipNumFound = 1;
 
@@ -233,9 +233,12 @@ public class DialogueManager : MonoBehaviour
 
                 if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
                 {
+                    Debug.Log("Npc Check Success");
                     if (currentNpc.TryGetComponent<Item>(out Item itemScript))
                     {
+                        Debug.Log("Item Check Success");
                         if (!transform.TryGetComponent<SpriteRenderer>(out Renderer))
+                            Debug.Log("sprite renderer check success");
                             if (transform.childCount > 0 && transform.GetChild(1).TryGetComponent<Canvas>(out SpriteCanvas))
 
                                 if (Renderer != null)

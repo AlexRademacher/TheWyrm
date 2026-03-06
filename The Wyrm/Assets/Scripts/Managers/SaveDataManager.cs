@@ -56,6 +56,9 @@ public class SaveDataManager : MonoBehaviour
         //SetPlayerInventory();
         SetPlayerInventoryBAD();
         SetTimer();
+
+        if (GameObject.Find("Player").TryGetComponent<Player>(out Player P))
+            P.SetLives(3);
     }
 
     public void ClearData()

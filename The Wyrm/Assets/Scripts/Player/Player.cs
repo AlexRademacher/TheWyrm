@@ -48,7 +48,10 @@ public class Player : MonoBehaviour
     private FallablePlatform nearbyDropper;
 
     [SerializeField] private GameObject dialogBox;
-        
+
+    [SerializeField] private int maxLives = 3;
+    private int lives;
+
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +79,8 @@ public class Player : MonoBehaviour
 
         respawnPos = transform.position;
         ThirdPerPlayerRotation = transform.rotation;
+
+        lives = maxLives;
     }
 
     // Update is called once per frame
@@ -158,6 +163,16 @@ public class Player : MonoBehaviour
             } 
         }
     }
+
+
+    public void SetLives(int newLiveCount)
+    {
+        if (newLiveCount > maxLives)
+            newLiveCount = maxLives;
+
+        lives = newLiveCount;
+    }
+
 
     //----------------------------------------------------------------------------------------------------------------------
     // Movement
@@ -263,9 +278,17 @@ public class Player : MonoBehaviour
         if (canHide)
             canHide = false;
 
+        lives--;
+
         controller.enabled = false;
         transform.position = respawnPos;
         controller.enabled = true;
+
+        if (lives <= 0)
+        {
+            LoadSceneManager lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
+            lSM.Restart();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -284,6 +307,7 @@ public class Player : MonoBehaviour
             if (dropDebugging)
                 Debug.Log("canDrop");
             canDrop = true;
+            UI.CrosshairFToggle(true);
         }
     }
 
@@ -303,6 +327,7 @@ public class Player : MonoBehaviour
             if (dropDebugging)
                 Debug.Log("canDrop");
             canDrop = false;
+            UI.CrosshairFToggle(false);
         }
     }
 

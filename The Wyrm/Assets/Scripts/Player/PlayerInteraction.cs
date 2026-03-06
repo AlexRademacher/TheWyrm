@@ -14,7 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     public Ray rayCast;
     public RaycastHit hitInfo;
     
-    private int lastNpcId;
+    public int lastNpcId;
 
     [SerializeField] private GameObject dialogBox;
 
@@ -137,12 +137,13 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena"))
             {
-                UI.CrosshairFToggle(true);
+                //UI.CrosshairFToggle(true);
             }
         }
         else
         {
-            UI.CrosshairToggle(true);
+            UI.CrosshairEToggle(false);
+            UI.CrosshairRToggle(false);
         }
     }
 
@@ -199,49 +200,39 @@ public class PlayerInteraction : MonoBehaviour
 
             if (item != null)
             {
-                if (CM != null)
+                Debug.LogWarning("Placed relic");
+                GameObject newRelic = Instantiate(item, new Vector3(hitInfo.point.x, hitInfo.point.y + 0.3f, hitInfo.point.z), transform.rotation);
+                newRelic.SetActive(true);
+                newRelic.transform.localScale = new Vector3(.54745f, .54745f, .54745f);
+
+                if (newRelic.transform.TryGetComponent<SpriteRenderer>(out SpriteRenderer itemRenderer))
                 {
-                    if (CM.GetCameraPerspective())
-                    {
-                        Debug.LogWarning("Placed relic");
-                        GameObject newRelic = Instantiate(item, hitInfo.point, transform.rotation);
-                        newRelic.SetActive(true);
-
-                        if (newRelic.transform.TryGetComponent<SpriteRenderer>(out SpriteRenderer itemRenderer))
-                        {
-                            if (itemRenderer != null)
-                                itemRenderer.enabled = true;
-                        }
-                        else
-                        {
-                            if (newRelic.transform.GetChild(1).TryGetComponent<Canvas>(out Canvas itemSpriteCanvas))
-                                if (itemSpriteCanvas != null)
-                                    itemSpriteCanvas.enabled = true;
-                        }
-                            
-                        if (newRelic.transform.TryGetComponent<BoxCollider>(out BoxCollider collider)) {
-                            collider.enabled = true;
-                        }
-
-                        if (UI != null)
-                        {
-                            UI.UpdateItemCount(-1);
-                        }
-
-                        if (TM != null && !TM.HasPlaced())
-                        {
-                            StartCoroutine(TM.IsPlacing());
-                        }
-                        else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
-                            Debug.LogError("Tutorial for Placing couldn't be found");
-                    }
-                    else
-                    {
-                        Instantiate(item, new Vector3(transform.position.x + 1, transform.position.y - (transform.position.y / 2) - .25f, transform.position.z), transform.rotation);
-                    }
+                    if (itemRenderer != null)
+                        itemRenderer.enabled = true;
                 }
                 else
-                    Debug.LogWarning("Camera manger not set up correctly for dropping item");
+                {
+                    if (newRelic.transform.GetChild(1).TryGetComponent<Canvas>(out Canvas itemSpriteCanvas))
+                        if (itemSpriteCanvas != null)
+                            itemSpriteCanvas.enabled = true;
+                }
+
+                if (newRelic.transform.TryGetComponent<BoxCollider>(out BoxCollider collider))
+                {
+                    collider.enabled = true;
+                }
+
+                if (UI != null)
+                {
+                    UI.UpdateItemCount(-1);
+                }
+
+                if (TM != null && !TM.HasPlaced())
+                {
+                    StartCoroutine(TM.IsPlacing());
+                }
+                else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
+                    Debug.LogError("Tutorial for Placing couldn't be found");
             }
             else
                 Debug.LogWarning("No items to drop");
