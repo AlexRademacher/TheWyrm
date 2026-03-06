@@ -35,7 +35,10 @@ public class NewBehaviourScript : MonoBehaviour
             triggered = true;
             thisDialog = GetComponent<Dialog>();
             other.gameObject.transform.LookAt(this.transform.position);
-            CV.TriggerCamUpdate(this.transform);
+
+            Debug.Log(other.name);
+
+            //CV.TriggerCamUpdate(this.transform);
             StartCoroutine(DialogueManager.Instance.ShowDialog(thisDialog, this.gameObject));
             switch (this.gameObject.GetComponent<NPCManager>().npcID)
             {

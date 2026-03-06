@@ -67,6 +67,6 @@ public class LookVertical : MonoBehaviour
 
     public void TriggerCamUpdate(Transform newRotation) 
     {
-        transform.rotation = newRotation.rotation;
+        //transform.rotation = newRotation.rotation;
     }
 }
