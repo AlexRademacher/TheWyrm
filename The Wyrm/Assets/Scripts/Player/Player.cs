@@ -27,9 +27,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float currentSpeed;
     [Tooltip("How high the player jumps"), Min(0), SerializeField]
-    private float jumpForce = 1.5f;
+    private float jumpForce = 4.5f;
     [Tooltip("What the gravity on the player is"), SerializeField]
     private float gravity = -9.81f;
+
+    // Modified Movement
+    // Easier to multiply movespeed here
+    [SerializeField] private float runMultiplier = 1.75f;
+    [SerializeField] private float acceleration = 12f;
+    [SerializeField] private float airControl = 0.4f;
+
+    private Vector3 moveVelocity;
 
     [Header("Debugger")]
     [Tooltip("Turns on Jump Debugging"), SerializeField]
@@ -84,12 +92,7 @@ public class Player : MonoBehaviour
         // allows movement if cursor is hidden and controller is working
         if (!Cursor.visible && controller != null && !GM.GetTalking() && !GM.GetLoadingState() && dialogBox.activeInHierarchy == false)
         {
-            Movement(); // control of the x and z axis
-
-            if (gC != null)
-                Jump(); // control of the y axis
-            else
-                Debug.LogWarning("gC for the jumping is null");
+            HandleMovement();
         }
         else if (controller == null)
         {
@@ -167,12 +170,68 @@ public class Player : MonoBehaviour
         return hiding;
     }
 
-    
+    // New movement script
+    // Lowkey just used one of my movements with tweaks to appeal to this system
+    private void HandleMovement()
+    {
+        // Ground Check
+        bool grounded = gC.GroundCheck(transform);
+
+        if (grounded && playerVelocity.y < 0)
+            playerVelocity.y = -4f; // keeps player grounded
+
+        float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? speed * runMultiplier : speed;
+
+        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        input = Vector3.ClampMagnitude(input, 1f);
+
+        // Camera relative movement
+        Vector3 camForward = CM.transform.forward;
+        Vector3 camRight = CM.transform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+
+        // Get direction of movement
+        Vector3 moveDir = (camForward * input.z + camRight * input.x).normalized;
+
+        // Air control
+        float control = grounded ? 1f : airControl;
+
+        // Velocity lerps, this can be changed later to 
+        //  be a little less slippery, if we wish
+        moveVelocity = Vector3.Lerp(moveVelocity, moveDir * targetSpeed, acceleration * control * Time.deltaTime);
+
+        // Just handle jump here, one line
+        if (Input.GetButtonDown("Jump") && grounded)
+        {
+            playerVelocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+        }
+
+        // Falling velocity
+        playerVelocity.y += gravity * Time.deltaTime;
+
+        Vector3 finalMove = moveVelocity + Vector3.up * playerVelocity.y;
+
+        // Actually move thru player controller
+        controller.Move(finalMove * Time.deltaTime);
+
+        // Copied tutorial checks, in case they're needed
+        if (TM != null && !TM.HasMoved() && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
+        {
+            StartCoroutine(TM.IsMoving());
+        }
+        else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
+            Debug.LogError("Tutorial for Player Movement couldn't be found");
+    }
+
     /// <summary>
     /// The Player's Movement: X and Z Axis Movement
     /// </summary>
     private void Movement()
     {
+        
+
         // Running
         if (Input.GetKey(KeyCode.LeftShift))
         {
