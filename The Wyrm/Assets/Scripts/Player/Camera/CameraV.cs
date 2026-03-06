@@ -64,4 +64,9 @@ public class LookVertical : MonoBehaviour
 
         transform.localEulerAngles = newRotation;
     }
+
+    void TriggerCamUpdate(Transform newRotation) 
+    {
+        
+    }
 }
