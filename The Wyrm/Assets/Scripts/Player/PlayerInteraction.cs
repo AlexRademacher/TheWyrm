@@ -296,7 +296,7 @@ public class PlayerInteraction : MonoBehaviour
         if (!hitInfo.transform.GetComponent<NPCManager>().canNeverSpeak)
         {
             Dialog Dialog;
-            if (GameObject.FindGameObjectWithTag("Box") == null)
+            if (GameObject.FindGameObjectWithTag("Wyrm") == null)
                 Dialog = hitInfo.transform.GetComponent<Dialog>();
             else 
                 Dialog = hitInfo.transform.GetChild(0).GetComponent<Dialog>();
