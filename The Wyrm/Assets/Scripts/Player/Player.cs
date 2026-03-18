@@ -197,6 +197,16 @@ public class Player : MonoBehaviour
 
         float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? speed * runMultiplier : speed;
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (TM != null && !TM.HasRan())
+            {
+                StartCoroutine(TM.IsRunning());
+            }
+            else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
+                Debug.LogError("Tutorial for Player Movement couldn't be found");
+        }
+
         Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         input = Vector3.ClampMagnitude(input, 1f);
 
