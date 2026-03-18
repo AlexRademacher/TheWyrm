@@ -54,7 +54,7 @@ public class WyrmManager : MonoBehaviour
 
                 for (int i = 1; i < transform.parent.childCount - 1; i++)
                 {
-                    if (transform.parent.GetChild(i).name.Contains("point"))
+                    if (transform.parent.GetChild(i).name.Contains("point") || transform.parent.GetChild(i).name.Contains("Point"))
                     {
                         points[i - 1] = transform.parent.GetChild(i);
                     }
