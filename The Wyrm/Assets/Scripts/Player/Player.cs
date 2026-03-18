@@ -376,7 +376,7 @@ public class Player : MonoBehaviour
             if (dropDebugging)
                 Debug.Log("canDrop");
             canDrop = true;
-            UI.CrosshairFToggle(true);
+            //UI.CrosshairFToggle(true);
         }
     }
 
@@ -396,7 +396,7 @@ public class Player : MonoBehaviour
             if (dropDebugging)
                 Debug.Log("canDrop");
             canDrop = false;
-            UI.CrosshairFToggle(false);
+            //UI.CrosshairFToggle(false);
         }
     }
 

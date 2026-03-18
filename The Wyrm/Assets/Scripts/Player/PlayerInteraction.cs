@@ -104,7 +104,7 @@ public class PlayerInteraction : MonoBehaviour
             
 
             // if R is clicked
-            if (Input.GetKeyDown(KeyCode.R) && Cursor.visible == false)
+            if (!hitInfo.collider.isTrigger && Input.GetKeyDown(KeyCode.R) && Cursor.visible == false)
             {
                 DropItem();
             }
@@ -122,7 +122,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             UI.CrosshairEToggle(true);
         }
-        else if (hitInfo.transform.gameObject.CompareTag("Table"))
+        else if (hitInfo.transform.gameObject.CompareTag("Table") && !hitInfo.collider.isTrigger)
         {
             UI.CrosshairRToggle(true);
         }
@@ -135,15 +135,14 @@ public class PlayerInteraction : MonoBehaviour
                     UI.CrosshairFToggle(true);
                 }
             }
-            else if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena"))
+            else if ((SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena")) && hitInfo.transform.name.Contains("Standing"))
             {
-                //UI.CrosshairFToggle(true);
+                UI.CrosshairFToggle(true);
             }
         }
         else
         {
-            UI.CrosshairEToggle(false);
-            UI.CrosshairRToggle(false);
+            UI.CrosshairToggle(true);
         }
     }
 
