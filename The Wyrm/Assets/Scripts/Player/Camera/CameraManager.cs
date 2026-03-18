@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CameraManager : MonoBehaviour
 {
+    private GameManager GM;
+
     private bool firstPerson;
 
     private Camera Camera1stPerson;
@@ -17,6 +19,8 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         Camera1stPerson = transform.GetChild(0).GetComponent<Camera>();
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -36,7 +40,7 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Tab) && (SceneManager.GetActiveScene().buildIndex != 5) && DialogueManager.Instance.inDialouge == false)
+        if (Input.GetKeyDown(KeyCode.Tab) && (SceneManager.GetActiveScene().buildIndex != 5) && DialogueManager.Instance.inDialouge == false && !Cursor.visible && !GM.GetTalking() && !GM.GetLoadingState())
         {
             RenderSettings.fog = !RenderSettings.fog;
             Camera1stPerson.enabled = !Camera1stPerson.enabled;
