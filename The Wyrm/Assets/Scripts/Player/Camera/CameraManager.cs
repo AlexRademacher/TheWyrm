@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CameraManager : MonoBehaviour
 {
     private GameManager GM;
+    private PlayerAudioManager PAM;
 
     private bool firstPerson;
 
@@ -20,6 +21,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        PAM = transform.GetComponentInParent<PlayerAudioManager>();
 
         Camera1stPerson = transform.GetChild(0).GetComponent<Camera>();
 
@@ -42,6 +44,14 @@ public class CameraManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab) && (SceneManager.GetActiveScene().buildIndex != 5) && DialogueManager.Instance.inDialouge == false && !Cursor.visible && !GM.GetTalking() && !GM.GetLoadingState())
         {
+            if (firstPerson)
+            {
+                PAM.playMapOpen();
+            }
+            else
+            {
+                PAM.playMapClose();
+            }
             RenderSettings.fog = !RenderSettings.fog;
             Camera1stPerson.enabled = !Camera1stPerson.enabled;
             MapCam.enabled = !MapCam.enabled;

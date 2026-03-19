@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     private PlayerInteraction PI;
     private PlayerInventory PInv;
     private postProcessOnOff PostProOnOff;
+    private PlayerAudioManager PAM;
+    private AudioSource Crickets;
 
     private CharacterController controller;
     private GroundChecker gC;
@@ -60,14 +62,21 @@ public class Player : MonoBehaviour
     [SerializeField] private int maxLives = 3;
     private int lives;
 
+    [Header("Footsteps")]
+    [SerializeField] private float walkStepInterval = 0.5f;
+    [SerializeField] private float runStepInterval = 0.3f;
+
+    private float stepTimer;
 
     // Start is called before the first frame update
     void Start()
     {
+        PAM = GetComponent<PlayerAudioManager>();
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = transform.GetComponent<PlayerInteraction>();
+        Crickets = GameObject.Find("CricketAudio").GetComponent<AudioSource>();
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
             TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
@@ -227,9 +236,13 @@ public class Player : MonoBehaviour
         //  be a little less slippery, if we wish
         moveVelocity = Vector3.Lerp(moveVelocity, moveDir * targetSpeed, acceleration * control * Time.deltaTime);
 
+        bool isMoving = moveVelocity.magnitude > 0.1f;
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+
         // Just handle jump here, one line
         if (Input.GetButtonDown("Jump") && grounded)
         {
+            PAM.playJump();
             playerVelocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
         }
 
@@ -240,6 +253,24 @@ public class Player : MonoBehaviour
 
         // Actually move thru player controller
         controller.Move(finalMove * Time.deltaTime);
+
+        if (grounded && isMoving)
+        {
+            float interval = isRunning ? runStepInterval : walkStepInterval;
+
+            stepTimer -= Time.deltaTime;
+
+            if (stepTimer <= 0f)
+            {
+                PAM.playFootstep();
+                stepTimer = interval;
+            }
+        }
+        else
+        {
+            // Reset so it doesn't instantly fire when you start moving again
+            stepTimer = 0f;
+        }
 
         // Copied tutorial checks, in case they're needed
         if (TM != null && !TM.HasMoved() && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
@@ -336,6 +367,8 @@ public class Player : MonoBehaviour
 
     public void PlayerKilled()
     {
+        PAM.playRoar();
+        Crickets.Stop();
         GM.PlayerKilledState(true);
     }
 

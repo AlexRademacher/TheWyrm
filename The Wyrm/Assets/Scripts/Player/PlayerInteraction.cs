@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     private CameraManager CM;
     private UIManager UI;
     private PlayerInventory PInv;
+    private PlayerAudioManager PAM;
 
     private TutorialManager TM;
 
@@ -21,6 +22,7 @@ public class PlayerInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PAM = GetComponent<PlayerAudioManager>();
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
 
@@ -82,6 +84,7 @@ public class PlayerInteraction : MonoBehaviour
                             if (hitInfo.transform.gameObject.CompareTag("NPC"))
                             {
                                 TalkingToNPC();
+                                PAM.playPopUp();
                             }
 
                             if (hitInfo.transform.gameObject.CompareTag("Door"))
@@ -172,6 +175,7 @@ public class PlayerInteraction : MonoBehaviour
                             Debug.LogWarning("Inventory script not set up correctly for picking up item");
 
                         itemScript.PickedUp();
+                        PAM.playRelicPickup();
 
                         if (TM != null && !TM.HasGrabbed())
                         {
@@ -209,6 +213,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (item != null)
                 {
                     Debug.LogWarning("Placed relic");
+                    PAM.playRelicPlace();
                     GameObject newRelic = Instantiate(item, new Vector3(hitInfo.point.x, hitInfo.point.y + 0.3f, hitInfo.point.z), transform.rotation);
                     newRelic.SetActive(true);
                     newRelic.transform.localScale = new Vector3(.54745f, .54745f, .54745f);
