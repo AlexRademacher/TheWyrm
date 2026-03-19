@@ -10,27 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.24723011
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.24723011
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.24723011
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1037.7567
+      value: 870.7178
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 122.82323
+      value: 30.001623
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2507.443
+      value: 2820.1248
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -60,10 +60,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b6e8df7076c3c54a8b8f89e58470a86, type: 2}
     - target: {fileID: -7511558181221131132, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -71,7 +79,7 @@ PrefabInstance:
     - target: {fileID: -5754084199372789682, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 2346199836219352998, guid: a7ae20f30516fa541a94dc08805ddeff, type: 3}
+      objectReference: {fileID: 2346199836219352998, guid: c0ce4f00613bf764f9dc906e49e23905, type: 3}
     - target: {fileID: 919132149155446097, guid: 54c7248d82ea4d442ae67e5c463a99d2, type: 3}
       propertyPath: m_Name
       value: Teacup_v002
