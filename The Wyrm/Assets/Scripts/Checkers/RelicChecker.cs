@@ -12,7 +12,7 @@ public class RelicChecker : MonoBehaviour
     private bool found = false;
     private bool check;
     private int maxChecks = 100;
-    private int currChecks = 0;
+    private int currChecks = 100;
 
     [Header("Checker Settings")]
     [Tooltip("The size of the box area being checked"), SerializeField]
@@ -78,12 +78,16 @@ public class RelicChecker : MonoBehaviour
         }
     }
 
+    public void ResetChecking()
+    {
+        currChecks = 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.Contains("Player"))
         {
             check = true;
-            currChecks = 0;
         }
     }
 

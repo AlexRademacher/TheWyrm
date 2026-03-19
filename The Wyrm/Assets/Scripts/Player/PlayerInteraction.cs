@@ -107,6 +107,11 @@ public class PlayerInteraction : MonoBehaviour
             if (!hitInfo.collider.isTrigger && Input.GetKeyDown(KeyCode.R) && Cursor.visible == false)
             {
                 DropItem();
+
+                if (hitInfo.transform.TryGetComponent<RelicChecker>(out RelicChecker checker))
+                {
+                    checker.ResetChecking();
+                }
             }
         }
         else
@@ -195,46 +200,51 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (hitInfo.collider.name.Contains("DropOff"))
         {
-            GameObject item = PInv.RemoveInventory();
-
-            if (item != null)
+            if (PInv == null)
+                Debug.LogError("Player inventory is missing for dropping an item");
+            else
             {
-                Debug.LogWarning("Placed relic");
-                GameObject newRelic = Instantiate(item, new Vector3(hitInfo.point.x, hitInfo.point.y + 0.3f, hitInfo.point.z), transform.rotation);
-                newRelic.SetActive(true);
-                newRelic.transform.localScale = new Vector3(.54745f, .54745f, .54745f);
+                GameObject item = PInv.RemoveInventory();
 
-                if (newRelic.transform.TryGetComponent<SpriteRenderer>(out SpriteRenderer itemRenderer))
+                if (item != null)
                 {
-                    if (itemRenderer != null)
-                        itemRenderer.enabled = true;
+                    Debug.LogWarning("Placed relic");
+                    GameObject newRelic = Instantiate(item, new Vector3(hitInfo.point.x, hitInfo.point.y + 0.3f, hitInfo.point.z), transform.rotation);
+                    newRelic.SetActive(true);
+                    newRelic.transform.localScale = new Vector3(.54745f, .54745f, .54745f);
+
+                    if (newRelic.transform.TryGetComponent<SpriteRenderer>(out SpriteRenderer itemRenderer))
+                    {
+                        if (itemRenderer != null)
+                            itemRenderer.enabled = true;
+                    }
+                    else
+                    {
+                        if (newRelic.transform.GetChild(1).TryGetComponent<Canvas>(out Canvas itemSpriteCanvas))
+                            if (itemSpriteCanvas != null)
+                                itemSpriteCanvas.enabled = true;
+                    }
+
+                    if (newRelic.transform.TryGetComponent<BoxCollider>(out BoxCollider collider))
+                    {
+                        collider.enabled = true;
+                    }
+
+                    if (UI != null)
+                    {
+                        UI.UpdateItemCount(-1);
+                    }
+
+                    if (TM != null && !TM.HasPlaced())
+                    {
+                        StartCoroutine(TM.IsPlacing());
+                    }
+                    else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
+                        Debug.LogError("Tutorial for Placing couldn't be found");
                 }
                 else
-                {
-                    if (newRelic.transform.GetChild(1).TryGetComponent<Canvas>(out Canvas itemSpriteCanvas))
-                        if (itemSpriteCanvas != null)
-                            itemSpriteCanvas.enabled = true;
-                }
-
-                if (newRelic.transform.TryGetComponent<BoxCollider>(out BoxCollider collider))
-                {
-                    collider.enabled = true;
-                }
-
-                if (UI != null)
-                {
-                    UI.UpdateItemCount(-1);
-                }
-
-                if (TM != null && !TM.HasPlaced())
-                {
-                    StartCoroutine(TM.IsPlacing());
-                }
-                else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
-                    Debug.LogError("Tutorial for Placing couldn't be found");
+                    Debug.LogWarning("No items to drop");
             }
-            else
-                Debug.LogWarning("No items to drop");
         }
     }
 
