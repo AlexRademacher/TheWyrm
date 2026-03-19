@@ -363,6 +363,9 @@ public class SaveDataManager : MonoBehaviour
     {
         playerInventory.Clear();
         playerInventoryRelicIndex.Clear();
+
+        if (GameObject.Find("Canvas").TryGetComponent<UIManager>(out UIManager UI))
+            UI.UpdateItemCount(0);
     }
 
     private void GetTimer()

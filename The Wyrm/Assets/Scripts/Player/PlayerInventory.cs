@@ -189,9 +189,15 @@ public class PlayerInventory : MonoBehaviour
 
                     if (item.name.Contains("Relic"))
                     {
+                        UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+
                         if (UI != null)
                             UI.UpdateItemCount(1);
+                        else
+                            Debug.LogError("UI Manager is missing");
                     }
+                    else
+                        Debug.LogError("Not a relic");
 
                     if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
                     {
