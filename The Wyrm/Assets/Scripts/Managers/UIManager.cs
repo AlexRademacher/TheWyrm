@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
 {
     private GameManager GM;
     private Player P;
+    private PlayerAudioManager PAM;
+    private AudioSource Crickets;
 
     [Header("Menus")]
     [Tooltip("the Main menu"), SerializeField]
@@ -75,6 +77,8 @@ public class UIManager : MonoBehaviour
     {
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         P = GameObject.Find("Player").GetComponent<Player>();
+        PAM = P.GetComponent<PlayerAudioManager>();
+        Crickets = GameObject.Find("CricketAudio").GetComponent<AudioSource>();
 
         if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena") || SceneManager.GetActiveScene().buildIndex == 5)
             UpdateItemCount(3);
@@ -291,7 +295,8 @@ public class UIManager : MonoBehaviour
 
         if (TimerCount != null)
         {
-            if (hours == 5 && minutes == 0) { 
+            if (hours == 5 && minutes == 0)
+            {
                 TimerCount.transform.GetComponent<Image>().sprite = timeSprites[0];
             }
             else if (hours == 6 && minutes == 0)
@@ -319,11 +324,17 @@ public class UIManager : MonoBehaviour
             else if (hours == 17 && minutes == 0)
                 TimerCount.transform.GetComponent<Image>().sprite = timeSprites[12];
             else if (hours == 18 && minutes == 0)
+            {
+                Crickets.Play();
                 TimerCount.transform.GetComponent<Image>().sprite = timeSprites[13];
+            }
             else if (hours == 19 && minutes == 0)
                 TimerCount.transform.GetComponent<Image>().sprite = timeSprites[14];
             else if (hours == 20 && minutes == 0)
+            {
+                PAM.playLowTime();
                 TimerCount.transform.GetComponent<Image>().sprite = timeSprites[15];
+            }
             else if (hours == 21 && minutes == 0)
                 TimerCount.transform.GetComponent<Image>().sprite = timeSprites[16];
             else if (hours == 22 && minutes == 0)
