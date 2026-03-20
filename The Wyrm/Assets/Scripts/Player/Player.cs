@@ -168,6 +168,11 @@ public class Player : MonoBehaviour
     }
 
 
+    public int GetLivesLeft()
+    {
+        return lives;
+    }
+
     public void SetLives(int newLiveCount)
     {
         if (newLiveCount > maxLives)

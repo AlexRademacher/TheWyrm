@@ -53,8 +53,6 @@ public class GameManager : MonoBehaviour
         {
             UI.HideClock();
         }
-
-        Debug.Log(relicsFound);
     }
 
     // Update is called once per frame
@@ -132,6 +130,8 @@ public class GameManager : MonoBehaviour
     {
         timer = newtime;
     }
+
+    
 
     private IEnumerator goingPastTimer()
     {

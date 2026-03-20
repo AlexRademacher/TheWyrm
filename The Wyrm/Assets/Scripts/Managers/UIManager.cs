@@ -504,7 +504,19 @@ public class UIManager : MonoBehaviour
                 return;
             }
 
-            respawnText.text = RespawnMenuInfo[Random.Range(0, RespawnMenuInfo.Length)];
+            //respawnText.text = RespawnMenuInfo[Random.Range(0, RespawnMenuInfo.Length)];
+
+            if ((P.GetLivesLeft() - 2) > 0)
+            {
+                respawnText.text = "Be careful you have " + (P.GetLivesLeft() - 1) + " chances left";
+            }
+            else if ((P.GetLivesLeft() - 2) == 0)
+            {
+                respawnText.text = "Be careful you have " + (P.GetLivesLeft() - 1) + " chance left";
+            }
+            else
+                respawnText.text = "You have run out of chances the day will now truely reset";
+
         }
         else
             Debug.LogWarning("Could not find text to set RespawnMenuInfo");
