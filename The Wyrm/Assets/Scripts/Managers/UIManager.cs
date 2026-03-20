@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -78,8 +79,14 @@ public class UIManager : MonoBehaviour
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         P = GameObject.Find("Player").GetComponent<Player>();
         PAM = P.GetComponent<PlayerAudioManager>();
-        Crickets = GameObject.Find("CricketAudio").GetComponent<AudioSource>();
-
+        try
+        {
+            Crickets = GameObject.Find("CricketAudio").GetComponent<AudioSource>();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("No Crickets");
+        }
         if (SceneManager.GetActiveScene().name.Contains("Arena") || SceneManager.GetActiveScene().name.Contains("arena") || SceneManager.GetActiveScene().buildIndex == 5)
             UpdateItemCount(3);
     }

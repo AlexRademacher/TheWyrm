@@ -76,7 +76,14 @@ public class Player : MonoBehaviour
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = transform.GetComponent<PlayerInteraction>();
-        Crickets = GameObject.Find("CricketAudio").GetComponent<AudioSource>();
+        try
+        {
+            Crickets = GameObject.Find("CricketAudio").GetComponent<AudioSource>();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("No Crickets");
+        }
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
             TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
