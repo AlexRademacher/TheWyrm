@@ -217,6 +217,8 @@ public class PlayerInventory : MonoBehaviour
                             Debug.LogWarning("relic2Found: " + relic2Found);
                             Debug.LogWarning("relic3Found: " + relic3Found);
 
+                            if (relic1Found && relic2Found && relic3Found)
+                                ResetChecks();
 
                             if (relic2Found)
                                 relic3Found = true;
@@ -229,7 +231,10 @@ public class PlayerInventory : MonoBehaviour
 
                             if (relic3Found)
                                 if (SceneManager.GetActiveScene().buildIndex == 4)
+                                {
                                     UI.CutsceneVillageToVillage();
+                                }
+                                    
                         }
                     }
                 }
