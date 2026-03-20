@@ -94,14 +94,19 @@ public class LoadSceneManager : MonoBehaviour
                     ShowLoadingScreen(true);
 
                     if (!restart && SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
+                    {
+                        Debug.LogWarning("Saving info");
                         SDM.SaveData();
+                    }
 
-                    yield return new WaitForSeconds(2);
+                    //yield return new WaitForSeconds(.5f);
 
                     LoadScene(buildNum);
 
                     yield return new WaitForSeconds(2);
 
+
+                    //Debug.LogWarning("Done loading");
                     ShowLoadingScreen(false);
                     loading = false;
                 }
@@ -119,6 +124,8 @@ public class LoadSceneManager : MonoBehaviour
 
     private void LoadScene(int buildNum)
     {
+        Debug.LogWarning("Changing!!!");
+
         DebugChangingActiveScene(SceneManager.GetActiveScene(), SceneManager.GetSceneByBuildIndex(buildNum));
 
         SceneManager.LoadScene(buildNum);

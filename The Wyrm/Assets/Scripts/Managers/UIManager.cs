@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class UIManager : MonoBehaviour
 {
@@ -401,6 +402,19 @@ public class UIManager : MonoBehaviour
     {
         LoadingScreen.SetActive(newState);
         GM.SetLoadingState(newState);
+
+        foreach(GameObject cutscene in Cutscenes)
+        {
+            cutscene.SetActive(false);
+        }
+
+        if (GameObject.Find("Background Music") != null)
+        {
+            if (GameObject.Find("Background Music").transform.GetChild(0).TryGetComponent<AudioSource>(out AudioSource audio))
+            {
+                audio.Pause();
+            }
+        }
 
         if (newState && LoadingScreen.TryGetComponent<LoadingScreen>(out LoadingScreen LS))
         {

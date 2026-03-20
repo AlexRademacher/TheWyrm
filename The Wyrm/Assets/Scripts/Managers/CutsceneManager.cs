@@ -24,7 +24,7 @@ public class CutsceneManager : MonoBehaviour
     {
         if (startingScene.clip == null)
         {
-            Debug.LogError("Video file missing");
+            Debug.LogError("Video file missing: " + gameObject.name);
             SkipVideo();
         }
     }
@@ -80,5 +80,6 @@ public class CutsceneManager : MonoBehaviour
     private void SkipVideo()
     {
         VideoEnd(startingScene); // end video
+        startingScene.clip = null;
     }
 }

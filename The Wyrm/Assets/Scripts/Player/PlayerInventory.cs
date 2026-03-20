@@ -42,6 +42,13 @@ public class PlayerInventory : MonoBehaviour
         return inventory;
     }
 
+    public void ResetChecks()
+    {
+        relic1Found = false;
+        relic2Found = false;
+        relic3Found = false;
+    }
+
     /// <summary>
     /// Gets item from players inventory using a specific slot
     /// </summary>
@@ -206,6 +213,11 @@ public class PlayerInventory : MonoBehaviour
 
                         if (item.name.Contains("Relic"))
                         {
+                            Debug.LogWarning("relic1Found: " + relic1Found);
+                            Debug.LogWarning("relic2Found: " + relic2Found);
+                            Debug.LogWarning("relic3Found: " + relic3Found);
+
+
                             if (relic2Found)
                                 relic3Found = true;
 

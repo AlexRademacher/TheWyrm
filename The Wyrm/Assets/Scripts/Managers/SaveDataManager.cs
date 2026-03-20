@@ -53,6 +53,9 @@ public class SaveDataManager : MonoBehaviour
 
     public void LoadData()
     {
+        if (GameObject.Find("Player").TryGetComponent<PlayerInventory>(out PlayerInventory PI))
+            PI.ResetChecks();
+
         //SetPlayerInventory();
         SetPlayerInventoryBAD();
         SetTimer();
@@ -214,7 +217,7 @@ public class SaveDataManager : MonoBehaviour
                         else
                             Debug.LogError("Relic not given to SaveDataManager");
                     }
-                    else if (item.name.Contains("Net"))
+                    else if (item.name.Contains("Scroll"))
                     {
                         if (relic5 != null)
                             playerInventoryRelicIndex.Add(5);

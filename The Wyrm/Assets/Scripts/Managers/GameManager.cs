@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             UI.HideClock();
         }
 
-        //Debug.Log(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log(relicsFound);
     }
 
     // Update is called once per frame
