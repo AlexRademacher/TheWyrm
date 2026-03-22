@@ -379,8 +379,12 @@ public class Player : MonoBehaviour
 
     public void PlayerKilled()
     {
-        PAM.playRoar();
-        Crickets.Stop();
+        
+        if (Crickets != null)
+            Crickets.Stop();
+
+        if(GM.GetDeadState() == false)
+            PAM.playRoar();
         GM.PlayerKilledState(true);
     }
 
