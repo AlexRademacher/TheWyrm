@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == 5)
         {
-            if (transform.position.y < 45)
+            if (transform.position.y < 46.5)
             {
                 PlayerKilled();
             } 
