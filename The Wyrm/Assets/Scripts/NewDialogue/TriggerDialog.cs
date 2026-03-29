@@ -11,6 +11,10 @@ public class NewBehaviourScript : MonoBehaviour
     private UIManager UI;
     private PlayerInteraction PI;
     private LookVertical CV;
+    private CameraFixer CF;
+
+    private float storedY;
+    private float storedZ;
 
 
     // Start is called before the first frame update
@@ -19,6 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
         PI = GameObject.Find("Player").GetComponent<PlayerInteraction>();
         CV = GameObject.Find("First Person Camera").GetComponent<LookVertical>();
+        CF = GameObject.Find("Player").GetComponent<CameraFixer>();
     }
 
     // Update is called once per frame
@@ -29,12 +34,17 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        CF.StorePos();
         if (!triggered)
         {
             triggered = true;
             thisDialog = GetComponent<Dialog>();
             other.gameObject.transform.LookAt(this.transform.position);
-            CV.TriggerCamUpdate(this.transform);
+            
+            //Add if statements to change amount of vertical rotation based on starting rotation (20)
+            other.gameObject.transform.eulerAngles = new Vector3(20, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
+            
+            //CV.TriggerCamUpdate(this.transform);
             StartCoroutine(DialogueManager.Instance.ShowDialog(thisDialog, this.gameObject));
             switch (this.gameObject.GetComponent<NPCManager>().npcID)
             {

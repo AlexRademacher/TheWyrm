@@ -15,6 +15,8 @@ public class DialogueManager : MonoBehaviour
      * progress questions on button presses
      */
     private GameManager GM;
+    private CameraFixer CF;
+
     [SerializeField] public GameObject dialogBox;
     [SerializeField] Text dialogText;
     [SerializeField] float lettersPerSecond = 100;
@@ -54,6 +56,7 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        CF = GameObject.Find("Player").GetComponent<CameraFixer>();
     }
 
     private void ShowButtons() 
@@ -176,6 +179,7 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
                 StartCoroutine(delayBool());
                 triggerCutsceneable = true;
+                CF.LoadPos();
                 
             }
         }
@@ -189,6 +193,7 @@ public class DialogueManager : MonoBehaviour
             OnHideDialog?.Invoke();
             currentLine = 0;
             StartCoroutine(delayBool());
+            CF.LoadPos();
 
             if (SceneManager.GetActiveScene().buildIndex == 6)
             {
@@ -227,6 +232,7 @@ public class DialogueManager : MonoBehaviour
                 OnHideDialog?.Invoke();
                 currentLine = 0;
                 StartCoroutine(delayBool());
+                CF.LoadPos();
 
                 if (currentNpc.name.Contains("Teacher") || currentNpc.name.Contains("Brother"))
                 {
@@ -278,6 +284,7 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
                 StartCoroutine(delayBool());
                 triggerCutsceneable = true;
+                CF.LoadPos();
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -299,6 +306,7 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
                 StartCoroutine(delayBool());
                 triggerCutsceneable = true;
+                CF.LoadPos();
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -320,6 +328,7 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
                 StartCoroutine(delayBool());
                 triggerCutsceneable = true;
+                CF.LoadPos();
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -346,6 +355,7 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
                 StartCoroutine(delayBool());
                 triggerCutsceneable = true;
+                CF.LoadPos();
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -367,6 +377,7 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
                 StartCoroutine(delayBool());
                 triggerCutsceneable = true;
+                CF.LoadPos();
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
@@ -387,6 +398,7 @@ public class DialogueManager : MonoBehaviour
                 currentLine = 0;
                 StartCoroutine(delayBool());
                 triggerCutsceneable = true;
+                CF.LoadPos();
             }
             buttonOne.SetActive(false);
             buttonTwo.SetActive(false);
