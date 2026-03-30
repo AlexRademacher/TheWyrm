@@ -7,10 +7,14 @@ public class postProcessOnOff : MonoBehaviour
 {
     [SerializeField] PostProcessVolume postProcessVolume;
 
+    private Vignette vignette = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        postProcessVolume.enabled = false;
+        postProcessVolume.profile.TryGetSettings(out vignette);
+        vignette.enabled.value = false;
+        //postProcessVolume.enabled = false;
     }
 
     // Update is called once per frame
@@ -22,6 +26,6 @@ public class postProcessOnOff : MonoBehaviour
 
     public void changeVignState() 
     {
-        postProcessVolume.enabled = !postProcessVolume.enabled;
+        vignette.enabled.value = !vignette.enabled.value;
     }
 }
