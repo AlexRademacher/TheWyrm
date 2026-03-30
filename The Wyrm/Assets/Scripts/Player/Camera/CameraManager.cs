@@ -7,6 +7,7 @@ public class CameraManager : MonoBehaviour
 {
     private GameManager GM;
     private PlayerAudioManager PAM;
+    private CameraFixer CF;
 
     private bool firstPerson;
 
@@ -22,6 +23,7 @@ public class CameraManager : MonoBehaviour
     {
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         PAM = transform.GetComponentInParent<PlayerAudioManager>();
+        CF = GameObject.Find("Player").GetComponent<CameraFixer>();
 
         Camera1stPerson = transform.GetChild(0).GetComponent<Camera>();
 
@@ -47,10 +49,12 @@ public class CameraManager : MonoBehaviour
             if (firstPerson)
             {
                 PAM.playMapOpen();
+                CF.StorePos();
             }
             else
             {
                 PAM.playMapClose();
+                CF.LoadPos();
             }
             RenderSettings.fog = !RenderSettings.fog;
             Camera1stPerson.enabled = !Camera1stPerson.enabled;
