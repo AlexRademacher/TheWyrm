@@ -20,8 +20,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] public GameObject dialogBox;
     [SerializeField] Text dialogText;
     [SerializeField] float lettersPerSecond = 100;
-    [SerializeField] GameObject buttonOne;
-    [SerializeField] GameObject buttonTwo;
+    //[SerializeField] GameObject buttonOne;
+    //[SerializeField] GameObject buttonTwo;
 
     GameObject currentNpc;
 
@@ -59,11 +59,11 @@ public class DialogueManager : MonoBehaviour
         CF = GameObject.Find("Player").GetComponent<CameraFixer>();
     }
 
-    private void ShowButtons() 
+    /*private void ShowButtons() 
     {
         buttonOne.SetActive(true);
         buttonTwo.SetActive(true);
-    }
+    }*/
 
     //Call this function to show a dialog
     public IEnumerator ShowDialog(Dialog dialog, GameObject npc) 
@@ -286,8 +286,8 @@ public class DialogueManager : MonoBehaviour
                 triggerCutsceneable = true;
                 CF.LoadPos();
             }
-            buttonOne.SetActive(false);
-            buttonTwo.SetActive(false);
+            //buttonOne.SetActive(false);
+            //buttonTwo.SetActive(false);
         }
         //if its a branch line and its not typing
         if (dialogBox.activeInHierarchy && !isTyping && branchLine1n2 && !endingLine && dialog.Branch1 != null) 
@@ -308,8 +308,8 @@ public class DialogueManager : MonoBehaviour
                 triggerCutsceneable = true;
                 CF.LoadPos();
             }
-            buttonOne.SetActive(false);
-            buttonTwo.SetActive(false);
+            //buttonOne.SetActive(false);
+            //buttonTwo.SetActive(false);
         }
 
         if (dialogBox.activeInHierarchy && !isTyping && branchLine3n4 && !endingLine && dialog.Branch3 != null)
@@ -330,8 +330,8 @@ public class DialogueManager : MonoBehaviour
                 triggerCutsceneable = true;
                 CF.LoadPos();
             }
-            buttonOne.SetActive(false);
-            buttonTwo.SetActive(false);
+            //buttonOne.SetActive(false);
+            //buttonTwo.SetActive(false);
         }
         
     }
@@ -357,8 +357,8 @@ public class DialogueManager : MonoBehaviour
                 triggerCutsceneable = true;
                 CF.LoadPos();
             }
-            buttonOne.SetActive(false);
-            buttonTwo.SetActive(false);
+            //buttonOne.SetActive(false);
+            //buttonTwo.SetActive(false);
         }
         //if its a branch line and its not typing
         if (dialogBox.activeInHierarchy && !isTyping && branchLine1n2 && !endingLine && dialog.Branch2 != null)
@@ -379,8 +379,8 @@ public class DialogueManager : MonoBehaviour
                 triggerCutsceneable = true;
                 CF.LoadPos();
             }
-            buttonOne.SetActive(false);
-            buttonTwo.SetActive(false);
+            //buttonOne.SetActive(false);
+            //buttonTwo.SetActive(false);
         }
         if (dialogBox.activeInHierarchy && !isTyping && branchLine3n4 && !endingLine && dialog.Branch4 != null)
         {
@@ -400,11 +400,11 @@ public class DialogueManager : MonoBehaviour
                 triggerCutsceneable = true;
                 CF.LoadPos();
             }
-            buttonOne.SetActive(false);
-            buttonTwo.SetActive(false);
+            //buttonOne.SetActive(false);
+            //buttonTwo.SetActive(false);
         }
-        buttonOne.SetActive(false);
-        buttonTwo.SetActive(false);
+        //buttonOne.SetActive(false);
+        //buttonTwo.SetActive(false);
     }
 
     IEnumerator delayBool() 
