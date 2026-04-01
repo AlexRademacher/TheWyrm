@@ -18,11 +18,13 @@ public class CheckpointTrigger : MonoBehaviour
         
     }
 
-    OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.GetComponent<Player> != null)
+        
+        if (other.GetComponent<Player>() != null)
         {
-            player.setNewRespawn(this.transform);
+            Debug.Log("Checkpoint Triggered");
+            player.setNewRespawn(this.transform.position);
         }
 
     }
