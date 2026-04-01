@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     private Vector3 playerVelocity;
     private Vector3 respawnPos;
-    private Quaternion ThirdPerPlayerRotation;
+    private Quaternion respawnRot;
 
     [Header("Movement")]
     [Tooltip("How fast the player moves"), Min(0), SerializeField]
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
         gC = GetComponent<GroundChecker>();
 
         respawnPos = transform.position;
-        ThirdPerPlayerRotation = transform.rotation;
+        respawnRot = transform.rotation;
 
         lives = maxLives;
     }
@@ -126,14 +126,6 @@ public class Player : MonoBehaviour
         {
             Respawn();
         }
-
-        if (CM != null)
-        {
-            if (!CM.GetCameraPerspective() && transform.rotation != ThirdPerPlayerRotation)
-                transform.rotation = ThirdPerPlayerRotation;
-        }
-        else
-            Debug.LogWarning("CM not set up correctly for player");
 
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -399,7 +391,7 @@ public class Player : MonoBehaviour
         lives--;
 
         controller.enabled = false;
-        transform.position = respawnPos;
+        transform.SetPositionAndRotation(respawnPos, respawnRot);
         controller.enabled = true;
 
         if (lives <= 0)
@@ -474,14 +466,8 @@ public class Player : MonoBehaviour
             canHide = false;
 
         controller.enabled = false;
-        transform.position = respawnPos;
+        transform.SetPositionAndRotation(respawnPos, respawnRot);
         controller.enabled = true;
-
-        if (lives <= 0)
-        {
-            LoadSceneManager lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
-            lSM.Restart();
-        }
     }
 }
 

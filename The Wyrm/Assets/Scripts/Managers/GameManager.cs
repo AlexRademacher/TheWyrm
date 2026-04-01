@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
     {
         timer += addedTime;
 
-        if (SceneManager.GetActiveScene().buildIndex != 5)
+        if (SceneManager.GetActiveScene().buildIndex != 5 && !SceneManager.GetActiveScene().name.Contains("Arena"))
         {
             if (timer >= 300 && timer <= 540)
             {
@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
 
         RenderSettings.skybox = skyLook;
 
-        if (lightings != null)
+        if (lightings != null && lightings.Length > 0)
         {
             foreach (GameObject light in lightings)
             {
