@@ -1251,7 +1251,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757919770902913187}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 89d535e7211d49b4fa82868d334d7e5c, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 5d191289201b8344fb72f25e7fab5eb8, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -6043,6 +6043,7 @@ GameObject:
   - component: {fileID: 2050353783545234827}
   - component: {fileID: 2863703110487170894}
   - component: {fileID: 6761436966455181564}
+  - component: {fileID: 1300985871142711555}
   m_Layer: 5
   m_Name: NPC Name
   m_TagString: Untagged
@@ -6167,6 +6168,18 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &6761436966455181564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3849681600895319150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c4558d28bf3aa4394ef2f0ed6462e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1300985871142711555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
