@@ -9,6 +9,7 @@ public class PlayerInteraction : MonoBehaviour
     private UIManager UI;
     private PlayerInventory PInv;
     private PlayerAudioManager PAM;
+    private CameraFixer CF;
 
     private TutorialManager TM;
 
@@ -25,6 +26,7 @@ public class PlayerInteraction : MonoBehaviour
         PAM = GetComponent<PlayerAudioManager>();
         CM = transform.GetChild(0).GetComponent<CameraManager>();
         UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+        CF = GameObject.Find("Player").GetComponent<CameraFixer>();
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
             TM = GameObject.Find("Tutorial").GetComponent<TutorialManager>();
@@ -83,6 +85,7 @@ public class PlayerInteraction : MonoBehaviour
 
                             if (hitInfo.transform.gameObject.CompareTag("NPC"))
                             {
+                                CF.StorePos();
                                 TalkingToNPC();
                                 PAM.playPopUp();
                             }
