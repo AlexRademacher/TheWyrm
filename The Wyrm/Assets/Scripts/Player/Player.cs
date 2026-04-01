@@ -467,6 +467,22 @@ public class Player : MonoBehaviour
     {
         respawnPos = newRespawnPos;
     }
+
+    public void Unstuck() //Respawn without taking a life
+    {
+        if (canHide)
+            canHide = false;
+
+        controller.enabled = false;
+        transform.position = respawnPos;
+        controller.enabled = true;
+
+        if (lives <= 0)
+        {
+            LoadSceneManager lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
+            lSM.Restart();
+        }
+    }
 }
 
 
