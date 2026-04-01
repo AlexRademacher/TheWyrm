@@ -7231,6 +7231,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303972974}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!20 &304056530 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6147120449066118705, guid: 8b765161d930f614f9881b46fd812c21, type: 3}
+  m_PrefabInstance: {fileID: 44860846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &306574872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2625511119840850767, guid: c46fb789714aff54f8bec9804f9bc612, type: 3}
@@ -54516,6 +54521,10 @@ PrefabInstance:
       propertyPath: dialogBox
       value: 
       objectReference: {fileID: 876193343}
+    - target: {fileID: 4114952061439743809, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
+      propertyPath: MapCam
+      value: 
+      objectReference: {fileID: 304056530}
     - target: {fileID: 6180137507214683982, guid: 819b3cc46652f7a4f8e135eff27d11d1, type: 3}
       propertyPath: m_CollisionDetection
       value: 0

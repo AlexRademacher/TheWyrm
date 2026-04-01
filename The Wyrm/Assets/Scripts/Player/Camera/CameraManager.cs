@@ -43,23 +43,26 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Tab) && (SceneManager.GetActiveScene().buildIndex != 5) && DialogueManager.Instance.inDialouge == false && !Cursor.visible && !GM.GetTalking() && !GM.GetLoadingState())
+        if (SceneManager.GetActiveScene().buildIndex != 1 && SceneManager.GetActiveScene().buildIndex != 3 && SceneManager.GetActiveScene().buildIndex != 5 && SceneManager.GetActiveScene().buildIndex != 6)
         {
-            if (firstPerson)
+            
+            if (Input.GetKeyDown(KeyCode.Tab) && DialogueManager.Instance.inDialouge == false && !Cursor.visible && !GM.GetTalking() && !GM.GetLoadingState())
             {
-                PAM.playMapOpen();
-                CF.StorePos();
+                if (firstPerson)
+                {
+                    PAM.playMapOpen();
+                    CF.StorePos();
+                }
+                else
+                {
+                    PAM.playMapClose();
+                    CF.LoadPos();
+                }
+                RenderSettings.fog = !RenderSettings.fog;
+                Camera1stPerson.enabled = !Camera1stPerson.enabled;
+                MapCam.enabled = !MapCam.enabled;
+                firstPerson = !firstPerson;
             }
-            else
-            {
-                PAM.playMapClose();
-                CF.LoadPos();
-            }
-            RenderSettings.fog = !RenderSettings.fog;
-            Camera1stPerson.enabled = !Camera1stPerson.enabled;
-            MapCam.enabled = !MapCam.enabled;
-            firstPerson = !firstPerson;
         }
     }
 
