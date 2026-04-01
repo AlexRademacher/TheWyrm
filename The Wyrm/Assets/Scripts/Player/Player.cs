@@ -462,6 +462,11 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void setNewRespawn(Vector3 newRespawnPos) 
+    {
+        respawnPos = newRespawnPos;
+    }
 }
 
 
