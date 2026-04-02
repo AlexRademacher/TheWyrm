@@ -120,7 +120,7 @@ public class PlayerInteraction : MonoBehaviour
                 }
 
                 hitInfo.collider.name = "Placed";
-                hitInfo.transform.gameObject.tag = "Default";
+                hitInfo.transform.gameObject.tag = "Untagged";
             }
         }
         else

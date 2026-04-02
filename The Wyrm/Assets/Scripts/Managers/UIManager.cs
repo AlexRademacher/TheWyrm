@@ -515,7 +515,7 @@ public class UIManager : MonoBehaviour
 
     private void SetRespawnInfo()
     {
-        if (RespawnMenu.transform.GetChild(2).TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI respawnText)) {
+        if (!SceneManager.GetActiveScene().name.Contains("Arena") && RespawnMenu.transform.GetChild(2).TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI respawnText)) {
             if (RespawnMenuInfo == null || RespawnMenuInfo.Length == 0)
             {
                 Debug.LogWarning("RespawnMenuInfo is empty or missing in UI");
