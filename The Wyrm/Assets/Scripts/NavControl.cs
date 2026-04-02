@@ -112,7 +112,7 @@ public class NavControl : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("AHHHHH");
-            GameObject.Find("Player").GetComponent<Player>().PlayerKilled();
+            //GameObject.Find("Player").GetComponent<Player>().PlayerKilled();
             /*
              if (TryGetComponent<Player>(out Player P))
             {

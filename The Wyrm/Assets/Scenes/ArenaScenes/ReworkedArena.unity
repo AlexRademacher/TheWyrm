@@ -1121,9 +1121,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1939060032}
     m_Modifications:
+    - target: {fileID: 1083743767361440862, guid: 8b765161d930f614f9881b46fd812c21, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1208603542345837192, guid: 8b765161d930f614f9881b46fd812c21, type: 3}
       propertyPath: m_Name
       value: wyrm 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208603542345837192, guid: 8b765161d930f614f9881b46fd812c21, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201623454867524413, guid: 8b765161d930f614f9881b46fd812c21, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6899110829194017967, guid: 8b765161d930f614f9881b46fd812c21, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26109,7 +26121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1003918224}
   - component: {fileID: 1003918225}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Running Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29849,7 +29861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1152912335}
   - component: {fileID: 1152912336}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bite Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48311,7 +48323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1859755919}
   - component: {fileID: 1859755920}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Yell Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
