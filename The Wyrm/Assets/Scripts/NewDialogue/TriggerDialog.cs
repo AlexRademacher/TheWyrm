@@ -42,9 +42,10 @@ public class NewBehaviourScript : MonoBehaviour
             triggered = true;
             thisDialog = GetComponent<Dialog>();
 
-            //Debug.Log(other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x);
+            //Debug.Log(other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x);  
 
-            /*if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < 0)
+            /*if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < 0)  Reads the X rotation of the first person camera
+             * and if its in the range of 0 - 20 (0 to -0.17) sets the player rotation temporarily to 20.  
             {
                 Debug.Log("0 - 20");
                 CameraX = 20;
