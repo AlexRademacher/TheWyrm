@@ -44,10 +44,12 @@ public class NewBehaviourScript : MonoBehaviour
             //Add if statements to change amount of vertical rotation based on starting rotation (20)
             if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -20)
             {
+                Debug.Log("20");
                 other.gameObject.transform.eulerAngles = new Vector3(20, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
             }
             else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -40) 
             {
+                Debug.Log("40");
                 other.gameObject.transform.eulerAngles = new Vector3(40, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
             }
 
