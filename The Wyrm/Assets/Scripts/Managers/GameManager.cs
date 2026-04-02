@@ -85,12 +85,12 @@ public class GameManager : MonoBehaviour
         {
             if (sacrificed >= 2)
             {
-                FinalRelics.SetActive(true);
+                //FinalRelics.SetActive(true);
 
-                if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
+               /* if (GameObject.Find("Scene Manager").TryGetComponent<LoadSceneManager>(out LoadSceneManager lSM))
                 {
                     lSM.SendToArena();
-                }
+                }*/
 
                 /*if (GameObject.Find("Scene Manager") != null)
                 {

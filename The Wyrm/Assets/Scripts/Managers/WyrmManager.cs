@@ -162,7 +162,7 @@ public class WyrmManager : MonoBehaviour
     {
         if (player == null)
         {
-            Debug.LogError("Player missing");
+            //Debug.LogError("Player missing");
             return 0;
         }   
 
