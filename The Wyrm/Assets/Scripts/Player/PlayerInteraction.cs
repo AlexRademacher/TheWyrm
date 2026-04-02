@@ -118,6 +118,9 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     checker.ResetChecking();
                 }
+
+                hitInfo.collider.name = "Placed";
+                hitInfo.transform.gameObject.tag = "Default";
             }
         }
         else
