@@ -46,6 +46,8 @@ public class NewBehaviourScript : MonoBehaviour
 
             /*if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < 0)  Reads the X rotation of the first person camera
              * and if its in the range of 0 - 20 (0 to -0.17) sets the player rotation temporarily to 20.  
+             * The issue arises when the player faces a different direction horizontally it somehow changes the values of the rotation of the camera even though it wasnt changed.  
+             * If a consistent values could be obtained this method would work
             {
                 Debug.Log("0 - 20");
                 CameraX = 20;
