@@ -40,12 +40,22 @@ public class NewBehaviourScript : MonoBehaviour
             triggered = true;
             thisDialog = GetComponent<Dialog>();
             other.gameObject.transform.LookAt(this.transform.position);
-            
+
             //Add if statements to change amount of vertical rotation based on starting rotation (20)
-            other.gameObject.transform.eulerAngles = new Vector3(20, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
-            
-            //CV.TriggerCamUpdate(this.transform);
-            StartCoroutine(DialogueManager.Instance.ShowDialog(thisDialog, this.gameObject));
+            if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -20)
+            {
+                Debug.Log("20");
+                other.gameObject.transform.eulerAngles = new Vector3(20, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -40) 
+            {
+                Debug.Log("40");
+                other.gameObject.transform.eulerAngles = new Vector3(40, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
+            }
+
+
+                //CV.TriggerCamUpdate(this.transform);
+                StartCoroutine(DialogueManager.Instance.ShowDialog(thisDialog, this.gameObject));
             switch (this.gameObject.GetComponent<NPCManager>().npcID)
             {
                 case 0:
