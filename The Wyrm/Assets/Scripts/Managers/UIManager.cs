@@ -515,7 +515,7 @@ public class UIManager : MonoBehaviour
 
     private void SetRespawnInfo()
     {
-        if (!SceneManager.GetActiveScene().name.Contains("Arena") && RespawnMenu.transform.GetChild(2).TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI respawnText)) {
+        if (!SceneManager.GetActiveScene().name.Contains("Arena") && SceneManager.GetActiveScene().buildIndex != 5 && RespawnMenu.transform.GetChild(2).TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI respawnText)) {
             if (RespawnMenuInfo == null || RespawnMenuInfo.Length == 0)
             {
                 Debug.LogWarning("RespawnMenuInfo is empty or missing in UI");
@@ -535,6 +535,10 @@ public class UIManager : MonoBehaviour
             else
                 respawnText.text = "You have run out of chances the day will now truely reset";
 
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 5 && RespawnMenu.transform.GetChild(2).TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI respawnTex))
+        {
+            respawnTex.text = "Don't give up! \n You need to save the village!";
         }
         else
             Debug.LogWarning("Could not find text to set RespawnMenuInfo");
