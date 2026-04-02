@@ -16,6 +16,8 @@ public class NewBehaviourScript : MonoBehaviour
     private float storedY;
     private float storedZ;
 
+    private float CameraX;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,23 +41,44 @@ public class NewBehaviourScript : MonoBehaviour
         {
             triggered = true;
             thisDialog = GetComponent<Dialog>();
-            other.gameObject.transform.LookAt(this.transform.position);
 
+            Debug.Log(other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x);
+
+            if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < 0)
+            {
+                Debug.Log("0 - 20");
+                CameraX = 20;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.25 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.17)
+            {
+                Debug.Log("20 - 30");
+                CameraX = 40;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.34 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.25)
+            {
+                Debug.Log("30 - 40");
+                CameraX = 40;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.45 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.34)
+            {
+                Debug.Log("40 - 50");
+                CameraX = 50;
+            }
+            else 
+            {
+                Debug.Log("Else");
+                CameraX = 0;
+            }
+
+                other.gameObject.transform.LookAt(this.transform.position);
+
+            Debug.Log(other.gameObject.transform.GetChild(0).GetChild(0).name);
             //Add if statements to change amount of vertical rotation based on starting rotation (20)
-            if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -20)
-            {
-                Debug.Log("20");
-                other.gameObject.transform.eulerAngles = new Vector3(20, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
-            }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -40) 
-            {
-                Debug.Log("40");
-                other.gameObject.transform.eulerAngles = new Vector3(40, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
-            }
 
+            other.gameObject.transform.eulerAngles = new Vector3(CameraX, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
 
-                //CV.TriggerCamUpdate(this.transform);
-                StartCoroutine(DialogueManager.Instance.ShowDialog(thisDialog, this.gameObject));
+            //CV.TriggerCamUpdate(this.transform);
+            StartCoroutine(DialogueManager.Instance.ShowDialog(thisDialog, this.gameObject));
             switch (this.gameObject.GetComponent<NPCManager>().npcID)
             {
                 case 0:
