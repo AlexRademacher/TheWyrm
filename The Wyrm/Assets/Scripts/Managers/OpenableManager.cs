@@ -38,16 +38,24 @@ public class OpenableManager : MonoBehaviour
 
     private void OpenUp()
     {
-        AS.pitch = Random.Range(0.9f, 1.1f);
-        AS.PlayOneShot(openSound);
+        if (AS != null)
+        {
+            AS.pitch = Random.Range(0.9f, 1.1f);
+            AS.PlayOneShot(openSound);
+        }
+        
         Closed.SetActive(false);
         Open.SetActive(true);
     }
 
     private void CloseDown()
     {
-        AS.pitch = Random.Range(0.9f, 1.1f);
-        AS.PlayOneShot(closeSound);
+        if (AS != null)
+        {
+            AS.pitch = Random.Range(0.9f, 1.1f);
+            AS.PlayOneShot(closeSound);
+        }
+        
         Closed.SetActive(true);
         Open.SetActive(false);
     }
