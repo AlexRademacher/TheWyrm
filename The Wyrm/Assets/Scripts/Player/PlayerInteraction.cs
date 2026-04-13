@@ -51,6 +51,14 @@ public class PlayerInteraction : MonoBehaviour
             StartCoroutine(delayCutsceneCheck());
 
         }
+
+
+        /*Debug.LogWarning(hitInfo);
+        if (GameObject.FindGameObjectWithTag("Wyrm") != null)
+            Debug.Log("Wyrm Found");
+        if (dialogBox.activeInHierarchy == false)
+            Debug.Log("dialogBox Not Active");*/
+
     }
 
     //----------------------------------------------------------------------------------------------------------------------
@@ -318,9 +326,11 @@ public class PlayerInteraction : MonoBehaviour
             Dialog Dialog;
             if (GameObject.FindGameObjectWithTag("Wyrm") == null)
                 Dialog = hitInfo.transform.GetComponent<Dialog>();
-            else 
+            else if (hitInfo.transform.childCount >= 1)
                 Dialog = hitInfo.transform.GetChild(0).GetComponent<Dialog>();
-                switch (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID)
+            else
+                Dialog = hitInfo.transform.GetComponent<Dialog>();
+            switch (hitInfo.transform.gameObject.GetComponent<NPCManager>().npcID)
                 {
                     case 0:
                         UI.SetTextNameBox("Teacher");
@@ -400,7 +410,7 @@ public class PlayerInteraction : MonoBehaviour
                 lastNpcId = 8;
             if (Dialog != null && dialogBox.activeInHierarchy == false)
             {
-                //Debug.Log("found Dialog");
+                Debug.Log("found Dialog");
                 StartCoroutine(DialogueManager.Instance.ShowDialog(Dialog, hitInfo.transform.gameObject));
                 
             }
