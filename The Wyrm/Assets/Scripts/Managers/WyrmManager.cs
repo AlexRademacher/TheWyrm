@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class WyrmManager : MonoBehaviour
 {
     private GameManager GM;
+    //private Player P;
 
     private Transform player;
 
@@ -34,10 +35,18 @@ public class WyrmManager : MonoBehaviour
     private bool pointsReset = false;
     private bool letingPlayerGo = false;
 
+    private bool isChasing = false;
+
+    // Time it takes wyrm to forget
+    [SerializeField] private float loseSightDelay = 3f;
+
+    private float loseSightTimer = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        //P = GameObject.Find("Player").GetComponent<Player>();
 
         if (!transform.TryGetComponent<WyrmSoundManager>(out WSM))
         {
@@ -90,29 +99,50 @@ public class WyrmManager : MonoBehaviour
         agent.speed = 6;
 
         path = new NavMeshPath();
+
+        //SetPlayerPosition(P.transform);
+
+        Debug.Log(PlayerDistance());
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*if (player != null)
+            Debug.Log(PlayerDistance());*/
+
+        
+
         if (!Cursor.visible && !GM.GetLoadingState() && agent != null)
         {
             if (agent.isOnNavMesh)
             {
-                Raycasting();
+                RaycastingSphere();
 
                 if (player != null && agent.CalculatePath(player.position, path))
                 {
-                    if (agent.remainingDistance > 22)
+                    
+                    if (agent.remainingDistance > 40)
                     {
                         Debug.Log("HE ESCAPED");
-                        player = null;
+                        //player = null;
                         letingPlayerGo = true;
                         ResetPoints();
                         Debug.Log(agent.name);
                     }
                     else
                         Debug.Log(agent.remainingDistance);
+
+                    if (player != null && PlayerDistance() < 2.8f)
+                    {
+                        Player ps = player.GetComponent<Player>();
+
+                        if (!ps.CheckIfHiding())
+                        {
+                            ps.PlayerKilled();
+                            WSM.BiteSound();
+                        }
+                    }
                 }
 
                 if (inArena)
@@ -123,8 +153,6 @@ public class WyrmManager : MonoBehaviour
                 {
                     WyrmVillageMovement();
                 }
-
-                
             }
             else
             {
@@ -132,6 +160,7 @@ public class WyrmManager : MonoBehaviour
                 agent = null;
             }
         }
+
     }
 
     public void SetPlayerPosition(Transform playerTransform)
@@ -139,7 +168,20 @@ public class WyrmManager : MonoBehaviour
         player = playerTransform;
     }
 
-    public void Raycasting()
+    private float PlayerDistance()
+    {
+        if (player == null)
+        {
+            //Debug.LogError("Player missing");
+            return 0;
+        }   
+
+        float result = Vector3.Distance(transform.position, player.position);
+
+        return result;
+    }
+
+    private void RaycastingSphere()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -155,7 +197,7 @@ public class WyrmManager : MonoBehaviour
             // creates and updates the raycast
             rayCast = firstPersonCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)); //50% horiz, 50% vert
 
-            RaycastHit[] hits = Physics.SphereCastAll(rayCast, 16.0f);
+            RaycastHit[] hits = Physics.SphereCastAll(rayCast, 6.0f);
 
             if (player == null)
             {
@@ -164,22 +206,54 @@ public class WyrmManager : MonoBehaviour
                     if (hit.transform.tag.Contains("Player"))
                     {
                         hitInfo = hit;
+
                         if (!Physics.Linecast(transform.position, hitInfo.transform.position, 8))
-                        {
-                            player = hitInfo.transform;
-                            break;
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Raycast interrupted");
-                        }
+                         {
+                             player = hitInfo.transform;
+                             break;
+                         }
+                         else
+                         {
+                             Debug.LogWarning("Raycast interrupted");
+                         }
                     }
                 }
             }
-
-            if (player != null && hitInfo.distance > 22)
+            if (player != null)
             {
-                player = null;
+                float dist = Vector3.Distance(transform.position, player.position);
+
+                bool canSeePlayer = true;
+
+                // Too far = can't see
+                if (dist > 22f)
+                {
+                    canSeePlayer = false;
+                }
+                else if (Physics.Linecast(transform.position, player.position, out RaycastHit hit))
+                {
+                    if (!hit.transform.CompareTag("Player"))
+                    {
+                        canSeePlayer = false;
+                    }
+                }
+
+                if (canSeePlayer)
+                {
+                    // Reset timer if we can see them
+                    loseSightTimer = 0f;
+                }
+                else
+                {
+                    // Count up if we can't
+                    loseSightTimer += Time.deltaTime;
+
+                    if (loseSightTimer >= loseSightDelay)
+                    {
+                        player = null;
+                        loseSightTimer = 0f;
+                    }
+                }
             }
         }
         else
@@ -233,7 +307,7 @@ public class WyrmManager : MonoBehaviour
             GotoNextPoint();
         }
 
-        if (player != null && agent.CalculatePath(player.position, path))
+        if (player != null && playerHiding && agent.CalculatePath(player.position, path))
         {
             playerHiding = false;
         }
@@ -322,6 +396,22 @@ public class WyrmManager : MonoBehaviour
 
     private void WyrmArenaMovement()
     {
+        bool currentlyChasing = (player != null && !playerHiding);
+        
+        if (currentlyChasing != isChasing)
+        {
+            isChasing = currentlyChasing;
+
+            if (ChaseTracker.Instance != null)
+            {
+                if (isChasing)
+                    ChaseTracker.Instance.StartChasing(this);
+                else
+                    ChaseTracker.Instance.StopChasing(this);
+            }
+        }
+
+
         if (player != null && !playerHiding && agent.CalculatePath(player.position, path))
         {
             if (player.TryGetComponent<Player>(out Player playerScript))
@@ -346,7 +436,7 @@ public class WyrmManager : MonoBehaviour
 
                     if (!pointsReset)
                     {
-                        //Debug.Log("Points Reset Before: " + pointsReset);
+                        Debug.Log("Points Reset Before: " + pointsReset);
                         ResetPoints();
                         //Debug.Log("Points Reset after: " + pointsReset);
                         letingPlayerGo = true;
@@ -399,10 +489,10 @@ public class WyrmManager : MonoBehaviour
 
     private void Wyrm3Movement()
     {
-        if (agent.remainingDistance < 1000)
-            agent.speed = 1000 - agent.remainingDistance;
-        else if (agent.remainingDistance > 1000)
-            agent.speed = 1000;
+        if (agent.remainingDistance < 800)
+            agent.speed = 800 - agent.remainingDistance;
+        else if (agent.remainingDistance > 800)
+            agent.speed = 800;
     }
 
     public IEnumerator StartCountdownToLeave(int time, WyrmSpawnManager WSM)

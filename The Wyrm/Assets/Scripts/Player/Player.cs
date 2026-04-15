@@ -68,6 +68,10 @@ public class Player : MonoBehaviour
 
     private float stepTimer;
 
+    private SphereCollider soundCollider;
+    private static int walkSize = 15;
+    private static int runSize = 25;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +104,13 @@ public class Player : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         gC = GetComponent<GroundChecker>();
+
+
+        if (transform.GetChild(2).TryGetComponent<SphereCollider>(out SphereCollider SC))
+        {
+            soundCollider = SC;
+            soundCollider.radius = walkSize;
+        }
 
         respawnPos = transform.position;
         respawnRot = transform.rotation;
@@ -212,6 +223,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            if (soundCollider.radius != runSize)
+                soundCollider.radius = runSize;
+
             if (TM != null && !TM.HasRan())
             {
                 StartCoroutine(TM.IsRunning());
@@ -219,6 +233,12 @@ public class Player : MonoBehaviour
             else if (TM == null && SceneManager.GetActiveScene().buildIndex == 0)
                 Debug.LogError("Tutorial for Player Movement couldn't be found");
         }
+        else
+        {
+            if (soundCollider.radius != walkSize)
+                soundCollider.radius = walkSize;
+        }
+            
 
         Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         input = Vector3.ClampMagnitude(input, 1f);
@@ -394,7 +414,7 @@ public class Player : MonoBehaviour
         transform.SetPositionAndRotation(respawnPos, respawnRot);
         controller.enabled = true;
 
-        if (lives <= 0)
+        if (lives <= 0 && SceneManager.GetActiveScene().buildIndex < 5)
         {
             LoadSceneManager lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
             lSM.Restart();
@@ -445,13 +465,13 @@ public class Player : MonoBehaviour
     {
         if (controller.enabled)
         {
-            if (hit.gameObject.CompareTag("Wyrm"))
+            /*if (hit.gameObject.CompareTag("Wyrm"))
             {
                 PlayerKilled();
 
                 if (hit.gameObject.TryGetComponent<WyrmSoundManager>(out WyrmSoundManager WSM))
                     WSM.BiteSound();
-            }
+            }*/
         }
     }
 
