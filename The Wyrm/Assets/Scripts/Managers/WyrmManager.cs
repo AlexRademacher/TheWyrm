@@ -133,7 +133,7 @@ public class WyrmManager : MonoBehaviour
                     else
                         Debug.Log(agent.remainingDistance);
 
-                    if (player != null && PlayerDistance() < 3)
+                    if (player != null && PlayerDistance() < 2.8f)
                     {
                         Player ps = player.GetComponent<Player>();
 
@@ -489,10 +489,10 @@ public class WyrmManager : MonoBehaviour
 
     private void Wyrm3Movement()
     {
-        if (agent.remainingDistance < 1000)
-            agent.speed = 1000 - agent.remainingDistance;
-        else if (agent.remainingDistance > 1000)
-            agent.speed = 1000;
+        if (agent.remainingDistance < 800)
+            agent.speed = 800 - agent.remainingDistance;
+        else if (agent.remainingDistance > 800)
+            agent.speed = 800;
     }
 
     public IEnumerator StartCountdownToLeave(int time, WyrmSpawnManager WSM)
