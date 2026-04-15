@@ -44,7 +44,7 @@ public class NewBehaviourScript : MonoBehaviour
 
             Debug.Log(other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x);
 
-            if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < 0)
+            if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0)
             //Reads the X rotation of the first person camera
             //and if its in the range of 0 - 20 (0 to -0.17) sets the player rotation temporarily to 20.  
             {
@@ -81,7 +81,7 @@ public class NewBehaviourScript : MonoBehaviour
                 Debug.Log("70 - 80 Neg");
                 CameraX = 80;
             }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.7 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < -0.63)
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -1 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < -0.63)
             {
                 Debug.Log("80 - 90 Neg");
                 CameraX = 90;
@@ -121,7 +121,7 @@ public class NewBehaviourScript : MonoBehaviour
                 Debug.Log("70 - 80");
                 CameraX = -80;
             }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.63 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.7)
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.63 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 1)
             {
                 Debug.Log("80 - 90");
                 CameraX = -90;
