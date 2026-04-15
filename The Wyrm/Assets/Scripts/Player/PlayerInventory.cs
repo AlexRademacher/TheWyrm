@@ -11,6 +11,8 @@ public class PlayerInventory : MonoBehaviour
     [Header("Inventory")]
     [SerializeField]
     private GameObject[] inventory = new GameObject[3];
+    [SerializeField]
+    private GameObject[] placedInventory = new GameObject[3];
     private int inventoryIndex = 0;
     private bool relic1Found;
     private bool relic2Found;
@@ -40,6 +42,18 @@ public class PlayerInventory : MonoBehaviour
     public GameObject[] GetInventory()
     {
         return inventory;
+    }
+
+    public bool CheckInvEmpty()
+    {
+        foreach (GameObject item in inventory)
+        {
+            if (item != null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void ResetChecks()
@@ -260,23 +274,37 @@ public class PlayerInventory : MonoBehaviour
     /// <returns> The GameObject that was removed </returns>
     public GameObject RemoveInventory()
     {
-        GameObject item = SetInvSlotToNull(inventoryIndex - 1);
+        int num = 0;
+        foreach (GameObject itemObject in inventory) {
+            ++num;
 
-        if (item == null)
-        {
-            Debug.LogWarning("Inventory slot is empty");
-            return null;
+            if (itemObject != null)
+            {
+                foreach (GameObject placedObject in placedInventory)
+                {
+                    if (placedObject != null && itemObject.name != placedObject.name)
+                    {
+                        GameObject item = SetInvSlotToNull(num - 1);
+                        placedInventory[num - 1] = item;
+                        inventoryIndex--;
+                        return item;
+                    }
+                    else
+                        break;
+                }
+
+                if (placedInventory[0] == null)
+                {
+                    GameObject item = SetInvSlotToNull(num - 1);
+                    placedInventory[0] = SetInvSlotToNull(num - 1);
+                    inventoryIndex--;
+                    return item;
+                }
+            }
         }
 
-        /*if (item.name.Contains("Relic"))
-        {
-            if (UI != null)
-                UI.UpdateItemCount(-1);
-        }*/
-
-        inventoryIndex--;
-
-        return item;
+        Debug.LogWarning("Inventory slot is empty");
+        return null;
     }
 
     public void ListInventory()

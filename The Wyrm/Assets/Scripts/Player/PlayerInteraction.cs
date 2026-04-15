@@ -126,9 +126,6 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     checker.ResetChecking();
                 }
-
-                hitInfo.collider.name = "Placed";
-                hitInfo.transform.gameObject.tag = "Untagged";
             }
         }
         else
@@ -231,6 +228,9 @@ public class PlayerInteraction : MonoBehaviour
                     GameObject newRelic = Instantiate(item, new Vector3(hitInfo.point.x, hitInfo.point.y + 0.3f, hitInfo.point.z), transform.rotation);
                     newRelic.SetActive(true);
                     newRelic.transform.localScale = new Vector3(.54745f, .54745f, .54745f);
+
+                    hitInfo.collider.name = "Placed";
+                    hitInfo.transform.gameObject.tag = "Untagged";
 
                     if (newRelic.transform.TryGetComponent<SpriteRenderer>(out SpriteRenderer itemRenderer))
                     {
