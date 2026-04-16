@@ -12,6 +12,7 @@ public class WyrmManager : MonoBehaviour
     private Transform player;
 
     private WyrmSoundManager WSM;
+    private WyrmSpawnManager WSpawnM;
 
     public Ray rayCast;
     public RaycastHit hitInfo;
@@ -140,7 +141,23 @@ public class WyrmManager : MonoBehaviour
                         if (!ps.CheckIfHiding())
                         {
                             ps.PlayerKilled();
-                            WSM.BiteSound();
+
+                            if (WSM != null)
+                                WSM.BiteSound();
+
+                            if (SceneManager.GetActiveScene().name.Contains("Level"))
+                            {
+                                Debug.LogError("sending out spawn");
+                                if (WSpawnM != null)
+                                {
+                                    WSpawnM.WyrmLeft();
+
+                                    if (gameObject != null && gameObject.activeSelf)
+                                        Destroy(gameObject);
+                                }
+                                else
+                                    Debug.Log("oooooopppppsss");
+                            }
                         }
                     }
                 }
@@ -161,6 +178,11 @@ public class WyrmManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void SetSpawnManager(WyrmSpawnManager spawnM)
+    {
+        WSpawnM = spawnM;
     }
 
     public void SetPlayerPosition(Transform playerTransform)

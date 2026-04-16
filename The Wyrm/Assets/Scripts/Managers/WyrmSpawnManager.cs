@@ -78,6 +78,13 @@ public class WyrmSpawnManager : MonoBehaviour
             {
                 WM.SetPlayerPosition(playerPosition);
 
+                if (transform.parent.TryGetComponent<PerspectiveChangerTrigger>(out PerspectiveChangerTrigger PCT))
+                {
+                    PCT.GetWyrmSpawnMan(GetCurrentWyrm());
+                }
+                else
+                    Debug.Log("heeeeeyyyyy");
+
                 if (WyrmPoints != null)
                 {
                     WM.SetNavPoints(WyrmPoints);

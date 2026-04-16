@@ -77,6 +77,21 @@ public class PerspectiveChangerTrigger : MonoBehaviour
             Debug.LogWarning("Could not find the Wyrm Spawn Manager script");
     }
 
+    public void GetWyrmSpawnMan(GameObject Wyrm)
+    {
+        if (Wyrm.TryGetComponent<WyrmManager>(out WyrmManager WM))
+        {
+            if (transform.GetChild(0).TryGetComponent<WyrmSpawnManager>(out WyrmSpawnManager WspawnM))
+            {
+                WM.SetSpawnManager(WspawnM);
+            }
+            else
+                Debug.Log("oooooffff");
+        }
+        else
+            Debug.Log("Woooaaahhhh");
+    }
+
     private IEnumerator RemovalCheck(int currentCheck)
     {
         if (spawnFast)
