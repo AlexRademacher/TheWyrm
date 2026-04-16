@@ -42,63 +42,102 @@ public class NewBehaviourScript : MonoBehaviour
             triggered = true;
             thisDialog = GetComponent<Dialog>();
 
-            //Debug.Log(other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x);  
+            Debug.Log(other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x);
 
-            /*if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < 0)  Reads the X rotation of the first person camera
-             * and if its in the range of 0 - 20 (0 to -0.17) sets the player rotation temporarily to 20.  
-             * The issue arises when the player faces a different direction horizontally it somehow changes the values of the rotation of the camera even though it wasnt changed.  
-             * If a consistent values could be obtained this method would work
+            if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0)
+            //Reads the X rotation of the first person camera
+            //and if its in the range of 0 - 20 (0 to -0.17) sets the player rotation temporarily to 20.  
             {
-                Debug.Log("0 - 20");
+                Debug.Log("0 - 20 Neg");
                 CameraX = 20;
             }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.25 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.17)
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.25 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < -0.17)
             {
-                Debug.Log("20 - 30");
+                Debug.Log("20 - 30 Neg");
                 CameraX = 40;
             }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.34 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.25)
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.34 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < -0.25)
             {
-                Debug.Log("30 - 40");
+                Debug.Log("30 - 40 Neg");
                 CameraX = 40;
             }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.45 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.34)
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.45 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < -0.34)
             {
-                Debug.Log("40 - 50");
+                Debug.Log("40 - 50 Neg");
                 CameraX = 50;
             }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.49 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.45)
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.49 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < -0.45)
             {
-                Debug.Log("50 - 60");
+                Debug.Log("50 - 60 Neg");
                 CameraX = 60;
             }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.56 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.49)
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.56 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < -0.49)
             {
-                Debug.Log("60 - 70");
+                Debug.Log("60 - 70 Neg");
                 CameraX = 70;
             }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.63 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.56)
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -0.63 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < -0.56)
             {
-                Debug.Log("70 - 80");
+                Debug.Log("70 - 80 Neg");
                 CameraX = 80;
             }
-            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x >= -0.7 && other.gameObject.transform.GetChild(0).GetChild(0).transform.rotation.x < -0.63)
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= -1 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < -0.63)
             {
-                Debug.Log("80 - 90");
+                Debug.Log("80 - 90 Neg");
                 CameraX = 90;
             }
-            else 
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.17)
+            {
+                Debug.Log("0 - 20");
+                CameraX = -20;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.25)
+            {
+                Debug.Log("20 - 30");
+                CameraX = -30;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.25 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.34)
+            {
+                Debug.Log("30 - 40");
+                CameraX = -40;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.34 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.45)
+            {
+                Debug.Log("40 - 50");
+                CameraX = -50;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.45 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.49)
+            {
+                Debug.Log("50 - 60");
+                CameraX = -60;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.49 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.56)
+            {
+                Debug.Log("60 - 70");
+                CameraX = -70;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.56 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.63)
+            {
+                Debug.Log("70 - 80");
+                CameraX = -80;
+            }
+            else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.63 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 1)
+            {
+                Debug.Log("80 - 90");
+                CameraX = -90;
+            }
+            else
             {
                 Debug.Log("Else");
                 CameraX = 0;
-            }*/
+            }
 
             other.gameObject.transform.LookAt(this.transform.position);
 
             Debug.Log(other.gameObject.transform.GetChild(0).GetChild(0).name);
             //Add if statements to change amount of vertical rotation based on starting rotation (20)
 
-            //other.gameObject.transform.eulerAngles = new Vector3(CameraX, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
+            other.gameObject.transform.eulerAngles = new Vector3(CameraX, other.transform.rotation.eulerAngles.y, other.transform.rotation.eulerAngles.z);
 
             //CV.TriggerCamUpdate(this.transform);
             StartCoroutine(DialogueManager.Instance.ShowDialog(thisDialog, this.gameObject));

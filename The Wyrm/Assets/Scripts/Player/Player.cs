@@ -414,7 +414,7 @@ public class Player : MonoBehaviour
         transform.SetPositionAndRotation(respawnPos, respawnRot);
         controller.enabled = true;
 
-        if (lives <= 0 && SceneManager.GetActiveScene().buildIndex != 5)
+        if (lives <= 0 && SceneManager.GetActiveScene().buildIndex < 5)
         {
             LoadSceneManager lSM = GameObject.Find("Scene Manager").GetComponent<LoadSceneManager>();
             lSM.Restart();
