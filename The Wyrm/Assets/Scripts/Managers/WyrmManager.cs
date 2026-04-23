@@ -42,6 +42,8 @@ public class WyrmManager : MonoBehaviour
     [SerializeField] private float loseSightDelay = 3f;
 
     private float loseSightTimer = 0f;
+    private bool recoveringFromHiding = false;
+    private bool lostPlayerThisFrame = false;
 
     // Start is called before the first frame update
     void Start()
@@ -418,8 +420,52 @@ public class WyrmManager : MonoBehaviour
 
     private void WyrmArenaMovement()
     {
-        bool currentlyChasing = (player != null && !playerHiding);
-        
+
+        if (lostPlayerThisFrame)
+        {
+            agent.ResetPath();
+            lostPlayerThisFrame = false;
+
+            if (!pointsReset)
+                ResetPoints();
+            else
+                FollowPoints();
+
+            return;
+        }
+
+        if (wyrmNum == 1 && player == null)
+        {
+            agent.ResetPath();
+        }
+
+        if (recoveringFromHiding)
+            return;
+
+        // hiding fix
+        if (player != null && player.TryGetComponent<Player>(out Player ps))
+        {
+            if (ps.CheckIfHiding())
+            {
+                player = null;
+                lostPlayerThisFrame = true;
+
+                if (isChasing && ChaseTracker.Instance != null)
+                {
+                    isChasing = false;
+                    ChaseTracker.Instance.StopChasing(this);
+                }
+
+                recoveringFromHiding = true;
+                StartCoroutine(RecoverFromHiding());
+
+                return;
+            }
+        }
+
+
+        bool currentlyChasing = (player != null);
+
         if (currentlyChasing != isChasing)
         {
             isChasing = currentlyChasing;
@@ -434,7 +480,7 @@ public class WyrmManager : MonoBehaviour
         }
 
 
-        if (player != null && !playerHiding && agent.CalculatePath(player.position, path))
+        if (player != null && !lostPlayerThisFrame && agent.CalculatePath(player.position, path))
         {
             if (player.TryGetComponent<Player>(out Player playerScript))
             {
@@ -491,7 +537,16 @@ public class WyrmManager : MonoBehaviour
 
         }
     }
-    
+
+    private IEnumerator RecoverFromHiding()
+    {
+        agent.ResetPath();
+
+        yield return new WaitForSeconds(0.5f); // small buffer
+
+        recoveringFromHiding = false;
+    }
+
     private void Wyrm1Movement()
     {
         agent.speed = 8;
