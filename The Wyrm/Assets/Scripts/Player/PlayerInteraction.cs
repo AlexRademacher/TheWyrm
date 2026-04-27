@@ -345,7 +345,7 @@ public class PlayerInteraction : MonoBehaviour
                         lastNpcId = 2;
                         break;
                     case 3:
-                        UI.SetTextNameBox("Wood Sculptor");
+                        UI.SetTextNameBox("Woodsculptor");
                         lastNpcId = 3;
                         break;
                     case 4:
