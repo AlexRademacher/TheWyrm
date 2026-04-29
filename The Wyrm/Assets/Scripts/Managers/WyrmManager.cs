@@ -392,6 +392,27 @@ public class WyrmManager : MonoBehaviour
 
     private void WyrmVillageMovement()
     {
+        if (agent == null || !agent.isOnNavMesh || !agent.isActiveAndEnabled)
+            return;
+
+        bool currentlyChasing = (player != null);
+
+        Debug.Log($"[Wyrm] Player detected? {currentlyChasing} | Player ref: {player}");
+
+        if (currentlyChasing != isChasing)
+        {
+            isChasing = currentlyChasing;
+            Debug.Log($"[Wyrm] Chase state changed {isChasing}");
+
+            if (ChaseTracker.Instance != null)
+            {
+                if (isChasing)
+                    ChaseTracker.Instance.StartChasing(this);
+                else
+                    ChaseTracker.Instance.StopChasing(this);
+            }
+        }
+
         if (player != null && !playerHiding && agent.CalculatePath(player.position, path))
         {
             if (player.TryGetComponent<Player>(out Player playerScript))
@@ -420,6 +441,9 @@ public class WyrmManager : MonoBehaviour
 
     private void WyrmArenaMovement()
     {
+
+        if (agent == null || !agent.isOnNavMesh || !agent.isActiveAndEnabled)
+            return;
 
         if (lostPlayerThisFrame)
         {
@@ -595,4 +619,14 @@ public class WyrmManager : MonoBehaviour
                 playerScript.PlayerKilled();
         }
     }*/
+    
+    private void OnDestroy()
+    {
+        if (ChaseTracker.Instance != null)
+            ChaseTracker.Instance.StopChasing(this);
+    }
+
+
 }
+
+

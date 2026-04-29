@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class MusicManager : MonoBehaviour
+public class VillageMusicManager : MonoBehaviour
 {
-    public static MusicManager Instance;
+    public static VillageMusicManager Instance;
 
     [Header("Audio Sources")]
     public AudioSource backgroundMusic;
@@ -25,10 +25,10 @@ public class MusicManager : MonoBehaviour
 
     void Start()
     {
-        backgroundMusic.volume = .25f;
+       
         chaseMusic.volume = 0f;
 
-        backgroundMusic.Play();
+        
         chaseMusic.Play(); // keep both playing for smooth blending
     }
 

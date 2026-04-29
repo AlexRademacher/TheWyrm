@@ -14,6 +14,7 @@ public class ChaseTracker : MonoBehaviour
 
     public void StartChasing(WyrmManager wyrm)
     {
+        Debug.Log("[ChaseTracker] StartChasing called");
         activeChasers.Add(wyrm);
         UpdateMusic();
     }
@@ -29,6 +30,13 @@ public class ChaseTracker : MonoBehaviour
         bool isAnyChasing = activeChasers.Count > 0;
 
         if (MusicManager.Instance != null)
+        {
             MusicManager.Instance.SetChaseState(isAnyChasing);
+        }
+
+        if (VillageMusicManager.Instance != null) 
+        {
+            VillageMusicManager.Instance.SetChaseState(isAnyChasing); 
+        }
     }
 }
