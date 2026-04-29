@@ -129,8 +129,16 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.E))
+        {
+            //Debug.Log("speed up");
+            lettersPerSecond = 100000000;
+        }
+        else
+            lettersPerSecond = 100;
 
-        if (choiceLine || branchLine1n2 || branchLine3n4) 
+
+        if (choiceLine || branchLine1n2 || branchLine3n4)
         {
             inDialouge = true;
         }
@@ -412,6 +420,8 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         inDialouge = false;
     }
+
+    
 }
 
 
