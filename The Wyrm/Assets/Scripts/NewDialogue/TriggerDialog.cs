@@ -99,27 +99,27 @@ public class NewBehaviourScript : MonoBehaviour
             else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.25 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.34)
             {
                 Debug.Log("30 - 40");
-                CameraX = -40;
+                CameraX = -30;
             }
             else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.34 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.45)
             {
                 Debug.Log("40 - 50");
-                CameraX = -50;
+                CameraX = -40;
             }
             else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.45 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.49)
             {
                 Debug.Log("50 - 60");
-                CameraX = -60;
+                CameraX = -50;
             }
             else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.49 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.56)
             {
                 Debug.Log("60 - 70");
-                CameraX = -70;
+                CameraX = -60;
             }
             else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.56 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.63)
             {
                 Debug.Log("70 - 80");
-                CameraX = -80;
+                CameraX = -70;
             }
             else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.63 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 1)
             {
