@@ -94,7 +94,7 @@ public class NewBehaviourScript : MonoBehaviour
             else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.17 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.25)
             {
                 Debug.Log("20 - 30");
-                CameraX = -30;
+                CameraX = -20;
             }
             else if (other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x >= 0.25 && other.gameObject.transform.GetChild(0).GetChild(0).transform.localRotation.x < 0.34)
             {
