@@ -2413,6 +2413,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 621279756}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1510647633111476212, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_LocalScale.x
       value: 33.33333
@@ -2468,10 +2472,6 @@ PrefabInstance:
     - target: {fileID: 2287044282480377166, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_Name
       value: ChairNewPivotPoint (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10785,6 +10785,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 845269203}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1510647633111476212, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_LocalScale.x
       value: 91.84987
@@ -10840,10 +10844,6 @@ PrefabInstance:
     - target: {fileID: 2287044282480377166, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_Name
       value: ChairNewPivotPoint (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27127,6 +27127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 845269203}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1510647633111476212, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_LocalScale.x
       value: 71.017
@@ -27182,10 +27186,6 @@ PrefabInstance:
     - target: {fileID: 2287044282480377166, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_Name
       value: ChairNewPivotPoint (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36626,7 +36626,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568117102}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f505a71b5309c5645884e6f3ba935669, type: 3}
   m_Name: 
@@ -44633,6 +44633,8 @@ MonoBehaviour:
   backgroundMusic: {fileID: 1752863316}
   chaseMusic: {fileID: 703184932}
   fadeDuration: 2
+  backgroundVolume: 0.25
+  chaseVolume: 0.7
 --- !u!4 &703184931
 Transform:
   m_ObjectHideFlags: 0
@@ -67819,6 +67821,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 621279756}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1510647633111476212, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_LocalScale.x
       value: 33.333347
@@ -67874,10 +67880,6 @@ PrefabInstance:
     - target: {fileID: 2287044282480377166, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_Name
       value: ChairNewPivotPoint (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -71718,7 +71720,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117595669}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f505a71b5309c5645884e6f3ba935669, type: 3}
   m_Name: 
@@ -80566,6 +80568,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 845269203}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1510647633111476212, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_LocalScale.x
       value: 71.017
@@ -80621,10 +80627,6 @@ PrefabInstance:
     - target: {fileID: 2287044282480377166, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_Name
       value: ChairNewPivotPoint (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -93524,6 +93526,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 189173358}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1510647633111476212, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_LocalScale.x
       value: 33.333336
@@ -93579,10 +93585,6 @@ PrefabInstance:
     - target: {fileID: 2287044282480377166, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_Name
       value: ChairNewPivotPoint (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -107028,6 +107030,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 621279756}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1510647633111476212, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_LocalScale.x
       value: 33.333332
@@ -107083,10 +107089,6 @@ PrefabInstance:
     - target: {fileID: 2287044282480377166, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_Name
       value: ChairNewPivotPoint (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -107739,6 +107741,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 189173358}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1510647633111476212, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_LocalScale.x
       value: 33.33334
@@ -107794,10 +107800,6 @@ PrefabInstance:
     - target: {fileID: 2287044282480377166, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_Name
       value: ChairNewPivotPoint (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -127743,6 +127745,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1459741368}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 4bfbd5a26dcde6c4ba46d270f9586ae0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7127653956493401843, guid: 63633a6fb2274cc4e858c69b1c4177d1, type: 3}
       propertyPath: m_LocalScale.x
       value: -40
@@ -127802,10 +127808,6 @@ PrefabInstance:
     - target: {fileID: 7611456306360222793, guid: 63633a6fb2274cc4e858c69b1c4177d1, type: 3}
       propertyPath: m_Name
       value: Plate_v001 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 4bfbd5a26dcde6c4ba46d270f9586ae0, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -132560,6 +132562,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 621279756}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1510647633111476212, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_LocalScale.x
       value: 33.33334
@@ -132615,10 +132621,6 @@ PrefabInstance:
     - target: {fileID: 2287044282480377166, guid: 43a0825426574a54080c1c0b259fb433, type: 3}
       propertyPath: m_Name
       value: ChairNewPivotPoint (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1949852ff0fc21e4680ae1624963b1f4, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
