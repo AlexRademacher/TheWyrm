@@ -80,21 +80,21 @@ public class SaveDataManager : MonoBehaviour
             foreach (GameObject item in PI.GetInventory())
             {
                 //if (item.TryGetComponent<>)
-                if (item.name.Contains("Necklace"))
+                if (item.name.Contains("Paper"))
                 {
                     if (relic != null)
                         playerInventory.Add(relic);
                     else
                         Debug.LogError("Relic not given to SaveDataManager");
                 }
-                else if (item.name.Contains("Paper"))
+                else if (item.name.Contains("Bag"))
                 {
                     if (relic1 != null)
                         playerInventory.Add(relic1);
                     else
                         Debug.LogError("Relic not given to SaveDataManager");
                 }
-                else if (item.name.Contains("Bag"))
+                else if (item.name.Contains("Necklace"))
                 {
                     if (relic2 != null)
                         playerInventory.Add(relic2);
@@ -115,7 +115,7 @@ public class SaveDataManager : MonoBehaviour
                     else
                         Debug.LogError("Relic not given to SaveDataManager");
                 }
-                else if (item.name.Contains("Net"))
+                else if (item.name.Contains("Scroll"))
                 {
                     if (relic5 != null)
                         playerInventory.Add(relic5);
@@ -182,21 +182,21 @@ public class SaveDataManager : MonoBehaviour
                 {
                     //Debug.Log("Relic saved: " + item.name);
 
-                    if (item.name.Contains("Necklace"))
+                    if (item.name.Contains("Paper"))
                     {
                         if (relic != null)
                             playerInventoryRelicIndex.Add(0);
                         else
                             Debug.LogError("Relic not given to SaveDataManager");
                     }
-                    else if (item.name.Contains("Paper"))
+                    else if (item.name.Contains("Bag"))
                     {
                         if (relic1 != null)
                             playerInventoryRelicIndex.Add(1);
                         else
                             Debug.LogError("Relic not given to SaveDataManager");
                     }
-                    else if (item.name.Contains("Bag"))
+                    else if (item.name.Contains("Necklace"))
                     {
                         if (relic2 != null)
                             playerInventoryRelicIndex.Add(2);
