@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] public GameObject dialogBox;
     [SerializeField] Text dialogText;
-    [SerializeField] float lettersPerSecond = 100;
+    [SerializeField] float SecondToWait = 0.001F;
     //[SerializeField] GameObject buttonOne;
     //[SerializeField] GameObject buttonTwo;
 
@@ -122,7 +122,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     dialogText.text += letter;
                 }
-                yield return new WaitForSeconds(0.001F);
+                yield return new WaitForSeconds(SecondToWait);
             }
         isTyping = false;
     }
@@ -132,10 +132,10 @@ public class DialogueManager : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             //Debug.Log("speed up");
-            lettersPerSecond = 100000000;
+            SecondToWait = 0.00000000001F;
         }
         else
-            lettersPerSecond = 100;
+            SecondToWait = 0.001F;
 
 
         if (choiceLine || branchLine1n2 || branchLine3n4)
