@@ -135,7 +135,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && isTyping)
+        if (Input.GetKeyDown(KeyCode.E) && isTyping)
         {
             //Debug.Log("attempting Stop");
             //Debug.Log(currentTyping);
@@ -162,7 +162,7 @@ public class DialogueManager : MonoBehaviour
             updatedText = dialogText.text.Replace("&", "");
             updatedText = updatedText.Replace("^", "");
             dialogText.text = updatedText;
-            isTyping = false;
+            StartCoroutine(delayBoolAFrame());
             //Debug.Log("speed up");
             //SecondToWait = 0.00000000001F;
         }
@@ -453,6 +453,11 @@ public class DialogueManager : MonoBehaviour
         inDialouge = false;
     }
 
+    IEnumerator delayBoolAFrame()
+    {
+        yield return new WaitForSeconds(0.0001f);
+        isTyping = false;
+    }
     
 }
 
