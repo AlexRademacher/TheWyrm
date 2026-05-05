@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -35,6 +36,8 @@ public class DialogueManager : MonoBehaviour
 
     bool isTyping;
 
+    Coroutine currentTyping;
+
     [SerializeField] public bool choiceLine = false;
     [SerializeField] bool endingLine = false;
     [SerializeField] public bool branchLine1n2 = false;
@@ -47,6 +50,8 @@ public class DialogueManager : MonoBehaviour
 
     public bool inDialouge = false;
     public bool triggerCutsceneable = false;
+
+    String updatedText;
 
     private void Awake()
     {
@@ -85,7 +90,8 @@ public class DialogueManager : MonoBehaviour
         //sets the dialog box to be active in the scene
         dialogBox.SetActive(true);
         //Types the dialog
-        StartCoroutine(TypeDialog(dialog.Lines[0]));
+        currentTyping = StartCoroutine(TypeDialog(dialog.Lines[0]));
+        //currentTyping = TypeDialog(dialog.Lines[0]);
         inDialouge = true;
         triggerCutsceneable = false;
     }
@@ -129,13 +135,39 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F) && isTyping)
         {
+            //Debug.Log("attempting Stop");
+            //Debug.Log(currentTyping);
+            StopCoroutine(currentTyping);
+            dialogText.text = dialog.Lines[currentLine];
+            if(inBranch)
+                switch (currentBranch) 
+                {
+                    case 1: 
+                        dialogText.text = dialog.Branch1[currentLine];
+                        break;
+                    case 2:
+                        dialogText.text = dialog.Branch2[currentLine];
+                        break;
+                    case 3:
+                        dialogText.text = dialog.Branch3[currentLine];
+                        break;
+                    case 4: 
+                        dialogText.text = dialog.Branch4[currentLine];
+                        break;
+                    default:
+                        break;
+                }
+            updatedText = dialogText.text.Replace("&", "");
+            updatedText = updatedText.Replace("^", "");
+            dialogText.text = updatedText;
+            isTyping = false;
             //Debug.Log("speed up");
-            SecondToWait = 0.00000000001F;
+            //SecondToWait = 0.00000000001F;
         }
-        else
-            SecondToWait = 0.001F;
+        //else
+            //SecondToWait = 0.001F;
 
 
         if (choiceLine || branchLine1n2 || branchLine3n4)
@@ -148,19 +180,19 @@ public class DialogueManager : MonoBehaviour
             currentLine++;
             if (currentBranch == 1 && currentLine < dialog.Branch1.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Branch1[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Branch1[currentLine]));
             }
             else if (currentBranch == 2 && currentLine < dialog.Branch2.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Branch2[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Branch2[currentLine]));
             }
             else if (currentBranch == 3 && currentLine < dialog.Branch3.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Branch3[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Branch3[currentLine]));
             }
             else if (currentBranch == 4 && currentLine < dialog.Branch4.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Branch4[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Branch4[currentLine]));
             }
             else
             {
@@ -228,7 +260,7 @@ public class DialogueManager : MonoBehaviour
             ++currentLine;
             if (currentLine < dialog.Lines.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }
             else
             {
@@ -283,7 +315,7 @@ public class DialogueManager : MonoBehaviour
             ++currentLine;
             if (currentLine < dialog.Lines.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }
             else
             {
@@ -305,7 +337,7 @@ public class DialogueManager : MonoBehaviour
             currentLine = 0;
             if (currentLine < dialog.Branch1.Count) 
             {
-                StartCoroutine(TypeDialog(dialog.Branch1[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Branch1[currentLine]));
             }
             else
             {
@@ -327,7 +359,7 @@ public class DialogueManager : MonoBehaviour
             currentLine = 0;
             if (currentLine < dialog.Branch3.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Branch3[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Branch3[currentLine]));
             }
             else
             {
@@ -354,7 +386,7 @@ public class DialogueManager : MonoBehaviour
             Debug.Log(currentLine);
             if (currentLine < dialog.Lines.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }
             else
             {
@@ -376,7 +408,7 @@ public class DialogueManager : MonoBehaviour
             currentLine = 0;
             if (currentLine < dialog.Branch2.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Branch2[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Branch2[currentLine]));
             }
             else
             {
@@ -397,7 +429,7 @@ public class DialogueManager : MonoBehaviour
             currentLine = 0;
             if (currentLine < dialog.Branch4.Count)
             {
-                StartCoroutine(TypeDialog(dialog.Branch4[currentLine]));
+                currentTyping = StartCoroutine(TypeDialog(dialog.Branch4[currentLine]));
             }
             else
             {
