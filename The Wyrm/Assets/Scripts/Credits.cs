@@ -62,11 +62,11 @@ public class Credits : MonoBehaviour
     private IEnumerator Scrolling()
     {
         waitTime = true;
-        yield return new WaitForSeconds(.1f);
-        transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
+        yield return new WaitForSeconds(.00005f);
+        transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
         waitTime = false;
 
-        if (transform.position.y > 3180)
+        if (transform.position.y > 5610)
         {
             startCredits = false;
             StartCoroutine(End());

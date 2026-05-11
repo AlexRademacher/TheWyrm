@@ -147,6 +147,10 @@ public class TutorialManager : MonoBehaviour
     public bool HasMoved()
     {
         return Moving;
+        /*if (Looking)
+            return Moving;
+        else
+            return ;*/
     }
 
     public bool HasRan()
